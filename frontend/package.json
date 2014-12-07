@@ -1,13 +1,19 @@
 {
-  "name": "come.pt",
-  "version": "0.0.1",
-  "description": "Come.pt",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/nunohora/come.pt"
+  "name": "frontend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
   },
   "dependencies": {
-    "connect": "*",
-    "serve-static": "*"
+    "body-parser": "~1.8.1",
+    "cookie-parser": "~1.3.3",
+    "debug": "~2.0.0",
+    "express": "~4.9.0",
+    "hbs": "~2.7.0",
+    "less-middleware": "1.0.x",
+    "morgan": "~1.3.0",
+    "nodemon": "^1.2.1",
+    "serve-favicon": "~2.1.3"
   }
 }
