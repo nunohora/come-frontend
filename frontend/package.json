@@ -1,0 +1,13 @@
+{
+  "name": "come.pt",
+  "version": "0.0.1",
+  "description": "Come.pt",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nunohora/come.pt"
+  },
+  "dependencies": {
+    "connect": "*",
+    "serve-static": "*"
+  }
+}
