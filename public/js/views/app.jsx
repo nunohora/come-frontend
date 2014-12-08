@@ -11,7 +11,7 @@ define(function (require) {
 		  return (
 		  		<div id="main-wrapper">
 		      		<Header />
-		      		<div id="page-content">
+		      		<div className="page-content">
 		      			<RouteHandler />
 		      		</div>
 		      		<Footer />

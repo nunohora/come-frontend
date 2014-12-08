@@ -10,20 +10,19 @@ define(function (require) {
 	  	},
 
 		onChange: function (event) {
-			console.log(event.target.value);
 			this.setState({postcode: event.target.value});
 		},
 
 		render: function () {
 			var postcode = this.state.postcode;
-			console.log(this.state.postcode);
+			
 		  	return (
 		  		<div className="css-table-cell">
 			  		<div className="main-postcode-search css-table-cell">
 						<input className="form-control" onChange={this.onChange} type="text" placeholder="Insira o seu codigo postal" />
 					</div>
 					<div className="css-table-cell">
-						<Link to="postcode" className="btn btn-default-red-inverse pad-top">
+						<Link to="postcode" params={{pcode: postcode}} className="btn btn-default-red-inverse pad-top">
 							Procure um takeaway
 						</Link>
 					</div>

@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define(function (require) {
 	var React = require('react'),
-		SearchPostcode = require('jsx!views/searchpostcode');
+		SearchPostcode = require('jsx!views/search-postcode');
 
 	var Home = React.createClass({
 

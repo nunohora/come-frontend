@@ -91,16 +91,14 @@ define(function (require) {
 					</nav>
 				</div>
 				<div className="small-menu">
-					<div className="container">
-						<ul className="list-unstyled list-inline">
-							<li><a href="#">Home</a>
-							</li>
-							<li><i className="fa fa-chevron-right"></i>
-							</li>
-							<li><a href="our-team.html">Team</a>
-							</li>
-						</ul>
-					</div>
+					<ul className="list-unstyled list-inline">
+						<li><a href="#">Home</a>
+						</li>
+						<li><i className="fa fa-chevron-right"></i>
+						</li>
+						<li><a href="our-team.html">Team</a>
+						</li>
+					</ul>
 				</div>
 			</header>
 		    );

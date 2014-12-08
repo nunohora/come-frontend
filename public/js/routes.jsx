@@ -7,16 +7,16 @@ define(function (require) {
       NotFoundRoute = ReactRouter.NotFoundRoute,
       Redirect      = ReactRouter.Redirect;
 
-  var App       = require('jsx!views/app'),
-      Home      = require('jsx!views/home'),
-      ContactUs = require('jsx!views/contactus'),
-      Postcode  = require('jsx!views/postcode'),
-      NotFound  = require('jsx!views/notfound');
+  var App             = require('jsx!views/app'),
+      Home            = require('jsx!views/home'),
+      ContactUs       = require('jsx!views/contact-us'),
+      RestaurantList  = require('jsx!views/restaurants-list'),
+      NotFound        = require('jsx!views/not-found');
 
   var routes = (
     <Route handler={App} path="/">
       <Route name="contact-us" handler={ContactUs} path="/contact-us" />
-      <Route name="postcode" handler={Postcode} path="/postcode" />
+      <Route name="postcode" handler={RestaurantList} path="/search-postcode/:pcode/" />
       <DefaultRoute handler={Home} />
       <NotFoundRoute handler={NotFound} />
     </Route>
