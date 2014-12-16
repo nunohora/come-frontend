@@ -1,6 +1,6 @@
 require.config({
+  deps: ['star-rating'],
   baseUrl: 'js/',
-  deps: ['react'],
   paths: {
     "react": "libs/react-with-addons",
     "react-router": "libs/react-router",
@@ -12,7 +12,8 @@ require.config({
     "jquery-ui": "libs/jquery-ui-1.10.4.custom.min",
     "jquery-magnific": "libs/jquery.magnific-popup.min",
     "owl-carousel": "libs/owl.carousel",
-    "boostrap": "libs/bootstrap",
+    "bootstrap": "libs/bootstrap",
+    "star-rating": "libs/star-rating.min",
     "scripts": "./scripts",
     "routes": "./routes",
     "views": "./views"
@@ -32,6 +33,9 @@ require.config({
     'jquery': {
       deps: ['jquery-ui', 'jquery-magnific'],
       exports: 'jQuery'
+    },
+    'star-rating': {
+      deps: ['jquery', 'bootstrap']
     }
   },
 

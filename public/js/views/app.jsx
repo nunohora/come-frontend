@@ -5,20 +5,17 @@ define(function (require) {
 		Footer 		 = require('jsx!views/footer'),
 		Header 		 = require('jsx!views/header');
 		
-	var App = React.createClass({
-
+	return React.createClass({
 		render: function () {
 		  return (
 		  		<div id="main-wrapper">
 		      		<Header />
 		      		<div className="page-content">
-		      			<RouteHandler />
+		      			<RouteHandler params={this.props.params}/>
 		      		</div>
 		      		<Footer />
 	      		</div>
 		    );
 		}
 	});
-
-	return App;
 });
