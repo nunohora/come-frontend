@@ -46,5 +46,30 @@ module.exports = {
 				});
  
 		return dfd.promise;
-	}
+	},
+
+	getToken: function () {
+		return localStorage.token;
+	},
+
+	userLogin: function (email, pass) {
+		var dfd = new Deferred(),
+			url = 'login';
+
+		if (localStorage.token) {
+
+		}
+	},
+
+	userLogout: function () {
+		delete localStorage.token;
+
+		return true;
+	},
+
+	isUserLoggedIn: function () {
+		return !!localStorage.token;
+	},
+
+	onAuthChange: function () {}
 };

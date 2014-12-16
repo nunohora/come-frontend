@@ -10,13 +10,13 @@ define(function (require) {
   var App             = require('jsx!views/app'),
       Home            = require('jsx!views/home'),
       ContactUs       = require('jsx!views/contact-us'),
-      RestaurantList  = require('jsx!views/restaurant-list'),
+      SearchResults   = require('jsx!views/search-results/main'),
       NotFound        = require('jsx!views/not-found');
 
   var routes = (
     <Route handler={App} params={this.params} path="/">
       <Route name="contact-us" handler={ContactUs} path="/contact-us" />
-      <Route name="postcode" handler={RestaurantList} params={this.params} path="/search-postcode/:pcode/" />
+      <Route name="postcode" handler={SearchResults} params={this.params} path="/search-postcode/:pcode/" />
       <DefaultRoute handler={Home} />
       <NotFoundRoute handler={NotFound} />
     </Route>
