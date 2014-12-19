@@ -1,9 +1,10 @@
 require.config({
-  deps: ['underscore'],
+  deps: ['underscore', 'jquery'],
   baseUrl: 'src/js/',
   paths: {
     "react":              "libs/react-with-addons",
     "react-router":       "libs/react-router",
+    "react-router-shim":  "libs/react-router-shim",
     "text":               "libs/text",
     "jquery":             "libs/jquery-1.11.0.min",
     "jquery-ui":          "libs/jquery-ui-1.10.4.custom.min",
@@ -17,12 +18,16 @@ require.config({
   },
 
   shim : {
+    'react-router-shim': {
+      deps: ['react'],
+      exports: 'React'
+    },
     'react-router': {
-      deps:    ['react'],
+      deps:    ['react-router-shim'],
       exports: 'ReactRouter'
     },
     'routes': {
-      deps: ['react', 'jquery']
+      deps: ['react-router']
     },
     'jquery': {
       deps: ['jquery-ui', 'jquery-magnific'],

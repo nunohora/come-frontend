@@ -10,7 +10,7 @@ define(function (require) {
 						<div className="main-footer">
 							<div className="row">
 								<div className="col-sm-6 col-md-3">
-									<img src="img/header-logo.png" alt="" />
+									<img src="src/img/header-logo.png" alt="" />
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed.
 									</p>
 								</div>
@@ -46,7 +46,7 @@ define(function (require) {
 								<div className="col-sm-6 col-md-3">
 									<h5>Latest Tweets
 										<span>
-											<i className="fa fa-chevron-left"></i> 
+											<i className="fa fa-chevron-left"></i>
 											<i className="fa fa-chevron-right"></i>
 										</span>
 									</h5>

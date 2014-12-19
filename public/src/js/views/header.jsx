@@ -13,7 +13,7 @@ define(function (require) {
 							<div className="col-md-5 col-sm-12 col-xs-12">
 								<div className="header-login">
 									<a href="#">Order online</a>
-									<a href="#">Login</a>	
+									<a href="#">Login</a>
 								</div>
 								<ul className="header-social">
 									<li><i className="fa fa-facebook-square"></i>
@@ -44,7 +44,7 @@ define(function (require) {
 									<span className="icon-bar"></span>
 								</button>
 								<Link className="navbar-brand" to="/">
-									<img src="img/header-logo.png" alt="TakeAway" />
+									<img src="src/img/header-logo.png" alt="TakeAway" />
 								</Link>
 							</div>
 							<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -74,12 +74,12 @@ define(function (require) {
 									</li>
 									<li><a href="our-team.html">Team</a>
 									</li>
-									
+
 									<li className="dropdown">
 										<a href="#" className="dropdown-toggle" data-toggle="dropdown">Blog</a>
 										<ul className="dropdown-menu" role="menu">
 											<li><a href="blog-list.html">Blog List</a></li>
-											<li><a href="blog-post.html">Blog Post</a></li> 
+											<li><a href="blog-post.html">Blog Post</a></li>
 										</ul>
 									</li>
 									<li>

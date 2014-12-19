@@ -24,7 +24,7 @@ define(function (require) {
 					<div className="row">
 						<div className="col-md-4 col-sm-4">
 							<div className="blog-list-img">
-								<img className="" src="img/content/blog-post.jpg" alt="" />
+								<img className="" src="src/img/content/blog-post.jpg" alt="" />
 							</div>
 						</div>
 						<div className="col-md-8 col-sm-8">

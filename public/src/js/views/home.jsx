@@ -15,7 +15,7 @@ define(function (require) {
 					<div className="call-to-action-section">
 						<div className="css-table-cell">
 							<div className="icon">
-								<img src="img/content/call-to-action-icon1.png" alt="" />
+								<img src="src/img/content/call-to-action-icon1.png" alt="" />
 							</div>
 						</div>
 						<div className="text css-table">
@@ -28,7 +28,7 @@ define(function (require) {
 					</div>
 					<div className="home-bg ms-skin-black-2 round-skin" id="masterslider">
 						<div className="ms-view">
-							<img src="img/japanese_ramen.jpg" alt="" />
+							<img src="src/img/japanese_ramen.jpg" alt="" />
 							<div className="ms-layer ms-caption">
 								<h1 className="text-right">
 									<span>Tens fome?!</span>
