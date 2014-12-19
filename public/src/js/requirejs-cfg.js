@@ -1,12 +1,9 @@
 require.config({
   deps: ['underscore'],
-  baseUrl: 'js/',
+  baseUrl: 'src/js/',
   paths: {
     "react":              "libs/react-with-addons",
     "react-router":       "libs/react-router",
-    "react-router-shim":  "react-router-shim",
-    "JSXTransformer":     "libs/JSXTransformer",
-    "jsx":                "libs/requirejs-jsx-plugin",
     "text":               "libs/text",
     "jquery":             "libs/jquery-1.11.0.min",
     "jquery-ui":          "libs/jquery-ui-1.10.4.custom.min",
@@ -15,16 +12,13 @@ require.config({
     "bootstrap":          "libs/bootstrap",
     "underscore":         "libs/underscore.min",
     "scripts":            "./scripts",
-    "routes":             "./routes",
-    "views":              "./views"
+    "routes":             "../../build/js/routes",
+    "views":              "../../build/js/views"
   },
 
   shim : {
-    'react-router-shim': {
-      exports: 'React'
-    },
     'react-router': {
-      deps:    ['react-router-shim'],
+      deps:    ['react'],
       exports: 'ReactRouter'
     },
     'routes': {
@@ -34,11 +28,7 @@ require.config({
       deps: ['jquery-ui', 'jquery-magnific'],
       exports: 'jQuery'
     }
-  },
-
-  jsx: {
-    fileExtension: ".jsx"
-  }  
+  }
 });
 
-require(['jsx!routes', 'scripts'], function (routes, scripts) {});
+require(['routes', 'scripts'], function (routes, scripts) {});

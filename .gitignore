@@ -28,3 +28,6 @@ node_modules
 
 # Mac Files
 .DS_Store
+
+# Build folder
+public/build/

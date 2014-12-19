@@ -2,9 +2,9 @@
 define(function (require) {
 	var React 		 = require('react'),
 		RouteHandler = require('react-router').RouteHandler,
-		Footer 		 = require('jsx!views/footer'),
-		Header 		 = require('jsx!views/header');
-		
+		Footer 		 = require('views/footer'),
+		Header 		 = require('views/header');
+
 	return React.createClass({
 		render: function () {
 		  return (

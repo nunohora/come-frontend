@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define(function (require) {
 	var React = require('react'),
-		SearchPostcode = require('jsx!views/search-postcode');
+		SearchPostcode = require('views/search-postcode');
 
 	var Home = React.createClass({
 
@@ -50,7 +50,7 @@ define(function (require) {
 								</div>
 								<div className="col-lg-3">
 									<div className="order-step">
-										<i className="fa fa-cutlery fa-4x"></i>		
+										<i className="fa fa-cutlery fa-4x"></i>
 										<h6>2. Escolha um takeaway</h6>
 										<div className="bl-sort">O que lhe apetece comer?</div>
 									</div>
@@ -71,7 +71,7 @@ define(function (require) {
 								</div>
 							</div>
 						</div>
-					</div>					
+					</div>
 				</div>
 		    );
 		}

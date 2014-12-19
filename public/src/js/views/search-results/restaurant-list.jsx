@@ -2,8 +2,8 @@
 define(function (require) {
 	var React 			   = require('react'),
 		_			       = require('underscore'),
-		RestaurantListItem = require('jsx!views/search-results/restaurant-list-item');
-	
+		RestaurantListItem = require('views/search-results/restaurant-list-item');
+
 	return React.createClass({
 
 		renderRestaurants: function () {

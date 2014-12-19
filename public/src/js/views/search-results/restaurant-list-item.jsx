@@ -1,8 +1,23 @@
 /** @jsx React.DOM */
 define(function (require) {
 	var React = require('react');
-	
+
 	return React.createClass({
+
+		renderRating: function () {
+			var rating = this.props.params.rating;
+
+			return (
+				<div className="rating">
+					<span>☆</span>
+					<span>☆</span>
+					<span>☆</span>
+					<span>☆</span>
+					<span>☆</span>
+				</div>
+			);
+		},
+
 		render: function () {
 		  	return (
 				<div className="blog-list">
@@ -16,21 +31,24 @@ define(function (require) {
 							<h4>
 								<a href="#">{this.props.params.name}</a>
 							</h4>
+							{this.renderRating()}
 							<ul className="list-inline">
 								<li className="place">
 									<a href="#">Abu Antar</a></li>
 								<li className="date"><i className="fa fa-clock-o"></i></li>
 							</ul>
-							<input type="number" className="rating" min="1" max="10" step="2" data-size="lg" data-rtl="true" />
+
+
 							<div className="tag-list">
 								<p>
 									<i className="fa fa-cutlery"></i>
 									Chinesa
 								</p>
 							</div>
+
 						</div>
 					</div>
-				</div>	  			
+				</div>
 		    );
 		}
 	});

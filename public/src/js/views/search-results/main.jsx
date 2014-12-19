@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 define(function (require) {
 	var React 		   = require('react'),
-		RestaurantList = require('jsx!views/search-results/restaurant-list'),
-		Categories 	   = require('jsx!views/search-results/categories');
+		RestaurantList = require('views/search-results/restaurant-list'),
+		Categories 	   = require('views/search-results/categories');
 
 	var endpoint = '/api/postcode/';
 
@@ -23,9 +23,9 @@ define(function (require) {
 					this.setState({
 						categories: [],
 						restaurants: result
-					})
+					});
 				}
-			
+
 			}.bind(this));
 		},
 
