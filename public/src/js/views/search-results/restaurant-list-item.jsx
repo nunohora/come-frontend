@@ -9,45 +9,48 @@ define(function (require) {
 
 			return (
 				<div className="rating">
-					<span>☆</span>
-					<span>☆</span>
-					<span>☆</span>
-					<span>☆</span>
-					<span>☆</span>
+					<div className="rating-stars">
+						<span>☆</span>
+						<span>☆</span>
+						<span>☆</span>
+						<span>☆</span>
+						<span>☆</span>
+					</div>
+					<div className="rating-number"></div>
 				</div>
 			);
 		},
 
 		render: function () {
 		  	return (
-				<div className="blog-list">
+				<div className="restaurant-list">
 					<div className="row">
-						<div className="col-md-4 col-sm-4">
-							<div className="blog-list-img">
+						<div className="col-md-3">
+							<div className="restaurant-list-img">
 								<img className="" src="src/img/content/blog-post.jpg" alt="" />
 							</div>
 						</div>
-						<div className="col-md-8">
+						<div className="col-md-9 restaurant-list-inner">
 							<h4>
 								<a href="#">{this.props.params.name}</a>
 							</h4>
 							{this.renderRating()}
-							<ul className="list-inline">
-								<li className="place">
+							<div className="address">
+								<p>
+									<i className="fa fa-map-marker"></i>
 									{this.props.params.address}
-								</li>
-								<li className="date">
-									<i className="fa fa-clock-o"></i>
-								</li>
-							</ul>
+								</p>
+							</div>
 							<div className="tag-list">
 								<p>
 									<i className="fa fa-cutlery"></i>
 									Chinesa
 								</p>
 							</div>
-
 						</div>
+						<a className="btn btn-default-red-inverse view-menu">
+							Ver menu
+						</a>
 					</div>
 				</div>
 		    );

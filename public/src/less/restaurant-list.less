@@ -1,0 +1,97 @@
+/* Restaurant list */
+/* ====================================================== */
+.restaurant-list {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0 0 30px 0;
+    padding: 30px;
+    text-align: left;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    cursor: pointer;
+
+    .restaurant-list-inner {
+        padding: 0;
+    }
+    .row {
+        position: relative;
+    }
+    h4 {
+        margin-top: 0;
+        font-weight: bold;
+    }
+    h5 {
+        margin: 0;
+        padding: 0;
+    }
+    a:hover {
+        color: #666;
+    }
+    p {
+        margin: 10px 0px 0px 0px;
+        color: #423338;
+    }
+    .tag-list {
+        padding-top: 25px;
+    }
+    ul {
+        li {
+            padding: 10px 70px 0 0;
+            span {
+                padding: 0 4px;
+            }
+        }
+    }
+    .bl-sort {
+        color: #999;
+    }
+    .fa {
+        padding-right: 7px;
+    }
+
+    .rating {
+        unicode-bidi: bidi-override;
+        direction: rtl;
+        font-size: 25px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .rating > span {
+        display: inline-block;
+        position: relative;
+        width: 1.1em;
+    }
+
+    .restaurant-list-img {
+        position: relative;
+        width: 100%;
+        height: 120px;
+        overflow: hidden;
+        display: table-cell;
+        vertical-align: middle;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+        }
+    }
+    .view-menu {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 10px 15px;
+        width: 150px;
+        font-weight: bold;
+        font-size: 20px
+    }
+}
+
+.restaurant-list:hover {
+    h4 a {
+        color: #e00000;
+    }
+}

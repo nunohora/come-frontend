@@ -5,6 +5,7 @@ define(function (require) {
 	return React.createClass({
 		render: function () {
 		  return (
+		  	<div className="side-panel">
 				<div className="categories">
 					<h4>Categorias</h4>
 					<ul className="list-unstyled">
@@ -25,6 +26,7 @@ define(function (require) {
 						</li>
 					</ul>
 				</div>
+			</div>
 		    );
 		}
 	});

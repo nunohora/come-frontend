@@ -45,9 +45,7 @@ define(function (require) {
 		  	return (
 	  			<div className="container">
 		  			<div className="col-md-3 col-sm-12 col-xs-12">
-						<div className="blog-side-panel">
-							{this.renderCategories()}
-						</div>
+						{this.renderCategories()}
 					</div>
 					{this.renderRestaurantsList()}
 	  			</div>

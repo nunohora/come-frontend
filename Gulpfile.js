@@ -15,8 +15,8 @@ var paths = {
 	'clean-build': {
 		src: './public/build'
 	},
-	'clean-css-tmp': {
-		src: './public/src/css/tmp'
+	'clean-tmp': {
+		src: './tmp'
 	},
 	'jsx': {
 		src: './public/src/js/**/*.jsx',
@@ -27,10 +27,10 @@ var paths = {
 	},
 	'less': {
 		src: './public/src/less/*.less',
-		dest: './public/src/less/tmp'
+		dest: './tmp'
 	},
 	'css-concat': {
-		src: './public/src/less/tmp/*.css',
+		src: './tmp/*.css',
 		dest: './public/build/css',
 		name: 'style.css'
 	}
@@ -61,7 +61,7 @@ gulp.task('jshint', ['jsx-compile'], function () {
 });
 
 //LESS to CSS
-gulp.task('less', ['clean-build', 'clean-css-tmp'], function () {
+gulp.task('less', ['clean-build', 'clean-tmp'], function () {
 	var cleancss = new cleanCssPlugin({
 		keepBreaks: true
 	});
@@ -74,14 +74,14 @@ gulp.task('less', ['clean-build', 'clean-css-tmp'], function () {
 });
 
 //Clean build folder
-gulp.task('clean-build', ['clean-css-tmp'], function () {
+gulp.task('clean-build', ['clean-tmp'], function () {
 	return gulp.src(paths['clean-build'].src, {read: false})
 			.pipe(clean());
 });
 
 //Clean css tmp folder
-gulp.task('clean-css-tmp', function () {
-	return gulp.src(paths['clean-css-tmp'].src, {read: false})
+gulp.task('clean-tmp', function () {
+	return gulp.src(paths['clean-tmp'].src, {read: false})
 			.pipe(clean());
 });
 

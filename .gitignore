@@ -33,4 +33,4 @@ node_modules
 public/build/
 
 #Temp css folder
-public/src/less/tmp
+/tmp
