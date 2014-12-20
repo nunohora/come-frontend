@@ -33,7 +33,7 @@
         color: #423338;
     }
     .tag-list {
-        padding-top: 25px;
+        padding-top: 10px;
     }
     ul {
         li {
@@ -51,8 +51,6 @@
     }
 
     .rating {
-        unicode-bidi: bidi-override;
-        direction: rtl;
         font-size: 25px;
         position: absolute;
         right: 0;
@@ -63,7 +61,12 @@
         position: relative;
         width: 1.1em;
     }
-
+    .rating {
+        .rating-number {
+            font-size: 14px;
+            text-align: center;
+        }
+    }
     .restaurant-list-img {
         position: relative;
         width: 100%;
@@ -84,7 +87,6 @@
         right: 0;
         bottom: 0;
         padding: 10px 15px;
-        width: 150px;
         font-weight: bold;
         font-size: 20px
     }

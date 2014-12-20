@@ -16,7 +16,9 @@ define(function (require) {
 						<span>☆</span>
 						<span>☆</span>
 					</div>
-					<div className="rating-number"></div>
+					<div className="rating-number">
+						27 Ratings
+					</div>
 				</div>
 			);
 		},
@@ -49,7 +51,8 @@ define(function (require) {
 							</div>
 						</div>
 						<a className="btn btn-default-red-inverse view-menu">
-							Ver menu
+							<i className="fa fa-list-ul"></i>
+							Ver Menu
 						</a>
 					</div>
 				</div>

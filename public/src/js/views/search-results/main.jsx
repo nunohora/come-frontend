@@ -2,16 +2,25 @@
 define(function (require) {
 	var React 		   = require('react'),
 		RestaurantList = require('views/search-results/restaurant-list'),
-		Categories 	   = require('views/search-results/categories');
+		Categories 	   = require('views/search-results/categories'),
+		ResultNumber   = require('views/search-results/result-number');
 
-	var endpoint = '/api/postcode/';
+	var endpoint = '/api/postcode/',
+
+	calculateResults = function () {
+
+	};
 
 	return React.createClass({
 
 		getInitialState: function () {
 			return {
 				categories: [],
-				restaurants: []
+				restaurants: [],
+				resultNumber: {
+					number: 0,
+					postcode: ''
+				}
 			};
 		},
 
