@@ -31,3 +31,6 @@ node_modules
 
 # Build folder
 public/build/
+
+#Temp css folder
+public/src/less/tmp
