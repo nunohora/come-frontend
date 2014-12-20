@@ -27,18 +27,19 @@ define(function (require) {
 								<img className="" src="src/img/content/blog-post.jpg" alt="" />
 							</div>
 						</div>
-						<div className="col-md-8 col-sm-8">
+						<div className="col-md-8">
 							<h4>
 								<a href="#">{this.props.params.name}</a>
 							</h4>
 							{this.renderRating()}
 							<ul className="list-inline">
 								<li className="place">
-									<a href="#">Abu Antar</a></li>
-								<li className="date"><i className="fa fa-clock-o"></i></li>
+									{this.props.params.address}
+								</li>
+								<li className="date">
+									<i className="fa fa-clock-o"></i>
+								</li>
 							</ul>
-
-
 							<div className="tag-list">
 								<p>
 									<i className="fa fa-cutlery"></i>

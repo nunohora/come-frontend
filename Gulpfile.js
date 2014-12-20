@@ -2,6 +2,7 @@
 var gulp    = require('gulp'),
 	debug   = require('debug')('frontend'),
 	react   = require('gulp-react'),
+	less    = require('gulp-less'),
 	jshint  = require('gulp-jshint'),
 	stylish = require('jshint-stylish'),
 	app     = require('./app');
@@ -13,6 +14,10 @@ var paths = {
 	},
 	jshint: {
 		src: './public/build/**/*.js'
+	},
+	less: {
+		src: './public/src/css/style.less',
+		dest: './public/build/css'
 	}
 };
 
@@ -40,8 +45,22 @@ gulp.task('jshint', ['jsx-compile'], function () {
 		.pipe(jshint.reporter(stylish));
 });
 
+//LESS to CSS
+gulp.task('less', function () {
+	return gulp.src(paths.less.src)
+		.pipe(less())
+		.pipe(gulp.dest(paths.less.dest));
+});
+
 //Main build task
-gulp.task('build', ['jshint']);
+gulp.task('build', ['jshint', 'less']);
+
+//
+// WATCHERS
+//
 
 //watching changes of files
-var watcher = gulp.watch(paths.jsx.src, ['build']);
+gulp.watch(paths.jsx.src, ['build']);
+
+//Compile LESS to CSS
+gulp.watch(paths.less.src, ['less']);
