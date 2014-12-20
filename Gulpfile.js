@@ -1,13 +1,19 @@
 #!/usr/bin/env node
-var gulp    = require('gulp'),
-	debug   = require('debug')('frontend'),
-	react   = require('gulp-react'),
-	less    = require('gulp-less'),
-	jshint  = require('gulp-jshint'),
-	stylish = require('jshint-stylish'),
-	app     = require('./app');
+var gulp     = require('gulp'),
+	debug    = require('debug')('frontend'),
+	react    = require('gulp-react'),
+	less     = require('gulp-less'),
+	cleancss = new require('less-plugin-clean-css')({ advanced: true }),
+	jshint   = require('gulp-jshint'),
+	clean    = require('gulp-clean'),
+	stylish  = require('jshint-stylish'),
+	app      = require('./app');
 
+// Paths for Gulp tasks
 var paths = {
+	clean: {
+		src: './public/build'
+	},
 	jsx: {
 		src: './public/src/js/**/*.jsx',
 		dest: './public/build/js'
@@ -16,8 +22,8 @@ var paths = {
 		src: './public/build/**/*.js'
 	},
 	less: {
-		src: './public/src/css/style.less',
-		dest: './public/build/css'
+		src: './public/src/less/*.less',
+		dest: './public/build/css/style.css'
 	}
 };
 
@@ -32,7 +38,7 @@ gulp.task('default', ['build'], function () {
 });
 
 //Compile jsx templates to js
-gulp.task('jsx-compile', function () {
+gulp.task('jsx-compile', ['clean'], function () {
 	return gulp.src(paths.jsx.src)
 		.pipe(react())
 		.pipe(gulp.dest(paths.jsx.dest));
@@ -46,10 +52,16 @@ gulp.task('jshint', ['jsx-compile'], function () {
 });
 
 //LESS to CSS
-gulp.task('less', function () {
+gulp.task('less', ['clean'], function () {
 	return gulp.src(paths.less.src)
 		.pipe(less())
 		.pipe(gulp.dest(paths.less.dest));
+});
+
+//Clean build folder
+gulp.task('clean', function () {
+	return gulp.src(paths.clean.src, {read: false})
+			.pipe(clean());
 });
 
 //Main build task
