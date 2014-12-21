@@ -16,7 +16,7 @@ define(function (require) {
 
 		render: function () {
 			return (
-				<div className="col-md-9 col-sm-12 col-xs-12">
+				<div className="col-md-9">
 					{this.renderRestaurants()}
 				</div>
 		    );

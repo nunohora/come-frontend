@@ -5,11 +5,7 @@ define(function (require) {
 		Categories 	   = require('views/search-results/categories'),
 		ResultNumber   = require('views/search-results/result-number');
 
-	var endpoint = '/api/postcode/',
-
-	calculateResults = function () {
-
-	};
+	var endpoint = '/api/postcode/';
 
 	return React.createClass({
 
@@ -18,7 +14,7 @@ define(function (require) {
 				categories: [],
 				restaurants: [],
 				resultNumber: {
-					number: 0,
+					number: '',
 					postcode: ''
 				}
 			};
@@ -31,11 +27,21 @@ define(function (require) {
 				if (this.isMounted()) {
 					this.setState({
 						categories: [],
-						restaurants: result
+						restaurants: result,
+						resultNumber: {
+							number: result.length,
+							postcode: pcode
+						}
 					});
 				}
 
 			}.bind(this));
+		},
+
+		renderResultNumber: function () {
+			return (
+				<ResultNumber params={this.state.resultNumber} />
+			);
 		},
 
 		renderCategories: function () {
@@ -53,7 +59,8 @@ define(function (require) {
 		render: function () {
 		  	return (
 	  			<div className="container">
-		  			<div className="col-md-3 col-sm-12 col-xs-12">
+	  				{this.renderResultNumber()}
+		  			<div className="col-md-3">
 						{this.renderCategories()}
 					</div>
 					{this.renderRestaurantsList()}

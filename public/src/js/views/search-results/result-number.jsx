@@ -4,30 +4,11 @@ define(function (require) {
 
 	return React.createClass({
 		render: function () {
-		  return (
-		  	<div className="side-panel">
-				<div className="categories">
-					<h4>Categorias</h4>
-					<ul className="list-unstyled">
-						<li>
-							<a href="#">Chinesa</a>
-						</li>
-						<li>
-							<a href="#">Churrasco</a>
-						</li>
-						<li>
-							<a href="#">Vegetariano</a>
-						</li>
-						<li>
-							<a href="#">Brasileira</a>
-						</li>
-						<li>
-							<a href="#">Francesinhas</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		    );
+		  	return (
+		  		<div className="col-md-10">
+		  			<h5>{this.props.params.number} Resultados Para {this.props.params.postcode}</h5>
+		  		</div>
+	    	);
 		}
 	});
 });
