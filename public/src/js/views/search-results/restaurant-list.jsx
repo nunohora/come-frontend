@@ -9,7 +9,7 @@ define(function (require) {
 		renderRestaurants: function () {
 			return _.map(this.props.params, function (restaurant) {
 				return (
-					<RestaurantListItem params={restaurant} />
+					<RestaurantListItem key={restaurant.id} params={restaurant} />
 				);
 			});
 		},

@@ -3,7 +3,7 @@ define(function (require) {
 	var React 		 = require('react'),
 		RouteHandler = require('react-router').RouteHandler,
 		Footer 		 = require('views/footer'),
-		Header 		 = require('views/header');
+		Header 		 = require('views/header/main');
 
 	return React.createClass({
 		render: function () {

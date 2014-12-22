@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 define(function (require) {
-	var React 		   = require('react'),
-		RestaurantList = require('views/search-results/restaurant-list'),
-		Categories 	   = require('views/search-results/categories'),
-		ResultNumber   = require('views/search-results/result-number');
+	var React 		   			= require('react'),
+		RestaurantList 			= require('views/search-results/restaurant-list'),
+		Categories 	   			= require('views/search-results/categories'),
+		ResultNumber   			= require('views/search-results/result-number');
 
 	var endpoint = '/api/postcode/';
 
@@ -20,7 +20,7 @@ define(function (require) {
 			};
 		},
 
-		componentDidMount: function () {
+		componentWillMount: function () {
 			var pcode = this.props.params.pcode;
 
 			$.getJSON(endpoint + pcode, function (result) {
@@ -40,19 +40,19 @@ define(function (require) {
 
 		renderResultNumber: function () {
 			return (
-				<ResultNumber params={this.state.resultNumber} />
+				<ResultNumber key={'res-numb'} params={this.state.resultNumber} />
 			);
 		},
 
 		renderCategories: function () {
 			return (
-				<Categories params={this.state.categories} />
+				<Categories key={'cat'} params={this.state.categories} />
 			);
 		},
 
 		renderRestaurantsList: function () {
 			return (
-				<RestaurantList params={this.state.restaurants} />
+				<RestaurantList key={'res-list'} params={this.state.restaurants} />
 			);
 		},
 

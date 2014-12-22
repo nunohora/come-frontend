@@ -9,20 +9,24 @@ define(function (require) {
 
   var App             = require('views/app'),
       Home            = require('views/home'),
-      ContactUs       = require('views/contact-us'),
+      Help            = require('views/help'),
+      Login           = require('views/login'),
+      Register        = require('views/register'),
       SearchResults   = require('views/search-results/main'),
       NotFound        = require('views/not-found');
 
   var routes = (
     <Route handler={App} params={this.params} path="/">
-      <Route name="contact-us" handler={ContactUs} path="/contact-us" />
       <Route name="postcode" handler={SearchResults} params={this.params} path="/search-postcode/:pcode/" />
+      <Route name="help" handler={Help} path="/help" />
+      <Route name="login" handler={Login} path="/login" />
+      <Route name="register" handler={Register} path="/register" />
       <DefaultRoute handler={Home} />
       <NotFoundRoute handler={NotFound} />
     </Route>
   );
 
   ReactRouter.run(routes, function (Handler, state) {
-    React.render(<Handler params={state.params}/>, document.body);
+    React.render(<Handler params={state.params} path={state.path} />, document.body);
   });
 });
