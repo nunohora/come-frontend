@@ -11,30 +11,32 @@ define(function (require) {
 
 		render: function () {
 		  return (
-      			<div className="home-top-wrapper">
-					<div className="call-to-action-section">
-						<div className="css-table-cell">
-							<div className="icon">
-								<img src="src/img/content/call-to-action-icon1.png" alt="" />
-							</div>
-						</div>
-						<div className="text css-table">
+		  		<div className="home-wrapper">
+			  		<div className="home-top-wrapper">
+						<div className="call-to-action-section">
 							<div className="css-table-cell">
-								<h4>Encomende comida online</h4>
-								<p>Procure por takeaways perto de si</p>
+								<div className="icon">
+									<img src="src/img/content/call-to-action-icon1.png" alt="" />
+								</div>
 							</div>
-							<SearchPostcode />
+							<div className="text css-table">
+								<div className="css-table-cell">
+									<h4>Encomende comida online</h4>
+									<p>Procure por takeaways perto de si</p>
+								</div>
+								<SearchPostcode />
+							</div>
 						</div>
-					</div>
-					<div className="home-bg ms-skin-black-2 round-skin" id="masterslider">
-						<div className="ms-view">
-							<img src="src/img/japanese_ramen.jpg" alt="" />
-							<div className="ms-layer ms-caption">
-								<h1 className="text-right">
-									<span>Tens fome?!</span>
-									<br/>
-									<span className="small">Come!</span>
-								</h1>
+						<div className="home-bg ms-skin-black-2 round-skin" id="masterslider">
+							<div className="ms-view">
+								<img src="src/img/japanese_ramen.jpg" alt="" />
+								<div className="ms-layer ms-caption">
+									<h1 className="text-right">
+										<span>Tens fome?!</span>
+										<br/>
+										<span className="small">Come!</span>
+									</h1>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -72,7 +74,7 @@ define(function (require) {
 							</div>
 						</div>
 					</div>
-				</div>
+		  		</div>
 		    );
 		}
 	});
