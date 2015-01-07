@@ -14,6 +14,7 @@ require.config({
     "underscore":         "libs/underscore.min",
     "scripts":            "./scripts",
     "routes":             "../../build/js/routes",
+    "auth":               "./auth",
     "views":              "../../build/js/views"
   },
 

@@ -2,10 +2,30 @@
 define(function (require) {
 	var React 		 = require('react'),
 		RouteHandler = require('react-router').RouteHandler,
-		Footer 		 = require('views/footer'),
-		Header 		 = require('views/header/main');
+		auth 		 = require('auth');
+
+	var Footer = require('views/footer'),
+		Header = require('views/header/main');
 
 	return React.createClass({
+
+		getInitialState: function () {
+			return {
+				loggedIn: auth.loggedIn()
+			};
+		},
+
+		setStateOnAuth: function (loggedIn) {
+			this.setState({
+				loggedIn: loggedIn
+			});
+		},
+
+		componentWillMount: function () {
+			auth.onChange = this.setStateOnAuth;
+			auth.login();
+		},
+
 		render: function () {
 		  return (
 		  		<div id="main-wrapper">
