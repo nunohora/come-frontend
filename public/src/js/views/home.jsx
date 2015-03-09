@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define(function (require) {
 	var React = require('react'),
-		SearchPostcode = require('views/search-postcode');
+		Link = require('react-router').Link;
 
 	var Home = React.createClass({
 
@@ -9,8 +9,19 @@ define(function (require) {
 			$(this.getDOMNode()).find('.home-bg').fadeTo('100', 1);
 		},
 
+	  	getInitialState: function() {
+			return {postcode: 'none'};
+	  	},
+
+		onChange: function (event) {
+			this.setState({postcode: event.target.value});
+		},
+
 		render: function () {
-		  return (
+			var postcode = this.state.postcode;
+
+
+		  	return (
 		  		<div className="home-wrapper">
 			  		<div className="home-top-wrapper">
 						<div className="call-to-action-section">
@@ -24,7 +35,14 @@ define(function (require) {
 									<h4>Encomende comida online</h4>
 									<p>Procure por takeaways perto de si</p>
 								</div>
-								<SearchPostcode />
+						  		<div className="css-table-cell">
+							  		<input className="form-control" onChange={this.onChange} type="text" placeholder="Insira o seu codigo postal" />
+						  		</div>
+						  		<div className="css-table-cell">
+									<Link to="postcode" params={{pcode: postcode}} className="btn btn-default-red-inverse pad-top">
+										Procure um takeaway
+									</Link>
+								</div>
 							</div>
 						</div>
 						<div className="home-bg ms-skin-black-2 round-skin" id="masterslider">
