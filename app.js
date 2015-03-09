@@ -33,6 +33,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
+
 //Handlebars
 Handlebars.registerPartials(__dirname + '/views/partials');
 
