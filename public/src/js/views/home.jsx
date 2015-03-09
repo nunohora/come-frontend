@@ -20,7 +20,6 @@ define(function (require) {
 		render: function () {
 			var postcode = this.state.postcode;
 
-
 		  	return (
 		  		<div className="home-wrapper">
 			  		<div className="home-top-wrapper">
@@ -61,28 +60,28 @@ define(function (require) {
 					<div className="order-steps text-center">
 						<div className="container">
 							<div className="row">
-								<div className="col-lg-3">
+								<div className="col-md-3 col-sm-6 col-xs-6 text-center">
 									<div className="order-step">
 										<i className="fa fa-map-marker fa-4x"></i>
 										<h6>1. Diga-nos onde está</h6>
 										<div className="bl-sort">Só precisamos do seu código postal.</div>
 									</div>
 								</div>
-								<div className="col-lg-3">
+								<div className="col-md-3 col-sm-6 col-xs-6 text-center">
 									<div className="order-step">
 										<i className="fa fa-cutlery fa-4x"></i>
 										<h6>2. Escolha um takeaway</h6>
 										<div className="bl-sort">O que lhe apetece comer?</div>
 									</div>
 								</div>
-								<div className="col-lg-3">
+								<div className="col-md-3 col-sm-6 col-xs-6 text-center">
 									<div className="order-step">
 										<i className="fa fa-credit-card fa-4x"></i>
 										<h6>3. Dinheiro ou cartão</h6>
 										<div className="bl-sort">Aceitamos as duas formas de pagamento.</div>
 									</div>
 								</div>
-								<div className="col-lg-3">
+								<div className="col-md-3 col-sm-6 col-xs-6 text-center">
 									<div className="order-step">
 										<i className="fa fa-thumbs-up fa-4x"></i>
 										<h6>4. Já está</h6>
