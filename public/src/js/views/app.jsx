@@ -1,8 +1,9 @@
 /** @jsx React.DOM */
 define(function (require) {
-	var React 		 = require('react'),
-		RouteHandler = require('react-router').RouteHandler,
-		auth 		 = require('auth');
+	var React 		   			= require('react'),
+		ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
+		RouteHandler 			= require('react-router').RouteHandler,
+		auth 		 			= require('auth');
 
 	var Footer = require('views/footer'),
 		Header = require('views/header/main');
@@ -27,12 +28,18 @@ define(function (require) {
 		},
 
 		render: function () {
-		  return (
+		  	return (
 		  		<div id="main-wrapper">
 		      		<Header />
-		      		<div className="page-content">
+		      		<ReactCSSTransitionGroup
+		      			transitionName="page-transition"
+		      			key={this.props.path}
+		      			component="div"
+		      			className="page-content">
+
 		      			<RouteHandler params={this.props.params}/>
-		      		</div>
+
+		      		</ReactCSSTransitionGroup>
 		      		<Footer />
 	      		</div>
 		    );

@@ -12,7 +12,6 @@ require.config({
     "owl-carousel":       "libs/owl.carousel",
     "bootstrap":          "libs/bootstrap",
     "underscore":         "libs/underscore.min",
-    "scripts":            "./scripts",
     "routes":             "../../build/js/routes",
     "auth":               "./auth",
     "views":              "../../build/js/views"
@@ -37,4 +36,4 @@ require.config({
   }
 });
 
-require(['routes', 'scripts'], function (routes, scripts) {});
+require(['routes'], function (routes, scripts) {});
