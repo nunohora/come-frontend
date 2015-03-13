@@ -9,10 +9,11 @@ process.on('uncaughtException', function (err) {
 
 var makeRequest = function (endpoint, options) {
 		var dfd = new Deferred(),
-			options = options || {};
+			options = options || {},
+			request;
 
-		var request = {
-			uri: 'http://come.herokuapp.com/api/v1/' + endpoint,
+		request = {
+			uri: options.endpoint || '',
 			method: options.method || 'GET',
 			headers: {
 			    'Content-Type': 'application/json'
@@ -41,7 +42,7 @@ module.exports = {
 			url: 'restaurants'
 		};
 
-		when(makeRequest(url))
+		when(makeRequest(options))
 			.then(
 				function (response) {
 					dfd.resolve(response);

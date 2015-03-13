@@ -4,22 +4,31 @@ define(function (require) {
 
 	return React.createClass({
 
-		handleSubmit: function (event) {
-			event.preventDefault();
+		handleClick: function (e) {
+			e.preventDefault();
 
-			var email = this.refs.email.getDOMNode().value,
-				pass = this.refs.pass.getDOMNode().value,
-				transition;
+			var pcode = this.props.params.pcode;
 
-			auth.login(email, pass, function (loggedIn) {
-				if (!loggedIn) {
-					return this.setState({ error: true });
+			$.getJSON(endpoint + pcode, function (result) {
+				if (this.isMounted()) {
+					this.setState({
+						categories: [],
+						restaurants: result,
+						resultNumber: {
+							number: result.length,
+							postcode: pcode
+						}
+					});
 				}
 
-				if (this.attemptedTransition) {
-					transition = this.attemptedTransition;
-				}
-			});
+			}.bind(this));
+		},
+
+		handleChange: function (e) {
+			var state = {};
+
+			state[e.target.name] = e.target.value;
+			this.setState(state);
 		},
 
 		render: function () {
@@ -31,12 +40,23 @@ define(function (require) {
 							<form>
 								<div className="row">
 									<div className="col-md-12">
-										<input type="text" placeholder="Email*" />
-										<input type="email" placeholder="Password*" />
-										<button className="login-button">
+										<input
+											name="email"
+											onChange={this.handleChange}
+											type="text"
+											placeholder="Email*" />
+
+										<input
+											name="password"
+											onChange={this.handleChange}
+											type="password"
+											placeholder="Password*" />
+
+										<button className="login-button" onClick={this.handleClick}>
 											<i className="fa fa-paper-plane-o"></i>
 											Login
 										</button>
+
 									</div>
 								</div>
 							</form>
