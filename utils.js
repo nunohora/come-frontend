@@ -53,6 +53,15 @@ module.exports = {
 			url = 'login';
 
 		when(makeRequest(url, options))
-			.then()
+			.then(
+				function (response) {
+					dfd.resolve(response);
+				},
+				function (error) {
+					console.log('Error: ', error);
+					dfd.reject(error);
+				});
+
+		return dfd.promise;
 	}
 };

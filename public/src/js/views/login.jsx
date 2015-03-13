@@ -25,8 +25,8 @@ define(function (require) {
 		render: function () {
 		  	return (
 		  		<div className="container">
-			  		<div className="col-md-6">
-						<div className="login-form">
+			  		<div className="login-form col-md-3 col-sm-6 col-xs-9">
+						<div>
 							<h4>Login</h4>
 							<form>
 								<div className="row">
