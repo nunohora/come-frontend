@@ -13,7 +13,7 @@ require.config({
     "bootstrap":          "libs/bootstrap",
     "underscore":         "libs/underscore.min",
     "routes":             "../../build/js/routes",
-    "auth":               "./auth",
+    "utils":              "../../src/js/utils",
     "views":              "../../build/js/views"
   },
 

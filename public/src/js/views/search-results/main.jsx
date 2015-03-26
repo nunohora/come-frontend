@@ -1,11 +1,12 @@
 /** @jsx React.DOM */
 define(function (require) {
-	var React 		   			= require('react'),
-		RestaurantList 			= require('views/search-results/restaurant-list'),
-		Categories 	   			= require('views/search-results/categories'),
-		ResultNumber   			= require('views/search-results/result-number');
+	'use strict';
 
-	var endpoint = '/api/postcode/';
+	var utils          = require('utils'),
+		React          = require('react'),
+		RestaurantList = require('views/search-results/restaurant-list'),
+		Categories     = require('views/search-results/categories'),
+		ResultNumber   = require('views/search-results/result-number');
 
 	return React.createClass({
 
@@ -23,7 +24,8 @@ define(function (require) {
 		componentWillMount: function () {
 			var pcode = this.props.params.pcode;
 
-			$.getJSON(endpoint + pcode, function (result) {
+			$.when(utils.getRestaurants(pcode))
+			.then(function (result) {
 				if (this.isMounted()) {
 					this.setState({
 						categories: [],
@@ -34,7 +36,6 @@ define(function (require) {
 						}
 					});
 				}
-
 			}.bind(this));
 		},
 

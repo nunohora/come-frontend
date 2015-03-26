@@ -6,15 +6,13 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     Handlebars = require('hbs');
 
-var routes = require('./routes/index'),
-    apiRoutes = require('./routes/api');
+var routes = require('./routes');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -25,7 +23,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -33,7 +30,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
 
 //Handlebars
 Handlebars.registerPartials(__dirname + '/views/partials');
@@ -44,6 +40,8 @@ Handlebars.registerPartials(__dirname + '/views/partials');
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
+        console.log('Error: ', err);
+
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,

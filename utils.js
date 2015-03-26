@@ -7,41 +7,40 @@ process.on('uncaughtException', function (err) {
 	console.log('uncaughtException: ', err);
 });
 
-var makeRequest = function (endpoint, options) {
-		var dfd = new Deferred(),
-			options = options || {};
+var makeRequest = function (options) {
+	var dfd = new Deferred(),
+		options = options || {};
 
-		var request = {
-			uri: 'http://come.herokuapp.com/api/v1/' + endpoint,
-			method: options.method || 'GET',
-			headers: {
-			    'Content-Type': 'application/json'
-			}
-		};
-
-		rp(request)
-			.then(function (resp) {
-				dfd.resolve(resp);
-			})
-			.catch(function (error) {
-				console.log('Error: ', error);
-				dfd.reject(error);
-			});
-
-		return dfd.promise;
+	var request = {
+		uri: 'http://come.herokuapp.com/api/' + (options.url || ''),
+		method: options.method || 'GET',
+		headers: {
+		    'Content-Type': 'application/json'
+		}
 	};
+
+	rp(request)
+		.then(function (resp) {
+			dfd.resolve(resp);
+		})
+		.catch(function (error) {
+			console.log('Error: ', error);
+			dfd.reject(error);
+		});
+
+	return dfd.promise;
+};
 
 module.exports = {
 	getRestaurants: function (postcode, data) {
-		var dfd = new Deferred(),
-			url = 'restaurants';
+		var dfd = new Deferred();
 
 		var options = {
 			method: 'GET',
-			url: 'restaurants'
+			url: 'v1/restaurants'
 		};
 
-		when(makeRequest(url))
+		when(makeRequest(options))
 			.then(
 				function (response) {
 					dfd.resolve(response);
@@ -55,8 +54,7 @@ module.exports = {
 	},
 
 	loginUser: function (email, password) {
-		var dfd = new Deferred(),
-			url = 'login';
+		var dfd = new Deferred();
 
 		var options = {
 			method: 'POST',

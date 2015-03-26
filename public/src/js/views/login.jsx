@@ -1,15 +1,17 @@
 /** @jsx React.DOM */
 define(function (require) {
-	var React = require('react');
+	'use strict';
+
+	var React = require('react'),
+		utils = require('utils'),
+		$ 	  = require('jquery');
 
 	return React.createClass({
 
 		handleClick: function (e) {
 			e.preventDefault();
 
-			var pcode = this.props.params.pcode;
-
-			$.getJSON(endpoint + pcode, function (result) {
+			$.when(utils.loginUser(this.state.email, this.state.password), function (result) {
 				if (this.isMounted()) {
 					this.setState({
 						categories: [],
@@ -20,7 +22,6 @@ define(function (require) {
 						}
 					});
 				}
-
 			}.bind(this));
 		},
 
@@ -35,32 +36,30 @@ define(function (require) {
 		  	return (
 		  		<div className="container">
 			  		<div className="login-form col-md-3 col-sm-6 col-xs-9">
-						<div>
-							<h4>Login</h4>
-							<form>
-								<div className="row">
-									<div className="col-md-12">
-										<input
-											name="email"
-											onChange={this.handleChange}
-											type="text"
-											placeholder="Email*" />
+						<h4>Login</h4>
+						<form>
+							<div className="row">
+								<div className="col-md-12">
+									<input
+										name="email"
+										onChange={this.handleChange}
+										type="text"
+										placeholder="Email*" />
 
-										<input
-											name="password"
-											onChange={this.handleChange}
-											type="password"
-											placeholder="Password*" />
+									<input
+										name="password"
+										onChange={this.handleChange}
+										type="password"
+										placeholder="Password*" />
 
-										<button className="login-button" onClick={this.handleClick}>
-											<i className="fa fa-paper-plane-o"></i>
-											Login
-										</button>
+									<button className="login-button" onClick={this.handleClick}>
+										<i className="fa fa-paper-plane-o"></i>
+										Login
+									</button>
 
-									</div>
 								</div>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
 		  		</div>
 			);

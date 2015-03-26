@@ -1,83 +1,82 @@
-//APP Config
-var Deferred = require('promised-io/promise').Deferred,
-	when 	 = require('promised-io/promise').when,
-	rp       = require('request-promise');
+define(function (require) {
+	'use strict';
 
-process.on('uncaughtException', function (err) {
-	console.log('uncaughtException: ', err);
-});
+	var $ = require('jquery');
 
-var makeRequest = function (endpoint, options) {
-		var dfd = new Deferred(),
+	var makeRequest = function (options) {
+		var dfd = new $.Deferred(),
 			options = options || {},
 			request;
 
 		request = {
-			uri: options.endpoint || '',
+			url: '/api/' + (options.url || ''),
 			method: options.method || 'GET',
 			headers: {
 			    'Content-Type': 'application/json'
 			}
 		};
 
-		rp(request)
+		if (options.data) {
+			request.data = options.data;
+		}
+
+		$.ajax(request)
 			.then(function (resp) {
-				dfd.resolve(resp);
+				dfd.resolve(JSON.parse(resp));
 			})
-			.catch(function (error) {
+			.fail(function (error) {
 				console.log('Error: ', error);
 				dfd.reject(error);
 			});
 
-		return dfd.promise;
+		return dfd.promise();
 	};
 
-module.exports = {
-	getRestaurants: function (postcode, data) {
-		var dfd = new Deferred(),
-			url = 'restaurants';
+	return {
+		getRestaurants: function (postcode) {
+			var dfd = new $.Deferred();
 
-		var options = {
-			method: 'GET',
-			url: 'restaurants'
-		};
+			var options = {
+				method: 'GET',
+				url: 'postcode/' + postcode
+			};
 
-		when(makeRequest(options))
-			.then(
-				function (response) {
-					dfd.resolve(response);
-				},
-				function (error) {
-					console.log('Error: ', error);
-					dfd.reject(error);
-				});
+			$.when(makeRequest(options))
+				.then(
+					function (response) {
+						dfd.resolve(response);
+					},
+					function (error) {
+						console.log('Error: ', error);
+						dfd.reject(error);
+					});
 
-		return dfd.promise;
-	},
+			return dfd.promise();
+		},
 
-	loginUser: function (email, password) {
-		var dfd = new Deferred(),
-			url = 'login';
+		loginUser: function (email, password) {
+			var dfd = new $.Deferred(),
+				url = 'login',
+				data = {email: email, password: password};
 
-		var options = {
-			method: 'POST',
-			url: 'login',
-			data: {
-				email: email,
-				password: password
-			}
-		};
+			var options = {
+				url: 'login',
+				method: 'POST',
+				data: JSON.stringify(data)
+			};
 
-		when(makeRequest(options))
-			.then(
-				function (response) {
-					dfd.resolve(response);
-				},
-				function (error) {
-					console.log('Error: ', error);
-					dfd.reject(error);
-				});
+			$.when(makeRequest(options))
+				.then(
+					function (response) {
+						console.log(response);
+						dfd.resolve(response);
+					},
+					function (error) {
+						console.log('Error: ', error);
+						dfd.reject(error);
+					});
 
-		return dfd.promise;
-	}
-};
+			return dfd.promise();
+		}
+	};
+});
