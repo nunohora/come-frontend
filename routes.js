@@ -21,8 +21,7 @@ router.get('/api/postcode/:pcode', function(req, res) {
 //* POST API */
 router.post('/api/login', function (req, res) {
 	if (req.xhr) {
-		console.log('jerere');
-		when(utils.loginUser(req))
+		when(utils.loginUser(req.body.email, req.body.password))
 		.then(function (resp) {
 			res.end(resp);
 		});

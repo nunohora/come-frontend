@@ -2,9 +2,9 @@
 define(function (require) {
 	'use strict';
 
-	var React = require('react'),
-		utils = require('utils'),
-		$ 	  = require('jquery');
+	var React  = require('react'),
+		utils  = require('utils'),
+		$ 	   = require('jquery');
 
 	return React.createClass({
 
@@ -33,6 +33,7 @@ define(function (require) {
 		},
 
 		render: function () {
+
 		  	return (
 		  		<div className="container">
 			  		<div className="login-form col-md-3 col-sm-6 col-xs-9">
@@ -44,6 +45,7 @@ define(function (require) {
 										name="email"
 										onChange={this.handleChange}
 										type="text"
+										data-validate="required,email"
 										placeholder="Email*" />
 
 									<input

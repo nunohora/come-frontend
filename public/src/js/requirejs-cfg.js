@@ -8,7 +8,6 @@ require.config({
     "text":               "libs/text",
     "jquery":             "libs/jquery-1.11.0.min",
     "jquery-ui":          "libs/jquery-ui-1.10.4.custom.min",
-    "jquery-magnific":    "libs/jquery.magnific-popup.min",
     "owl-carousel":       "libs/owl.carousel",
     "bootstrap":          "libs/bootstrap",
     "underscore":         "libs/underscore.min",
@@ -30,7 +29,7 @@ require.config({
       deps: ['react-router']
     },
     'jquery': {
-      deps: ['jquery-ui', 'jquery-magnific'],
+      deps: ['jquery-ui'],
       exports: 'jQuery'
     }
   }

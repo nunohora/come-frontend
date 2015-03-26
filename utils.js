@@ -12,19 +12,23 @@ var makeRequest = function (options) {
 		options = options || {};
 
 	var request = {
-		uri: 'http://come.herokuapp.com/api/' + (options.url || ''),
+		uri: 'https://come-api-211435.euw1-2.nitrousbox.com/api/' + (options.url || ''),
 		method: options.method || 'GET',
 		headers: {
 		    'Content-Type': 'application/json'
 		}
 	};
 
+	if (options.data) {
+		request.data = options.data;
+	}
+
 	rp(request)
 		.then(function (resp) {
 			dfd.resolve(resp);
 		})
 		.catch(function (error) {
-			console.log('Error: ', error);
+			// console.log('Error: ', error);
 			dfd.reject(error);
 		});
 
@@ -71,7 +75,7 @@ module.exports = {
 					dfd.resolve(response);
 				},
 				function (error) {
-					console.log('Error: ', error);
+					// console.log('Error: ', error);
 					dfd.reject(error);
 				});
 
