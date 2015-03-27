@@ -30,7 +30,7 @@ node_modules
 .DS_Store
 
 # Build folder
-public/build/
+build/
 
 #Temp css folder
 /tmp

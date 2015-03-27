@@ -1,105 +1,16 @@
-#!/usr/bin/env node
-var gulp           = require('gulp'),
-	debug          = require('debug')('frontend'),
-	react          = require('gulp-react'),
-	less     	   = require('gulp-less'),
-	cleanCssPlugin = require('less-plugin-clean-css'),
-	jshint         = require('gulp-jshint'),
-	clean          = require('gulp-clean'),
-	concat   	   = require('gulp-concat'),
-	stylish  	   = require('jshint-stylish'),
-	app      	   = require('./app');
+/*
+  gulpfile.js
+  ===========
+  Rather than manage one giant configuration file responsible
+  for creating multiple tasks, each task has been broken out into
+  its own file in gulp/tasks. Any files in that directory get
+  automatically required below.
+  To add a new task, simply add a new task file that directory.
+  gulp/tasks/default.js specifies the default set of tasks to run
+  when you run `gulp`.
+*/
 
-// Paths for Gulp tasks
-var paths = {
-	'clean-build': {
-		src: './public/build'
-	},
-	'clean-tmp': {
-		src: './tmp'
-	},
-	'jsx': {
-		src: './public/src/js/**/*.jsx',
-		dest: './public/build/js'
-	},
-	'jshint': {
-		src: './public/build/**/*.js'
-	},
-	'less': {
-		src: './public/src/less/*.less',
-		dest: './tmp'
-	},
-	'css-concat': {
-		src: './tmp/*.css',
-		dest: './public/build/css',
-		name: 'style.css'
-	}
-};
+var requireDir = require('require-dir');
 
-/// Gulp tasks
-gulp.task('default', ['build'], function () {
-	var server;
-
-	//Start server
-	server = app.listen(app.get('port'), function() {
-	  debug('Express server listening on port ' + server.address().port);
-	});
-});
-
-//Compile jsx templates to js
-gulp.task('jsx-compile', ['clean-build'], function () {
-	return gulp.src(paths.jsx.src)
-		.pipe(react())
-		.pipe(gulp.dest(paths.jsx.dest));
-});
-
-//JSHint
-gulp.task('jshint', ['jsx-compile'], function () {
-	return gulp.src(paths.jshint.src)
-		.pipe(jshint())
-		.pipe(jshint.reporter(stylish));
-});
-
-//LESS to CSS
-gulp.task('less', ['clean-build', 'clean-tmp'], function () {
-	var cleancss = new cleanCssPlugin({
-		keepBreaks: true
-	});
-
-	return gulp.src(paths.less.src)
-		.pipe(less({
-			plugins: [cleancss]
-		}))
-		.pipe(gulp.dest(paths.less.dest));
-});
-
-//Clean build folder
-gulp.task('clean-build', ['clean-tmp'], function () {
-	return gulp.src(paths['clean-build'].src, {read: false})
-			.pipe(clean());
-});
-
-//Clean css tmp folder
-gulp.task('clean-tmp', function () {
-	return gulp.src(paths['clean-tmp'].src, {read: false})
-			.pipe(clean());
-});
-
-gulp.task('css-concat', ['less'], function () {
-	return gulp.src(paths['css-concat'].src)
-			.pipe(concat(paths['css-concat'].name))
-			.pipe(gulp.dest(paths['css-concat'].dest));
-});
-
-//Main build task
-gulp.task('build', ['jshint', 'css-concat']);
-
-//
-// WATCHERS
-//
-
-//watching changes of files
-gulp.watch(paths.jsx.src, ['build']);
-
-//Compile LESS to CSS
-gulp.watch(paths.less.src, ['build']);
+// Require all tasks in gulp/tasks, including subfolders
+requireDir('./gulp/tasks', { recurse: true });
