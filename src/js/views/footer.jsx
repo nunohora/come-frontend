@@ -9,7 +9,7 @@ var Footer = React.createClass({
 					<div className="main-footer">
 						<div className="row">
 							<div className="col-sm-6 col-md-3">
-								<img src="header-logo.png" alt="" />
+								<img src="img/header-logo.png" alt="" />
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed.
 								</p>
 							</div>
@@ -19,24 +19,17 @@ var Footer = React.createClass({
 								<div className="row">
 									<div className="col-md-6">
 										<ul className="footer-links padd">
-											<li><a href="#">Home</a>
-											</li>
-											<li><a href="#">Menu Card</a>
-											</li>
-											<li><a href="#">reservation</a>
-											</li>
+											<li><a href="#">Home</a></li>
+											<li><a href="#">Menu Card</a></li>
+											<li><a href="#">reservation</a></li>
 										</ul>
 									</div>
 
 									<div className="col-md-6">
 										<ul className="footer-links">
-											<li><a href="#">about us</a>
-											</li>
-											<li>
-												<a href="#">news &amp; events</a>
-											</li>
-											<li><a href="#">contact us</a>
-											</li>
+											<li><a href="#">about us</a></li>
+											<li><a href="#">news &amp; events</a></li>
+											<li><a href="#">contact us</a></li>
 										</ul>
 									</div>
 								</div>

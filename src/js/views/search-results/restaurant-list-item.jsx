@@ -28,7 +28,7 @@ module.exports = React.createClass({
 				<div className="row">
 					<div className="col-md-3">
 						<div className="restaurant-list-img">
-							<img className="" src="src/img/content/blog-post.jpg" alt="" />
+							<img className="" src="img/content/blog-post.jpg" alt="" />
 						</div>
 					</div>
 					<div className="col-md-9 restaurant-list-inner">
