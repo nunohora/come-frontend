@@ -82,7 +82,11 @@ gulp.task('browserify', function() {
   // desired output filename here.
   .pipe(source(config.outputName))
   // Specify the output destination
-  .pipe(gulp.dest(config.dest));
+  .pipe(gulp.dest(config.dest))
+  .pipe(browserSync.reload({
+    stream: true
+  }));
+
 
 
 });

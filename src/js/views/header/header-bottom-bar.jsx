@@ -11,7 +11,7 @@ module.exports = React.createClass({
 					</li>
 					<li><i className="fa fa-chevron-right"></i>
 					</li>
-					<li><a href="our-team.html">Team</a>
+					<li><a href="our-team.html">sdfsdf</a>
 					</li>
 				</ul>
 			</div>

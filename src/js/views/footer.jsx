@@ -9,7 +9,7 @@ var Footer = React.createClass({
 					<div className="main-footer">
 						<div className="row">
 							<div className="col-sm-6 col-md-3">
-								<img src="src/img/header-logo.png" alt="" />
+								<img src="header-logo.png" alt="" />
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed.
 								</p>
 							</div>
