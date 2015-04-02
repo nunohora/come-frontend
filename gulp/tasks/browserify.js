@@ -8,10 +8,10 @@
 
 var browserify   = require('browserify'),
     browserSync  = require('browser-sync'),
-    watchify     = require('watchify'),
     mergeStream  = require('merge-stream'),
     bundleLogger = require('../util/bundleLogger'),
     gulp         = require('gulp'),
+    reactify     = require('reactify'),
     handleErrors = require('../util/handleErrors'),
     source       = require('vinyl-source-stream'),
     config       = require('../config').browserify,
@@ -20,15 +20,6 @@ var browserify   = require('browserify'),
 var browserifyTask = function(devMode) {
 
   var browserifyThis = function(bundleConfig) {
-
-    if(devMode) {
-      // Add watchify args and debug (sourcemaps) option
-      _.extend(bundleConfig, watchify.args, { debug: true });
-      // A watchify require/external bug that prevents proper recompiling,
-      // so (for now) we'll ignore these options during development. Running
-      // `gulp browserify` directly will properly require and externalize.
-      bundleConfig = _.omit(bundleConfig, ['external', 'require']);
-    }
 
     var b = browserify(bundleConfig);
 
@@ -60,10 +51,12 @@ var browserifyTask = function(devMode) {
     } else {
       // Sort out shared dependencies.
       // b.require exposes modules externally
-      if(bundleConfig.require) b.require(bundleConfig.require);
+      if (bundleConfig.require) b.require(bundleConfig.require);
       // b.external excludes modules from the bundle, and expects
       // they'll be available externally
-      if(bundleConfig.external) b.external(bundleConfig.external);
+      if (bundleConfig.external) {
+        b.external(bundleConfig.external);
+      }
     }
 
     return bundle();
@@ -71,11 +64,27 @@ var browserifyTask = function(devMode) {
 
   // Start bundling with Browserify for each bundleConfig specified
   return mergeStream.apply(gulp, _.map(config.bundleConfigs, browserifyThis));
-
 };
 
 gulp.task('browserify', function() {
-  return browserifyTask();
+  var b = browserify(config);
+
+  // Log when bundling starts
+  bundleLogger.start(config.outputName);
+
+  b.transform(reactify);
+
+  b.bundle()
+  // Report compile errors
+  .on('error', handleErrors)
+  // Use vinyl-source-stream to make the
+  // stream gulp compatible. Specify the
+  // desired output filename here.
+  .pipe(source(config.outputName))
+  // Specify the output destination
+  .pipe(gulp.dest(config.dest));
+
+
 });
 
 // Exporting the task so we can call it directly in our watch task, with the 'devMode' option

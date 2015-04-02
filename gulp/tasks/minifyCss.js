@@ -3,7 +3,7 @@ var gulp      = require('gulp'),
 	minifyCSS = require('gulp-minify-css'),
 	size      = require('gulp-filesize');
 
-gulp.task('minifyCss', ['less'], function() {
+gulp.task('minify-css', ['less'], function() {
   return gulp.src(config.cssSrc)
     .pipe(minifyCSS({keepBreaks:true}))
     .pipe(gulp.dest(config.dest))

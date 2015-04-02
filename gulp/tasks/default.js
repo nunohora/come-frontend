@@ -2,4 +2,4 @@ var gulp = require('gulp'),
 	app  = require('../../app');
 
 /// Gulp tasks
-gulp.task('default', ['jshint', 'less', 'images', 'watch']);
+gulp.task('default', ['jshint', 'concat-css', 'images', 'watch']);

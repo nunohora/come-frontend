@@ -1,82 +1,78 @@
-define(function (require) {
-	'use strict';
+var $ = require('jquery');
 
-	var $ = require('jquery');
+var makeRequest = function (options) {
+	var dfd = new $.Deferred(),
+		options = options || {},
+		request;
 
-	var makeRequest = function (options) {
-		var dfd = new $.Deferred(),
-			options = options || {},
-			request;
+	request = {
+		url: '/api/' + (options.url || ''),
+		method: options.method || 'GET',
+		headers: {
+		    'Content-Type': 'application/json'
+		}
+	};
 
-		request = {
-			url: '/api/' + (options.url || ''),
-			method: options.method || 'GET',
-			headers: {
-			    'Content-Type': 'application/json'
-			}
+	if (options.data) {
+		request.data = options.data;
+	}
+
+	$.ajax(request)
+		.then(function (resp) {
+			dfd.resolve(JSON.parse(resp));
+		})
+		.fail(function (error) {
+			console.log('Error: ', error);
+			dfd.reject(error);
+		});
+
+	return dfd.promise();
+};
+
+module.exports = {
+	getRestaurants: function (postcode) {
+		var dfd = new $.Deferred();
+
+		var options = {
+			method: 'GET',
+			url: 'postcode/' + postcode
 		};
 
-		if (options.data) {
-			request.data = options.data;
-		}
-
-		$.ajax(request)
-			.then(function (resp) {
-				dfd.resolve(JSON.parse(resp));
-			})
-			.fail(function (error) {
-				console.log('Error: ', error);
-				dfd.reject(error);
-			});
+		$.when(makeRequest(options))
+			.then(
+				function (response) {
+					dfd.resolve(response);
+				},
+				function (error) {
+					console.log('Error: ', error);
+					dfd.reject(error);
+				});
 
 		return dfd.promise();
-	};
+	},
 
-	return {
-		getRestaurants: function (postcode) {
-			var dfd = new $.Deferred();
+	loginUser: function (email, password) {
+		var dfd = new $.Deferred(),
+			url = 'login',
+			data = {email: email, password: password};
 
-			var options = {
-				method: 'GET',
-				url: 'postcode/' + postcode
-			};
+		var options = {
+			url: 'login',
+			method: 'POST',
+			data: JSON.stringify(data)
+		};
 
-			$.when(makeRequest(options))
-				.then(
-					function (response) {
-						dfd.resolve(response);
-					},
-					function (error) {
-						console.log('Error: ', error);
-						dfd.reject(error);
-					});
+		$.when(makeRequest(options))
+			.then(
+				function (response) {
+					console.log(response);
+					dfd.resolve(response);
+				},
+				function (error) {
+					console.log('Error: ', error);
+					dfd.reject(error);
+				});
 
-			return dfd.promise();
-		},
-
-		loginUser: function (email, password) {
-			var dfd = new $.Deferred(),
-				url = 'login',
-				data = {email: email, password: password};
-
-			var options = {
-				url: 'login',
-				method: 'POST',
-				data: JSON.stringify(data)
-			};
-
-			$.when(makeRequest(options))
-				.then(
-					function (response) {
-						console.log(response);
-						dfd.resolve(response);
-					},
-					function (error) {
-						console.log('Error: ', error);
-						dfd.reject(error);
-					});
-
-			return dfd.promise();
-		}
-	};
-});
+		return dfd.promise();
+	}
+};

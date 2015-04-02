@@ -7,8 +7,8 @@ module.exports = {
 		dest: dest + '/js'
 	},
 	less: {
-		src: src + '/less/*.less',
-		dest: dest + '/css'
+		src: [src + '/less/*.less', src + '/less/bootstrap/bootstrap.less'],
+		dest: src + '/css'
 	},
 	jshint: {
 		src: dest + '/**/*.js'
@@ -16,21 +16,24 @@ module.exports = {
 	browserSync: {
 		proxy: "localhost:3000",
 		browser: "google chrome",
-		port: 7000,
-		baseDir: dest
+		port: 7000
 	},
 	images: {
 		src: src + "/img/**/*",
 		dest: dest + "/img"
 	},
 	browserify: {
-		// A separate bundle will be generated for each
-		// bundle config in the list below
-		bundleConfigs: [{
-			entries: src + '/js/libs/*.js',
-			dest: dest + '/js',
-			outputName: 'libs.js'
-		}]
+		entries: src + '/js/routes.jsx',
+		dest: dest + '/js',
+		outputName: 'main.js',
+		paths: [src + '/js'],
+		extensions: ['.jsx'],
+		debug: true
+	},
+	concatCss: {
+		src: src + '/css/**/*.css',
+		dest: dest + '/css',
+		bundleName: 'style.css'
 	},
 	production: {
 	    cssSrc: dest + '/css/*.css',
