@@ -1,8 +1,28 @@
 /** @jsx React.DOM */
-var React = require('react'),
-	Link  = require('react-router').Link;
+var React 	 	 = require('react'),
+	Link  		 = require('react-router').Link,
+	Modal 	 	 = require('react-bootstrap').Modal,
+	ModalTrigger = require('react-bootstrap').ModalTrigger;
+
+var LoginForm = require('views/forms/login-form');
+
+var LoginModal = React.createClass({
+	render: function () {
+		return (
+			<Modal {...this.props} title="Login"
+				animation={true}>
+				<LoginForm />
+			</Modal>
+		);
+	}
+});
 
 module.exports = React.createClass({
+
+	onLinkClick: function () {
+
+	},
+
 	render: function () {
 	  	return (
 			<div className="header-nav-bar">
@@ -22,7 +42,9 @@ module.exports = React.createClass({
 						<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul className="nav navbar-nav navbar-right">
 								<li>
-									<Link to="login">Login</Link>
+									<ModalTrigger modal={ <LoginModal /> }>
+										<a>Login</a>
+									</ModalTrigger>
 								</li>
 								<li>
 									<Link to="register">Registo</Link>

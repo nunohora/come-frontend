@@ -46,6 +46,7 @@
     "passport": "^0.2.1",
     "pretty-hrtime": "^1.0.0",
     "react": "^0.13.1",
+    "react-bootstrap": "^0.20.2",
     "react-router": "^0.13.2",
     "reactify": "^1.1.0",
     "require-dir": "^0.3.0",
