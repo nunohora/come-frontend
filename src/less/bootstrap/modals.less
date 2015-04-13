@@ -138,6 +138,10 @@
   .modal-dialog {
     width: @modal-md;
     margin: 30px auto;
+
+    .modal-md-sm {
+      width: @modal-md-sm;
+    }
   }
   .modal-content {
     .box-shadow(0 5px 15px rgba(0,0,0,.5));
@@ -145,6 +149,12 @@
 
   // Modal sizes
   .modal-sm { width: @modal-sm; }
+
+  .modal-md-sm {
+    .modal-dialog {
+      width: @modal-md-sm;
+    }
+  }
 }
 
 @media (min-width: @screen-md-min) {

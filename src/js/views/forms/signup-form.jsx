@@ -13,29 +13,32 @@ var FormsyInput = React.createClass({
       this.setValue(event.currentTarget.value);
     },
 
-    displayErrorMessage: function (error) {
-    	return (
-    		<i className="form-control-feedback glyphicon glyphicon-remove"
-    			data-fv-icon-for="username"></i>
-    		)
-    },
-
     render: function () {
-    	var errorMessage = this.getErrorMessage(),
-      		formId = "form-" + this.props.name;
+    	var error = this.getErrorMessage(),
+      		formId = "form-" + this.props.name,
+      		message = '',
+      		className = 'form-group ';
+
+  		if (error) {
+  			className += 'has-error';
+  		}
+  		else if (this.isValid()) {
+  			className += 'has-success';
+  		}
 
   		return (
-	        <div className="form-group">
+	        <div className={className}>
 	        	<label className="col-xs-4 control-label"
 	        		htmlFor={formId}>{this.props.name}</label>
 	        	<div className="col-xs-7">
 		        	<input
 		          		id={formId}
-		          		className="form-control"
+		          		className="form-control input-large"
 		          		type="text"
 		          		hasFeedback
 		          		onChange={this.changeValue}
 		          		value={this.getValue()} />
+	          		<small className="help-block">{error}</small>
 	        	</div>
 	        </div>
   		);
@@ -43,6 +46,10 @@ var FormsyInput = React.createClass({
 });
 
 module.exports = React.createClass({
+
+	getInitialState: function () {
+		return { canSubmit: false };
+	},
 
 	handleClick: function (e) {
 		e.preventDefault();
@@ -55,9 +62,23 @@ module.exports = React.createClass({
 		this.setState(state);
 	},
 
+	enableButton: function () {
+	    this.setState({
+	      canSubmit: true
+	    });
+	},
+
+	disableButton: function () {
+	    this.setState({
+	      canSubmit: false
+	    });
+	},
+
 	render: function () {
 	  	return (
-			<Formsy.Form className="form-horizontal">
+			<Formsy.Form className="form-horizontal"
+				onValid={this.enableButton}
+				onInvalid={this.disableButton}>
 				<div className="row">
 					<div className="col-md-12">
 						<FormsyInput
@@ -123,8 +144,10 @@ module.exports = React.createClass({
 							required />
 
 						<div className="text-center">
-							<button className="btn btn-default-red-inverse" onClick={this.handleClick}>
-								Registar-se
+							<button className="btn btn-default-red-inverse"
+								disabled={!this.state.canSubmit}
+								onClick={this.handleClick}>
+								Continuar
 							</button>
 						</div>
 					</div>

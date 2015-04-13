@@ -29,7 +29,14 @@ var makeRequest = function (options) {
 	return dfd.promise();
 };
 
+var apiEndpoint = '/api/';
+
 module.exports = {
+
+	getApiEndpoint: function () {
+		return '/api/';
+	},
+
 	getRestaurants: function (postcode) {
 		var dfd = new $.Deferred();
 

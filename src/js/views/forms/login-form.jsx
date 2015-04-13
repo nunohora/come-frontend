@@ -14,19 +14,21 @@ var FormsyInput = React.createClass({
       this.setValue(event.currentTarget.value);
     },
 
-    displayErrorMessage: function (error) {
-    	return (
-    		<i className="form-control-feedback glyphicon glyphicon-remove"
-    			data-fv-icon-for="username"></i>
-    		)
-    },
-
     render: function () {
-    	var errorMessage = this.getErrorMessage(),
-      		formId = "form-" + this.props.name;
+    	var error = this.getErrorMessage(),
+      		formId = "form-" + this.props.name,
+      		message = '',
+      		className = 'form-group ';
+
+  		if (error) {
+  			className += 'has-error';
+  		}
+  		else if (this.isValid()) {
+  			className += 'has-success';
+  		}
 
   		return (
-	        <div className="form-group">
+	        <div className={className}>
 	        	<label className="col-xs-4 control-label"
 	        		htmlFor={formId}>{this.props.name}</label>
 	        	<div className="col-xs-7">
@@ -34,9 +36,10 @@ var FormsyInput = React.createClass({
 		          		id={formId}
 		          		className="form-control"
 		          		type="text"
-		          		hasFeedback
 		          		onChange={this.changeValue}
+		          		placeholder={this.props.placeholder}
 		          		value={this.getValue()} />
+	          		<small className="help-block">{error}</small>
 	        	</div>
 	        </div>
   		);
@@ -45,7 +48,11 @@ var FormsyInput = React.createClass({
 
 module.exports = React.createClass({
 
-	handleClick: function (e) {
+	getInitialState: function () {
+		return { canSubmit: false };
+	},
+
+	submitForm: function (e) {
 		e.preventDefault();
 
 		$.when(utils.loginUser(this.state.email, this.state.password), function (result) {
@@ -69,32 +76,48 @@ module.exports = React.createClass({
 		this.setState(state);
 	},
 
-	render: function () {
+	enableButton: function () {
+	    this.setState({
+	      canSubmit: true
+	    });
+	},
 
+	disableButton: function () {
+	    this.setState({
+	      canSubmit: false
+	    });
+	},
+
+	render: function () {
 	  	return (
-			<Formsy.Form className="form-horizontal">
+			<Formsy.Form className="form-horizontal"
+				onValid={this.enableButton}
+				onInvalid={this.disableButton} >
 				<div className="row">
-					<div className="col-md-12">
+					<div>
 						<FormsyInput
 							name="Email"
 							onChange={this.handleChange}
 							type="email"
 							validations="isEmail"
-							validationError="This is not a valid email"
-							placeholder="Email*"
+							validationError="Email inválido"
+							placeholder="Obrigatório*"
 							required />
 
 						<FormsyInput
 							name="Password"
 							onChange={this.handleChange}
 							type="password"
-							validations="isEmail"
+							validations="isValue"
 							validationError="This is not a valid email"
-							placeholder="Password*"
+							placeholder="Obrigatório*"
 							required />
 
 						<div className="text-center">
-							<button className="btn btn-default-red-inverse" onClick={this.handleClick}>
+							<button
+								type="submit"
+								disabled={!this.state.canSubmit}
+								className="btn btn-default-red-inverse">
 								Login
 							</button>
 						</div>

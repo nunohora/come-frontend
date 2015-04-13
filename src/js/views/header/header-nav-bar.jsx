@@ -48,15 +48,15 @@ module.exports = React.createClass({
 								<img src="img/header-logo.png" alt="TakeAway" />
 							</Link>
 						</div>
-						<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<div className="collapse navbar-collapse">
 							<ul className="nav navbar-nav navbar-right">
 								<li>
-									<ModalTrigger modal={ <HeaderModal title="Login" form="login" /> }>
+									<ModalTrigger modal={ <HeaderModal title="Login" form="login" className="modal-md-sm" /> }>
 										<a>Login</a>
 									</ModalTrigger>
 								</li>
 								<li>
-									<ModalTrigger modal={ <HeaderModal title="Registo" form="signup" /> }>
+									<ModalTrigger modal={ <HeaderModal title="Registo" form="signup" className="medium" /> }>
 										<a>Registo</a>
 									</ModalTrigger>
 								</li>
