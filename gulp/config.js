@@ -7,7 +7,11 @@ module.exports = {
 		dest: dest + '/js'
 	},
 	less: {
-		src: [src + '/less/*.less', src + '/less/bootstrap/bootstrap.less'],
+		src: [
+			src + '/less/*.less',
+			src + '/less/bootstrap/bootstrap.less',
+			src + '/less/font-awesome/font-awesome.less'
+		],
 		dest: src + '/css'
 	},
 	jshint: {
@@ -39,5 +43,9 @@ module.exports = {
 	    cssSrc: dest + '/css/*.css',
 	    jsSrc: dest + '/js/*.js',
 	    dest: dest
+	},
+	fonts: {
+		src: src + '/fonts/**.*',
+		dest: dest + '/fonts'
 	}
 }

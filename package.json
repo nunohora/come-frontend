@@ -27,6 +27,7 @@
     "gulp-concat": "^2.4.2",
     "gulp-concat-css": "^2.1.2",
     "gulp-filesize": "0.0.6",
+    "gulp-iconfont": "^1.0.0",
     "gulp-imagemin": "^2.2.1",
     "gulp-jshint": "^1.9.0",
     "gulp-less": "^2.0.1",

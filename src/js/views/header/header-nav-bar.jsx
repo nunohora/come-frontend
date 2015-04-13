@@ -4,24 +4,33 @@ var React 	 	 = require('react'),
 	Modal 	 	 = require('react-bootstrap').Modal,
 	ModalTrigger = require('react-bootstrap').ModalTrigger;
 
-var LoginForm = require('views/forms/login-form');
+var LoginForm  = require('views/forms/login-form'),
+	SignupForm = require('views/forms/signup-form');
 
-var LoginModal = React.createClass({
+var forms = {
+	'login': LoginForm,
+	'signup': SignupForm
+
+}
+var HeaderModal = React.createClass({
+
+	onRequestHide: function () {},
+
 	render: function () {
+		var HeaderForm = forms[this.props.form];
+
 		return (
-			<Modal {...this.props} title="Login"
+			<Modal {...this.props} title={this.props.title}
 				animation={true}>
-				<LoginForm />
+				<div className="modal-body">
+					<HeaderForm />
+				</div>
 			</Modal>
 		);
 	}
 });
 
 module.exports = React.createClass({
-
-	onLinkClick: function () {
-
-	},
 
 	render: function () {
 	  	return (
@@ -42,12 +51,14 @@ module.exports = React.createClass({
 						<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul className="nav navbar-nav navbar-right">
 								<li>
-									<ModalTrigger modal={ <LoginModal /> }>
+									<ModalTrigger modal={ <HeaderModal title="Login" form="login" /> }>
 										<a>Login</a>
 									</ModalTrigger>
 								</li>
 								<li>
-									<Link to="register">Registo</Link>
+									<ModalTrigger modal={ <HeaderModal title="Registo" form="signup" /> }>
+										<a>Registo</a>
+									</ModalTrigger>
 								</li>
 								<li>
 									<Link to="help">Ajuda</Link>

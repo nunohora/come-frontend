@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 var React  = require('react'),
 	Formsy = require('formsy-react'),
-	utils  = require('utils'),
 	$ 	   = require('jquery');
 
 var FormsyInput = React.createClass({
@@ -47,19 +46,6 @@ module.exports = React.createClass({
 
 	handleClick: function (e) {
 		e.preventDefault();
-
-		$.when(utils.loginUser(this.state.email, this.state.password), function (result) {
-			if (this.isMounted()) {
-				this.setState({
-					categories: [],
-					restaurants: result,
-					resultNumber: {
-						number: result.length,
-						postcode: pcode
-					}
-				});
-			}
-		}.bind(this));
 	},
 
 	handleChange: function (e) {
@@ -70,7 +56,6 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
-
 	  	return (
 			<Formsy.Form className="form-horizontal">
 				<div className="row">
@@ -93,9 +78,53 @@ module.exports = React.createClass({
 							placeholder="Password*"
 							required />
 
+						<FormsyInput
+							name="Confirm password"
+							onChange={this.handleChange}
+							type="password"
+							validations="isEmail"
+							validationError="This is not a valid email"
+							placeholder="Confirm password*"
+							required />
+
+						<FormsyInput
+							name="Nome completo"
+							onChange={this.handleChange}
+							type="text"
+							placeholder="Nome completo*"
+							required />
+
+						<FormsyInput
+							name="Telemovel"
+							onChange={this.handleChange}
+							type="text"
+							placeholder="telemovel*"
+							required />
+
+						<FormsyInput
+							name="Morada"
+							onChange={this.handleChange}
+							type="text"
+							placeholder="Morada*"
+							required />
+
+						<FormsyInput
+							name="Cidade"
+							onChange={this.handleChange}
+							type="text"
+							placeholder="Cidade*"
+							required />
+
+						<FormsyInput
+							name="Codigo postal"
+							onChange={this.handleChange}
+							type="text"
+							placeholder="Codigo postal*"
+							required />
+
 						<div className="text-center">
 							<button className="btn btn-default-red-inverse" onClick={this.handleClick}>
-								Login
+								Registar-se
 							</button>
 						</div>
 					</div>
