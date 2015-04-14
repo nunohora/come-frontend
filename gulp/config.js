@@ -8,11 +8,11 @@ module.exports = {
 	},
 	less: {
 		src: [
-			src + '/less/*.less',
+			src + '/less/font-awesome/font-awesome.less',
 			src + '/less/bootstrap/bootstrap.less',
-			src + '/less/font-awesome/font-awesome.less'
+			src + '/less/*.less'
 		],
-		dest: src + '/css'
+		dest: dest + '/css'
 	},
 	jshint: {
 		src: dest + '/**/*.js'
@@ -35,8 +35,6 @@ module.exports = {
 		debug: true
 	},
 	concatCss: {
-		src: src + '/css/**/*.css',
-		dest: dest + '/css',
 		bundleName: 'style.css'
 	},
 	production: {

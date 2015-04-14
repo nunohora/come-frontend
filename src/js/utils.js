@@ -29,8 +29,6 @@ var makeRequest = function (options) {
 	return dfd.promise();
 };
 
-var apiEndpoint = '/api/';
-
 module.exports = {
 
 	getApiEndpoint: function () {
@@ -72,7 +70,6 @@ module.exports = {
 		$.when(makeRequest(options))
 			.then(
 				function (response) {
-					console.log(response);
 					dfd.resolve(response);
 				},
 				function (error) {

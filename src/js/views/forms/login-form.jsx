@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 var React  = require('react'),
+	Loader = require('react-loader'),
 	Formsy = require('formsy-react'),
 	utils  = require('utils'),
 	$ 	   = require('jquery');
@@ -35,7 +36,7 @@ var FormsyInput = React.createClass({
 		        	<input
 		          		id={formId}
 		          		className="form-control"
-		          		type="text"
+		          		type={this.props.type}
 		          		onChange={this.changeValue}
 		          		placeholder={this.props.placeholder}
 		          		value={this.getValue()} />
@@ -49,11 +50,16 @@ var FormsyInput = React.createClass({
 module.exports = React.createClass({
 
 	getInitialState: function () {
-		return { canSubmit: false };
+		return {
+			canSubmit: false,
+			loaded: true
+		};
 	},
 
 	submitForm: function (e) {
 		e.preventDefault();
+
+		this.setState({loaded: false});
 
 		$.when(utils.loginUser(this.state.email, this.state.password), function (result) {
 			if (this.isMounted()) {
@@ -63,7 +69,8 @@ module.exports = React.createClass({
 					resultNumber: {
 						number: result.length,
 						postcode: pcode
-					}
+					},
+					loaded: true
 				});
 			}
 		}.bind(this));
@@ -88,9 +95,16 @@ module.exports = React.createClass({
 	    });
 	},
 
+	onSubmit: function () {
+		this.setState({ loaded: false });
+	},
+
 	render: function () {
 	  	return (
-			<Formsy.Form className="form-horizontal"
+	  		<div>
+	  		<Formsy.Form className="form-horizontal"
+				url="/api/login"
+				onSubmit={this.onSubmit}
 				onValid={this.enableButton}
 				onInvalid={this.disableButton} >
 				<div className="row">
@@ -108,8 +122,6 @@ module.exports = React.createClass({
 							name="Password"
 							onChange={this.handleChange}
 							type="password"
-							validations="isValue"
-							validationError="This is not a valid email"
 							placeholder="Obrigatório*"
 							required />
 
@@ -124,6 +136,8 @@ module.exports = React.createClass({
 					</div>
 				</div>
 			</Formsy.Form>
+	  		<Loader loaded={this.state.loaded} className="spinner"></Loader>
+	  		</div>
 		);
 	}
 });
