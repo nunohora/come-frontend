@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 var $ 	  = require('jquery'),
 	React = require('react'),
+	Formsy = require('formsy-react'),
 	Link  = require('react-router').Link;
 
 var Home = React.createClass({
@@ -35,11 +36,13 @@ var Home = React.createClass({
 								<p>Procure por takeaways perto de si</p>
 							</div>
 					  		<div className="main-postcode-search css-table-cell">
-						  		<input className="pad-bottom form-control" onChange={this.onChange} type="text" placeholder="Insira o seu codigo postal" />
+						  		<input className="pad-bottom form-control" onChange={this.onChange} type="text" placeholder="Insira o seu codigo postal*" />
 					  		</div>
 					  		<div className="css-table-cell">
-								<Link to="postcode" params={{pcode: postcode}} className="btn btn-default-red-inverse pad-top">
-									Procure um takeaway
+								<Link to="postcode" params={{pcode: postcode}}>
+									<button className="btn btn-default-red-inverse pad-top">
+										Procure um takeaway
+									</button>
 								</Link>
 							</div>
 						</div>

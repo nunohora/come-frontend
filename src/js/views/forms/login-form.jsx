@@ -62,17 +62,15 @@ module.exports = React.createClass({
 		this.setState({loaded: false});
 
 		$.when(utils.loginUser(this.state.email, this.state.password), function (result) {
-			if (this.isMounted()) {
-				this.setState({
-					categories: [],
-					restaurants: result,
-					resultNumber: {
-						number: result.length,
-						postcode: pcode
-					},
-					loaded: true
-				});
-			}
+			this.setState({
+				categories: [],
+				restaurants: result,
+				resultNumber: {
+					number: result.length,
+					postcode: pcode
+				},
+				loaded: true
+			});
 		}.bind(this));
 	},
 

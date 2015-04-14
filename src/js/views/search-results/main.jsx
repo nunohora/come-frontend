@@ -2,6 +2,7 @@
 var $			   = require('jquery'),
 	utils          = require('utils'),
 	React          = require('react'),
+	Loader         = require('react-loader'),
 	RestaurantList = require('views/search-results/restaurant-list'),
 	Categories     = require('views/search-results/categories'),
 	ResultNumber   = require('views/search-results/result-number');
@@ -15,7 +16,8 @@ module.exports = React.createClass({
 			resultNumber: {
 				number: '',
 				postcode: ''
-			}
+			},
+			loaded: false
 		};
 	},
 
@@ -31,7 +33,8 @@ module.exports = React.createClass({
 					resultNumber: {
 						number: result.length,
 						postcode: pcode
-					}
+					},
+					loaded: true
 				});
 			}
 		}.bind(this));
@@ -58,6 +61,7 @@ module.exports = React.createClass({
 	render: function () {
 	  	return (
   			<div className="container">
+  				<Loader loaded={this.state.loaded} className="spinner "></Loader>
   				{this.renderResultNumber()}
 	  			<div className="col-md-3">
 					{this.renderCategories()}

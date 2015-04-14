@@ -20,6 +20,7 @@ router.get('/api/postcode/:pcode', function(req, res) {
 
 //* POST API */
 router.post('/api/login', function (req, res) {
+	console.log('here');
 	if (req.xhr) {
 		when(utils.loginUser(req.body.email, req.body.password))
 		.then(function (resp) {

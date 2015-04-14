@@ -34,3 +34,6 @@ build/
 
 #Temp css folder
 /tmp
+
+#Generated css
+src/css/

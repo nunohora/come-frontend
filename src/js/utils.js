@@ -30,11 +30,6 @@ var makeRequest = function (options) {
 };
 
 module.exports = {
-
-	getApiEndpoint: function () {
-		return '/api/';
-	},
-
 	getRestaurants: function (postcode) {
 		var dfd = new $.Deferred();
 
