@@ -14,28 +14,37 @@ module.exports = React.createClass({
       this.setValue(event.currentTarget.value);
     },
 
+    getLabel: function (formId) {
+      return (
+        <label className={this.props.labelClassName} htmlFor={formId}>
+          {this.props.name}
+        </label>
+      );
+    },
+
     render: function () {
     	var error = this.getErrorMessage(),
       		formId = "form-" + this.props.name,
-      		message = '',
-      		className = 'form-group ',
-          labelClassName = "control-label " + this.props.labelClassName;
+          label,
+          wrapperClassName = this.props.wrapperClassName || '',
+          inputWrapperClassName = this.props.inputWrapperClassName || '';
 
   		if (error) {
-  			className += 'has-error';
+  			wrapperClassName += ' has-error';
   		}
   		else if (this.isValid()) {
-  			className += 'has-success';
+  			wrapperClassName += ' has-success';
   		}
 
+      label = !this.props.noLabel ? this.getLabel(formId) : '';
+
   		return (
-	        <div className={className}>
-	        	<label className={labelClassName}
-	        		htmlFor={formId}>{this.props.name}</label>
-	        	<div className={this.props.inputClassName}>
+	        <div className={wrapperClassName}>
+	        	{label}
+	        	<div className={inputWrapperClassName}>
 		        	<input
 		          		id={formId}
-		          		className="form-control"
+		          		className={this.props.inputClassName}
 		          		type={this.props.type}
 		          		onChange={this.changeValue}
 		          		placeholder={this.props.placeholder}

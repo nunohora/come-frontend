@@ -1,8 +1,18 @@
 /** @jsx React.DOM */
-var $ 	  = require('jquery'),
-	React = require('react'),
-	Formsy = require('formsy-react'),
-	Link  = require('react-router').Link;
+var $ 	        = require('jquery'),
+	React       = require('react'),
+	Formsy      = require('formsy-react'),
+	FormsyInput = require('views/helpers/input'),
+	Link        = require('react-router').Link;
+
+var isPostcode = {
+	regexp: /[0-9]{4}-[0-9]{3}/,
+	message: 'O código postal tem que estar no formato XXXX-xxx'
+};
+
+Formsy.addValidationRule('isPostcode', function (value) {
+	return isPostcode.regexp.test(value);
+});
 
 var Home = React.createClass({
 
@@ -14,8 +24,25 @@ var Home = React.createClass({
 		return {postcode: 'none'};
   	},
 
-	onChange: function (event) {
+	handleChange: function (event) {
+		console.log('hereere');
 		this.setState({postcode: event.target.value});
+	},
+
+	onSubmit: function () {
+		console.log('asdasd');
+	},
+
+	enableButton: function () {
+	    this.setState({
+	      canSubmit: true
+	    });
+	},
+
+	disableButton: function () {
+	    this.setState({
+	      canSubmit: false
+	    });
 	},
 
 	render: function () {
@@ -30,22 +57,36 @@ var Home = React.createClass({
 								<img src="img/content/call-to-action-icon1.png" alt="" />
 							</div>
 						</div>
-						<div className="text css-table">
+						<Formsy.Form className="text css-table"
+							onSubmit={this.onSubmit}
+							onValid={this.enableButton}
+							onInvalid={this.disableButton}>
 							<div className="css-table-cell">
 								<h4>Encomende comida online</h4>
 								<p>Procure por takeaways perto de si</p>
 							</div>
 					  		<div className="main-postcode-search css-table-cell">
-						  		<input className="pad-bottom form-control" onChange={this.onChange} type="text" placeholder="Insira o seu codigo postal*" />
+	  							<FormsyInput wrapperClassName="postcode-input"
+									noLabel={true}
+									inputClassName="form-control"
+									name="Postcode"
+									onChange={this.handleChange}
+									type="text"
+									placeholder="Insira o seu codigo postal*"
+									validations="isPostcode"
+									validationError={isPostcode.message}
+									required />
 					  		</div>
 					  		<div className="css-table-cell">
 								<Link to="postcode" params={{pcode: postcode}}>
-									<button className="btn btn-default-red-inverse pad-top">
+									<button className="btn btn-default-red-inverse pad-top"
+										type="submit"
+										disabled={!this.state.canSubmit}>
 										Procure um takeaway
 									</button>
 								</Link>
 							</div>
-						</div>
+						</Formsy.Form>
 					</div>
 					<div className="home-bg ms-skin-black-2 round-skin" id="masterslider">
 						<div className="ms-view">
