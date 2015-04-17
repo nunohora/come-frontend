@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 var $			   = require('jquery'),
+	_              = require('underscore'),
 	utils          = require('utils'),
 	React          = require('react'),
 	Loader         = require('react-loader'),
@@ -21,21 +22,46 @@ module.exports = React.createClass({
 		};
 	},
 
-	componentWillMount: function () {
-		var pcode = this.props.params.pcode;
+	onResponse: function (results) {
+		var categories = [{
+			id: 0,
+			name: 'All',
+			resultNumber: results.length
+		}];
 
-		$.when(utils.getRestaurants(pcode))
-		.then(function (result) {
+		_.each(results, function (result) {
+			_.each(result.categories, function (category) {
+				var existing = _.findWhere(categories, {id: category.id});
+
+				if (existing) {
+					existing.resultNumber = existing.resultNumber++;
+				}
+				else {
+					categories.push({
+						id: category.id,
+						name: category.name,
+						resultNumber: 1
+					});
+				}
+			});
+		});
+
+		this.setState({
+			categories: categories,
+			restaurants: results,
+			resultNumber: {
+				number: results.length,
+				postcode: this.props.params.location
+			},
+			loaded: true
+		});
+	},
+
+	componentWillMount: function () {
+		$.when(utils.getRestaurants(this.props.params))
+		.then(function (response) {
 			if (this.isMounted()) {
-				this.setState({
-					categories: [],
-					restaurants: result,
-					resultNumber: {
-						number: result.length,
-						postcode: pcode
-					},
-					loaded: true
-				});
+				this.onResponse(response.search);
 			}
 		}.bind(this));
 	},
@@ -48,7 +74,7 @@ module.exports = React.createClass({
 
 	renderCategories: function () {
 		return (
-			<Categories key={'cat'} params={this.state.categories} />
+			<Categories params={this.state.categories} />
 		);
 	},
 

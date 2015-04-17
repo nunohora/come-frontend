@@ -18,9 +18,11 @@ module.exports = React.createClass({
 	submitForm: function (e) {
 		e.preventDefault();
 
+		var credentials = this.state.credentials;
+
 		this.setState({loaded: false});
 
-		$.when(utils.loginUser(this.state.email, this.state.password), function (result) {
+		$.when(utils.loginUser(credentials.email, this.state.password), function (result) {
 			this.setState({
 				categories: [],
 				restaurants: result,
@@ -33,11 +35,8 @@ module.exports = React.createClass({
 		}.bind(this));
 	},
 
-	handleChange: function (e) {
-		var state = {};
-
-		state[e.target.name] = e.target.value;
-		this.setState(state);
+	handleChange: function (values) {
+		this.setState({credentials: values});
 	},
 
 	enableButton: function () {
@@ -63,6 +62,7 @@ module.exports = React.createClass({
 				url="/api/login"
 				onSubmit={this.onSubmit}
 				onValid={this.enableButton}
+				onChange={this.handleChange}
 				onInvalid={this.disableButton} >
 				<div className="row">
 					<FormsyInput

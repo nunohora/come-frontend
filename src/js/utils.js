@@ -30,12 +30,13 @@ var makeRequest = function (options) {
 };
 
 module.exports = {
-	getRestaurants: function (postcode) {
+	getRestaurants: function (params) {
 		var dfd = new $.Deferred();
 
 		var options = {
 			method: 'GET',
-			url: 'postcode/' + postcode
+			url: 'search/',
+			data: params
 		};
 
 		$.when(makeRequest(options))

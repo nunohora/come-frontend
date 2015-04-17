@@ -2,6 +2,15 @@
 var React = require('react');
 
 module.exports = React.createClass({
+
+	renderCategories: function () {
+		console.log(this.props.params);
+
+		return _.map(this.props.params, function (category) {
+
+		});
+	},
+
 	render: function () {
 	  return (
 	  	<div className="side-panel">

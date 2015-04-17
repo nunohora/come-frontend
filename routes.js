@@ -9,9 +9,9 @@ router.get('/', function(req, res) {
 });
 
 /* GET API */
-router.get('/api/postcode/:pcode', function(req, res) {
+router.get('/api/search/', function(req, res) {
 	if (req.xhr) {
-		when(utils.getRestaurants(req.params.pcode))
+		when(utils.getRestaurants(req.query))
 		.then(function (resp) {
 			res.end(resp);
 		});
@@ -19,8 +19,7 @@ router.get('/api/postcode/:pcode', function(req, res) {
 });
 
 //* POST API */
-router.post('/api/login', function (req, res) {
-	console.log('here');
+router.post('/api/login/', function (req, res) {
 	if (req.xhr) {
 		when(utils.loginUser(req.body.email, req.body.password))
 		.then(function (resp) {

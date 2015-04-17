@@ -21,32 +21,25 @@ var Home = React.createClass({
 	},
 
   	getInitialState: function() {
-		return {postcode: 'none'};
+		return {location: ''};
   	},
 
-	handleChange: function (event) {
-		console.log('hereere');
-		this.setState({postcode: event.target.value});
+	handleChange: function (values) {
+		this.setState({location: values.Postcode});
 	},
 
-	onSubmit: function () {
-		console.log('asdasd');
-	},
+	onSubmit: function () {},
 
 	enableButton: function () {
-	    this.setState({
-	      canSubmit: true
-	    });
+	    this.setState({ canSubmit: true });
 	},
 
 	disableButton: function () {
-	    this.setState({
-	      canSubmit: false
-	    });
+	    this.setState({ canSubmit: false });
 	},
 
 	render: function () {
-		var postcode = this.state.postcode;
+		var location = this.state.location;
 
 	  	return (
 	  		<div className="home-wrapper">
@@ -59,6 +52,7 @@ var Home = React.createClass({
 						</div>
 						<Formsy.Form className="text css-table"
 							onSubmit={this.onSubmit}
+							onChange={this.handleChange}
 							onValid={this.enableButton}
 							onInvalid={this.disableButton}>
 							<div className="css-table-cell">
@@ -70,7 +64,6 @@ var Home = React.createClass({
 									noLabel={true}
 									inputClassName="form-control"
 									name="Postcode"
-									onChange={this.handleChange}
 									type="text"
 									placeholder="Insira o seu codigo postal*"
 									validations="isPostcode"
@@ -78,7 +71,7 @@ var Home = React.createClass({
 									required />
 					  		</div>
 					  		<div className="css-table-cell">
-								<Link to="postcode" params={{pcode: postcode}}>
+								<Link to="search" params={{location: location}}>
 									<button className="btn btn-default-red-inverse pad-top"
 										type="submit"
 										disabled={!this.state.canSubmit}>

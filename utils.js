@@ -1,47 +1,47 @@
 //APP Config
 var Deferred = require('promised-io/promise').Deferred,
 	when 	 = require('promised-io/promise').when,
-	rp       = require('request-promise');
+	axios    = require('axios');
 
 process.on('uncaughtException', function (err) {
 	console.log('uncaughtException: ', err);
 });
 
-var makeRequest = function (options) {
-	var dfd = new Deferred(),
-		options = options || {};
-
-	var request = {
-		uri: 'https://come-api-211435.euw1-2.nitrousbox.com/api/' + (options.url || ''),
-		method: options.method || 'GET',
-		headers: {
-		    'Content-Type': 'application/json'
-		}
-	};
-
-	if (options.data) {
-		request.data = options.data;
-	}
-
-	rp(request)
-		.then(function (resp) {
-			dfd.resolve(resp);
-		})
-		.catch(function (error) {
-			// console.log('Error: ', error);
-			dfd.reject(error);
-		});
-
-	return dfd.promise;
+var request = {
+	headers: { 'Content-Type': 'application/json' },
+	uri: 'https://come-rails-api-218814.euw1-2.nitrousbox.com/v1'
 };
 
 module.exports = {
-	getRestaurants: function (postcode, data) {
+	getRestaurants: function (params) {
 		var dfd = new Deferred();
 
 		var options = {
-			method: 'GET',
-			url: 'v1/restaurants'
+			headers: request.headers,
+			url: request.uri + '/search',
+			method: 'get',
+			params: params
+		};
+
+		axios(options)
+			.then(function (response) {
+				dfd.resolve(JSON.stringify(response.data));
+			})
+			.catch(function (error) {
+				console.log('error: ', error);
+				dfd.reject(error);
+			});
+
+		return dfd.promise;
+	},
+
+	loginUser: function (params) {
+		var dfd = new Deferred();
+
+		var options = {
+			method: 'POST',
+			url: 'login',
+			data: params
 		};
 
 		when(makeRequest(options))
@@ -51,31 +51,6 @@ module.exports = {
 				},
 				function (error) {
 					console.log('Error: ', error);
-					dfd.reject(error);
-				});
-
-		return dfd.promise;
-	},
-
-	loginUser: function (email, password) {
-		var dfd = new Deferred();
-
-		var options = {
-			method: 'POST',
-			url: 'login',
-			data: {
-				email: email,
-				password: password
-			}
-		};
-
-		when(makeRequest(options))
-			.then(
-				function (response) {
-					dfd.resolve(response);
-				},
-				function (error) {
-					// console.log('Error: ', error);
 					dfd.reject(error);
 				});
 
