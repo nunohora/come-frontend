@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
-var React = require('react');
+var React = require('react'),
+	_     = require('underscore');
 
 module.exports = React.createClass({
 
@@ -7,7 +8,11 @@ module.exports = React.createClass({
 		console.log(this.props.params);
 
 		return _.map(this.props.params, function (category) {
-
+			return (
+				<li key={category.id}>
+					<a href="#">{category.name}</a>
+				</li>
+			);
 		});
 	},
 
@@ -17,21 +22,7 @@ module.exports = React.createClass({
 			<div className="categories">
 				<h4>Categorias</h4>
 				<ul className="list-unstyled">
-					<li>
-						<a href="#">Chinesa</a>
-					</li>
-					<li>
-						<a href="#">Churrasco</a>
-					</li>
-					<li>
-						<a href="#">Vegetariano</a>
-					</li>
-					<li>
-						<a href="#">Brasileira</a>
-					</li>
-					<li>
-						<a href="#">Francesinhas</a>
-					</li>
+					{this.renderCategories()}
 				</ul>
 			</div>
 		</div>
