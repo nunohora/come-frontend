@@ -9,7 +9,7 @@ process.on('uncaughtException', function (err) {
 
 var request = {
 	headers: { 'Content-Type': 'application/json' },
-	uri: 'https://api.dev.come.pt/v1'
+	uri: 'http://api.dev.come.pt/v1'
 };
 
 module.exports = {
