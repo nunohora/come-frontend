@@ -2,19 +2,19 @@ var $ = require('jquery');
 
 var makeRequest = function (options) {
 	var dfd = new $.Deferred(),
-		options = options || {},
+		opts = options || {},
 		request;
 
 	request = {
-		url: '/api/' + (options.url || ''),
-		method: options.method || 'GET',
+		url: '/api/' + (opts.url || ''),
+		method: opts.method || 'GET',
 		headers: {
 		    'Content-Type': 'application/json'
 		}
 	};
 
-	if (options.data) {
-		request.data = options.data;
+	if (opts.data) {
+		request.data = opts.data;
 	}
 
 	$.ajax(request)

@@ -10,8 +10,8 @@ var LoginForm  = require('views/forms/login-form'),
 var forms = {
 	'login': LoginForm,
 	'signup': SignupForm
+};
 
-}
 var HeaderModal = React.createClass({
 
 	onRequestHide: function () {},

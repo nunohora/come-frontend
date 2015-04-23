@@ -15,7 +15,7 @@ module.exports = {
 		dest: dest + '/css'
 	},
 	jshint: {
-		src: dest + '/**/*.js'
+		src: src + '/js/**/*'
 	},
 	browserSync: {
 		proxy: "localhost:3000",

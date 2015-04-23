@@ -9,7 +9,7 @@ process.on('uncaughtException', function (err) {
 
 var request = {
 	headers: { 'Content-Type': 'application/json' },
-	uri: 'https://come-rails-api-218814.euw1-2.nitrousbox.com/v1'
+	uri: 'https://api.dev.come.pt/v1'
 };
 
 module.exports = {
@@ -50,7 +50,7 @@ module.exports = {
 					dfd.resolve(response);
 				},
 				function (error) {
-					console.log('Error: ', error);
+					console.log('Errorssss: ', error);
 					dfd.reject(error);
 				});
 
