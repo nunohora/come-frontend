@@ -3,8 +3,7 @@ var express = require('express'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser'),
-    Handlebars = require('hbs');
+    bodyParser = require('body-parser');
 
 var routes = require('./routes');
 
@@ -30,9 +29,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
-//Handlebars
-Handlebars.registerPartials(__dirname + '/views/partials');
 
 // error handlers
 
