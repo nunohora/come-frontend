@@ -16,7 +16,8 @@ var App           = require('views/app'),
 
 var routes = (
   <Route handler={App} params={this.params} path="/">
-    <Route name="search" handler={SearchResults} params={this.params} path="/search/:location/" />
+    <Route name="search" handler={SearchResults} params={this.params} path="/search/:location" />
+    <Route name="categorySearch" handler={SearchResults} params={this.params} path="/search/:location/:category" />
     <Route name="help" handler={Help} path="/help" />
     <Route name="login" handler={LoginPage} path="/login" />
     <Route name="signup" handler={SignupPage} path="/signup" />

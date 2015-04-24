@@ -5,11 +5,12 @@ var React = require('react'),
 module.exports = React.createClass({
 
 	renderCategories: function () {
-		console.log(this.props.params);
-
 		return _.map(this.props.params, function (category) {
 			return (
 				<li key={category.id}>
+					<Link className="navbar-brand" to="/">
+						<img src="img/header-logo.png" alt="TakeAway" />
+					</Link>
 					<a href="#">{category.name}</a>
 				</li>
 			);

@@ -2336,7 +2336,8 @@ h4 .small,h4 small,h5 .small,h5 small,h6 .small,h6 small{font-size:75%}
 .side-panel .categories{width:100%;background-color:#f3f3f3;padding:20px}
 .side-panel .categories h4{color:#423338;font-size:20px;margin:0;padding:0 0 25px;font-weight:700}
 .side-panel .categories ul{width:100%;margin:0;position:relative}
-.side-panel .categories ul li{position:relative;margin:0;padding:11px 0;border-top:1px solid #ccc}
+.side-panel .categories ul li{position:relative;margin:0;border-top:1px solid #ccc}
+.side-panel .categories ul li a{display:block;padding:11px 0}
 .side-panel .categories ul li a:hover{color:#666}
 .side-panel .search-keyword{position:relative;margin:0;padding:0 20px;border:none}
 .side-panel .search-keyword input[type=text]{margin:0;padding:3px 15px;width:99%;height:30px;outline:0;color:#333;font-size:14px;border:1px solid #ccc;-webkit-border-radius:7px 0 0 7px;border-radius:7px 0 0 7px;background:#fff;line-height:24px}

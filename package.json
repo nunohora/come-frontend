@@ -21,6 +21,7 @@
   "devDependencies": {
     "browser-sync": "^2.6.1",
     "browserify": "^9.0.8",
+    "flux": "^2.0.1",
     "formsy-react": "^0.10.1",
     "gulp-changed": "^1.2.1",
     "gulp-concat-css": "^2.2.0",

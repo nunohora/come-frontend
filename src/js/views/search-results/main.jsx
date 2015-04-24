@@ -6,20 +6,23 @@ var $			   = require('jquery'),
 	Loader         = require('react-loader'),
 	RestaurantList = require('views/search-results/restaurant-list'),
 	Categories     = require('views/search-results/categories'),
-	ResultNumber   = require('views/search-results/result-number');
+	ResultNumber   = require('views/search-results/result-number'),
+	RestListStore  = require('stores/RestaurantListStore');
 
 module.exports = React.createClass({
 
 	getInitialState: function () {
+		this.setState({ loaded: false });
+
+		return getListState();
+	},
+
+	getListState: function () {
 		return {
-			categories: [],
-			restaurants: [],
-			resultNumber: {
-				number: '',
-				postcode: ''
-			},
-			loaded: false
-		};
+			categories: RestListStore.getCatList(),
+			restaurants: RestListStore.getRestList(),
+			resultNumber: RestListStore.getResultNumber()
+		}
 	},
 
 	onResponse: function (results) {
@@ -57,43 +60,28 @@ module.exports = React.createClass({
 		});
 	},
 
-	componentWillMount: function () {
-		$.when(utils.getRestaurants(this.props.params))
-		.then(function (response) {
-			if (this.isMounted()) {
-				this.onResponse(response.search);
-			}
-		}.bind(this));
+	componentDidMount: function () {
+		RestListStore.addChangeListener(this._onChange);
 	},
 
-	renderResultNumber: function () {
-		return (
-			<ResultNumber key={'res-numb'} params={this.state.resultNumber} />
-		);
-	},
-
-	renderCategories: function () {
-		return (
-			<Categories params={this.state.categories} />
-		);
-	},
-
-	renderRestaurantsList: function () {
-		return (
-			<RestaurantList key={'res-list'} params={this.state.restaurants} />
-		);
+	componentWillUnmount: function() {
+		RestListStore.removeChangeListener(this._onChange);
 	},
 
 	render: function () {
 	  	return (
   			<div className="container">
   				<Loader loaded={this.state.loaded} className="spinner "></Loader>
-  				{this.renderResultNumber()}
+  				<ResultNumber params={this.state.resultNumber} />
 	  			<div className="col-md-3">
-					{this.renderCategories()}
+					<Categories params={this.state.categories} />
 				</div>
-				{this.renderRestaurantsList()}
+				<RestaurantList params={this.state.restaurants} />
   			</div>
 	    );
+	},
+
+	_onChange: function() {
+		this.setState(getListState());
 	}
 });
