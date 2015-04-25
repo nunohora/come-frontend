@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
-var React = require('react');
+var React = require('react'),
+	_     = require('underscore');
 
 module.exports = React.createClass({
 
@@ -19,6 +20,27 @@ module.exports = React.createClass({
 					27 Ratings
 				</div>
 			</div>
+		);
+	},
+
+	renderCategories: function () {
+		var categories = this.props.params.categories,
+			string = '',
+			isLast = false;
+
+		_.each(categories, function (category) {
+			string = string + category.name;
+
+			if (_.indexOf(categories, category) + 1 !== categories.length) {
+				string += ', ';
+			}
+		});
+
+		return (
+			<p>
+				<i className="fa fa-cutlery"></i>
+				{string}
+			</p>
 		);
 	},
 
@@ -43,10 +65,7 @@ module.exports = React.createClass({
 							</p>
 						</div>
 						<div className="tag-list">
-							<p>
-								<i className="fa fa-cutlery"></i>
-								Chinesa
-							</p>
+							{this.renderCategories()}
 						</div>
 					</div>
 					<a className="btn btn-default-red-inverse view-menu">

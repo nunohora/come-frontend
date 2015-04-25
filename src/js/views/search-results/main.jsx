@@ -23,7 +23,6 @@ module.exports = React.createClass({
 	componentDidMount: function () {
 		RestListStore.addChangeListener(this._onChange);
 		Actions.getRestList(this.props.params);
-		this.setState({loaded: true});
 	},
 
 	componentWillUnmount: function() {
@@ -45,5 +44,6 @@ module.exports = React.createClass({
 
 	_onChange: function() {
 		this.setState(this.getListState());
+		this.setState({loaded: true});
 	}
 });

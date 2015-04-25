@@ -63,6 +63,8 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
       });
     });
 
+    categories[0].resultNumber = response.meta.total_results;
+
     _store = {
       categories: categories,
       restaurants: response.search,

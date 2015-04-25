@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react'),
-	Link  = require('react-router').Link
+	Link  = require('react-router').Link,
 	_     = require('underscore');
 
 module.exports = React.createClass({
@@ -11,6 +11,7 @@ module.exports = React.createClass({
 				<li key={category.id}>
 					<Link to="/">
 						{category.name}
+						<span className="tag">{category.resultNumber}</span>
 					</Link>
 				</li>
 			);
