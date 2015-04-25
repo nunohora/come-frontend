@@ -9,7 +9,7 @@ var CHANGE_EVENT = 'change';
 var _store = {
   categories: [{
       id: 0,
-      name: 'All',
+      name: 'Total',
       resultNumber: 0
   }],
   restaurants: [],
