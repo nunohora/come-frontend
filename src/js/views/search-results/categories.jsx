@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react'),
+	Link  = require('react-router').Link
 	_     = require('underscore');
 
 module.exports = React.createClass({
@@ -8,10 +9,9 @@ module.exports = React.createClass({
 		return _.map(this.props.params, function (category) {
 			return (
 				<li key={category.id}>
-					<Link className="navbar-brand" to="/">
-						<img src="img/header-logo.png" alt="TakeAway" />
+					<Link to="/">
+						{category.name}
 					</Link>
-					<a href="#">{category.name}</a>
 				</li>
 			);
 		});

@@ -1,67 +1,29 @@
 /** @jsx React.DOM */
-var $			   = require('jquery'),
-	_              = require('underscore'),
-	utils          = require('utils'),
-	React          = require('react'),
+var React          = require('react'),
 	Loader         = require('react-loader'),
 	RestaurantList = require('views/search-results/restaurant-list'),
 	Categories     = require('views/search-results/categories'),
 	ResultNumber   = require('views/search-results/result-number'),
-	RestListStore  = require('stores/RestaurantListStore');
+	RestListStore  = require('stores/RestaurantListStore'),
+	Actions        = require('actions/RestaurantListActions');
 
 module.exports = React.createClass({
 
 	getInitialState: function () {
-		this.setState({ loaded: false });
+		var state = this.getListState();
+		state.loaded = false;
 
-		return getListState();
+		return state;
 	},
 
 	getListState: function () {
-		return {
-			categories: RestListStore.getCatList(),
-			restaurants: RestListStore.getRestList(),
-			resultNumber: RestListStore.getResultNumber()
-		}
-	},
-
-	onResponse: function (results) {
-		var categories = [{
-			id: 0,
-			name: 'All',
-			resultNumber: results.length
-		}];
-
-		_.each(results, function (result) {
-			_.each(result.categories, function (category) {
-				var existing = _.findWhere(categories, {id: category.id});
-
-				if (existing) {
-					existing.resultNumber = existing.resultNumber++;
-				}
-				else {
-					categories.push({
-						id: category.id,
-						name: category.name,
-						resultNumber: 1
-					});
-				}
-			});
-		});
-
-		this.setState({
-			categories: categories,
-			restaurants: results,
-			resultNumber: {
-				number: results.length,
-				postcode: this.props.params.location
-			},
-			loaded: true
-		});
+		return RestListStore.getState();
 	},
 
 	componentDidMount: function () {
 		RestListStore.addChangeListener(this._onChange);
+		Actions.getRestList(this.props.params);
+		this.setState({loaded: true});
 	},
 
 	componentWillUnmount: function() {
@@ -82,6 +44,6 @@ module.exports = React.createClass({
 	},
 
 	_onChange: function() {
-		this.setState(getListState());
+		this.setState(this.getListState());
 	}
 });

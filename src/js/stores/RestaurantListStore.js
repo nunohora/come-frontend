@@ -1,71 +1,23 @@
 var AppDispatcher = require('dispatcher/AppDispatcher'),
     EventEmitter  = require('events').EventEmitter,
     Constants     = require('constants/Constants'),
-    assign        = require('object-assign');
+    assign        = require('object-assign'),
+    _             = require('underscore');
 
 var CHANGE_EVENT = 'change';
 
 var _store = {
-  catSelected: '',
-  list: []
+  categories: [{
+      id: 0,
+      name: 'All',
+      resultNumber: 0
+  }],
+  restaurants: [],
+  resultNumber: {
+    number: 0,
+    postcode: ''
+  }
 };
-
-/**
- * Create a TODO item.
- * @param  {string} text The content of the TODO
- */
-function create(text) {
-  // Hand waving here -- not showing how this interacts with XHR or persistent
-  // server-side storage.
-  // Using the current timestamp + random number in place of a real id.
-  var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-  _todos[id] = {
-    id: id,
-    complete: false,
-    text: text
-  };
-}
-
-/**
- * Update a TODO item.
- * @param  {string} id
- * @param {object} updates An object literal containing only the data to be
- *     updated.
- */
-function update(id, updates) {
-  _todos[id] = assign({}, _todos[id], updates);
-}
-
-/**
- * Update all of the TODO items with the same object.
- *     the data to be updated.  Used to mark all TODOs as completed.
- * @param  {object} updates An object literal containing only the data to be
- *     updated.
- */
-function updateAll(updates) {
-  for (var id in _todos) {
-    update(id, updates);
-  }
-}
-
-/**
- * Delete a TODO item.
- * @param  {string} id
- */
-function destroy(id) {
-  delete _todos[id];
-}
-
-/**
- * Delete all the completed TODO items.
- */
-function destroyCompleted() {
-  for (var id in _todos) {
-    if (_todos[id].complete) {
-      destroy(id);
-    }
-  }
-}
 
 var RestaurantListStore = assign({}, EventEmitter.prototype, {
 
@@ -85,57 +37,49 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
    */
   removeChangeListener: function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getState: function (params) {
+    return _store;
+  },
+
+  setState: function (response, params) {
+    var categories = _store.categories;
+
+    _.each(response.search, function (result) {
+      _.each(result.categories, function (category) {
+        var existing = _.findWhere(categories, {id: category.id});
+
+        if (existing) {
+          existing.resultNumber = existing.resultNumber++;
+        }
+        else {
+          categories.push({
+            id: category.id,
+            name: category.name,
+            resultNumber: 1
+          });
+        }
+      });
+    });
+
+    _store = {
+      categories: categories,
+      restaurants: response.search,
+      resultNumber: {
+        number: response.meta.total_results,
+        postcode: params.location
+      }
+    };
   }
 });
 
 // Register callback to handle all updates
 AppDispatcher.register(function(action) {
-  var text;
-
   switch(action.actionType) {
-    case TodoConstants.TODO_CREATE:
-      text = action.text.trim();
-      if (text !== '') {
-        create(text);
-        TodoStore.emitChange();
-      }
-      break;
-
-    case TodoConstants.TODO_TOGGLE_COMPLETE_ALL:
-      if (TodoStore.areAllComplete()) {
-        updateAll({complete: false});
-      } else {
-        updateAll({complete: true});
-      }
-      TodoStore.emitChange();
-      break;
-
-    case TodoConstants.TODO_UNDO_COMPLETE:
-      update(action.id, {complete: false});
-      TodoStore.emitChange();
-      break;
-
-    case TodoConstants.TODO_COMPLETE:
-      update(action.id, {complete: true});
-      TodoStore.emitChange();
-      break;
-
-    case TodoConstants.TODO_UPDATE_TEXT:
-      text = action.text.trim();
-      if (text !== '') {
-        update(action.id, {text: text});
-        TodoStore.emitChange();
-      }
-      break;
-
-    case TodoConstants.TODO_DESTROY:
-      destroy(action.id);
-      TodoStore.emitChange();
-      break;
-
-    case TodoConstants.TODO_DESTROY_COMPLETED:
-      destroyCompleted();
-      TodoStore.emitChange();
+    case Constants.GET_REST_LIST:
+      RestaurantListStore.setState(action.response, action.params);
+      RestaurantListStore.emitChange();
       break;
 
     default:
