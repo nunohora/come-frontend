@@ -5,6 +5,7 @@ var React       = require('react'),
 	FormsyInput = require('views/helpers/input'),
 	utils       = require('utils'),
 	UserActions = require('actions/UserActions'),
+	UserStore   = require('stores/UserStore'),
 	$           = require('jquery');
 
 module.exports = React.createClass({

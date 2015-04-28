@@ -2,7 +2,9 @@
 var React 	 	 = require('react'),
 	Link  		 = require('react-router').Link,
 	Modal 	 	 = require('react-bootstrap').Modal,
-	ModalTrigger = require('react-bootstrap').ModalTrigger;
+	ModalTrigger = require('react-bootstrap').ModalTrigger,
+	UserStore    = require('stores/UserStore'),
+	Actions      = require('actions/UserActions');
 
 var LoginForm  = require('views/forms/login-form'),
 	SignupForm = require('views/forms/signup-form');
@@ -32,7 +34,64 @@ var HeaderModal = React.createClass({
 
 module.exports = React.createClass({
 
+	getInitialState: function () {
+		var state = UserStore.getState();
+		return state;
+	},
+
+	componentDidMount: function () {
+		UserStore.addChangeListener(this._onChange);
+	},
+
+	onLogoutClick: function () {
+		Actions.logoutUser();
+	},
+
+	renderLoggedIn: function () {
+		return (
+			<ul className="nav navbar-nav navbar-right">
+				<li>
+					<a>Olá {this.state.username}</a>
+				</li>
+				<li>
+					<a>A minha conta</a>
+				</li>
+				<li>
+					<a onClick={this.onLogoutClick}>Logout</a>
+				</li>
+			</ul>
+		);
+	},
+
+	renderLoggedOut: function () {
+		return (
+			<ul className="nav navbar-nav navbar-right">
+				<li>
+					<ModalTrigger modal={ <HeaderModal title="Login" form="login" className="modal-md-sm" /> }>
+						<a>Login</a>
+					</ModalTrigger>
+				</li>
+				<li>
+					<ModalTrigger modal={ <HeaderModal title="Registo" form="signup" className="medium" /> }>
+						<a>Registo</a>
+					</ModalTrigger>
+				</li>
+				<li>
+					<Link to="help">Ajuda</Link>
+				</li>
+			</ul>
+		);
+	},
+
 	render: function () {
+		var state =  this.state;
+
+		var renderNav = this.state.username ? this.renderLoggedIn : this.renderLoggedOut;
+
+		console.log('rerendering?');
+		console.log(this.state);
+		console.log(this.state.username);
+
 	  	return (
 			<div className="header-nav-bar">
 				<nav className="navbar navbar-default" role="navigation">
@@ -49,25 +108,18 @@ module.exports = React.createClass({
 							</Link>
 						</div>
 						<div className="collapse navbar-collapse">
-							<ul className="nav navbar-nav navbar-right">
-								<li>
-									<ModalTrigger modal={ <HeaderModal title="Login" form="login" className="modal-md-sm" /> }>
-										<a>Login</a>
-									</ModalTrigger>
-								</li>
-								<li>
-									<ModalTrigger modal={ <HeaderModal title="Registo" form="signup" className="medium" /> }>
-										<a>Registo</a>
-									</ModalTrigger>
-								</li>
-								<li>
-									<Link to="help">Ajuda</Link>
-								</li>
-							</ul>
+							{renderNav()}
 						</div>
 					</div>
 				</nav>
 			</div>
 	    );
+	},
+
+	_onChange: function() {
+		var state = UserStore.getState();
+
+		console.log('state: ', state);
+		this.setState(state);
 	}
 });

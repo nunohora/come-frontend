@@ -3,6 +3,7 @@ var $ = require('jquery');
 var makeRequest = function (options) {
 	var dfd = new $.Deferred(),
 		opts = options || {},
+		user = localStorage.getItem('user'),
 		request;
 
 	request = {
@@ -15,6 +16,11 @@ var makeRequest = function (options) {
 
 	if (opts.data) {
 		request.data = opts.data;
+	}
+
+	if (user) {
+		user = JSON.parse(user);
+		request.headers.Authorization = user.access_token;
 	}
 
 	$.ajax(request)
@@ -59,13 +65,12 @@ module.exports = {
 		var options = {
 			method: 'POST',
 			url: 'login',
-			data: params
+			data: JSON.stringify(params)
 		};
 
 		$.when(makeRequest(options))
 			.then(
 				function (response) {
-					console.log('login response: ', response);
 					dfd.resolve(response);
 				},
 				function (error) {

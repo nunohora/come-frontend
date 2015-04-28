@@ -39,20 +39,23 @@ module.exports = {
 		var dfd = new Deferred();
 
 		var options = {
+			headers: request.headers,
 			method: 'POST',
-			url: 'login',
-			data: params
+			url: request.uri + '/login',
+			data: {
+				email: params.Email,
+				password: params.Password
+			}
 		};
 
-		when(makeRequest(options))
-			.then(
-				function (response) {
-					dfd.resolve(response);
-				},
-				function (error) {
-					console.log('Errorssss: ', error);
-					dfd.reject(error);
-				});
+		axios(options)
+			.then(function (response) {
+				dfd.resolve(JSON.stringify(response.data));
+			})
+			.catch(function (error) {
+				console.log('error: ', error);
+				dfd.reject(error);
+			});
 
 		return dfd.promise;
 	}

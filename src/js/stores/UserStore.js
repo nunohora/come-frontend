@@ -6,8 +6,6 @@ var AppDispatcher = require('dispatcher/AppDispatcher'),
 
 var CHANGE_EVENT = 'change';
 
-var _user = {};
-
 var UserStore = assign({}, EventEmitter.prototype, {
 
   emitChange: function() {
@@ -28,24 +26,34 @@ var UserStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getState: function (params) {
-    return _user;
+  getState: function () {
+    var user = localStorage.getItem('user'),
+        state = user ? JSON.parse(user) : {};
+
+    return state;
   },
 
-  setState: function (response, params) {}
+  setState: function (response) {
+    localStorage.setItem('user', JSON.stringify(response));
+  },
+
+  deleteState: function () {
+    localStorage.removeItem('user');
+    console.log('removed storage: ', localStorage.getItem('user'));
+  }
 });
 
 // Register callback to handle all updates
 AppDispatcher.register(function(action) {
   switch(action.actionType) {
     case Constants.USER_LOGIN:
-      RestaurantListStore.setState(action.response, action.params);
-      RestaurantListStore.emitChange();
+      UserStore.setState(action.response);
+      UserStore.emitChange();
       break;
 
     case Constants.USER_LOGOUT:
-      RestaurantListStore.setState(action.response, action.params);
-      RestaurantListStore.emitChange();
+      UserStore.deleteState();
+      UserStore.emitChange();
       break;
 
     default:

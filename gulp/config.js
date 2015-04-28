@@ -3,7 +3,7 @@ var src = './src',
 
 module.exports = {
 	jsxCompile: {
-		src: src + '/js/**/*.jsx',
+		src: [src + '/js/**/*.jsx', src + '/js/**/*.js'],
 		dest: dest + '/js'
 	},
 	less: {

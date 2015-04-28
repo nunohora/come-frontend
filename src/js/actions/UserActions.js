@@ -7,8 +7,7 @@ var UserActions = {
   loginUser: function (params) {
     $.when(utils.loginUser(params)).done(function (response) {
         AppDispatcher.dispatch({
-          actionType: Constants.LOGIN_USER,
-          params: params,
+          actionType: Constants.USER_LOGIN,
           response: response
         });
     });
@@ -16,9 +15,7 @@ var UserActions = {
 
   logoutUser: function () {
     AppDispatcher.dispatch({
-      actionType: Constants.LOGOUT_USER,
-      params: params,
-      response: response
+      actionType: Constants.USER_LOGOUT
     });
   }
 };

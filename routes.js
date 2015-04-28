@@ -21,7 +21,7 @@ router.get('/api/search/', function(req, res) {
 //* POST API */
 router.post('/api/login/', function (req, res) {
 	if (req.xhr) {
-		when(utils.loginUser(req.body.email, req.body.password))
+		when(utils.loginUser(req.body))
 		.then(function (resp) {
 			res.end(resp);
 		});
