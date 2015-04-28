@@ -51,7 +51,7 @@ module.exports = React.createClass({
 		return (
 			<ul className="nav navbar-nav navbar-right">
 				<li>
-					<a>Olá {this.state.username}</a>
+					<a>Olá {this.state.user.username}</a>
 				</li>
 				<li>
 					<a>A minha conta</a>
@@ -84,13 +84,9 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
-		var state =  this.state;
+		var state = this.state;
 
-		var renderNav = this.state.username ? this.renderLoggedIn : this.renderLoggedOut;
-
-		console.log('rerendering?');
-		console.log(this.state);
-		console.log(this.state.username);
+		var renderNav = this.state.user.username ? this.renderLoggedIn : this.renderLoggedOut;
 
 	  	return (
 			<div className="header-nav-bar">

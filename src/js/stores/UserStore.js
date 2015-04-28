@@ -30,7 +30,7 @@ var UserStore = assign({}, EventEmitter.prototype, {
     var user = localStorage.getItem('user'),
         state = user ? JSON.parse(user) : {};
 
-    return state;
+    return {user: state};
   },
 
   setState: function (response) {
