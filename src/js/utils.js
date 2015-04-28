@@ -9,7 +9,7 @@ var makeRequest = function (options) {
 		url: '/api/' + (opts.url || ''),
 		method: opts.method || 'GET',
 		headers: {
-		    'Content-Type': 'application/json'
+			'Content-Type': 'application/json'
 		}
 	};
 
@@ -52,20 +52,20 @@ module.exports = {
 		return dfd.promise();
 	},
 
-	loginUser: function (email, password) {
+	loginUser: function (params) {
 		var dfd = new $.Deferred(),
-			url = 'login',
-			data = {email: email, password: password};
+			url = 'login';
 
 		var options = {
-			url: 'login',
 			method: 'POST',
-			data: JSON.stringify(data)
+			url: 'login',
+			data: params
 		};
 
 		$.when(makeRequest(options))
 			.then(
 				function (response) {
+					console.log('login response: ', response);
 					dfd.resolve(response);
 				},
 				function (error) {
