@@ -114,8 +114,6 @@ module.exports = React.createClass({
 
 	_onChange: function() {
 		var state = UserStore.getState();
-
-		console.log('state: ', state);
 		this.setState(state);
 	}
 });

@@ -50,6 +50,7 @@ var Home = React.createClass({
 								<img src="img/content/call-to-action-icon1.png" alt="" />
 							</div>
 						</div>
+
 						<Formsy.Form className="text css-table"
 							onSubmit={this.onSubmit}
 							onChange={this.handleChange}
@@ -60,6 +61,7 @@ var Home = React.createClass({
 								<p>Procure por takeaways perto de si</p>
 							</div>
 					  		<div className="main-postcode-search css-table-cell">
+
 	  							<FormsyInput wrapperClassName="postcode-input"
 									noLabel={true}
 									inputClassName="form-control"
@@ -69,16 +71,15 @@ var Home = React.createClass({
 									validations="isPostcode"
 									validationError={isPostcode.message}
 									required />
-					  		</div>
-					  		<div className="css-table-cell">
+
 								<Link to="search" params={{location: location}}>
-									<button className="btn btn-default-red-inverse pad-top"
+									<button className="btn btn-default-red-inverse"
 										type="submit"
 										disabled={!this.state.canSubmit}>
 										Procure um takeaway
 									</button>
 								</Link>
-							</div>
+					  		</div>
 						</Formsy.Form>
 					</div>
 					<div className="home-bg ms-skin-black-2 round-skin" id="masterslider">

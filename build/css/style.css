@@ -2030,7 +2030,7 @@ input[type=button].btn-block,input[type=reset].btn-block,input[type=submit].btn-
 #header .header-top-bar .header-social>li>a:hover{color:#e00000}
 #header .header-nav-bar{position:relative;width:100%;background:#343434}
 #header .header-nav-bar .navbar{margin:0;background:#343434;border:none}
-.login-form form input,.login-form form textarea{margin-bottom:10px;border-radius:3px;border:1px solid #ccc}
+.login-form form input,.login-form form textarea{margin-bottom:10px;border-radius:3px;width:100%;border:1px solid #ccc}
 #header .header-nav-bar .navbar .navbar-header{margin-bottom:20px;margin-top:10px;position:relative}
 #header .header-nav-bar .navbar .navbar-brand{padding:0;margin:0}
 #header .header-nav-bar .navbar .navbar-brand img{margin-top:15px;margin-left:10px}
@@ -2095,27 +2095,28 @@ h4 .small,h4 small,h5 .small,h5 small,h6 .small,h6 small{font-size:75%}
 .home-top-wrapper{position:relative}
 .call-to-action-section{position:absolute;top:42%;z-index:2;margin-left:auto;margin-right:auto;left:0;right:0;height:130px;width:90%;-webkit-border-radius:6px;border-radius:6px;background:#f2f2f2;color:#343434}
 .call-to-action-section .icon{position:absolute;display:block;width:130px;height:100%;-webkit-border-radius:6px 0 0 6px;border-radius:6px 0 0 6px;background:#e00000;vertical-align:middle;text-align:center}
-.main-postcode-search .postcode-input,.order-steps{position:relative}
 .call-to-action-section .icon img{margin-top:35px}
 .call-to-action-section .text{padding:0 40px 0 160px;width:100%;height:100%}
 .call-to-action-section .text h4{font-weight:700;margin:0;padding-bottom:10px}
 .call-to-action-section .text p{padding-right:30px}
-.call-to-action-section .text a{margin-left:30px;float:left}
-.order-steps{margin:0;width:100%;height:auto;background-color:#fff}
+.call-to-action-section .text a{margin-left:30px}
+.order-steps{position:relative;margin:0;width:100%;height:auto;background-color:#fff}
 .order-steps h6{margin:20px 0 5px}
 .order-steps .order-step{position:relative;width:100%;height:auto;padding:30px;text-align:left}
 .order-steps .order-step i{text-align:center;width:100%}
 .order-steps .order-step p{margin:10px 0 15px;color:#666}
 .order-steps .order-step p span{padding:0 6px}
 .order-steps .order-step .bl-sort{color:#999;font-size:14px}
-.main-postcode-search input{height:40px}
+.main-postcode-search{text-align:right}
+.main-postcode-search input{height:37px}
+.main-postcode-search .postcode-input{position:relative;width:200px;display:inline-block}
 .main-postcode-search .postcode-input .help-block{position:absolute;bottom:-35px;font-size:12px;line-height:15px}
 .login-form{position:absolute;left:0;right:0;margin:auto;background-color:#f3f3f3;padding:20px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;-webkit-box-sizing:border-box}
 .login-form .col-md-6{padding-right:0}
 .login-form .col-md-6:last-child{padding-right:15px}
 .login-form h4{margin:0;text-align:center;color:#423338;padding-bottom:20px;font-size:20px}
-.login-form form input{width:100%;height:40px;padding:5px 5px 5px 10px;outline:0}
-.login-form form textarea{width:100%;min-height:160px;resize:none;outline:0;padding:10px 15px}
+.login-form form input{height:40px;padding:5px 5px 5px 10px;outline:0}
+.login-form form textarea{min-height:160px;resize:none;outline:0;padding:10px 15px}
 .login-form form .login-button{background:0 0;color:#e00000;border:1px solid #e00000;border-radius:3px;padding:5px 15px;-webkit-transition:all .25s ease;-moz-transition:all .25s ease;-ms-transition:all .25s ease;-o-transition:all .25s ease;transition:all .25s ease;display:block;width:100px;margin:auto}
 .login-form form .login-button .fa{padding-right:3px}
 .login-form form .login-button:hover{color:#fff;background:#e00000}
@@ -2131,22 +2132,19 @@ h4 .small,h4 small,h5 .small,h5 small,h6 .small,h6 small{font-size:75%}
 }
 @media (max-width:991px){#main-wrapper .landing-logo{top:10px;left:12%}
 #main-wrapper .landing-logo img{width:250px;height:80px}
-.call-to-action-section .text a.pad-top{margin-top:-28px}
-.main-postcode-search input{display:inline-block;width:auto;vertical-align:middle;text-align:center;margin-left:0;margin-right:10px;float:left;height:37px}
+.main-postcode-search input{vertical-align:middle;margin-left:0}
 .call-to-action-section{height:auto}
 .call-to-action-section .icon{width:80px}
 .call-to-action-section .icon img{position:absolute;top:50%;left:30%;margin:-24px 0 0 -22px}
 .call-to-action-section .text{padding:0 30px 0 110px}
 .call-to-action-section .text>div p{margin:0;padding-right:0}
 .call-to-action-section .text>.css-table-cell{display:block;padding:15px 0}
-.call-to-action-section .text>.css-table-cell a{margin-left:0;margin-right:10px}
-.call-to-action-section .text .pad-bottom{margin-bottom:40px}
-.call-to-action-section .text .pad-top{margin-top:-32px;margin-bottom:20px}
 #main-wrapper .all-menu-details .single-menu .list-image{float:none;width:100%;height:450px;border:1px solid #ccc;border-bottom:none;padding:30px}
 #main-wrapper .all-menu-details .single-menu .all-details{width:100%}
 #main-wrapper .all-menu-details .single-menu .details{padding:20px}
 #main-wrapper .all-menu-details .single-menu .all-details .visible-option{height:350px}
 .select-box{margin-bottom:10px}
+.main-postcode-search{float:left}
 .table-selection{margin:50px 30% 0}
 .category-boxes-icons .category-boxes-item{padding:0 40px;height:210px}
 .page-content .no-dish-side .blog-post-img{height:400px}
@@ -2170,16 +2168,9 @@ h4 .small,h4 small,h5 .small,h5 small,h6 .small,h6 small{font-size:75%}
 }
 @media (max-width:768px)and (min-width:550px){.page-content .comment-section img{width:100%;height:150px}
 }
-@media (max-width:767px){.master-slider.landing .ms-layer{top:25%!important;left:12%!important;width:180px!important}
-.master-slider.landing h4{padding:20px 0 0!important;font-size:18px!important}
-.master-slider.landing p:nth-child(2n+2){padding:10px 0 0!important}
-.master-slider.landing a{margin-top:10px!important;margin-left:20px}
-#main-wrapper .box-link figure figcaption a{position:absolute;left:36%}
+@media (max-width:767px){#main-wrapper .box-link figure figcaption a{position:absolute;left:36%}
 .landing-link .box-link{height:200px;padding:15px 100px!important}
 .category-boxes-icons .category-boxes-item{padding:0 140px;height:210px}
-#slide-content .item .details{position:absolute;left:33%}
-#sm-slide-section{height:350px}
-#slide-content .item .details ul{padding:0;margin:0}
 .latest-from-blog .blog-latest img{height:auto}
 .latest-from-blog .read-older{padding:30px 0}
 .page-content .contact-us .send-message .col-md-6,.page-content .leave-reply .col-md-4,.page-content .leave-reply .col-md-4:last-child{padding-right:15px}
@@ -2218,20 +2209,10 @@ h4 .small,h4 small,h5 .small,h5 small,h6 .small,h6 small{font-size:75%}
 }
 @media (max-width:550px){#main-wrapper .landing-logo{top:10px;left:8%}
 #main-wrapper .landing-logo img{width:170px;height:50px}
-.master-slider.landing .ms-layer{top:25%!important;left:12%!important;width:140px!important}
-.master-slider.landing h4{padding:20px 0 0!important;font-size:12px!important}
-.master-slider.landing p{font-size:7px!important;line-height:10px!important}
-.master-slider.landing p:nth-child(2n+2){padding:10px 0 0!important}
-.master-slider.landing a{margin-top:10px!important;margin-left:20px}
 #main-wrapper .box-link figure figcaption a{position:absolute;left:36%}
 .landing-link .box-link{height:250px!important;padding:15px 60px!important}
 #main-wrapper .welcome-msg img{position:absolute;top:-15px;left:0}
 #main-wrapper .welcome-msg h6{font-weight:400;padding:30px 0!important}
-.master-slider .ms-layer{padding-top:20px}
-.master-slider .ms-layer h1{margin:0;padding-bottom:10px;padding-right:15px;font-size:20px;font-weight:400;text-align:right;line-height:1.2em}
-.master-slider .ms-layer h1>span{font-size:30px;font-weight:700}
-.master-slider .ms-layer h1>.bold{font-size:20px;font-weight:700}
-.master-slider .ms-layer a{margin-right:15px;padding:2px 4px;font-size:12px}
 .category-boxes-icons .category-boxes-item{padding:0 100px;height:210px}
 .page-content .chef-details .chef-img{width:100%;height:270px;border-radius:4px;overflow:hidden}
 .page-content .heading{padding:50px 0}
@@ -2282,23 +2263,9 @@ h4 .small,h4 small,h5 .small,h5 small,h6 .small,h6 small{font-size:75%}
 .table-selection{margin:50px 15% 0}
 .page-content .our-team .profile-pic{width:100%;height:280px;padding-left:20px;padding-right:20px}
 }
-@media (max-width:400px){#main-wrapper .landing-logo{top:10px;left:8%}
-#main-wrapper .landing-logo img{width:130px;height:30px}
-.master-slider.landing .ms-layer{top:25%!important;left:13%!important;width:90px!important}
-.master-slider.landing h4{padding:10px 0 0!important;font-size:10px!important}
-.master-slider.landing p{font-size:6px!important;line-height:7px!important}
-.master-slider.landing p:nth-child(2n+2){padding:5px 0 0!important}
-.master-slider.landing a{margin-top:10px!important;padding:0!important;font-size:7px!important}
-.master-slider.landing a.btn{padding:1px 5px!important;line-height:10px!important}
-.master-slider.landing a .fa{display:none}
-#main-wrapper .box-link figure figcaption a{position:absolute;left:32%}
+@media (max-width:400px){#main-wrapper .box-link figure figcaption a{position:absolute;left:32%}
 .landing-link .box-link{height:220px!important;padding:10px 5px!important}
 .category-boxes-icons .category-boxes-item{padding:0 40px;height:170px}
-.chef-welcome{padding-bottom:30px;padding-left:20px}
-.chef-welcome p{width:80%;line-height:25px;font-size:16px}
-#slide-content .item img{display:block;width:80px;height:80px;border-radius:7px}
-#slide-content .item .details{position:absolute;left:34%}
-#slide-content .item{padding:10px}
 #main-wrapper .all-menu-details .item-list .list-image{width:100%;height:280px;float:none}
 #main-wrapper .all-menu-details .menu-with-details .list-image,#main-wrapper .all-menu-details .menu-without-side .list-image{width:100%;height:280px}
 #main-wrapper .all-menu-details .single-menu .list-image{height:280px}

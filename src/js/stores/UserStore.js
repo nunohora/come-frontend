@@ -39,7 +39,6 @@ var UserStore = assign({}, EventEmitter.prototype, {
 
   deleteState: function () {
     localStorage.removeItem('user');
-    console.log('removed storage: ', localStorage.getItem('user'));
   }
 });
 
