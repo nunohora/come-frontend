@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 var React          = require('react'),
 	Loader         = require('react-loader'),
-	RestaurantList = require('views/search-results/restaurant-list'),
-	Categories     = require('views/search-results/categories'),
-	ResultNumber   = require('views/search-results/result-number'),
+	RestaurantList = require('views/restaurant-list/restaurant-list'),
+	Categories     = require('views/restaurant-list/categories'),
+	ResultNumber   = require('views/restaurant-list/result-number'),
 	RestListStore  = require('stores/RestaurantListStore'),
 	Actions        = require('actions/RestaurantListActions');
 

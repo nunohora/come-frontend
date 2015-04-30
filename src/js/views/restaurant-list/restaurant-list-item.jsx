@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react'),
+	Link  = require('react-router').Link,
 	_     = require('underscore');
 
 module.exports = React.createClass({
@@ -45,6 +46,8 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
+		console.log(this.props);
+
 	  	return (
 			<div className="restaurant-list">
 				<div className="row">
@@ -68,10 +71,12 @@ module.exports = React.createClass({
 							{this.renderCategories()}
 						</div>
 					</div>
-					<a className="btn btn-default-red-inverse view-menu">
+					<Link to="places"
+						params={this.props.params}
+						className="btn btn-default-red-inverse view-menu">
 						<i className="fa fa-list-ul"></i>
 						Ver Menu
-					</a>
+					</Link>
 				</div>
 			</div>
 	    );

@@ -82,16 +82,14 @@ var Home = React.createClass({
 					  		</div>
 						</Formsy.Form>
 					</div>
-					<div className="home-bg ms-skin-black-2 round-skin" id="masterslider">
-						<div className="ms-view">
-							<img src="img/japanese_ramen.jpg" alt="" />
-							<div className="ms-layer ms-caption">
-								<h1 className="text-right">
-									<span>Tens fome?!</span>
-									<br/>
-									<span className="small">Come!</span>
-								</h1>
-							</div>
+					<div className="home-bg">
+						<img src="img/japanese_ramen.jpg" alt="" />
+						<div className="ms-layer ms-caption">
+							<h1 className="text-right">
+								<span>Tens fome?!</span>
+								<br/>
+								<span className="small">Come!</span>
+							</h1>
 						</div>
 					</div>
 				</div>
