@@ -8,6 +8,7 @@ var Footer = require('views/footer'),
 
 module.exports = React.createClass({
 
+
 	render: function () {
 	  	return (
 	  		<div id="main-wrapper">
