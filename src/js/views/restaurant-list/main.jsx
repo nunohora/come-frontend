@@ -30,12 +30,17 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
+		var categoriesObj = {
+            categories: this.state.categories,
+            location: this.props.params.location
+        };
+
 	  	return (
   			<div className="container">
   				<Loader loaded={this.state.loaded} className="spinner "></Loader>
   				<ResultNumber params={this.state.resultNumber} />
 	  			<div className="col-md-3">
-					<Categories params={this.state.categories} />
+					<Categories params={categoriesObj} />
 				</div>
 				<RestaurantList params={this.state.restaurants} />
   			</div>

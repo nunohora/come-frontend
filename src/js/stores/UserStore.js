@@ -57,6 +57,7 @@ AppDispatcher.register(function(action) {
 
     default:
       // no op
+      break;
   }
 });
 

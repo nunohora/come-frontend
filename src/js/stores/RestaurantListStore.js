@@ -39,7 +39,7 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getState: function (params) {
+  getState: function () {
     return _store;
   },
 

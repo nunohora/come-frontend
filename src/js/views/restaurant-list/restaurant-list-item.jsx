@@ -6,8 +6,6 @@ var React = require('react'),
 module.exports = React.createClass({
 
 	renderRating: function () {
-		var rating = this.props.params.rating;
-
 		return (
 			<div className="rating">
 				<div className="rating-stars">
@@ -26,8 +24,7 @@ module.exports = React.createClass({
 
 	renderCategories: function () {
 		var categories = this.props.params.categories,
-			string = '',
-			isLast = false;
+			string = '';
 
 		_.each(categories, function (category) {
 			string = string + category.name;
@@ -46,8 +43,6 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
-		console.log(this.props);
-
 	  	return (
 			<div className="restaurant-list">
 				<div className="row">
