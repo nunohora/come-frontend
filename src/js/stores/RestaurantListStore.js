@@ -51,7 +51,7 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
         var existing = _.findWhere(categories, {id: category.id});
 
         if (existing) {
-          existing.resultNumber = existing.resultNumber++;
+          existing.resultNumber = existing.resultNumber + 1;
         }
         else {
           categories.push({
