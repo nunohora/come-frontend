@@ -6,11 +6,15 @@ var React = require('react'),
 
 module.exports = React.createClass({
 
-    buildUrl: function (name) {
-        var rep = '/search/' + this.props.params.location + '/';
+    buildUrl: function (category) {
+        var location = this.props.params.location,
+			rep = '/search/' + location + '/',
+			catSlug;
 
-        if (name !== 'Total') {
-            rep += slug(name, {lower: true});
+        if (category.name !== 'Total') {
+			catSlug = slug(category.name, {lower: true});
+
+			rep += catSlug + '/' + category.id;
         }
 
         return rep;
@@ -20,7 +24,7 @@ module.exports = React.createClass({
 		return _.map(this.props.params.categories, function (category) {
 			return (
 				<li key={category.id}>
-					<Link to={this.buildUrl(category.name)}>
+					<Link to={this.buildUrl(category)}>
 						{category.name}
 						<span className="tag">{category.resultNumber}</span>
 					</Link>

@@ -4,15 +4,15 @@ var AppDispatcher = require('dispatcher/AppDispatcher'),
 	$             = require('jquery');
 
 var RestaurantListActions = {
-  getRestList: function (params) {
-  	$.when(utils.getRestaurants(params)).done(function (response) {
-	    AppDispatcher.dispatch({
-	      actionType: Constants.GET_REST_LIST,
-	      params: params,
-	      response: response
-	    });
-  	});
-  }
+	getRestListByLocation: function (params) {
+		$.when(utils.getRestaurantsByLocation(params)).done(function (response) {
+			AppDispatcher.dispatch({
+				actionType: Constants.GET_REST_LIST,
+				params: params,
+				response: response
+			});
+  		});
+	}
 };
 
 module.exports = RestaurantListActions;

@@ -21,17 +21,30 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function () {
+        var location = this.props.params.location;
+
 		RestListStore.addChangeListener(this._onChange);
-		Actions.getRestList(this.props.params);
+		Actions.getRestListByLocation(location);
 	},
 
 	componentWillUnmount: function() {
 		RestListStore.removeChangeListener(this._onChange);
 	},
 
+    getFilteredResults: function (category) {
+        return RestListStore.filterByCategory(category);
+    },
+
+    getCategories: function () {
+        return RestListStore.getCategories();
+    },
+
 	render: function () {
-		var categoriesObj = {
-            categories: this.state.categories,
+        var list = this.getFilteredResults(this.props.params.id),
+            categories = this.getCategories();
+
+        var categoriesObj = {
+            categories: categories,
             location: this.props.params.location
         };
 
@@ -42,13 +55,12 @@ module.exports = React.createClass({
 	  			<div className="col-md-3">
 					<Categories params={categoriesObj} />
 				</div>
-				<RestaurantList params={this.state.restaurants} />
+				<RestaurantList params={list} />
   			</div>
 	    );
 	},
 
 	_onChange: function() {
-		this.setState(this.getListState());
 		this.setState({loaded: true});
 	}
 });

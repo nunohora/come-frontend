@@ -36,13 +36,15 @@ var makeRequest = function (options) {
 };
 
 module.exports = {
-	getRestaurants: function (params) {
+	getRestaurantsByLocation: function (location) {
 		var dfd = new $.Deferred();
 
 		var options = {
 			method: 'GET',
 			url: 'search/',
-			data: params
+			data: {
+				location: location
+			}
 		};
 
 		$.when(makeRequest(options))
