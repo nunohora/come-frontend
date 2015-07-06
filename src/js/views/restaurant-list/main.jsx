@@ -39,6 +39,7 @@ module.exports = React.createClass({
         return RestListStore.getCategories();
     },
 
+
 	render: function () {
         var list = this.getFilteredResults(this.props.params.id),
             categories = this.getCategories();
