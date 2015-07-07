@@ -11,7 +11,6 @@ module.exports = React.createClass({
 
 	getInitialState: function () {
 		var state = this.getListState();
-		state.loaded = false;
 
 		return state;
 	},
@@ -21,6 +20,7 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function () {
+		console.log("MOUNTING");
         var location = this.props.params.location;
 
 		RestListStore.addChangeListener(this._onChange);
@@ -39,20 +39,27 @@ module.exports = React.createClass({
         return RestListStore.getCategories();
     },
 
+	getResultNumber: function () {
+		return RestListStore.getResultNumber();
+	},
+
+	getIsLoaded: function () {
+		return RestListStore.getIsLoaded();
+	},
 
 	render: function () {
-        var list = this.getFilteredResults(this.props.params.id),
-            categories = this.getCategories();
+        var list = this.getFilteredResults(this.props.params.id);
 
         var categoriesObj = {
-            categories: categories,
-            location: this.props.params.location
+            categories: this.getCategories(),
+            location: this.props.params.location,
+			selected: this.props.params.id
         };
 
 	  	return (
   			<div className="container">
-  				<Loader loaded={this.state.loaded} className="spinner "></Loader>
-  				<ResultNumber params={this.state.resultNumber} />
+  				<Loader loaded={this.getIsLoaded()} className="spinner "></Loader>
+  				<ResultNumber params={this.getResultNumber()} />
 	  			<div className="col-md-3">
 					<Categories params={categoriesObj} />
 				</div>
@@ -62,6 +69,6 @@ module.exports = React.createClass({
 	},
 
 	_onChange: function() {
-		this.setState({loaded: true});
+		this.setState({loaded: this.state.loaded});
 	}
 });

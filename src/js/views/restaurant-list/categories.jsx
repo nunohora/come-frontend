@@ -8,11 +8,11 @@ module.exports = React.createClass({
 
     buildUrl: function (category) {
         var location = this.props.params.location,
-			rep = '/search/' + location + '/',
+			rep = '/search/' + location,
 			catSlug;
 
         if (category.name !== 'Total') {
-			catSlug = slug(category.name, {lower: true});
+			catSlug = '/' + slug(category.name, {lower: true});
 
 			rep += catSlug + '/' + category.id;
         }
@@ -21,12 +21,16 @@ module.exports = React.createClass({
     },
 
 	renderCategories: function () {
+		var id = this.props.params.selected || 0;
+
 		return _.map(this.props.params.categories, function (category) {
+			var className= 'tag ' + (id === category.id ? 'selected' : '');
+
 			return (
 				<li key={category.id}>
 					<Link to={this.buildUrl(category)}>
 						{category.name}
-						<span className="tag">{category.resultNumber}</span>
+						<span className={className}>{category.resultNumber}</span>
 					</Link>
 				</li>
 			);

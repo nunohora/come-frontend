@@ -3,15 +3,29 @@ var AppDispatcher = require('dispatcher/AppDispatcher'),
 	utils         = require('utils'),
 	$             = require('jquery');
 
+var lastFetched = '';
+
+var dispatch = function (actionType, params, response) {
+	AppDispatcher.dispatch({
+		actionType: actionType,
+		params: params,
+		response: response
+	});
+};
+
 var RestaurantListActions = {
 	getRestListByLocation: function (params) {
-		$.when(utils.getRestaurantsByLocation(params)).done(function (response) {
-			AppDispatcher.dispatch({
-				actionType: Constants.GET_REST_LIST,
-				params: params,
-				response: response
+
+		if (lastFetched !== params) {
+			$.when(utils.getRestaurantsByLocation(params)).done(function (response) {
+				dispatch(Constants.GET_REST_LIST, params, response);
 			});
-  		});
+
+			lastFetched = params;
+		}
+		else {
+			dispatch(Constants.GET_REST_LIST, params);
+		}
 	}
 };
 

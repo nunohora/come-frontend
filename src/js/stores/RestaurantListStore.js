@@ -7,16 +7,10 @@ var AppDispatcher = require('dispatcher/AppDispatcher'),
 var CHANGE_EVENT = 'change';
 
 var _store = {
-    categories: [{
-        id: 0,
-        name: 'Total',
-        resultNumber: 0
-    }],
+    categories: [],
     restaurants: [],
-    resultNumber: {
-        number: 0,
-        postcode: ''
-    }
+    resultNumber: {},
+    loaded: false
 };
 
 var RestaurantListStore = assign({}, EventEmitter.prototype, {
@@ -43,8 +37,12 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
         return _store;
     },
 
-    setState: function (response, params) {
-        var categories = _store.categories;
+    setState: function (params, response) {
+        var categories = [{
+            id: 0,
+            name: 'Total',
+            resultNumber: 0
+        }];
 
         _.each(response.search, function (result) {
             _.each(result.categories, function (category) {
@@ -70,9 +68,12 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
             restaurants: response.search,
             resultNumber: {
                 number: response.meta.total_results,
-                postcode: params.location
-            }
+                postcode: params
+            },
+            loaded: true
         };
+
+        console.log();
     },
 
     filterByCategory: function (catId) {
@@ -96,6 +97,14 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
 
     getCategories: function () {
         return _store.categories;
+    },
+
+    getResultNumber: function () {
+        return _store.resultNumber;
+    },
+
+    getIsLoaded: function () {
+        return _store.loaded;
     }
 });
 
@@ -103,7 +112,10 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(action) {
     switch(action.actionType) {
         case Constants.GET_REST_LIST:
-            RestaurantListStore.setState(action.response, action.params);
+            if (action.response) {
+                RestaurantListStore.setState(action.params, action.response);
+            }
+
             RestaurantListStore.emitChange();
             break;
 
