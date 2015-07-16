@@ -1,6 +1,6 @@
 "use strict";
 
-jest.dontMock('../../src/js/actions/RestaurantListActions');
+jest.dontMock('../../js/actions/RestaurantListActions');
 
 describe('RestaurantListActions', function() {
     var RestaurantListActions,
@@ -10,9 +10,9 @@ describe('RestaurantListActions', function() {
         $;
 
     beforeEach(function() {
-        RestaurantListActions = require('../../src/js/actions/RestaurantListActions');
-        AppDispatcher = require('../../src/js/dispatcher/AppDispatcher');
-        Constants = require('../../src/js/constants/Constants');
+        RestaurantListActions = require('../../js/actions/RestaurantListActions');
+        AppDispatcher = require('../../js/dispatcher/AppDispatcher');
+        Constants = require('../../js/constants/Constants');
     });
 
     it('tests nothing', function () {

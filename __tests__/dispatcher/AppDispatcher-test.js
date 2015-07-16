@@ -1,12 +1,12 @@
 "use strict";
 
-jest.dontMock('dispatcher/AppDispatcher');
+jest.dontMock('../../js/dispatcher/AppDispatcher');
 
 describe('AppDispatcher', function() {
     var AppDispatcher;
 
     beforeEach(function() {
-        AppDispatcher = require('dispatcher/AppDispatcher');
+        AppDispatcher = require('../../js/dispatcher/AppDispatcher');
     });
 
     it('tests nothing', function () {
