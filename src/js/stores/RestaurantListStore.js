@@ -9,8 +9,7 @@ var CHANGE_EVENT = 'change';
 var _store = {
     categories: [],
     restaurants: [],
-    resultNumber: {},
-    loaded: false
+    resultNumber: {}
 };
 
 var RestaurantListStore = assign({}, EventEmitter.prototype, {
@@ -69,11 +68,8 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
             resultNumber: {
                 number: response.meta.total_results,
                 postcode: params
-            },
-            loaded: true
+            }
         };
-
-        console.log();
     },
 
     filterByCategory: function (catId) {
@@ -101,10 +97,6 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
 
     getResultNumber: function () {
         return _store.resultNumber;
-    },
-
-    getIsLoaded: function () {
-        return _store.loaded;
     }
 });
 

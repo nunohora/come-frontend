@@ -2,6 +2,18 @@ var src = './src',
 	dest = './build';
 
 module.exports = {
+	test: {
+		src: './__tests__',
+		jestConfig: {
+			unmockedModulePathPatterns: [
+				"node_modules"
+			],
+			moduleFileExtensions: [
+				"js",
+				"jsx"
+			]
+		}
+	},
 	jsxCompile: {
 		src: [src + '/js/**/*.jsx', src + '/js/**/*.js'],
 		dest: dest + '/js'

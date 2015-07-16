@@ -12,6 +12,8 @@ module.exports = React.createClass({
 	getInitialState: function () {
 		var state = this.getListState();
 
+		state.loaded = false;
+
 		return state;
 	},
 
@@ -20,14 +22,13 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function () {
-		console.log("MOUNTING");
         var location = this.props.params.location;
 
 		RestListStore.addChangeListener(this._onChange);
 		Actions.getRestListByLocation(location);
 	},
 
-	componentWillUnmount: function() {
+	componentWillUnmount: function () {
 		RestListStore.removeChangeListener(this._onChange);
 	},
 
@@ -58,7 +59,7 @@ module.exports = React.createClass({
 
 	  	return (
   			<div className="container">
-  				<Loader loaded={this.getIsLoaded()} className="spinner "></Loader>
+  				<Loader loaded={this.state.loaded} className="spinner "></Loader>
   				<ResultNumber params={this.getResultNumber()} />
 	  			<div className="col-md-3">
 					<Categories params={categoriesObj} />
@@ -69,6 +70,6 @@ module.exports = React.createClass({
 	},
 
 	_onChange: function() {
-		this.setState({loaded: this.state.loaded});
+		this.setState({loaded: true});
 	}
 });
