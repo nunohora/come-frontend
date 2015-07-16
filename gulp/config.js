@@ -5,13 +5,15 @@ module.exports = {
 	test: {
 		src: './__tests__',
 		jestConfig: {
+			rootDir: './src/js',
+			testPathDirs: ['../../__tests__'],
 			unmockedModulePathPatterns: [
 				"node_modules"
 			],
 			moduleFileExtensions: [
 				"js",
 				"jsx"
-			]
+			],
 		}
 	},
 	jsxCompile: {
