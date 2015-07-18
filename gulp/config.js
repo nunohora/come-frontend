@@ -12,6 +12,10 @@ module.exports = {
 				"js",
 				"jsx"
 			],
+			testPathIgnorePatterns: [
+				'setup.js',
+				'preprocessor.js'
+			],
 			setupEnvScriptFile: 'setup.js',
 			scriptPreprocessor: 'preprocessor.js'
 		}
