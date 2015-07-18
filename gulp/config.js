@@ -6,7 +6,7 @@ module.exports = {
 		src: src + '/__tests__',
 		jestConfig: {
 			unmockedModulePathPatterns: [
-				"node_modules"
+				"/node_modules/"
 			],
 			moduleFileExtensions: [
 				"js",

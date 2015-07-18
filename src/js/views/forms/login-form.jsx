@@ -1,83 +1,102 @@
 /** @jsx React.DOM */
-var React       = require('react'),
-	Loader      = require('react-loader'),
-	Formsy      = require('formsy-react'),
-	FormsyInput = require('views/helpers/input'),
-	utils       = require('utils'),
-	UserActions = require('actions/UserActions'),
-	UserStore   = require('stores/UserStore'),
-	$           = require('jquery');
+var React            = require('react'),
+	LinkedStateMixin = React.addons.LinkedStateMixin,
+	Loader           = require('react-loader'),
+	ValidationMixin  = require('react-validation-mixin'),
+	Joi              = require('joi'),
+	utils            = require('../../utils'),
+	UserActions      = require('../../actions/UserActions');
 
 module.exports = React.createClass({
 
+	mixins: [ValidationMixin, LinkedStateMixin],
+
+	validatorTypes: {
+		email: Joi.string().email().required(),
+		password: Joi.string().required()
+	},
+
 	getInitialState: function () {
 		return {
-			canSubmit: false,
+			email: null,
+			password: null,
 			loaded: true
 		};
 	},
 
-	handleChange: function (values) {
-		this.setState({credentials: values});
+	onSubmit: function (e) {
+		e.preventDefault();
+
+		var onValidate = function (error, validationErrors) {
+			if (!error) {
+				UserActions.loginUser(this.state.credentials);
+				this.setState({ loaded: false });
+			}
+		}.bind(this);
+
+		this.validate(onValidate);
 	},
 
-	enableButton: function () {
-		this.setState({
-			canSubmit: true
+	getClasses: function(field) {
+		return React.addons.classSet({
+			'form-group': true,
+			'has-error': !this.isValid(field)
 		});
 	},
 
-	disableButton: function () {
-		this.setState({ canSubmit: false });
+	handleReset: function(event) {
+		event.preventDefault();
+		this.clearValidations();
+		this.setState(this.getInitialState());
 	},
 
-	onSubmit: function () {
-		UserActions.loginUser(this.state.credentials);
-		this.setState({ loaded: false });
+	renderHelpText: function(message) {
+		return (
+			<small className="help-block">{message}</small>
+		);
 	},
 
 	render: function () {
 		return (
 			<div>
-				<Formsy.Form className="form-horizontal"
-					onSubmit={this.onSubmit}
-					onValid={this.enableButton}
-					onChange={this.handleChange}
-					onInvalid={this.disableButton} >
+				<form onSubmit={this.onSubmit} className="form-horizontal">
 					<div className="row">
-						<FormsyInput
-							wrapperClassName="form-group"
-							labelClassName="col-xs-4 control-label"
-							inputWrapperClassName="col-xs-7"
-							inputClassName="form-control"
-							name="Email"
-							onChange={this.handleChange}
-							type="email"
-							validations="isEmail"
-							validationError="Email inválido"
-							placeholder="Obrigatório*"
-							required />
-
-						<FormsyInput
-							wrapperClassName="form-group"
-							labelClassName="col-xs-4 control-label"
-							inputWrapperClassName="col-xs-7"
-							inputClassName="form-control"
-							name="Password"
-							onChange={this.handleChange}
-							type="password"
-							placeholder="Obrigatório*"
-							required />
-
+						<div className={this.getClasses('email')}>
+							<label className="col-xs-4 control-label" htmlFor='email'>Email</label>
+							<div className="col-xs-7">
+								<input
+									onBlur={this.handleValidation('email')}
+									valueLink={this.linkState('email')}
+									id="email"
+									ref="email"
+									className="form-control"
+									type="email"
+									placeholder="Obrigatório*"/>
+							</div>
+							{this.getValidationMessages('email').map(this.renderHelpText)}
+						</div>
+						<div className={this.getClasses('password')}>
+							<label className="col-xs-4 control-label" htmlFor='password'>Password</label>
+							<div className="col-xs-7">
+								<input
+									onBlur={this.handleValidation('password')}
+									valueLink={this.linkState('password')}
+									id="password"
+									ref="password"
+									className="form-control"
+									type="password"
+									placeholder="Obrigatório*"/>
+							</div>
+							{this.getValidationMessages('password').map(this.renderHelpText)}
+						</div>
 						<div className="text-center">
 							<button type="submit"
-								disabled={!this.state.canSubmit}
 								className="btn btn-default-red-inverse">
 								Login
 							</button>
 						</div>
 					</div>
-				</Formsy.Form>
+				</form>
 	  			<Loader loaded={this.state.loaded} className="spinner"></Loader>
 	  		</div>
 		);

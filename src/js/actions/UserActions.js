@@ -1,6 +1,6 @@
-var AppDispatcher = require('dispatcher/AppDispatcher'),
-    Constants     = require('constants/Constants'),
-    utils         = require('utils'),
+var AppDispatcher = require('../dispatcher/AppDispatcher'),
+    Constants     = require('../constants/Constants'),
+    utils         = require('../utils'),
     $             = require('jquery');
 
 var UserActions = {
