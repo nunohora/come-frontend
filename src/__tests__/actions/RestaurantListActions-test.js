@@ -1,37 +1,46 @@
 "use strict";
 
 jest.dontMock('../../js/actions/RestaurantListActions');
+jest.dontMock('../../js/constants/Constants');
 jest.dontMock('jquery');
 
 describe('RestaurantListActions', function() {
     var RestaurantListActions,
         AppDispatcher,
-        Constants,
+        CONSTANTS,
         utils,
         $;
 
     beforeEach(function() {
         RestaurantListActions = require('../../js/actions/RestaurantListActions');
         AppDispatcher = require('../../js/dispatcher/AppDispatcher');
-        Constants = require('../../js/constants/Constants');
-        utils = require('../../js/utils'),
+        CONSTANTS = require('../../js/constants/Constants');
+        utils = require('../../js/utils');
         $ = require('jquery');
     });
 
-    xit('tests that dispatcher is called', function () {
+    it('tests dispatcher is called with right params', function () {
         var params = "EXPECTED_PARAMS";
 
         spyOn(AppDispatcher, 'dispatch');
-        spyOn($, 'when').and.callFake(function () {
-            var deferred = new $.Deferred();
 
-            deferred.resolve('RESOLVED');
+        spyOn(utils, 'getRestaurantsByLocation').andReturn(function () {
+            var dfd = new $.Deferred();
 
-            return deferred.promise;
-        })
+            dfd.resolve('RESOLVED');
+
+            return dfd.promise;
+        });
 
         RestaurantListActions.getRestListByLocation(params);
 
         expect(AppDispatcher.dispatch).toHaveBeenCalled();
+
+        RestaurantListActions.getRestListByLocation(params);
+
+        expect(AppDispatcher.dispatch).toHaveBeenCalledWith({
+            actionType: CONSTANTS.GET_REST_LIST,
+            params: params
+        });
     })
 });
