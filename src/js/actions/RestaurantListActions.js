@@ -15,7 +15,6 @@ var dispatch = function (actionType, params, response) {
 
 var RestaurantListActions = {
 	getRestListByLocation: function (params) {
-
 		if (lastFetched !== params) {
 			$.when(utils.getRestaurantsByLocation(params)).done(function (response) {
 				dispatch(Constants.GET_REST_LIST, params, response);

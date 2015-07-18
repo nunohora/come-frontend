@@ -11,7 +11,9 @@ module.exports = {
 			moduleFileExtensions: [
 				"js",
 				"jsx"
-			]
+			],
+			setupEnvScriptFile: 'setup.js',
+			scriptPreprocessor: 'preprocessor.js'
 		}
 	},
 	jsxCompile: {
