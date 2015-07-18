@@ -17,26 +17,6 @@ module.exports = React.createClass({
 		};
 	},
 
-	submitForm: function (e) {
-		e.preventDefault();
-
-		var credentials = this.state.credentials;
-
-		this.setState({loaded: false});
-
-		$.when(utils.loginUser(credentials.email, this.state.password), function (result) {
-			this.setState({
-				categories: [],
-				restaurants: result,
-				resultNumber: {
-					number: result.length,
-					postcode: pcode
-				},
-				loaded: true
-			});
-		}.bind(this));
-	},
-
 	handleChange: function (values) {
 		this.setState({credentials: values});
 	},
