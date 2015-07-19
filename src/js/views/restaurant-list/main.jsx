@@ -10,15 +10,11 @@ var React          = require('react'),
 module.exports = React.createClass({
 
 	getInitialState: function () {
-		var state = this.getListState();
+		var state = RestListStore.getState();
 
 		state.loaded = false;
 
 		return state;
-	},
-
-	getListState: function () {
-		return RestListStore.getState();
 	},
 
 	componentDidMount: function () {
@@ -40,17 +36,7 @@ module.exports = React.createClass({
         return RestListStore.getCategories();
     },
 
-	getResultNumber: function () {
-		return RestListStore.getResultNumber();
-	},
-
-	getIsLoaded: function () {
-		return RestListStore.getIsLoaded();
-	},
-
 	render: function () {
-        var list = this.getFilteredResults(this.props.params.id);
-
         var categoriesObj = {
             categories: this.getCategories(),
             location: this.props.params.location,
@@ -60,11 +46,11 @@ module.exports = React.createClass({
 	  	return (
   			<div className="container">
   				<Loader loaded={this.state.loaded} className="spinner "></Loader>
-  				<ResultNumber params={this.getResultNumber()} />
+  				<ResultNumber params={RestListStore.getResultNumber} />
 	  			<div className="col-md-3">
 					<Categories params={categoriesObj} />
 				</div>
-				<RestaurantList params={list} />
+				<RestaurantList params={RestListStore.filterByCategory(this.props.params.id)} />
   			</div>
 	    );
 	},

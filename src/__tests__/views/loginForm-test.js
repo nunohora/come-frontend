@@ -12,13 +12,10 @@ xdescribe('Login Form', function() {
     });
 
     it('tests submit button is disabled', function () {
-        var LoginForm = require('../../js/views/forms/login-form.jsx');
+        var LoginForm = require('../../js/views/forms/login-form.jsx'),
+            form = React.createFactory(LoginForm);
 
-        var form = TestUtils.renderIntoDocument(React.createElement(LoginForm()));
+        var form = TestUtils.renderIntoDocument(React.render(form));
 
-        //var button = TestUtils.findRenderedDOMComponentWithTag(form, 'button');
-
-        //console.log('button');
-        //console.log(button);
     });
 });

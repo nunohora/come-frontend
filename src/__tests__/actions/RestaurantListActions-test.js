@@ -20,16 +20,17 @@ describe('RestaurantListActions', function() {
     });
 
     it('tests dispatcher is called with right params', function () {
-        var params = "EXPECTED_PARAMS";
+        var params = "EXPECTED_PARAMS",
+            constant = CONSTANTS.GET_REST_LIST;
 
         spyOn(AppDispatcher, 'dispatch');
 
-        spyOn(utils, 'getRestaurantsByLocation').andReturn(function () {
+        spyOn(utils, 'getRestaurantsByLocation').andCallFake(function () {
             var dfd = new $.Deferred();
 
             dfd.resolve('RESOLVED');
 
-            return dfd.promise;
+            return dfd.promise();
         });
 
         RestaurantListActions.getRestListByLocation(params);
@@ -39,7 +40,7 @@ describe('RestaurantListActions', function() {
         RestaurantListActions.getRestListByLocation(params);
 
         expect(AppDispatcher.dispatch).toHaveBeenCalledWith({
-            actionType: CONSTANTS.GET_REST_LIST,
+            actionType: constant,
             params: params
         });
     })
