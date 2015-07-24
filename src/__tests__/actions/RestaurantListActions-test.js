@@ -1,8 +1,6 @@
 "use strict";
 
 jest.dontMock('../../js/actions/RestaurantListActions');
-jest.dontMock('../../js/constants/Constants');
-jest.dontMock('jquery');
 
 describe('RestaurantListActions', function() {
     var RestaurantListActions,

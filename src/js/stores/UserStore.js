@@ -1,6 +1,6 @@
-var AppDispatcher = require('dispatcher/AppDispatcher'),
+var AppDispatcher = require('../dispatcher/AppDispatcher'),
     EventEmitter  = require('events').EventEmitter,
-    Constants     = require('constants/Constants'),
+    Constants     = require('../constants/Constants'),
     assign        = require('object-assign'),
     _             = require('underscore');
 

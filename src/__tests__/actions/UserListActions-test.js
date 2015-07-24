@@ -1,8 +1,6 @@
 "use strict";
 
 jest.dontMock('../../js/actions/UserActions');
-jest.dontMock('../../js/constants/Constants');
-jest.dontMock('jquery');
 
 describe('UserActions', function() {
     var UserActions,
