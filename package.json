@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "gulp"
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.5.4",
@@ -28,7 +28,6 @@
     "gulp-filesize": "0.0.6",
     "gulp-iconfont": "^1.0.0",
     "gulp-imagemin": "^2.2.1",
-    "gulp-jest-iojs": "^1.0.0",
     "gulp-jshint": "^1.10.0",
     "gulp-less": "^3.0.2",
     "gulp-minify-css": "^1.0.0",
@@ -37,6 +36,7 @@
     "gulp-sourcemaps": "^1.5.1",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.4",
+    "jest-cli": "^0.4.17",
     "jquery": "^2.1.3",
     "jshint-jsx": "^0.4.1",
     "jshint-stylish": "^1.0.1",
@@ -62,5 +62,17 @@
     "transform": [
       "reactify"
     ]
+  },
+  "jest": {
+    "rootDir": "src",
+    "collectCoverage": true,
+    "unmockedModulePathPatterns": [
+      "/node_modules/",
+      "react"
+    ],
+    "testPathDirs" : ["<rootDir>/__tests__"],
+    "setupEnvScriptFile": "<rootDir>/__tests__/setup.js",
+    "scriptPreprocessor": "<rootDir>/__tests__/preprocessor.js",
+    "testPathIgnorePatterns": ["preprocessor.js", "setup.js"]
   }
 }

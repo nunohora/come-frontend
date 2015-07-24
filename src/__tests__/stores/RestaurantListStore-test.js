@@ -1,34 +1,33 @@
 "use strict";
 
-jest.autoMockOn();
-
 jest.dontMock('../../js/stores/RestaurantListStore');
 jest.dontMock('../../js/constants/Constants');
+jest.dontMock('../mockData/restaurantList');
 
 describe('RestaurantListStore', function() {
     var CONSTANTS = require('../../js/constants/Constants'),
-        mockData = require('../mockData/restaurantList.json'),
-        RestaurantListStore, AppDispatcher, callback;
-
-    // mock actions inside dispatch payloads
-    var actionGetRestListStore = {
-        actionType: CONSTANTS.GET_REST_LIST,
-        params: '4050-234',
-        response: mockData
-    };
+        RestaurantListStore, AppDispatcher, callback, mockData, actionGetRestListStore;
 
     beforeEach(function() {
+        mockData = require('../mockData/restaurantList');
         AppDispatcher = require('../../js/dispatcher/AppDispatcher');
         AppDispatcher.register = jest.genMockFunction();
         RestaurantListStore = require('../../js/stores/RestaurantListStore');
         callback = AppDispatcher.register.mock.calls[0][0];
+
+        // mock actions inside dispatch payloads
+        actionGetRestListStore = {
+            actionType: CONSTANTS.GET_REST_LIST,
+            params: '4050-234',
+            response: mockData
+        };
     });
 
     it('registers a callback with the dispatcher', function () {
         expect(AppDispatcher.register.mock.calls.length).toBe(1);
     });
 
-    it('checks right categories are returned', function () {
+    it.only('checks right categories are returned', function () {
         var categories;
 
         callback(actionGetRestListStore);
