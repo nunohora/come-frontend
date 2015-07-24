@@ -10,26 +10,18 @@ describe('UserStore', function() {
         UserStore, AppDispatcher, callback;
 
     // mock actions inside dispatch payloads
-    var actionUserLogin= {
-        source: 'VIEW_ACTION',
-        action: {
-            actionType: CONSTANTS.USER_LOGIN,
-            text: 'foo'
-        }
+    var actionUserLogin = {
+        actionType: CONSTANTS.USER_LOGIN,
+        response: 'Hello'
     };
 
     var actionUserLogout = {
-        source: 'VIEW_ACTION',
-        action: {
-            actionType: CONSTANTS.USER_LOGOUT,
-            id: 'replace me in test'
-        }
+        actionType: CONSTANTS.USER_LOGOUT
     };
 
     beforeEach(function() {
         AppDispatcher = require('../../js/dispatcher/AppDispatcher');
         AppDispatcher.register = jest.genMockFunction();
-
         UserStore = require('../../js/stores/UserStore');
         callback = AppDispatcher.register.mock.calls[0][0];
     });
@@ -38,7 +30,17 @@ describe('UserStore', function() {
         expect(AppDispatcher.register.mock.calls.length).toBe(1);
     });
 
-    xit('checks that localStorage has user object after login', function () {
+    it('checks that localStorage has user object after login', function () {
+        spyOn(localStorage, 'setItem');
+        callback(actionUserLogin);
 
+        expect(localStorage.setItem).toHaveBeenCalledWith('user', '"Hello"');
+    });
+
+    it('checks that localStorage has removed the user object after logout', function () {
+        spyOn(localStorage, 'removeItem');
+        callback(actionUserLogout);
+
+        expect(localStorage.removeItem).toHaveBeenCalledWith('user');
     });
 });
