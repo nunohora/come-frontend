@@ -27,7 +27,7 @@ describe('RestaurantListStore', function() {
         expect(AppDispatcher.register.mock.calls.length).toBe(1);
     });
 
-    it.only('checks right categories are returned', function () {
+    it('checks right categories are returned', function () {
         var categories;
 
         callback(actionGetRestListStore);

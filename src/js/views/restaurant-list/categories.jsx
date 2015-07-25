@@ -38,15 +38,15 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
-	  return (
-	  	<div className="side-panel">
-			<div className="categories">
-				<h4>Categorias</h4>
-				<ul className="list-unstyled">
-					{this.renderCategories()}
-				</ul>
+	  	return (
+			<div className="side-panel">
+				<div className="categories">
+					<h4>Categorias</h4>
+					<ul className="list-unstyled">
+						{this.renderCategories()}
+					</ul>
+				</div>
 			</div>
-		</div>
 	    );
 	}
 });

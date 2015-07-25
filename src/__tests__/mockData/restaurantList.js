@@ -1,4 +1,4 @@
-{
+module.exports = {
   "search": [
     {
       "id": 378,

@@ -12,7 +12,7 @@ describe('Login Form', function() {
         LoginForm = require('../../js/views/forms/login-form.jsx');
     });
 
-    it.only('tests that error message shows if invalid email or empty fields are used', function () {
+    it('tests that error message shows if invalid email or empty fields are used', function () {
         var form = TestUtils.renderIntoDocument(<LoginForm />);
 
         TestUtils.Simulate.click(form.refs.email);

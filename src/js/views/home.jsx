@@ -12,7 +12,9 @@ var Home = React.createClass({
 	mixins: [ValidationMixin, LinkedStateMixin, Navigation],
 
 	validatorTypes: {
-		postcode: Joi.string().regex(/[0-9]{4}-[0-9]{3}/).required()
+		postcode: Joi.string()
+			.regex(/[0-9]{4}-[0-9]{3}/)
+			.required()
 	},
 
 	componentDidMount: function () {
@@ -25,6 +27,7 @@ var Home = React.createClass({
 
 	onSubmit: function (e) {
 		var onValidate = function (error, validationErrors) {
+			console.log(validationErrors);
 			if (!error) {
 				this.setState({ loaded: false });
 				this.transitionTo('search', {location: this.state.postcode});
