@@ -1,45 +1,60 @@
 /** @jsx React.DOM */
 var $ 	        = require('jquery'),
-	React       = require('react'),
-	Formsy      = require('formsy-react'),
-	FormsyInput = require('views/helpers/input'),
+	React       = require('react/addons'),
+	Navigation = require('react-router').Navigation,
+	LinkedStateMixin = React.addons.LinkedStateMixin,
+	ValidationMixin  = require('react-validation-mixin'),
+	Joi              = require('joi'),
 	Link        = require('react-router').Link;
 
-var isPostcode = {
-	regexp: /[0-9]{4}-[0-9]{3}/,
-	message: 'O código postal tem que estar no formato XXXX-xxx'
-};
-
-Formsy.addValidationRule('isPostcode', function (value) {
-	return isPostcode.regexp.test(value);
-});
-
 var Home = React.createClass({
+
+	mixins: [ValidationMixin, LinkedStateMixin, Navigation],
+
+	validatorTypes: {
+		postcode: Joi.string().regex(/[0-9]{4}-[0-9]{3}/).required()
+	},
 
 	componentDidMount: function () {
 		$(this.getDOMNode()).find('.home-bg').fadeTo('100', 1);
 	},
 
   	getInitialState: function() {
-		return {location: ''};
+		return {postcode: ''};
   	},
 
-	handleChange: function (values) {
-		this.setState({location: values.Postcode});
+	onSubmit: function (e) {
+		var onValidate = function (error, validationErrors) {
+			if (!error) {
+				this.setState({ loaded: false });
+				this.transitionTo('search', {location: this.state.postcode});
+			}
+		}.bind(this);
+
+		this.validate(onValidate);
 	},
 
-	onSubmit: function () {},
-
-	enableButton: function () {
-	    this.setState({ canSubmit: true });
+	getClasses: function(field) {
+		return React.addons.classSet({
+			'postcode-input': true,
+			'has-error': !this.isValid(field)
+		});
 	},
 
-	disableButton: function () {
-	    this.setState({ canSubmit: false });
+	handleReset: function(event) {
+		event.preventDefault();
+		this.clearValidations();
+		this.setState(this.getInitialState());
+	},
+
+	renderHelpText: function(message) {
+		return (
+			<small ref='helpBlock' className="help-block">{message}</small>
+		);
 	},
 
 	render: function () {
-		var location = this.state.location;
+		var postcode = this.state.postcode;
 
 	  	return (
 	  		<div className="home-wrapper">
@@ -50,37 +65,30 @@ var Home = React.createClass({
 								<img src="img/content/call-to-action-icon1.png" alt="" />
 							</div>
 						</div>
-
-						<Formsy.Form className="text css-table"
-							onSubmit={this.onSubmit}
-							onChange={this.handleChange}
-							onValid={this.enableButton}
-							onInvalid={this.disableButton}>
+						<form className="text css-table" onSubmit={this.onSubmit}>
 							<div className="css-table-cell">
 								<h4>Encomende comida online</h4>
 								<p>Procure por takeaways perto de si</p>
 							</div>
 					  		<div className="main-postcode-search css-table-cell">
-
-	  							<FormsyInput wrapperClassName="postcode-input"
-									noLabel={true}
-									inputClassName="form-control"
-									name="Postcode"
-									type="text"
-									placeholder="Insira o seu codigo postal*"
-									validations="isPostcode"
-									validationError={isPostcode.message}
-									required />
-
-								<Link to="search" params={{location: location}}>
-									<button className="btn btn-default-red-inverse"
-										type="submit"
-										disabled={!this.state.canSubmit}>
+								<div className={this.getClasses('postcode')}>
+									<div>
+										<input
+											onBlur={this.handleValidation('postcode')}
+											valueLink={this.linkState('postcode')}
+											ref="postcode"
+											className="form-control"
+											type="text"
+											placeholder="Insira o seu codigo postal*"/>
+									</div>
+									{this.getValidationMessages('postcode').map(this.renderHelpText)}
+								</div>
+									<button className="btn btn-default-red-inverse submit-postcode"
+											type="submit">
 										Procure um takeaway
 									</button>
-								</Link>
 					  		</div>
-						</Formsy.Form>
+						</form>
 					</div>
 					<div className="home-bg">
 						<img src="img/japanese_ramen.jpg" alt="" />

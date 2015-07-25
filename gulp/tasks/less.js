@@ -8,7 +8,7 @@ var gulp         = require('gulp'),
 	config       = require('../config');
 
 //LESS to CSS
-gulp.task('less', function () {
+gulp.task('less', ['clean'], function () {
 	return gulp.src(config.less.src)
 		.pipe(sourcemaps.init())
 		.pipe(less())

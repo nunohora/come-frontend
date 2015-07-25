@@ -5,7 +5,7 @@
 var gulp     = require('gulp'),
 	config   = require('../config');
 
-gulp.task('watch', ['browserSync', 'browserify'], function() {
+gulp.task('watch', ['browserify'], function() {
   gulp.watch(config.less.src,   ['less']);
   gulp.watch(config.images.src, ['images', 'less']);
   gulp.watch(config.jsxCompile.src, ['browserify']);

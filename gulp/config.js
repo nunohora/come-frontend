@@ -2,6 +2,9 @@ var src = './src',
 	dest = './build';
 
 module.exports = {
+	clean: {
+		src: dest
+	},
 	test: {
 		src: src + '/__tests__',
 		jestConfig: {

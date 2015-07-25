@@ -21,6 +21,7 @@
   "devDependencies": {
     "browser-sync": "^2.6.1",
     "browserify": "^9.0.8",
+    "del": "^1.2.0",
     "flux": "^2.0.1",
     "formsy-react": "^0.14.1",
     "gulp-changed": "^1.2.1",
@@ -70,9 +71,14 @@
       "/node_modules/",
       "react"
     ],
-    "testPathDirs" : ["<rootDir>/__tests__"],
+    "testPathDirs": [
+      "<rootDir>/__tests__"
+    ],
     "setupEnvScriptFile": "<rootDir>/__tests__/setup.js",
     "scriptPreprocessor": "<rootDir>/__tests__/preprocessor.js",
-    "testPathIgnorePatterns": ["preprocessor.js", "setup.js"]
+    "testPathIgnorePatterns": [
+      "preprocessor.js",
+      "setup.js"
+    ]
   }
 }

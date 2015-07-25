@@ -5,7 +5,7 @@ var gulp    = require('gulp'),
 	stylish = require('jshint-stylish');
 
 //JSHint
-gulp.task('jshint', ['browserify'], function () {
+gulp.task('jshint', ['clean', 'browserify'], function () {
 	return gulp.src(config.src)
 		.pipe(jshint({ linter: jsxhint }))
 		.pipe(jshint.reporter(stylish));

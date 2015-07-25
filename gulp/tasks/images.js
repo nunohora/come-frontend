@@ -4,7 +4,7 @@ var changed      = require('gulp-changed'),
 	config       = require('../config').images,
 	browserSync  = require('browser-sync');
 
-gulp.task('images', function() {
+gulp.task('images', ['clean'], function() {
   return gulp.src(config.src)
     .pipe(changed(config.dest)) // Ignore unchanged files
     .pipe(imagemin()) // Optimize

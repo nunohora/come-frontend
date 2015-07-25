@@ -52,7 +52,7 @@ module.exports = React.createClass({
 
 	renderHelpText: function(message) {
 		return (
-			<small className="help-block">{message}</small>
+			<small ref='helpBlock' className="help-block">{message}</small>
 		);
 	},
 
@@ -69,7 +69,7 @@ module.exports = React.createClass({
 									valueLink={this.linkState('email')}
 									id="email"
 									ref="email"
-									className="form-control"
+									className="form-control email"
 									type="email"
 									placeholder="Obrigatório*"/>
 							</div>
@@ -83,7 +83,7 @@ module.exports = React.createClass({
 									valueLink={this.linkState('password')}
 									id="password"
 									ref="password"
-									className="form-control"
+									className="form-control password"
 									type="password"
 									placeholder="Obrigatório*"/>
 							</div>
