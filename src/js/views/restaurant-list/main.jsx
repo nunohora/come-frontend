@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 var React          = require('react'),
 	Loader         = require('react-loader'),
-	RestaurantList = require('views/restaurant-list/restaurant-list'),
-	Categories     = require('views/restaurant-list/categories'),
-	ResultNumber   = require('views/restaurant-list/result-number'),
-	RestListStore  = require('stores/RestaurantListStore'),
-	Actions        = require('actions/RestaurantListActions');
+	RestaurantList = require('./restaurant-list.jsx'),
+	Categories     = require('./categories.jsx'),
+	ResultNumber   = require('./result-number.jsx'),
+	RestListStore  = require('../../stores/RestaurantListStore'),
+	Actions        = require('../../actions/RestaurantListActions');
 
 module.exports = React.createClass({
 

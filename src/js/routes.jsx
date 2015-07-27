@@ -6,14 +6,14 @@ var React         = require('react'),
     NotFoundRoute = ReactRouter.NotFoundRoute,
     Redirect      = ReactRouter.Redirect;
 
-var App            = require('views/app'),
-    Home           = require('views/home'),
-    Help           = require('views/help'),
-    LoginPage      = require('views/login-page'),
-    SignupPage     = require('views/signup-page'),
-    RestaurantList = require('views/restaurant-list/main'),
-    RestaurantPage = require('views/restaurant-page/main'),
-    NotFound       = require('views/not-found');
+var App            = require('./views/app.jsx'),
+    Home           = require('./views/home.jsx'),
+    Help           = require('./views/help.jsx'),
+    LoginPage      = require('./views/login-page.jsx'),
+    SignupPage     = require('./views/signup-page.jsx'),
+    RestaurantList = require('./views/restaurant-list/main.jsx'),
+    RestaurantPage = require('./views/restaurant-page/main.jsx'),
+    NotFound       = require('./views/not-found.jsx');
 
 var routes = (
     <Route handler={App} params={this.params} path="/">

@@ -2,8 +2,8 @@
 var React = require('react'),
 	Link  = require('react-router').Link;
 
-var HeaderTopBar    = require('./header-top-bar'),
-	HeaderNavBar    = require('./header-nav-bar');
+var HeaderTopBar    = require('./header-top-bar.jsx'),
+	HeaderNavBar    = require('./header-nav-bar.jsx');
 
 module.exports = React.createClass({
 	render: function () {

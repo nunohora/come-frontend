@@ -3,8 +3,8 @@ var React 		   			= require('react'),
 	ReactCSSTransitionGroup = require('react/addons').addons.CSSTransitionGroup,
 	RouteHandler 			= require('react-router').RouteHandler;
 
-var Footer = require('views/footer'),
-	Header = require('views/header/main');
+var Footer = require('./footer.jsx'),
+	Header = require('./header/main.jsx');
 
 module.exports = React.createClass({
 

@@ -1,13 +1,16 @@
 "use strict";
-
 jest.dontMock('../../js/views/restaurant-list/categories.jsx');
-jest.dontMock('../../js/stores/RestaurantListStore');
-jest.dontMock('../../js/constants/Constants');
 jest.dontMock('../mockData/restaurantList');
+jest.dontMock('../../js/constants/Constants');
 
-describe('Login Form', function() {
+describe('Categories List', function() {
     var CategoriesView, React, TestUtils, CONSTANTS, RestaurantListStore,
         mockData, AppDispatcher, actionGetRestListStore, callback;
+
+    var ReactRouter = require('react-router'),
+        routes = require('../../js/routes.jsx');
+
+    ReactRouter.register(routes);
 
     beforeEach(function() {
         mockData = require('../mockData/restaurantList');
@@ -35,6 +38,8 @@ describe('Login Form', function() {
         callback(actionGetRestListStore);
 
         var cats = RestaurantListStore.getCategories();
+
+        console.log(cats);
 
         var catView = TestUtils.renderIntoDocument(<CategoriesView params={{categories: cats, location: '4050-234'}} />);
     });

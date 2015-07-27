@@ -2,7 +2,7 @@
 var React  = require('react'),
 	$ 	   = require('jquery');
 
-var LoginForm = require('views/forms/login-form');
+var LoginForm = require('./forms/login-form.jsx');
 
 module.exports = React.createClass({
 

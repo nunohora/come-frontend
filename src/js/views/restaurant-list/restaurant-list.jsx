@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var React 			   = require('react'),
 	_			       = require('underscore'),
-	RestaurantListItem = require('views/restaurant-list/restaurant-list-item');
+	RestaurantListItem = require('./restaurant-list-item.jsx');
 
 module.exports = React.createClass({
 

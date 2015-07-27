@@ -3,11 +3,11 @@ var React 	 	 = require('react'),
 	Link  		 = require('react-router').Link,
 	Modal 	 	 = require('react-bootstrap').Modal,
 	ModalTrigger = require('react-bootstrap').ModalTrigger,
-	UserStore    = require('stores/UserStore'),
-	Actions      = require('actions/UserActions');
+	UserStore    = require('../../stores/UserStore'),
+	Actions      = require('../../actions/UserActions');
 
-var LoginForm  = require('views/forms/login-form'),
-	SignupForm = require('views/forms/signup-form');
+var LoginForm  = require('../forms/login-form.jsx'),
+	SignupForm = require('../forms/signup-form.jsx');
 
 var forms = {
 	'login': LoginForm,
