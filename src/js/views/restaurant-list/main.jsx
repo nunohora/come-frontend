@@ -18,10 +18,8 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount: function () {
-        var location = this.props.params.location;
-
 		RestListStore.addChangeListener(this._onChange);
-		Actions.getRestListByLocation(location);
+		Actions.getRestListByLocation(this.props.params.location);
 	},
 
 	componentWillUnmount: function () {
@@ -46,7 +44,7 @@ module.exports = React.createClass({
 	  	return (
   			<div className="container">
   				<Loader loaded={this.state.loaded} className="spinner "></Loader>
-  				<ResultNumber params={RestListStore.getResultNumber} />
+  				<ResultNumber params={RestListStore.getResultNumber()} />
 	  			<div className="col-md-3">
 					<Categories params={categoriesObj} />
 				</div>

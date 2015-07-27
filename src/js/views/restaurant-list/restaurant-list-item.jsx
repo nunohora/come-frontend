@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react'),
 	Link  = require('react-router').Link,
-	_     = require('underscore');
+	_     = require('underscore'),
+	slug  = require('slug');
 
 module.exports = React.createClass({
 
@@ -43,6 +44,11 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
+		var routeParams = {
+			id: this.props.params.id,
+			slug: slug(this.props.params.name, {lower: true})
+		};
+
 	  	return (
 			<div className="restaurant-list">
 				<div className="row">
@@ -53,7 +59,9 @@ module.exports = React.createClass({
 					</div>
 					<div className="col-md-9 restaurant-list-inner">
 						<h4>
-							<a href="#">{this.props.params.name}</a>
+							<Link to="places" params={routeParams}>
+								{this.props.params.name}
+							</Link>
 						</h4>
 						{this.renderRating()}
 						<div className="address">
@@ -67,7 +75,7 @@ module.exports = React.createClass({
 						</div>
 					</div>
 					<Link to="places"
-						params={this.props.params}
+						params={routeParams}
 						className="btn btn-default-red-inverse view-menu">
 						<i className="fa fa-list-ul"></i>
 						Ver Menu

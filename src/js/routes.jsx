@@ -23,7 +23,7 @@ var routes = (
         <Route name="help" handler={Help} path="/help" />
         <Route name="login" handler={LoginPage} path="/login" />
         <Route name="signup" handler={SignupPage} path="/signup" />
-        <Route name="places" handler={RestaurantPage} path="/places/:id/:name" />
+        <Route name="places" handler={RestaurantPage} path="/places/:id/:slug" />
         <DefaultRoute handler={Home} />
         <NotFoundRoute handler={NotFound} />
     </Route>

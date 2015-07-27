@@ -53,7 +53,29 @@ module.exports = {
 					dfd.resolve(response);
 				},
 				function (error) {
-					console.log('Error: ', error);
+					dfd.reject(error);
+				});
+
+		return dfd.promise();
+	},
+
+	getRestaurantById: function (id) {
+		var dfd = new $.Deferred();
+
+		var options = {
+			method: 'GET',
+			url: 'places/',
+			data: {
+				id: id
+			}
+		};
+
+		$.when(makeRequest(options))
+			.then(
+				function (response) {
+					dfd.resolve(response);
+				},
+				function (error) {
 					dfd.reject(error);
 				});
 
@@ -61,8 +83,7 @@ module.exports = {
 	},
 
 	loginUser: function (params) {
-		var dfd = new $.Deferred(),
-			url = 'login';
+		var dfd = new $.Deferred();
 
 		var options = {
 			method: 'POST',
