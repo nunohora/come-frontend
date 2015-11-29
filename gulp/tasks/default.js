@@ -1,5 +1,16 @@
-var gulp = require('gulp'),
-	app  = require('../../app');
+import gulp from 'gulp';
+import runSequence from 'run-sequence';
 
 /// Gulp tasks
-gulp.task('default', ['jshint', 'less', 'iconFont', 'images', 'watch']);
+gulp.task('default', done => {
+    runSequence([
+        'clean'
+    ], [
+        //'jshint',
+        'less',
+        'iconFont',
+        'images',
+        'webpack:prod',
+        'watch'
+    ], done);
+});

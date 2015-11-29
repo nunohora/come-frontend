@@ -1,11 +1,8 @@
-var gulp         = require('gulp'),
-    jest         = require('gulp-jest-iojs'),
-    browserSync  = require('browser-sync'),
-    handleErrors = require('../util/handleErrors'),
-    config       = require('../config');
+const gulp = require('gulp');
+const jest = require('gulp-jest');
+const config = require('../config');
 
-gulp.task('test', function () {
+gulp.task('test', () => {
     return gulp.src(config.test.src)
-        .pipe(jest(config.test.jestConfig))
-        .on('error', handleErrors)
+        .pipe(jest(config.test.jestConfig));
 });

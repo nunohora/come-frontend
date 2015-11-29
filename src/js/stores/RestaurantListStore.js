@@ -1,56 +1,48 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher'),
-    EventEmitter  = require('events').EventEmitter,
-    Constants     = require('../constants/Constants'),
-    assign        = require('object-assign'),
-    _             = require('underscore');
+const AppDispatcher = require('../dispatcher/AppDispatcher')
+const EventEmitter = require('events').EventEmitter;
+const Constants = require('../constants/Constants');
+const assign = require('object-assign');
+const _ = require('underscore');
 
-var CHANGE_EVENT = 'change';
+const CHANGE_EVENT = 'change';
 
-var _store = {
+let _store = {
     categories: [],
     restaurants: [],
     resultNumber: {}
 };
 
-var RestaurantListStore = assign({}, EventEmitter.prototype, {
-
-    emitChange: function() {
+const RestaurantListStore = assign({}, EventEmitter.prototype, {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
-
     /**
      * @param {function} callback
      */
-    addChangeListener: function(callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
     },
-
     /**
      * @param {function} callback
      */
-    removeChangeListener: function(callback) {
+    removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
-
-    getState: function () {
+    getState() {
         return _store;
     },
-
-    setState: function (params, response) {
-        var categories = [{
-            id: 0,
-            name: 'Total',
-            resultNumber: 0
-        }];
-
-        _.each(response.search, function (result) {
-            _.each(result.categories, function (category) {
-                var existing = _.findWhere(categories, {id: category.id});
-
+    setState(params, response) {
+        const categories = [{
+                id: 0,
+                name: 'Total',
+                resultNumber: 0
+            }];
+        _.each(response.search, result => {
+            _.each(result.categories, category => {
+                const existing = _.findWhere(categories, { id: category.id });
                 if (existing) {
                     existing.resultNumber = existing.resultNumber + 1;
-                }
-                else {
+                } else {
                     categories.push({
                         id: category.id,
                         name: category.name,
@@ -59,9 +51,7 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
                 }
             });
         });
-
         categories[0].resultNumber = response.meta.total_results;
-
         _store = {
             categories: categories,
             restaurants: response.search,
@@ -71,50 +61,39 @@ var RestaurantListStore = assign({}, EventEmitter.prototype, {
             }
         };
     },
-
-    filterByCategory: function (catId) {
-        var results;
-
+    filterByCategory(catId) {
+        let results;
         if (catId) {
-            results = _.filter(_store.restaurants, function (restaurant) {
-                var exists = _.some(restaurant.categories, function (category) {
+            results = _.filter(_store.restaurants, restaurant => {
+                const exists = _.some(restaurant.categories, category => {
                     return parseInt(catId, 10) === category.id;
                 });
-
                 return exists;
             });
-        }
-        else {
+        } else {
             results = _store.restaurants;
         }
-
         return results;
     },
-
-    getCategories: function () {
+    getCategories() {
         return _store.categories;
     },
-
-    getResultNumber: function () {
+    getResultNumber() {
         return _store.resultNumber;
     }
 });
-
 // Register callback to handle all updates
-AppDispatcher.register(function(action) {
-    switch(action.actionType) {
-        case Constants.GET_REST_LIST:
-            if (action.response) {
-                RestaurantListStore.setState(action.params, action.response);
-            }
-
-            RestaurantListStore.emitChange();
-            break;
-
-        default:
+AppDispatcher.register(action => {
+    switch (action.actionType) {
+    case Constants.GET_REST_LIST:
+        if (action.response) {
+            RestaurantListStore.setState(action.params, action.response);
+        }
+        RestaurantListStore.emitChange();
+        break;
+    default:
         // no op
-            break;
+        break;
     }
 });
-
 module.exports = RestaurantListStore;

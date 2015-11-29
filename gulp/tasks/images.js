@@ -1,13 +1,11 @@
-var changed      = require('gulp-changed'),
-	gulp         = require('gulp'),
-	imagemin     = require('gulp-imagemin'),
-	config       = require('../config').images,
-	browserSync  = require('browser-sync');
+const changed = require('gulp-changed');
+const gulp = require('gulp');
+const imagemin = require('gulp-imagemin');
+const config = require('../config').images;
 
-gulp.task('images', ['clean'], function() {
-  return gulp.src(config.src)
-    .pipe(changed(config.dest)) // Ignore unchanged files
-    .pipe(imagemin()) // Optimize
-    .pipe(gulp.dest(config.dest))
-    .pipe(browserSync.reload({stream:true}));
+gulp.task('images', () => {
+    return gulp.src(config.src)
+        .pipe(changed(config.dest))    // Ignore unchanged files
+        .pipe(imagemin())    // Optimize
+        .pipe(gulp.dest(config.dest));
 });

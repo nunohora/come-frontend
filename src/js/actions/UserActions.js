@@ -1,23 +1,18 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher'),
-    Constants     = require('../constants/Constants'),
-    utils         = require('../utils'),
-    $             = require('jquery');
+const AppDispatcher = require('../dispatcher/AppDispatcher');
+const Constants = require('../constants/Constants');
+const utils = require('../utils');
+const $ = require('jquery');
 
-var UserActions = {
-    loginUser: function (params) {
-        $.when(utils.loginUser(params)).done(function (response) {
+module.exports = {
+    loginUser(params) {
+        $.when(utils.loginUser(params)).done(response => {
             AppDispatcher.dispatch({
                 actionType: Constants.USER_LOGIN,
                 response: response
             });
         });
     },
-
-    logoutUser: function () {
-        AppDispatcher.dispatch({
-            actionType: Constants.USER_LOGOUT
-        });
+    logoutUser() {
+        AppDispatcher.dispatch({ actionType: Constants.USER_LOGOUT });
     }
 };
-
-module.exports = UserActions;

@@ -1,51 +1,42 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher'),
-    EventEmitter  = require('events').EventEmitter,
-    Constants     = require('../constants/Constants'),
-    assign        = require('object-assign'),
-    _             = require('underscore');
+const AppDispatcher = require('../dispatcher/AppDispatcher');
+const EventEmitter = require('events').EventEmitter;
+const Constants = require('../constants/Constants');
+const assign = require('object-assign');
+const _ = require('underscore');
 
-var CHANGE_EVENT = 'change';
+const CHANGE_EVENT = 'change';
 
-var _restaurant = {
-    categories: [],
-    restaurants: [],
-    resultNumber: {}
+let _restaurant = {
+    place: {},
+    products: [],
+    meta: {}
 };
 
-var RestaurantStore = assign({}, EventEmitter.prototype, {
-
-    emitChange: function() {
+module.exports = assign({}, EventEmitter.prototype, {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
 
-    /**
-     * @param {function} callback
-     */
-    addChangeListener: function(callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
     },
 
-    /**
-     * @param {function} callback
-     */
-    removeChangeListener: function(callback) {
+    removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
 
-    getState: function () {
+    getState() {
         return _restaurant;
     },
 
-    setState: function (response) {
-        debugger;
-        _.each(response.search, function (result) {
-            _.each(result.categories, function (category) {
-                var existing = _.findWhere(categories, {id: category.id});
+    setState(response) {
+        _.each(response.search, result => {
+            _.each(result.categories, category => {
+                const existing = _.findWhere(categories, { id: category.id });
 
                 if (existing) {
                     existing.resultNumber = existing.resultNumber + 1;
-                }
-                else {
+                } else {
                     categories.push({
                         id: category.id,
                         name: category.name,
@@ -54,7 +45,6 @@ var RestaurantStore = assign({}, EventEmitter.prototype, {
                 }
             });
         });
-
         _restaurant = {
             categories: categories,
             restaurants: response.search,
@@ -67,20 +57,17 @@ var RestaurantStore = assign({}, EventEmitter.prototype, {
 });
 
 // Register callback to handle all updates
-AppDispatcher.register(function(action) {
-    switch(action.actionType) {
-        case Constants.GET_REST_BY_ID:
-            if (action.response) {
-                RestaurantStore.setState(action.response);
-            }
+AppDispatcher.register(action => {
+    switch (action.actionType) {
+    case Constants.GET_REST_BY_ID:
+        if (action.response) {
+            RestaurantStore.setState(action.response);
+        }
 
-            RestaurantStore.emitChange();
-            break;
-
-        default:
-            // no op
-            break;
+        RestaurantStore.emitChange();
+        break;
+    default:
+        // no op
+        break;
     }
 });
-
-module.exports = RestaurantStore;

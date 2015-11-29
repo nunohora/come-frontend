@@ -1,17 +1,22 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher'),
-    Constants     = require('../constants/Constants'),
-    utils         = require('../utils'),
-    $             = require('jquery');
+const AppDispatcher = require('../dispatcher/AppDispatcher');
+const Constants = require('../constants/Constants');
+const utils = require('../utils');
+const $ = require('jquery');
 
-var RestaurantActions = {
-    getRestById: function (id) {
-        $.when(utils.getRestaurantById(id)).done(function (response) {
-            AppDispatcher.dispatch({
-                actionType: Constants.GET_REST_BY_ID,
-                response: response
+module.exports = {
+    getRestById(id) {
+        $.when(utils.getRestaurantById(id), utils.getRestaurantProducts(id))
+            .done((place, products) => {
+                const resp = {
+                    place: place.place,
+                    products: products.products,
+                    meta: place.meta
+                };
+
+                AppDispatcher.dispatch({
+                    actionType: Constants.GET_REST_BY_ID,
+                    response: resp
+                });
             });
-        });
     }
 };
-
-module.exports = RestaurantActions;

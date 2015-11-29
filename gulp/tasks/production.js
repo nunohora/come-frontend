@@ -1,7 +1,11 @@
-var gulp = require('gulp');
+const gulp = require('gulp');
 
 // Run this to compress all the things!
-gulp.task('production', function(){
-  // This runs only if the karma __tests__ pass
-  gulp.start(['images', 'minifyCss', 'uglifyJs'])
+gulp.task('production', () => {
+    // This runs only if the karma __tests__ pass
+    gulp.start([
+        'images',
+        'minifyCss',
+        'uglifyJs'
+    ]);
 });
