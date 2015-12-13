@@ -1,30 +1,26 @@
 import $ from 'jquery';
 import React from 'react';
 import { Navigation, Link } from 'react-router';
-import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import ValidationMixin from 'react-validation-mixin';
+//import LinkedStateMixin from 'react-addons-linked-state-mixin';
+//import ValidationMixin from 'react-validation-mixin';
 import Joi from 'joi';
 
 module.exports = React.createClass({
 
-	//mixins: [ValidationMixin, LinkedStateMixin, Navigation],
-
 	validatorTypes: {
-		postcode: Joi.string()
-			.regex(/[0-9]{4}-[0-9]{3}/)
-			.required()
+		postcode: Joi.string().regex(/[0-9]{4}-[0-9]{3}/).required()
 	},
 
-	componentDidMount: function () {
+	componentDidMount() {
 		$(this.getDOMNode()).find('.home-bg').fadeTo('100', 1);
 	},
 
-  	getInitialState: function() {
+  	getInitialState() {
 		return {postcode: ''};
   	},
 
-	onSubmit: function (e) {
-		var onValidate = function (error, validationErrors) {
+	onSubmit(e) {
+		const onValidate = function (error, validationErrors) {
 			console.log(validationErrors);
 			if (!error) {
 				this.setState({ loaded: false });
@@ -35,28 +31,26 @@ module.exports = React.createClass({
 		this.validate(onValidate);
 	},
 
-	getClasses: function(field) {
+	getClasses(field) {
 		return React.addons.classSet({
 			'postcode-input': true,
 			'has-error': !this.isValid(field)
 		});
 	},
 
-	handleReset: function(event) {
+	handleReset(event) {
 		event.preventDefault();
 		this.clearValidations();
 		this.setState(this.getInitialState());
 	},
 
-	renderHelpText: function(message) {
+	renderHelpText(message) {
 		return (
 			<small ref='helpBlock' className="help-block">{message}</small>
 		);
 	},
 
-	render: function () {
-		var postcode = this.state.postcode;
-
+	render() {
 	  	return (
 	  		<div className="home-wrapper">
 		  		<div className="home-top-wrapper">

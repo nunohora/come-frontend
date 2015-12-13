@@ -4,23 +4,19 @@ import { Modal, ModalTrigger } from 'react-bootstrap';
 import UserStore from '../../stores/UserStore';
 import Actions from '../../actions/UserActions';
 import LoginForm from '../forms/login-form.jsx';
-import SignupForm from '../forms/signup-form.jsx';
+//import SignupForm from '../forms/signup-form.jsx';
 
 const forms = {
-	'login': LoginForm,
-	'signup': SignupForm
+	'login': LoginForm
+	//'signup': SignupForm
 };
 
 const HeaderModal = React.createClass({
 	render() {
-		const HeaderForm = forms[this.props.form];
-
 		return (
 			<Modal {...this.props} title={this.props.title}
 				animation={true}>
-				<div className="modal-body">
-					<HeaderForm />
-				</div>
+				<div className="modal-body"></div>
 			</Modal>
 		);
 	}
@@ -61,14 +57,14 @@ module.exports = React.createClass({
 		return (
 			<ul className="nav navbar-nav navbar-right">
 				<li>
-					<ModalTrigger modal={ <HeaderModal title="Login" form="login" className="modal-md-sm" /> }>
+					<HeaderModal title="Login" form="login" className="modal-md-sm">
 						<a>Login</a>
-					</ModalTrigger>
+					</HeaderModal>
 				</li>
 				<li>
-					<ModalTrigger modal={ <HeaderModal title="Registo" form="signup" className="medium" /> }>
+					<HeaderModal title="Registo" form="signup" className="medium">
 						<a>Registo</a>
-					</ModalTrigger>
+					</HeaderModal>
 				</li>
 				<li>
 					<Link to="help">Ajuda</Link>

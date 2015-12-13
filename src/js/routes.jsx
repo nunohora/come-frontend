@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route, DefaultRoute, NotFoundRoute, Redirect }from 'react-router';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+import { Router, Route } from 'react-router';
 
 import App from './views/app.jsx';
 import Home from './views/home.jsx';
@@ -11,14 +11,16 @@ import RestaurantList from './views/restaurant-list/main.jsx';
 import RestaurantPage from './views/restaurant-page/main.jsx';
 //import NotFound from '/views/not-found.jsx';
 
-render((
-    <Route component={App} path="/">
-        <Route component={RestaurantList}
-               path="/search/:location/?:category?/?:id?" />
-        <Route component={Help} path="/help" />
-        <Route component={LoginPage} path="/login" />
-        <Route component={SignupPage} path="/signup" />
-        <Route component={RestaurantPage} path="/places/:id/:slug" />
-        <DefaultRoute component={Home} />
-    </Route>
+ReactDOM.render((
+    <Router>
+        <Route component={App} path="/">
+            <Route component={RestaurantList}
+                   path="/search/:location/?:category?/?:id?" />
+            <Route component={Help} path="/help" />
+            <Route component={LoginPage} path="/login" />
+            <Route component={SignupPage} path="/signup" />
+            <Route component={RestaurantPage} path="/places/:id/:slug" />
+            <Route component={Home} path="*" />
+        </Route>
+    </Router>
 ), document.body);
