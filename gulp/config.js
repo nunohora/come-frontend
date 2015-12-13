@@ -2,6 +2,9 @@ const src = './src';
 const dest = './build';
 
 import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
+import path from 'path';
 
 module.exports = {
     clean: { src: dest },
@@ -34,24 +37,9 @@ module.exports = {
 
     jshint: { src: `${ src }/js/**/*` },
 
-    browserSync: {
-        proxy: 'localhost:3000',
-        browser: 'google chrome',
-        port: 7000
-    },
-
     images: {
         src: `${ src }/img/**/*`,
         dest: `${ dest }/img`
-    },
-
-    browserify: {
-        entries: `${ src }/js/routes.jsx`,
-        dest: `${ dest }/js`,
-        outputName: 'main.js',
-        paths: [`${ src }/js`],
-        extensions: ['.jsx'],
-        debug: true
     },
 
     concatCss: { bundleName: 'style.css' },
@@ -68,56 +56,59 @@ module.exports = {
     },
 
     webpack: {
-        app: {
-            src: `${ src }/js/routes.jsx`,
-            dest: `${ dest }/js`,
-            filename: 'app.js'
+        prod: {
+            plugins: [
+                new webpack.optimize.DedupePlugin(),
+                new webpack.optimize.UglifyJsPlugin({ compress: { warnings: true } }),
+                new HtmlWebpackPlugin()
+            ]
         },
         server: {
-            dest: dest,
-            devtool: 'source-map',
+            entry: {
+                app: path.resolve(`${ src }/js/routes.jsx`)
+            },
+            output: {
+                path: path.resolve(`${ dest }/js/`),
+                filename: '[name].js'
+            },
             debug: true,
+            devtool: 'source-map',
             host: 'localhost',
             port: 8080,
             options: {
-                publicPath: '/js/',
                 stats: {
                     colors: true
                 },
                 https: true,
                 inline: true,
                 hot: true
-            }
+            },
+            plugins: [new HtmlWebpackPlugin({})]
         },
         config: {
             cache: true,
             module: {
                 loaders: [
                     {
-                        test: /\.js$/,
-                        exclude: /node_modules/,
-                        loaders: ['babel-loader']
+                        test: /\.jsx?$/,
+                        loader: 'babel?presets[]=react,presets[]=es2015',
+                        exclude: /(node_modules|bower_components)/
                     }
+
                 ]
             },
-            plugins: [],
             resolve: {
                 moduleDirectories: [
                     'src/js',
                     'src/__tests__'
                 ],
                 extensions: ['', '.json', '.js', '.jsx']
+            },
+            node: {
+                net: 'empty',
+                tls: 'empty',
+                dns: 'empty'
             }
-        },
-        prod: {
-            plugins: [
-                new webpack.optimize.DedupePlugin(),
-                new webpack.optimize.UglifyJsPlugin({
-                    compress: {
-                        warnings: true
-                    }
-                })
-            ]
         }
     }
 };

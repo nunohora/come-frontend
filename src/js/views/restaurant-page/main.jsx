@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react'),
 	Loader = require('react-loader'),
 	//Sidepanel = require('./sidepanel.jsx');

@@ -1,22 +1,21 @@
-/** @jsx React.DOM */
-var React            = require('react'),
-	LinkedStateMixin = React.addons.LinkedStateMixin,
-	Loader           = require('react-loader'),
-	ValidationMixin  = require('react-validation-mixin'),
-	Joi              = require('joi'),
-	utils            = require('../../utils'),
-	UserActions      = require('../../actions/UserActions');
+import React from 'react';
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import Loader from 'react-loader';
+import ValidationMixin from 'react-validation-mixin';
+import Joi from 'joi';
+import utils from '../../utils';
+import UserActions from '../../actions/UserActions';
 
 module.exports = React.createClass({
 
-	mixins: [ValidationMixin, LinkedStateMixin],
+	//mixins: [ValidationMixin, LinkedStateMixin],
 
 	validatorTypes: {
 		email: Joi.string().email().required(),
 		password: Joi.string().required()
 	},
 
-	getInitialState: function () {
+	getInitialState() {
 		return {
 			email: null,
 			password: null,
@@ -24,7 +23,7 @@ module.exports = React.createClass({
 		};
 	},
 
-	onSubmit: function (e) {
+	onSubmit(e) {
 		e.preventDefault();
 
 		var onValidate = function (error, validationErrors) {
@@ -37,26 +36,26 @@ module.exports = React.createClass({
 		this.validate(onValidate);
 	},
 
-	getClasses: function(field) {
+	getClasses(field) {
 		return React.addons.classSet({
 			'form-group': true,
 			'has-error': !this.isValid(field)
 		});
 	},
 
-	handleReset: function(event) {
+	handleReset(event) {
 		event.preventDefault();
 		this.clearValidations();
 		this.setState(this.getInitialState());
 	},
 
-	renderHelpText: function(message) {
+	renderHelpText(message) {
 		return (
 			<small ref='helpBlock' className="help-block">{message}</small>
 		);
 	},
 
-	render: function () {
+	render() {
 		return (
 			<div>
 				<form onSubmit={this.onSubmit} className="form-horizontal">

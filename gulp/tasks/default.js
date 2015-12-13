@@ -10,7 +10,7 @@ gulp.task('default', done => {
         'less',
         'iconFont',
         'images',
-        'webpack:prod',
+        'webpack:dev',
         'watch'
     ], done);
 });

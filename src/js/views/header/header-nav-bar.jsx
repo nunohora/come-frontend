@@ -1,25 +1,19 @@
-/** @jsx React.DOM */
-var React 	 	 = require('react'),
-	Link  		 = require('react-router').Link,
-	Modal 	 	 = require('react-bootstrap').Modal,
-	ModalTrigger = require('react-bootstrap').ModalTrigger,
-	UserStore    = require('../../stores/UserStore'),
-	Actions      = require('../../actions/UserActions');
+import React from 'react';
+import { Link } from 'react-router';
+import { Modal, ModalTrigger } from 'react-bootstrap';
+import UserStore from '../../stores/UserStore';
+import Actions from '../../actions/UserActions';
+import LoginForm from '../forms/login-form.jsx';
+import SignupForm from '../forms/signup-form.jsx';
 
-var LoginForm  = require('../forms/login-form.jsx'),
-	SignupForm = require('../forms/signup-form.jsx');
-
-var forms = {
+const forms = {
 	'login': LoginForm,
 	'signup': SignupForm
 };
 
-var HeaderModal = React.createClass({
-
-	onRequestHide: function () {},
-
-	render: function () {
-		var HeaderForm = forms[this.props.form];
+const HeaderModal = React.createClass({
+	render() {
+		const HeaderForm = forms[this.props.form];
 
 		return (
 			<Modal {...this.props} title={this.props.title}
@@ -34,20 +28,20 @@ var HeaderModal = React.createClass({
 
 module.exports = React.createClass({
 
-	getInitialState: function () {
+	getInitialState() {
 		var state = UserStore.getState();
 		return state;
 	},
 
-	componentDidMount: function () {
+	componentDidMount() {
 		UserStore.addChangeListener(this._onChange);
 	},
 
-	onLogoutClick: function () {
+	onLogoutClick() {
 		Actions.logoutUser();
 	},
 
-	renderLoggedIn: function () {
+	renderLoggedIn() {
 		return (
 			<ul className="nav navbar-nav navbar-right">
 				<li>
@@ -63,7 +57,7 @@ module.exports = React.createClass({
 		);
 	},
 
-	renderLoggedOut: function () {
+	renderLoggedOut() {
 		return (
 			<ul className="nav navbar-nav navbar-right">
 				<li>
@@ -83,10 +77,8 @@ module.exports = React.createClass({
 		);
 	},
 
-	render: function () {
-		var state = this.state;
-
-		var renderNav = this.state.user.username ? this.renderLoggedIn : this.renderLoggedOut;
+	render() {
+		let renderNav = this.state.user.username ? this.renderLoggedIn : this.renderLoggedOut;
 
 	  	return (
 			<div className="header-nav-bar">
@@ -112,8 +104,7 @@ module.exports = React.createClass({
 	    );
 	},
 
-	_onChange: function() {
-		var state = UserStore.getState();
-		this.setState(state);
+	_onChange() {
+		this.setState(UserStore.getState());
 	}
 });

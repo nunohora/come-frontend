@@ -7,18 +7,9 @@ import WebpackDevServer from 'webpack-dev-server';
 const config = require('../config').webpack;
 
 gulp.task("webpack:dev", (callback) => {
-    const webpackConfig = _.extend({
-        entry: config.app.src,
-        output: {
-            path: config.server.dest,
-            filename: '[name].js'
-        },
-        devtool: config.server.devtool,
-        debug: config.server.debug,
-        plugins: config.prod.plugins
-    }, config.config);
+    const webpackConfig = _.extend(config.server, config.config);
 
-    console.log(WebpackDevServer);
+    console.log(webpackConfig);
 
     new WebpackDevServer(webpack(webpackConfig), config.server.options).listen(config.server.port, config.server.host, (err) => {
         if (err) {

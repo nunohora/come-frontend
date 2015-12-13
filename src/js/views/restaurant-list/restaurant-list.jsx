@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React 			   = require('react'),
 	_			       = require('underscore'),
 	RestaurantListItem = require('./restaurant-list-item.jsx');

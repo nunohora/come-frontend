@@ -1,13 +1,10 @@
-/** @jsx React.DOM */
-var React 		   			= require('react'),
-	ReactCSSTransitionGroup = require('react/addons').addons.CSSTransitionGroup,
-	RouteHandler 			= require('react-router').RouteHandler;
-
-var Footer = require('./footer.jsx'),
-	Header = require('./header/main.jsx');
+import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { RouteHandler} from 'react-router';
+import Footer from './footer.jsx';
+import Header from './header/main.jsx';
 
 module.exports = React.createClass({
-
 
 	render: function () {
 	  	return (

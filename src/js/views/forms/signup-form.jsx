@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React  = require('react'),
 	Formsy = require('formsy-react'),
 	$ 	   = require('jquery');

@@ -1,15 +1,13 @@
-/** @jsx React.DOM */
-var $ 	        = require('jquery'),
-	React       = require('react/addons'),
-	Navigation = require('react-router').Navigation,
-	LinkedStateMixin = React.addons.LinkedStateMixin,
-	ValidationMixin  = require('react-validation-mixin'),
-	Joi              = require('joi'),
-	Link        = require('react-router').Link;
+import $ from 'jquery';
+import React from 'react';
+import { Navigation, Link } from 'react-router';
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import ValidationMixin from 'react-validation-mixin';
+import Joi from 'joi';
 
-var Home = React.createClass({
+module.exports = React.createClass({
 
-	mixins: [ValidationMixin, LinkedStateMixin, Navigation],
+	//mixins: [ValidationMixin, LinkedStateMixin, Navigation],
 
 	validatorTypes: {
 		postcode: Joi.string()
@@ -142,5 +140,3 @@ var Home = React.createClass({
 	    );
 	}
 });
-
-module.exports = Home;

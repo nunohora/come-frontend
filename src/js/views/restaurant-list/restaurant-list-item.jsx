@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react'),
 	Link  = require('react-router').Link,
 	_     = require('underscore'),
