@@ -7,7 +7,7 @@ module.exports = React.createClass({
 
     buildUrl(category) {
         let location = this.props.params.location,
-			rep = '/search/' + location,
+			rep = `/search/${location}`,
 			catSlug;
 
         if (category.name !== 'Total') {

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute } from 'react-router';
-
+import { createHistory }  from 'history/lib';
 import App from './views/app.jsx';
 import Home from './views/home.jsx';
 import Help from './views/help.jsx';
@@ -11,8 +11,12 @@ import RestaurantList from './views/restaurant-list/main.jsx';
 import RestaurantPage from './views/restaurant-page/main.jsx';
 import NotFound from './views/not-found.jsx';
 
+const history = createHistory({
+    queryKey: false
+});
+
 ReactDOM.render((
-    <Router>
+    <Router location="history">
         <Route component={App} path="/">
             <IndexRoute component={Home} />
             <Route component={RestaurantList}

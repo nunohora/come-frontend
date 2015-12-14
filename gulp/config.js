@@ -1,4 +1,5 @@
 import webpack from 'webpack';
+import { HotModuleReplacementPlugin } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 
@@ -61,12 +62,14 @@ module.exports = {
             ]
         },
         server: {
-            entry: {
-                app: path.resolve(`${ src }/js/routes.jsx`)
-            },
+            entry: [
+                'webpack-dev-server/client?https://localhost:8080', // WebpackDevServer host and port
+                'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+                path.resolve(`${ src }/js/routes.jsx`)
+            ],
             output: {
                 path: path.resolve(`${ dest }/js/`),
-                filename: '[name].js'
+                filename: 'app.js'
             },
             debug: true,
             devtool: 'source-map',
@@ -78,9 +81,12 @@ module.exports = {
                 },
                 https: true,
                 inline: true,
-                hot: true
+                hot: true,
+                historyApiFallback: true
             },
-            plugins: [new HtmlWebpackPlugin({
+            plugins: [
+                new HotModuleReplacementPlugin(),
+                new HtmlWebpackPlugin({
                 template: path.resolve(`${ src }/index.html`),
                 inject: true
             })]
@@ -91,7 +97,7 @@ module.exports = {
                 loaders: [
                     {
                         test: /\.jsx?$/,
-                        loader: 'babel?presets[]=react,presets[]=es2015',
+                        loaders: ['react-hot', 'babel'],
                         exclude: /(node_modules|bower_components)/
                     }
 

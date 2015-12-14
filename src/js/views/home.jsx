@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { Navigation, Link } from 'react-router';
+import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import validation from 'react-validation-mixin';
 import strategy from 'joi-validation-strategy';
@@ -24,8 +24,10 @@ class Home extends React.Component {
 	onSubmit(e) {
 		const onValidate = error => {
 			if (!error) {
+				console.log({location: this.state.postcode});
+				debugger;
 				this.setState({ loaded: false });
-				this.props.history.pushState({location: this.state.postcode}, 'search');
+				this.props.history.pushState(null, `/search/${this.state.postcode}`);
 			}
 		};
 

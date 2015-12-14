@@ -82,7 +82,7 @@ class NavBar extends React.Component {
 					<a onClick={this.openSignup.bind(this)}>Signup</a>
 				</li>
 				<li>
-					<Link to="help">Ajuda</Link>
+					<Link to="/help">Ajuda</Link>
 				</li>
 			</ul>
 		);
