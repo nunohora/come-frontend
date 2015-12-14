@@ -2,92 +2,95 @@ import $ from 'jquery';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { Navigation, Link } from 'react-router';
-//import LinkedStateMixin from 'react-addons-linked-state-mixin';
-//import ValidationMixin from 'react-validation-mixin';
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import validation from 'react-validation-mixin';
+import strategy from 'joi-validation-strategy';
 import Joi from 'joi';
-import classNames from 'classnames';
+import classnames from 'classnames';
+import History from 'history';
 
-module.exports = React.createClass({
+class Home extends React.Component {
 
-	validatorTypes: {
-		postcode: Joi.string().regex(/[0-9]{4}-[0-9]{3}/).required()
-	},
+	constructor(props) {
+		super(props);
+		this.validatorTypes = { postcode: Joi.string().regex(/[0-9]{4}-[0-9]{3}/).required() };
+		this.getValidatorData = this.getValidatorData.bind(this);
+		this.renderHelpText = this.renderHelpText.bind(this);
+		this.getClasses = this.getClasses.bind(this);
 
-	componentDidMount() {
-		$(ReactDOM.findDOMNode()).find('.home-bg').fadeTo('100', 1);
-	},
-
-  	getInitialState() {
-		return {postcode: ''};
-  	},
+		this.state = {postcode: ''};
+	}
 
 	onSubmit(e) {
-		const onValidate = (error, validationErrors) => {
-			console.log(validationErrors);
+		const onValidate = error => {
 			if (!error) {
 				this.setState({ loaded: false });
-				this.transitionTo('search', {location: this.state.postcode});
+				this.props.history.transitionTo('search', {location: this.state.postcode});
 			}
 		};
 
-		this.validate(onValidate);
-	},
+		this.props.validate(onValidate.bind(this));
+	}
+
+	getValidatorData() {
+		return {
+			postcode: ReactDOM.findDOMNode(this.refs.postcode).value
+		};
+	}
 
 	getClasses() {
-		return classNames({
+		return classnames({
 			'postcode-input': true,
 			'has-error': false
 		});
-	},
+	}
 
 	handleReset(event) {
 		event.preventDefault();
 		this.clearValidations();
 		this.setState(this.getInitialState());
-	},
+	}
 
 	renderHelpText(message) {
 		return (
 			<small ref='helpBlock' className="help-block">{message}</small>
 		);
-	},
+	}
 
 	render() {
-	  	return (
-	  		<div className="home-wrapper">
-		  		<div className="home-top-wrapper">
+		return (
+			<div className="home-wrapper">
+				<div className="home-top-wrapper">
 					<div className="call-to-action-section">
 						<div className="css-table-cell">
 							<div className="icon">
 								<img src="build/img/content/call-to-action-icon1.png" alt="" />
 							</div>
 						</div>
-						<form className="text css-table" onSubmit={this.onSubmit}>
+						<form className="text css-table" onSubmit={this.onSubmit.bind(this)}>
 							<div className="css-table-cell">
 								<h4>Encomende comida online</h4>
 								<p>Procure por takeaways perto de si</p>
 							</div>
-					  		<div className="main-postcode-search css-table-cell">
+							<div className="main-postcode-search css-table-cell">
 								<div className={this.getClasses('postcode')}>
 									<div>
 										<input
-											//onBlur={this.handleValidation('postcode')}
-											//valueLink={this.linkState('postcode')}
+											onBlur={this.props.handleValidation('postcode')}
 											ref="postcode"
 											className="form-control"
 											type="text"
 											placeholder="Insira o seu codigo postal*"/>
 									</div>
 								</div>
-									<button className="btn btn-default-red-inverse submit-postcode"
-											type="submit">
-										Procure um takeaway
-									</button>
-					  		</div>
+								<button className="btn btn-default-red-inverse submit-postcode"
+										type="submit">
+									Procure um takeaway
+								</button>
+							</div>
 						</form>
 					</div>
 					<div className="home-bg">
-						<img src="build/img/japanese_ramen.jpg" alt="" />
 						<div className="ms-layer ms-caption">
 							<h1 className="text-right">
 								<span>Tens fome?!</span>
@@ -131,7 +134,9 @@ module.exports = React.createClass({
 						</div>
 					</div>
 				</div>
-	  		</div>
-	    );
+			</div>
+		);
 	}
-});
+}
+
+export default validation(strategy)(Home);

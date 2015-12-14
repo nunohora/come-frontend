@@ -1,40 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Modal, ModalTrigger } from 'react-bootstrap';
+import { Modal, ModalTrigger, Button } from 'react-bootstrap';
 import UserStore from '../../stores/UserStore';
 import Actions from '../../actions/UserActions';
 import LoginForm from '../forms/login-form.jsx';
 //import SignupForm from '../forms/signup-form.jsx';
 
-const forms = {
-	'login': LoginForm
-	//'signup': SignupForm
-};
-
-const HeaderModal = React.createClass({
+class HeaderModal extends React.Component {
 	render() {
 		return (
-			<Modal {...this.props} title={this.props.title}
-				animation={true}>
+			<Modal {...this.props} title={this.props.title} animation={true}>
 				<div className="modal-body"></div>
 			</Modal>
 		);
 	}
-});
+};
 
-module.exports = React.createClass({
-
-	getInitialState() {
-		return UserStore.getState();
-	},
+class NavBar extends React.Component {
+	constructor(props) {
+		super(props);
+		this.onShowModal.bind(this);
+		this.state = UserStore.getState();
+	}
 
 	componentDidMount() {
 		UserStore.addChangeListener(this._onChange);
-	},
+	}
 
 	onLogoutClick() {
 		Actions.logoutUser();
-	},
+	}
+
+	onShowModal() {
+		debugger;
+	}
 
 	renderLoggedIn() {
 		return (
@@ -50,32 +49,31 @@ module.exports = React.createClass({
 				</li>
 			</ul>
 		);
-	},
+	}
 
 	renderLoggedOut() {
 		return (
 			<ul className="nav navbar-nav navbar-right">
 				<li>
-					<HeaderModal title="Login" form="login" className="modal-md-sm">
-						<a>Login</a>
-					</HeaderModal>
+					<Button onClick={this.onShowModal.bind(this)}>Login</Button>
 				</li>
 				<li>
-					<HeaderModal title="Registo" form="signup" className="medium">
-						<a>Registo</a>
-					</HeaderModal>
+					<Button onClick={this.onShowModal.bind(this)}>Login</Button>
 				</li>
 				<li>
 					<Link to="help">Ajuda</Link>
 				</li>
+				<Modal show={this.state.showLoginModal}> onHide={this.close}>
+					<LoginForm />
+				</Modal>
 			</ul>
 		);
-	},
+	}
 
 	render() {
-		let renderNav = this.state.user.username ? this.renderLoggedIn : this.renderLoggedOut;
+		const renderNav = this.state.user.username ? this.renderLoggedIn.bind(this) : this.renderLoggedOut.bind(this);
 
-	  	return (
+		return (
 			<div className="header-nav-bar">
 				<nav className="navbar navbar-default" role="navigation">
 					<div className="container">
@@ -96,10 +94,12 @@ module.exports = React.createClass({
 					</div>
 				</nav>
 			</div>
-	    );
-	},
+		);
+	}
 
 	_onChange() {
 		this.setState(UserStore.getState());
 	}
-});
+};
+
+export default NavBar;
