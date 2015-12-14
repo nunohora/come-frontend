@@ -4,23 +4,13 @@ import { Modal, ModalTrigger, Button } from 'react-bootstrap';
 import UserStore from '../../stores/UserStore';
 import Actions from '../../actions/UserActions';
 import LoginForm from '../forms/login-form.jsx';
-//import SignupForm from '../forms/signup-form.jsx';
-
-class HeaderModal extends React.Component {
-	render() {
-		return (
-			<Modal {...this.props} title={this.props.title} animation={true}>
-				<div className="modal-body"></div>
-			</Modal>
-		);
-	}
-};
+import SignupForm from '../forms/signup-form.jsx';
 
 class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
-		this.onShowModal.bind(this);
 		this.state = UserStore.getState();
+		this.renderModals = this.renderModals.bind(this);
 	}
 
 	componentDidMount() {
@@ -31,8 +21,25 @@ class NavBar extends React.Component {
 		Actions.logoutUser();
 	}
 
-	onShowModal() {
-		debugger;
+	renderModals() {
+		return (
+			<div>
+				<Modal show={this.state.showLoginModal} onHide={this.close} animation={true}>
+					<LoginForm />
+				</Modal>
+				<Modal show={this.state.showSignupModal} animation={true}>
+					<SignupForm />
+				</Modal>
+			</div>
+		);
+	}
+
+	openLogin() {
+		this.setState({ showLoginModal: true })
+	}
+
+	openSignup() {
+		this.setState({ showSignupModal: true })
 	}
 
 	renderLoggedIn() {
@@ -55,17 +62,14 @@ class NavBar extends React.Component {
 		return (
 			<ul className="nav navbar-nav navbar-right">
 				<li>
-					<Button onClick={this.onShowModal.bind(this)}>Login</Button>
+					<a onClick={this.openLogin.bind(this)}>Login</a>
 				</li>
 				<li>
-					<Button onClick={this.onShowModal.bind(this)}>Login</Button>
+					<a onClick={this.openSignup.bind(this)}>Signup</a>
 				</li>
 				<li>
 					<Link to="help">Ajuda</Link>
 				</li>
-				<Modal show={this.state.showLoginModal}> onHide={this.close}>
-					<LoginForm />
-				</Modal>
 			</ul>
 		);
 	}
@@ -93,6 +97,7 @@ class NavBar extends React.Component {
 						</div>
 					</div>
 				</nav>
+				{this.renderModals()}
 			</div>
 		);
 	}

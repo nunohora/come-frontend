@@ -1,10 +1,6 @@
-var React  = require('react'),
-	Formsy = require('formsy-react'),
-	$ 	   = require('jquery');
+import React from 'react';
 
 var FormsyInput = React.createClass({
-
-	mixins: [Formsy.Mixin],
 
     // setValue() will set the value of the component, which in
     // turn will validate it and the rest of the form
@@ -75,12 +71,12 @@ module.exports = React.createClass({
 
 	render: function () {
 	  	return (
-			<Formsy.Form className="form-horizontal"
+			<form className="form-horizontal"
 				onValid={this.enableButton}
 				onInvalid={this.disableButton}>
 				<div className="row">
 					<div className="col-md-12">
-						<FormsyInput
+						<input
 							name="Email"
 							onChange={this.handleChange}
 							type="email"
@@ -89,7 +85,7 @@ module.exports = React.createClass({
 							placeholder="Email*"
 							required />
 
-						<FormsyInput
+						<input
 							name="Password"
 							onChange={this.handleChange}
 							type="password"
@@ -98,7 +94,7 @@ module.exports = React.createClass({
 							placeholder="Password*"
 							required />
 
-						<FormsyInput
+						<input
 							name="Confirm password"
 							onChange={this.handleChange}
 							type="password"
@@ -107,35 +103,35 @@ module.exports = React.createClass({
 							placeholder="Confirm password*"
 							required />
 
-						<FormsyInput
+						<input
 							name="Nome completo"
 							onChange={this.handleChange}
 							type="text"
 							placeholder="Nome completo*"
 							required />
 
-						<FormsyInput
+						<input
 							name="Telemovel"
 							onChange={this.handleChange}
 							type="text"
 							placeholder="telemovel*"
 							required />
 
-						<FormsyInput
+						<input
 							name="Morada"
 							onChange={this.handleChange}
 							type="text"
 							placeholder="Morada*"
 							required />
 
-						<FormsyInput
+						<input
 							name="Cidade"
 							onChange={this.handleChange}
 							type="text"
 							placeholder="Cidade*"
 							required />
 
-						<FormsyInput
+						<input
 							name="Codigo postal"
 							onChange={this.handleChange}
 							type="text"
@@ -151,7 +147,7 @@ module.exports = React.createClass({
 						</div>
 					</div>
 				</div>
-			</Formsy.Form>
+			</form>
 		);
 	}
 });
