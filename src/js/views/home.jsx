@@ -25,7 +25,7 @@ class Home extends React.Component {
 		const onValidate = error => {
 			if (!error) {
 				this.setState({ loaded: false });
-				this.props.history.transitionTo('search', {location: this.state.postcode});
+				this.props.history.pushState({location: this.state.postcode}, 'search');
 			}
 		};
 

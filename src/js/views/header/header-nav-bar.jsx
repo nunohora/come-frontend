@@ -9,8 +9,10 @@ import SignupForm from '../forms/signup-form.jsx';
 class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = UserStore.getState();
 		this.renderModals = this.renderModals.bind(this);
+		this.close = this.close.bind(this);
+
+		this.state = UserStore.getState();
 	}
 
 	componentDidMount() {
@@ -21,13 +23,25 @@ class NavBar extends React.Component {
 		Actions.logoutUser();
 	}
 
+	close() {
+		this.setState({
+			showSignupModal: false,
+			showLoginModal: false
+		});
+	}
+
 	renderModals() {
 		return (
 			<div>
-				<Modal show={this.state.showLoginModal} onHide={this.close} animation={true}>
-					<LoginForm />
+				<Modal show={this.state.showLoginModal} onHide={this.close}>
+					<Modal.Header closeButton>
+						<Modal.Title>Login</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<LoginForm />
+					</Modal.Body>
 				</Modal>
-				<Modal show={this.state.showSignupModal} animation={true}>
+				<Modal show={this.state.showSignupModal} onHide={this.close}>
 					<SignupForm />
 				</Modal>
 			</div>
