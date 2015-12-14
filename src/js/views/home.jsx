@@ -1,9 +1,11 @@
 import $ from 'jquery';
+import ReactDOM from 'react-dom';
 import React from 'react';
 import { Navigation, Link } from 'react-router';
 //import LinkedStateMixin from 'react-addons-linked-state-mixin';
 //import ValidationMixin from 'react-validation-mixin';
 import Joi from 'joi';
+import classNames from 'classnames';
 
 module.exports = React.createClass({
 
@@ -12,7 +14,7 @@ module.exports = React.createClass({
 	},
 
 	componentDidMount() {
-		$(this.getDOMNode()).find('.home-bg').fadeTo('100', 1);
+		$(ReactDOM.findDOMNode()).find('.home-bg').fadeTo('100', 1);
 	},
 
   	getInitialState() {
@@ -31,10 +33,10 @@ module.exports = React.createClass({
 		this.validate(onValidate);
 	},
 
-	getClasses(field) {
-		return React.addons.classSet({
+	getClasses() {
+		return classNames({
 			'postcode-input': true,
-			'has-error': !this.isValid(field)
+			'has-error': false
 		});
 	},
 
@@ -57,7 +59,7 @@ module.exports = React.createClass({
 					<div className="call-to-action-section">
 						<div className="css-table-cell">
 							<div className="icon">
-								<img src="img/content/call-to-action-icon1.png" alt="" />
+								<img src="build/img/content/call-to-action-icon1.png" alt="" />
 							</div>
 						</div>
 						<form className="text css-table" onSubmit={this.onSubmit}>
@@ -69,14 +71,13 @@ module.exports = React.createClass({
 								<div className={this.getClasses('postcode')}>
 									<div>
 										<input
-											onBlur={this.handleValidation('postcode')}
-											valueLink={this.linkState('postcode')}
+											//onBlur={this.handleValidation('postcode')}
+											//valueLink={this.linkState('postcode')}
 											ref="postcode"
 											className="form-control"
 											type="text"
 											placeholder="Insira o seu codigo postal*"/>
 									</div>
-									{this.getValidationMessages('postcode').map(this.renderHelpText)}
 								</div>
 									<button className="btn btn-default-red-inverse submit-postcode"
 											type="submit">
@@ -86,7 +87,7 @@ module.exports = React.createClass({
 						</form>
 					</div>
 					<div className="home-bg">
-						<img src="img/japanese_ramen.jpg" alt="" />
+						<img src="build/img/japanese_ramen.jpg" alt="" />
 						<div className="ms-layer ms-caption">
 							<h1 className="text-right">
 								<span>Tens fome?!</span>
