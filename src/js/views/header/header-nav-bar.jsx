@@ -87,7 +87,7 @@ module.exports = React.createClass({
 								<span className="icon-bar"></span>
 							</button>
 							<Link className="navbar-brand" to="/">
-								<img src="img/header-logo.png" alt="TakeAway" />
+								<img src="build/img/header-logo.png" alt="TakeAway" />
 							</Link>
 						</div>
 						<div className="collapse navbar-collapse">

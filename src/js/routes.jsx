@@ -23,4 +23,4 @@ ReactDOM.render((
             <Route component={Home} path="*" />
         </Route>
     </Router>
-), document.body);
+), document.getElementById('main-wrapper'));

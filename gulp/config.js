@@ -81,7 +81,8 @@ module.exports = {
                 hot: true
             },
             plugins: [new HtmlWebpackPlugin({
-                template: path.resolve(`${ src }/index.html`)
+                template: path.resolve(`${ src }/index.html`),
+                inject: true
             })]
         },
         config: {

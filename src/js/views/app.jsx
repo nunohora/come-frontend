@@ -7,7 +7,7 @@ module.exports = React.createClass({
 
 	render: function () {
 	  	return (
-	  		<div id="main-wrapper">
+	  		<div>
 	      		<Header />
 	      		<ReactCSSTransitionGroup
 					className="page-content"
