@@ -23,7 +23,7 @@ module.exports = React.createClass({
 		const id = this.props.params.selected || 0;
 
 		return _.map(this.props.params.categories, category => {
-			const className= 'tag ' + (id === category.id ? 'selected' : '');
+			const className = `tag ${id === category.id ? 'selected' : ''}`;
 
 			return (
 				<li key={category.id}>

@@ -87,9 +87,10 @@ module.exports = {
             plugins: [
                 new HotModuleReplacementPlugin(),
                 new HtmlWebpackPlugin({
-                template: path.resolve(`${ src }/index.html`),
-                inject: true
-            })]
+                    template: path.resolve(`${ src }/index.html`),
+                    inject: true
+                })
+            ]
         },
         config: {
             cache: true,

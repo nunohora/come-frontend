@@ -24,10 +24,8 @@ class Home extends React.Component {
 	onSubmit(e) {
 		const onValidate = error => {
 			if (!error) {
-				console.log({location: this.state.postcode});
-				debugger;
 				this.setState({ loaded: false });
-				this.props.history.pushState(null, `/search/${this.state.postcode}`);
+				//this.props.history.pushState(null, `/search/${this.state.postcode}`);
 			}
 		};
 
