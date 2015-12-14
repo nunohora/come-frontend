@@ -1,8 +1,8 @@
-const AppDispatcher = require('../dispatcher/AppDispatcher')
-const EventEmitter = require('events').EventEmitter;
-const Constants = require('../constants/Constants');
-const assign = require('object-assign');
-const _ = require('underscore');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import { EventEmitter } from 'events';
+import Constants from '../constants/Constants';
+import assign from 'object-assign';
+import _ from 'underscore';
 
 const CHANGE_EVENT = 'change';
 
@@ -12,7 +12,7 @@ let _store = {
     resultNumber: {}
 };
 
-const RestaurantListStore = assign({}, EventEmitter.prototype, {
+module.exports = assign({}, EventEmitter.prototype, {
     emitChange() {
         this.emit(CHANGE_EVENT);
     },
@@ -37,9 +37,11 @@ const RestaurantListStore = assign({}, EventEmitter.prototype, {
                 name: 'Total',
                 resultNumber: 0
             }];
+
         _.each(response.search, result => {
             _.each(result.categories, category => {
                 const existing = _.findWhere(categories, { id: category.id });
+
                 if (existing) {
                     existing.resultNumber = existing.resultNumber + 1;
                 } else {
@@ -51,7 +53,9 @@ const RestaurantListStore = assign({}, EventEmitter.prototype, {
                 }
             });
         });
+
         categories[0].resultNumber = response.meta.total_results;
+
         _store = {
             categories: categories,
             restaurants: response.search,
@@ -63,6 +67,7 @@ const RestaurantListStore = assign({}, EventEmitter.prototype, {
     },
     filterByCategory(catId) {
         let results;
+
         if (catId) {
             results = _.filter(_store.restaurants, restaurant => {
                 const exists = _.some(restaurant.categories, category => {
@@ -75,13 +80,16 @@ const RestaurantListStore = assign({}, EventEmitter.prototype, {
         }
         return results;
     },
+
     getCategories() {
         return _store.categories;
     },
+
     getResultNumber() {
         return _store.resultNumber;
     }
 });
+
 // Register callback to handle all updates
 AppDispatcher.register(action => {
     switch (action.actionType) {
@@ -96,4 +104,3 @@ AppDispatcher.register(action => {
         break;
     }
 });
-module.exports = RestaurantListStore;

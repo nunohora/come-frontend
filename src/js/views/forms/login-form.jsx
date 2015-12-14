@@ -26,12 +26,12 @@ module.exports = React.createClass({
 	onSubmit(e) {
 		e.preventDefault();
 
-		var onValidate = function (error, validationErrors) {
+		const onValidate = (error, validationErrors) => {
 			if (!error) {
 				UserActions.loginUser(this.state.credentials);
 				this.setState({ loaded: false });
 			}
-		}.bind(this);
+		};
 
 		this.validate(onValidate);
 	},

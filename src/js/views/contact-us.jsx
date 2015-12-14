@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var ContactUs = React.createClass({
-	render: function () {
+module.exports = React.createClass({
+	render() {
 	  	return (
 	      <div className="map-section">
 	        <div id="map_canvas"></div>
@@ -9,5 +9,3 @@ var ContactUs = React.createClass({
 	    );
 	}
 });
-
-module.exports = ContactUs;

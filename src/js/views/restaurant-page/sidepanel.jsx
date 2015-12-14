@@ -1,8 +1,8 @@
-var React = require('react');
+import React from 'react';
 
 module.exports = React.createClass({
 
-    render: function () {
+    render() {
         return (
                 <div class="side-panel">
                     <form class="default-form" action="index.html">

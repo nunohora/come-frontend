@@ -1,16 +1,19 @@
 'use strict';
 
-const $ = require('jquery');
+import $ from 'jquery';
 
-const makeRequest = function (options) {
-    let dfd = new $.Deferred(), opts = options || {}, user = localStorage.getItem('user'), request;
-    request = {
-        url: `http://localhost:3001/v1/${ opts.url || '' }`,
-        method: opts.method || 'GET',
+const makeRequest = (options = {}) => {
+    let dfd = new $.Deferred(),
+        user = localStorage.getItem('user');
+
+    let request = {
+        url: `http://localhost:3001/v1/${ options.url || '' }`,
+        method: options.method || 'GET',
         headers: { 'Content-Type': 'application/json' }
     };
-    if (opts.data) {
-        request.data = opts.data;
+
+    if (options.data) {
+        request.data = options.data;
     }
     if (user) {
         user = JSON.parse(user);
@@ -27,21 +30,23 @@ const makeRequest = function (options) {
 
 module.exports = {
     getRestaurantsByLocation(location) {
-        const dfd = new $.Deferred();
+        const dfd = $.Deferred();
         const options = {
             method: 'GET',
             url: 'search/',
             data: { location: location }
         };
+
         $.when(makeRequest(options)).then(response => {
             dfd.resolve(response);
         }, error => {
             dfd.reject(error);
         });
+
         return dfd.promise();
     },
     getRestaurantById(id) {
-        const dfd = new $.Deferred();
+        const dfd = $.Deferred();
         const options = {
             method: 'GET',
             url: `places/${ id }`
@@ -54,31 +59,35 @@ module.exports = {
         return dfd.promise();
     },
     getRestaurantProducts(id) {
-        const dfd = new $.Deferred();
+        const dfd = $.Deferred();
         const options = {
             method: 'GET',
             url: `places/${ id }/products`
         };
+
         $.when(makeRequest(options)).then(response => {
             dfd.resolve(response);
         }, error => {
             dfd.reject(error);
         });
+
         return dfd.promise();
     },
     loginUser(params) {
-        const dfd = new $.Deferred();
+        const dfd = $.Deferred();
         const options = {
             method: 'POST',
             url: 'login',
             data: JSON.stringify(params)
         };
+
         $.when(makeRequest(options)).then(response => {
             dfd.resolve(response);
         }, error => {
             console.log('Error: ', error);
             dfd.reject(error);
         });
+
         return dfd.promise();
     }
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import HeaderTopBar from './header-top-bar.jsx';
 import HeaderNavBar from './header-nav-bar.jsx';
 

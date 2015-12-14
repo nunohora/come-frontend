@@ -1,13 +1,19 @@
-const AppDispatcher = require('../dispatcher/AppDispatcher'), Constants = require('../constants/Constants'), utils = require('../utils'), $ = require('jquery');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import Constants from '../constants/Constants';
+import utils from '../utils';
+import $ from 'jquery';
+
 let lastFetched = '';
-const dispatch = function (actionType, params, response) {
+
+const dispatch = (actionType, params, response) => {
     AppDispatcher.dispatch({
         actionType: actionType,
         params: params,
         response: response
     });
 };
-const RestaurantListActions = {
+
+module.exports = {
     getRestListByLocation(params) {
         if (lastFetched !== params) {
             $.when(utils.getRestaurantsByLocation(params)).done(response => {
@@ -19,4 +25,3 @@ const RestaurantListActions = {
         }
     }
 };
-module.exports = RestaurantListActions;

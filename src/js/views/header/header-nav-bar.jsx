@@ -25,8 +25,7 @@ const HeaderModal = React.createClass({
 module.exports = React.createClass({
 
 	getInitialState() {
-		var state = UserStore.getState();
-		return state;
+		return UserStore.getState();
 	},
 
 	componentDidMount() {

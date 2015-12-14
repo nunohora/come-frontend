@@ -1,40 +1,36 @@
-var React          = require('react'),
-	Loader         = require('react-loader'),
-	RestaurantList = require('./restaurant-list.jsx'),
-	Categories     = require('./categories.jsx'),
-	ResultNumber   = require('./result-number.jsx'),
-	RestListStore  = require('../../stores/RestaurantListStore'),
-	Actions        = require('../../actions/RestaurantListActions');
+import React from 'react';
+import Loader from 'react-loader';
+import RestaurantList from './restaurant-list.jsx';
+import Categories from './categories';
+import ResultNumber from './result-number';
+import RestListStore from '../../stores/RestaurantListStore';
+import Actions from '../../actions/RestaurantListActions';
 
 module.exports = React.createClass({
 
-	getInitialState: function () {
-		var state = RestListStore.getState();
+	getInitialState() {
+		let state = RestListStore.getState();
 
 		state.loaded = false;
 
 		return state;
 	},
 
-	componentDidMount: function () {
+	componentDidMount() {
 		RestListStore.addChangeListener(this._onChange);
 		Actions.getRestListByLocation(this.props.params.location);
 	},
 
-	componentWillUnmount: function () {
+	componentWillUnmount() {
 		RestListStore.removeChangeListener(this._onChange);
 	},
 
-    getFilteredResults: function (category) {
-        return RestListStore.filterByCategory(category);
-    },
-
-    getCategories: function () {
+    getCategories() {
         return RestListStore.getCategories();
     },
 
-	render: function () {
-        var categoriesObj = {
+	render() {
+        const categoriesObj = {
             categories: this.getCategories(),
             location: this.props.params.location,
 			selected: this.props.params.id
@@ -52,7 +48,7 @@ module.exports = React.createClass({
 	    );
 	},
 
-	_onChange: function() {
+	_onChange() {
 		this.setState({loaded: true});
 	}
 });

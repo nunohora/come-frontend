@@ -1,11 +1,11 @@
-var React = require('react'),
-	Link  = require('react-router').Link,
-	_     = require('underscore'),
-	slug  = require('slug');
+import React from 'react';
+import { Link } from 'react-router';
+import _ from 'underscore';
+import slug from 'slug';
 
 module.exports = React.createClass({
 
-	renderRating: function () {
+	renderRating() {
 		return (
 			<div className="rating">
 				<div className="rating-stars">
@@ -22,11 +22,11 @@ module.exports = React.createClass({
 		);
 	},
 
-	renderCategories: function () {
-		var categories = this.props.params.categories,
-			string = '';
+	renderCategories() {
+		const categories = this.props.params.categories;
+		let string = '';
 
-		_.each(categories, function (category) {
+		_.each(categories, category => {
 			string = string + category.name;
 
 			if (_.indexOf(categories, category) + 1 !== categories.length) {
@@ -43,7 +43,7 @@ module.exports = React.createClass({
 	},
 
 	render: function () {
-		var routeParams = {
+		const routeParams = {
 			id: this.props.params.id,
 			slug: slug(this.props.params.name, {lower: true})
 		};

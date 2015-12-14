@@ -1,11 +1,9 @@
-var React = require('react');
+import React from 'react';
 
-var NotFound = React.createClass({
+module.exports = React.createClass({
 	render: function () {
 	  return (
   			<div>404 Not found!</div>
 	    );
 	}
 });
-
-module.exports = NotFound;

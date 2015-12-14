@@ -1,12 +1,12 @@
-var React = require('react'),
-	Link  = require('react-router').Link,
-    slug  = require('slug'),
-	_     = require('underscore');
+import React from 'react';
+import { Link } from 'react-router';
+import slug from 'slug';
+import _ from 'underscore';
 
 module.exports = React.createClass({
 
-    buildUrl: function (category) {
-        var location = this.props.params.location,
+    buildUrl(category) {
+        let location = this.props.params.location,
 			rep = '/search/' + location,
 			catSlug;
 
@@ -19,11 +19,11 @@ module.exports = React.createClass({
         return rep;
     },
 
-	renderCategories: function () {
-		var id = this.props.params.selected || 0;
+	renderCategories() {
+		const id = this.props.params.selected || 0;
 
-		return _.map(this.props.params.categories, function (category) {
-			var className= 'tag ' + (id === category.id ? 'selected' : '');
+		return _.map(this.props.params.categories, category => {
+			const className= 'tag ' + (id === category.id ? 'selected' : '');
 
 			return (
 				<li key={category.id}>
@@ -36,7 +36,7 @@ module.exports = React.createClass({
 		}, this);
 	},
 
-	render: function () {
+	render() {
 	  	return (
 			<div className="side-panel">
 				<div className="categories">

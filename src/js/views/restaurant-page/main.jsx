@@ -1,29 +1,29 @@
-var React = require('react'),
-	Loader = require('react-loader'),
-	//Sidepanel = require('./sidepanel.jsx');
-	RestStore = require('../../stores/RestaurantStore'),
-	Actions = require('../../actions/RestaurantActions');
+import React from 'react';
+import Loader from 'react-router';
+//import Sidepanel from './sidepanel';
+import RestStore from '../../stores/RestaurantStore';
+import Actions from '../../actions/RestaurantActions';
 
 module.exports = React.createClass({
 
-	getInitialState: function () {
-		var state = RestStore.getState();
+	getInitialState() {
+		let state = RestStore.getState();
 
 		state.loaded = false;
 
 		return state;
 	},
 
-	componentDidMount: function () {
+	componentDidMount() {
 		RestStore.addChangeListener(this._onChange);
 		Actions.getRestById(this.props.params.id);
 	},
 
-	componentWillUnmount: function () {
+	componentWillUnmount() {
 		RestStore.removeChangeListener(this._onChange);
 	},
 
-	render: function () {
+	render() {
 	  	return (
   			<div className="container">
 				<div class="col-md-3 col-sm-12 col-xs-12 col-md-pull-9">
@@ -32,7 +32,7 @@ module.exports = React.createClass({
 	    );
 	},
 
-	_onChange: function() {
+	_onChange() {
 		this.setState({loaded: true});
 	}
 });

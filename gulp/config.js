@@ -1,10 +1,9 @@
-const src = './src';
-const dest = './build';
-
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-
 import path from 'path';
+
+const src = './src';
+const dest = './build';
 
 module.exports = {
     clean: { src: dest },
@@ -18,11 +17,9 @@ module.exports = {
                 'jsx'
             ],
             testPathIgnorePatterns: [
-                'setup.js',
-                'preprocessor.js'
+                'setup.js'
             ],
-            setupEnvScriptFile: 'setup.js',
-            scriptPreprocessor: 'preprocessor.js'
+            setupEnvScriptFile: 'setup.js'
         }
     },
 
@@ -83,7 +80,9 @@ module.exports = {
                 inline: true,
                 hot: true
             },
-            plugins: [new HtmlWebpackPlugin({})]
+            plugins: [new HtmlWebpackPlugin({
+                template: path.resolve(`${ src }/index.html`)
+            })]
         },
         config: {
             cache: true,

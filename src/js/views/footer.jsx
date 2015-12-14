@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var Footer = React.createClass({
-	render: function () {
+module.exports = React.createClass({
+	render() {
 	  	return (
 			<footer id="footer">
 				<div className="container">
@@ -69,5 +69,3 @@ var Footer = React.createClass({
 		);
 	}
 });
-
-module.exports = Footer;

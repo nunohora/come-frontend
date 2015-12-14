@@ -1,18 +1,18 @@
-var React 			   = require('react'),
-	_			       = require('underscore'),
-	RestaurantListItem = require('./restaurant-list-item.jsx');
+import React from 'react';
+import _ from 'underscore';
+import RestaurantListItem from './restaurant-list-item.jsx';
 
 module.exports = React.createClass({
 
-	renderRestaurants: function () {
-		return _.map(this.props.params, function (restaurant) {
+	renderRestaurants() {
+		return _.map(this.props.params, restaurant => {
 			return (
 				<RestaurantListItem key={restaurant.id} params={restaurant} />
 			);
 		});
 	},
 
-	render: function () {
+	render() {
 		return (
 			<div className="col-md-9">
 				{this.renderRestaurants()}

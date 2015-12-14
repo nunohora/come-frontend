@@ -1,7 +1,7 @@
-const AppDispatcher = require('../dispatcher/AppDispatcher');
-const Constants = require('../constants/Constants');
-const utils = require('../utils');
-const $ = require('jquery');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import Constants from '../constants/Constants';
+import utils from '../utils';
+import $ from 'jquery';
 
 module.exports = {
     loginUser(params) {

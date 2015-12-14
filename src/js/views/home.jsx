@@ -20,13 +20,13 @@ module.exports = React.createClass({
   	},
 
 	onSubmit(e) {
-		const onValidate = function (error, validationErrors) {
+		const onValidate = (error, validationErrors) => {
 			console.log(validationErrors);
 			if (!error) {
 				this.setState({ loaded: false });
 				this.transitionTo('search', {location: this.state.postcode});
 			}
-		}.bind(this);
+		};
 
 		this.validate(onValidate);
 	},
