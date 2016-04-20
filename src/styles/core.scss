@@ -1,0 +1,91 @@
+:global {
+    @import 'base';
+    @import 'vendor/normalize';
+    @import 'vendor/font-awesome/font-awesome';
+
+    // Some best-practice CSS that's useful for most apps
+    // Just remove them if they're not what you want
+    html {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    body {
+        background: #ffffff;
+        color: #423338;
+        font-size: 16px;
+        font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        line-height: 24px;
+        cursor: default;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+
+    p {
+        margin: 0 0 10px;
+    }
+
+    .css-table {
+        display: table;
+    }
+
+    .css-table-cell {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-bottom: 0;
+        padding: 3px 15px;
+        border: 0;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        background-image: none;
+        color: #291f23;
+        vertical-align: middle;
+        text-align: center;
+        white-space: nowrap;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 24px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+    }
+
+    .btn-default-red-inverse {
+        padding: 5px 15px 5px 10px;
+        border: 1px solid #e00000;
+        background: #e00000;
+        color: #fff;
+        border-radius: 7px;
+        font-size: 16px;
+    }
+
+    .row {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+}

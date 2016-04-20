@@ -1,0 +1,90 @@
+.home-top-wrapper {
+    position: relative;
+
+    .call-to-action-section {
+        position: absolute;
+        top: 42%;
+        z-index: 2;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        height: 130px;
+        width: 90%;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        background: #f2f2f2;
+        color: #343434;
+    }
+}
+
+.home-bg {
+    background-image: url('img/japanese_ramen.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 500px;
+}
+
+.slogan {
+    margin: 0;
+    padding-bottom: 50px;
+    font-size: 40px;
+    font-weight: normal;
+    text-align: right;
+    line-height: 1.2em;
+    color: #ffffff;
+    span {
+        font-size: 65px;
+        font-weight: 700;
+    }
+}
+
+.call-to-action-icon {
+    position: absolute;
+    display: block;
+    width: 130px;
+    height: 100%;
+    -webkit-border-radius: 6px 0 0 6px;
+    border-radius: 6px 0 0 6px;
+    background: #e00000;
+    vertical-align: middle;
+    text-align: center;
+    img {
+        margin-top: 35px;
+    }
+}
+
+
+.order-steps {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    h6 {
+        margin: 20px 0 5px 0;
+    }
+    .order-step {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 30px;
+        text-align: left;
+        i {
+            text-align: center;
+            width: 100%;
+        }
+        p {
+            margin: 10px 0px 15px 0px;
+            color: #666;
+            span {
+                padding: 0 6px;
+            }
+        }
+        .bl-sort {
+            color: #999;
+            font-size: 14px;
+        }
+    }
+}
