@@ -10,9 +10,10 @@ export default class RestaurantList extends React.Component {
     renderRestaurants(restaurant) {
         return (
             <RestaurantListItem
+                key={ restaurant.id }
                 id={ restaurant.id }
                 name={ restaurant.name }
-                address={ restaurant.address }
+                address={ restaurant.zone_name }
                 categories = { restaurant.categories } />
         )
     }

@@ -15,13 +15,15 @@ import Restaurant from 'containers/Restaurant/Restaurant'
 import NotFound from 'containers/NotFound/NotFound'
 
 export default (store) => (
-    <Route path='/' component={CoreLayout}>
-        <IndexRoute component={Home} />
-        <Route component={SearchResult} path='/search/:location(/?:category?)(/?:id?)' />
-        <Route component={Help} path='/help' />
-        <Route component={Login} path='/login' />
-        <Route component={Signup} path='/signup' />
-        <Route component={Restaurant} path='/places/:id/:slug' />
-        <Route component={NotFound} path='*' />
+    <Route path='/' component={ CoreLayout }>
+        <IndexRoute component={ Home } />
+        <Route component={ SearchResult } path='/search/:location' />
+        <Route component={ SearchResult } path='/search/:location/:id' />
+        <Route component={ SearchResult } path='/search/:location/:id/:category' />
+        <Route component={ Help } path='/help' />
+        <Route component={ Login } path='/login' />
+        <Route component={ Signup } path='/signup' />
+        <Route component={ Restaurant } path='/places/:id/:slug' />
+        <Route component={ NotFound } path='*' />
     </Route>
 )

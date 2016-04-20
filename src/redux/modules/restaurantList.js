@@ -32,15 +32,16 @@ function setCategories(list, totalResults) {
 
     list.map(restaurant => {
         restaurant.categories.map(cat => {
-            const { id } = cat
-            const exists = _.findWhere(cats, { id: id })
+
+            const { name } = cat
+            const exists = _.findWhere(cats, { name: name })
 
             if (exists) {
-                exists.number = exists.resultNumber
+                exists.number = exists.number + 1
             }
             else {
                 cats.push({
-                    id: id,
+                    id: cats.length,
                     name: cat.name,
                     number: 1
                 })
@@ -81,12 +82,5 @@ export default function restaurantListReducer(state = initialState, action = {})
     const { data } = action
     const handler = ACTION_HANDLERS[action.type]
 
-    if (handler) {
-        console.log(handler(state, data))
-        return handler(state, data)
-    }
-    else {
-        return state
-    }
-    // return handler ? handler(state, data) : state
+    return handler ? handler(state, data) : state
 }

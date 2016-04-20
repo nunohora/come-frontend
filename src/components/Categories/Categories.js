@@ -1,53 +1,50 @@
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import slug from 'slug';
+import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
+import slug from 'slug'
+import CSSModules from 'react-css-modules'
+import styles from './Categories.scss'
 
-export default class Categories extends React.Component {
+class Categories extends React.Component {
 
     static propTypes = {
-        list: PropTypes.array,
+        categories: PropTypes.array.isRequired,
         postcode: PropTypes.string.isRequired
     }
 
     buildUrl(category) {
-        let location = this.props.postcode,
-            rep = `/search/${location}`,
-            catSlug;
+        const { name, id } = category
+        let rep = `/search/${this.props.postcode}`
 
         if (category.name !== 'Total') {
-            catSlug = '/' + slug(category.name, {lower: true});
-
-            rep += catSlug + '/' + category.id;
+            rep += `/${id}/${slug(name, {lower: true})}`
         }
 
         return rep;
     }
 
-    renderCategories(categories = [], id = 0) {
-        return categories.map(category => {
-            const className = `tag ${id === category.id ? 'selected' : ''}`;
-
-            return (
-                <li key={category.id}>
-                    <Link to={this.buildUrl(category)}>
-                        {category.name}
-                        <span className={className}>{category.resultNumber}</span>
-                    </Link>
-                </li>
-            );
-        }, this);
+    renderCategory(category) {
+        return (
+            <li key={category.id}>
+                <Link to={this.buildUrl(category)}>
+                    {category.name}
+                    <span className='tag'>{category.number}</span>
+                </Link>
+            </li>
+        )
     }
 
     render() {
         return (
-            <div className="side-panel">
+            <div styleName="side-panel">
                 <div className="categories">
                     <h4>Categorias</h4>
                     <ul className="list-unstyled">
-                        {this.renderCategories()}
+                        { this.props.categories.map(category => ( this.renderCategory(category) )) }
                     </ul>
                 </div>
             </div>
         );
     }
 }
+
+export default CSSModules(Categories, styles)

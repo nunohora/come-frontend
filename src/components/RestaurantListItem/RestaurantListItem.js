@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import slug from 'slug'
+import Image from './blog-post.jpg'
 
 export default class RestaurantListItem extends React.Component {
 
@@ -29,42 +30,44 @@ export default class RestaurantListItem extends React.Component {
     }
 
     renderCategories() {
-        const categories = this.props.categories;
-        let string = '';
+        const categories = this.props.categories
+        let string = ''
 
         categories.forEach(category => {
             string = string + category.name;
 
-            if (categories.indexOf(categories) + 1 !== categories.length) {
-                string += ', ';
+            if (categories.indexOf(category) + 1 !== categories.length) {
+                string += ', '
             }
         })
 
         return (
             <p>
                 <i className="fa fa-cutlery"></i>
-                {string}
+                { string }
             </p>
         );
     }
 
     render() {
-        const routeParams = {
+        const params = {
             id: this.props.id,
             slug: slug(this.props.name, {lower: true})
         };
+
+        const url = `places/${params.id}/${params.slug}`
 
         return (
             <div className="restaurant-list">
                 <div className="row">
                     <div className="col-md-3">
                         <div className="restaurant-list-img">
-                            <img className="" src="build/img/content/blog-post.jpg" alt="" />
+                            <img className="" src={ Image } alt="" />
                         </div>
                     </div>
                     <div className="col-md-9 restaurant-list-inner">
                         <h4>
-                            <Link to="places" params={routeParams}>
+                            <Link to={ url }>
                                 {this.props.name}
                             </Link>
                         </h4>
@@ -79,8 +82,7 @@ export default class RestaurantListItem extends React.Component {
                             {this.renderCategories()}
                         </div>
                     </div>
-                    <Link to="places"
-                          params={routeParams}
+                    <Link to={ url }
                           className="btn btn-default-red-inverse view-menu">
                         <i className="fa fa-list-ul"></i>
                         Ver Menu
