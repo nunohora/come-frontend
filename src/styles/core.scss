@@ -32,6 +32,17 @@
         box-sizing: inherit;
     }
 
+    a {
+        color: #343434;
+        text-decoration: none;
+        cursor: pointer;
+        -webkit-transition: all .4s ease;
+        -moz-transition: all .4s ease;
+        -ms-transition: all .4s ease;
+        -o-transition: all .4s ease;
+        transition: all .4s ease;
+    }
+
     h4 {
         font-size: 24px;
     }

@@ -24,7 +24,7 @@ class Categories extends React.Component {
 
     renderCategory(category) {
         return (
-            <li key={category.id}>
+            <li styleName="list-item" key={category.id}>
                 <Link to={this.buildUrl(category)}>
                     {category.name}
                     <span className='tag'>{category.number}</span>
@@ -36,8 +36,8 @@ class Categories extends React.Component {
     render() {
         return (
             <div styleName="side-panel">
-                <div className="categories">
-                    <h4>Categorias</h4>
+                <h6 styleName="title">Categorias</h6>
+                <div styleName="categories">
                     <ul className="list-unstyled">
                         { this.props.categories.map(category => ( this.renderCategory(category) )) }
                     </ul>

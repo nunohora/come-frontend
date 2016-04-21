@@ -11,6 +11,7 @@ class SearchResult extends React.Component {
     static propTypes = {
         loaded: PropTypes.bool.isRequired,
         postcode: PropTypes.string.isRequired,
+        id: PropTypes.number,
         categories: PropTypes.array.isRequired,
         list: PropTypes.array.isRequired,
         number: PropTypes.number.isRequired
@@ -19,18 +20,29 @@ class SearchResult extends React.Component {
     componentWillMount() {
         this.props.getRestListByLocation(this.props.postcode)
     }
+
+    filterByCategory(catId, list) {
+        return list.filter(restaurant => {
+            return restaurant.categories.some(cat => {
+                return parseInt(catId, 10) === cat.id
+            })
+        })
+    }
+
     render() {
+        const props = this.props
+
         return (
             <div className="container">
-                <Loader loaded={this.props.loaded} className="spinner"></Loader>
-                <ResultNumber number={this.props.number} postcode={this.props.postcode}/>
+                <Loader loaded={ props.loaded } className="spinner"></Loader>
+                <ResultNumber number={ props.number } postcode={ props.postcode }/>
                 <div className="col-md-3">
-                    <Categories categories={this.props.categories} postcode={this.props.postcode}/>
+                    <Categories categories={ props.categories } postcode={ props.postcode }/>
                 </div>
-                <RestaurantList list={this.props.list} />
+                <RestaurantList list={ props.id ? this.filterByCategory(props.id, props.list) : props.list } />
             </div>
         )
-    }
+    }x
 }
 
 const mapStateToProps = (state, props) => ({
@@ -38,7 +50,8 @@ const mapStateToProps = (state, props) => ({
     categories: state.restaurantList.categories,
     list: state.restaurantList.list,
     number: state.restaurantList.number,
-    postcode: props.params.location
+    postcode: props.params.location,
+    id: props.params.id
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
