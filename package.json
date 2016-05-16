@@ -162,8 +162,5 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.6.0",
     "yargs": "^4.0.0"
-  },
-  "browser": {
-    "joi": "joi-browser"
   }
 }
