@@ -1,60 +1,51 @@
 import React, { PropTypes } from 'react'
-import ReactDOM from 'react-dom'
+import { reduxForm } from 'redux-form'
 import classnames from 'classnames'
-import { connect } from 'react-redux'
 import Loader from 'react-loader'
-import Joi from 'joi'
 import { loginUser } from 'redux/modules/user'
-import strategy from 'joi-validation-strategy'
-import validation from 'react-validation-mixin'
+
+const fields = ['email', 'password']
+
+const validate = values => {
+    const errors = {}
+
+    if (!values.email) {
+        errors.email = 'Campo Obrigatório'
+    }
+    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Email inválido'
+    }
+
+    if (!values.password) {
+        errors.password = 'Campo Obrigatório'
+    }
+}
 
 class LoginForm extends React.Component {
 
     static propTypes = {
-        isValid: PropTypes.func.isRequired,
-        getValidationMessages: PropTypes.func.isRequired,
-        validate: PropTypes.func.isRequired,
-        loginUser: PropTypes.func.isRequired
+        fields: PropTypes.object.isRequired,
+        handleSubmit: PropTypes.func.isRequired,
+        resetForm: PropTypes.func.isRequired,
+        loaded: PropTypes.bool.isRequired
     }
 
     constructor(props) {
         super(props)
 
-        this.renderHelpText = this.renderHelpText.bind(this)
         this.getClasses = this.getClasses.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
-        this.getValidatorData = this.getValidatorData.bind(this)
+    }
 
-        this.validatorTypes = {
-            email: Joi.string().email().required(),
-            password: Joi.string().required()
-        }
-
-        this.state = {
-            email: null,
-            password: null,
-            loaded: true
+    onKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.handleSubmit(e);
         }
     }
 
-    getValidatorData() {
-        return {
-            email: ReactDOM.findDOMNode(this.refs.email).value,
-            password: ReactDOM.findDOMNode(this.refs.password).value
-        }
-    }
-
-    onSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault();
 
-        const onValidate = (error) => {
-            if (!error) {
-                this.props.loginUser(this.state.credentials);
-                this.setState({ loaded: false });
-            }
-        };
-
-        this.props.validate(onValidate);
+        debugger
     }
 
     getClasses(field) {
@@ -65,21 +56,22 @@ class LoginForm extends React.Component {
     }
 
     handleReset(event) {
-        event.preventDefault();
-        this.props.clearValidations();
-        this.setState(this.getInitialState());
+        event.preventDefault()
+        this.props.clearValidations()
     }
 
     renderHelpText(message) {
         return (
             <small ref='helpBlock' className="help-block">{message}</small>
-        );
+        )
     }
 
     render() {
+        const { fields: { email, password }, handleSubmit } = this.props
+
         return (
             <div>
-                <form onSubmit={this.onSubmit} className="form-horizontal">
+                <form onSubmit={handleSubmit} className="form-horizontal">
                     <div className="row">
                         <div className={this.getClasses}>
                             <label className="col-xs-4 control-label" htmlFor='email'>Email</label>
@@ -91,7 +83,9 @@ class LoginForm extends React.Component {
                                     type="email"
                                     placeholder="Obrigatório*"/>
                             </div>
-                            {this.renderHelpText(this.props.getValidationMessages('email'))}
+                            { email.touched && email.error && <small ref='helpBlock' className="help-block">
+                                { email.error }</small>
+                            }
                         </div>
                         <div className={this.getClasses}>
                             <label className="col-xs-4 control-label" htmlFor='password'>Password</label>
@@ -103,8 +97,10 @@ class LoginForm extends React.Component {
                                     type="password"
                                     placeholder="Obrigatório*"/>
                             </div>
-                            {this.renderHelpText(this.props.getValidationMessages('password'))}
-                        </div>
+                            { password.touched && password.error && <small ref='helpBlock' className="help-block">
+                                { password.error }</small>
+                            }
+                            </div>
                         <div className="text-center">
                             <button type="submit"
                                     className="btn btn-default-red-inverse">
@@ -119,8 +115,10 @@ class LoginForm extends React.Component {
     }
 }
 
-const Login = connect(null, {
-    loginUser
+export default reduxForm({
+    form: 'LoginForm',
+    fields,
+    validate
+}, null, {
+    loginUser: () => (loginUser(dispatch, credentials))
 })(LoginForm)
-
-export default validation(strategy)(Login);

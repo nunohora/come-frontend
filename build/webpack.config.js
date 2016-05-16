@@ -31,7 +31,8 @@ webpackConfig.entry = {
     app: __DEV__
         ? [APP_ENTRY_PATH, `webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`]
         : [APP_ENTRY_PATH],
-    vendor: config.compiler_vendor
+    bootstrap: 'bootstrap-loader',
+    fontAwesome: 'font-awesome-sass-loader'
 }
 
 // ------------------------------------
@@ -171,16 +172,6 @@ if (isUsingCSSModules) {
             'sass?sourceMap'
         ]
     })
-
-    webpackConfig.module.loaders.push({
-        test: /\.css$/,
-        include: cssModulesRegex,
-        loaders: [
-            'style',
-            cssModulesLoader,
-            'postcss'
-        ]
-    })
 }
 
 // Loaders for files that should not be treated as CSS modules.
@@ -233,22 +224,9 @@ webpackConfig.postcss = [
 // File loaders
 /* eslint-disable */
 webpackConfig.module.loaders.push(
-    {
-        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=application/font-woff"
-    }, {
-        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=application/font-woff"
-    }, {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=application/octet-stream"
-    }, {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file"
-    }, {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=image/svg+xml"
-    }, { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' }
+    { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+    { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+    { test: /\.(png|jpg)$/, loader: 'url?limit=8192' }
 )
 /* eslint-enable */
 

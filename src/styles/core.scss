@@ -1,7 +1,5 @@
 :global {
-    @import 'base';
-    @import 'vendor/normalize';
-    @import 'vendor/font-awesome/font-awesome';
+    @import '../../node_modules/normalize-scss/sass/normalize';
 
     // Some best-practice CSS that's useful for most apps
     // Just remove them if they're not what you want
@@ -98,5 +96,19 @@
     .row {
         margin-right: -15px;
         margin-left: -15px;
+    }
+
+    .page-content {
+        position: relative;
+        display: block;
+    }
+
+    .loader {
+        position: absolute;
+        z-index: 1000;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
     }
 }

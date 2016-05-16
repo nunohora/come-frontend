@@ -30,11 +30,11 @@ class SearchResult extends React.Component {
     }
 
     render() {
-        const props = this.props
+        const { props } = this
 
         return (
             <div className="container">
-                <Loader loaded={ props.loaded } className="spinner"></Loader>
+                <Loader loaded={ true } className="spinner"></Loader>
                 <ResultNumber number={ props.number } postcode={ props.postcode }/>
                 <div className="col-md-3">
                     <Categories categories={ props.categories } postcode={ props.postcode }/>
@@ -42,7 +42,7 @@ class SearchResult extends React.Component {
                 <RestaurantList list={ props.id ? this.filterByCategory(props.id, props.list) : props.list } />
             </div>
         )
-    }x
+    }
 }
 
 const mapStateToProps = (state, props) => ({
