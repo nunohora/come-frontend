@@ -1,6 +1,5 @@
 import React from 'react'
 import SearchPostcodeForm from 'components/SearchPostcodeForm/SearchPostcodeForm'
-import { browserHistory } from 'react-router'
 import CSSModules from 'react-css-modules'
 import styles from './Home.scss'
 
