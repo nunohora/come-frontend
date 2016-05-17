@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import slug from 'slug'
+import CSSModules from 'react-css-modules'
 import Image from './blog-post.jpg'
+import styles from './RestaurantListItem.scss'
 
-export default class RestaurantListItem extends React.Component {
+class RestaurantListItem extends React.Component {
 
     static propTypes = {
         id: PropTypes.number.isRequired,
@@ -58,7 +60,7 @@ export default class RestaurantListItem extends React.Component {
         const url = `places/${params.id}/${params.slug}`
 
         return (
-            <div className="restaurant-list">
+            <div styleName="restaurant-list-item">
                 <div className="row">
                     <div className="col-md-3">
                         <div className="restaurant-list-img">
@@ -92,3 +94,5 @@ export default class RestaurantListItem extends React.Component {
         )
     }
 }
+
+export default CSSModules(RestaurantListItem, styles)
