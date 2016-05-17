@@ -8,9 +8,8 @@ import CallToActionIcon from 'img/call-to-action-icon1.png'
 
 class Home extends React.Component {
 
-    handleSubmit(e) {
-        debugger
-        browserHistory.push(`/search/${this.props.postcode}`)
+    handleSubmit(props) {
+        this.props.history.push(`/search/${props.postcode}`)
     }
 
     render() {
