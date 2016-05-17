@@ -16,17 +16,17 @@ class RestaurantListItem extends React.Component {
 
     renderRating() {
         return (
-            <div className="rating">
-                <div className="rating-stars">
+            <div styleName="rating">
+                <span className="rating-stars">
                     <span>☆</span>
                     <span>☆</span>
                     <span>☆</span>
                     <span>☆</span>
                     <span>☆</span>
-                </div>
-                <div className="rating-number">
-                    27 Ratings
-                </div>
+                </span>
+                <span styleName="rating-number">
+                    (27)
+                </span>
             </div>
         );
     }
@@ -45,7 +45,7 @@ class RestaurantListItem extends React.Component {
 
         return (
             <p>
-                <i className="fa fa-cutlery"></i>
+                <i styleName="icon" className="fa fa-cutlery"></i>
                 { string }
             </p>
         );
@@ -63,20 +63,20 @@ class RestaurantListItem extends React.Component {
             <div styleName="restaurant-list-item">
                 <div className="row">
                     <div className="col-md-3">
-                        <div className="restaurant-list-img">
+                        <div styleName="restaurant-list-img">
                             <img className="" src={ Image } alt="" />
                         </div>
                     </div>
-                    <div className="col-md-9 restaurant-list-inner">
-                        <h4>
+                    <div className="col-md-9">
+                        <h5>
                             <Link to={ url }>
                                 {this.props.name}
                             </Link>
-                        </h4>
+                        </h5>
                         {this.renderRating()}
                         <div className="address">
                             <p>
-                                <i className="fa fa-map-marker"></i>
+                                <i styleName="icon" className="fa fa-map-marker"></i>
                                 {this.props.address}
                             </p>
                         </div>
@@ -84,8 +84,7 @@ class RestaurantListItem extends React.Component {
                             {this.renderCategories()}
                         </div>
                     </div>
-                    <Link to={ url }
-                          className="btn btn-default-red-inverse view-menu">
+                    <Link to={ url } styleName="see-menu" className="btn btn-default-red-inverse view-menu">
                         <i className="fa fa-list-ul"></i>
                         Ver Menu
                     </Link>

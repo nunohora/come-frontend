@@ -37,6 +37,11 @@
         -ms-transition: all .4s ease;
         -o-transition: all .4s ease;
         transition: all .4s ease;
+
+        &:hover {
+            text-decoration: none;
+            color: #343434;
+        }
     }
 
     h4 {
