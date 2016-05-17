@@ -1,11 +1,17 @@
 import React from 'react'
 import SearchPostcodeForm from 'components/SearchPostcodeForm/SearchPostcodeForm'
+import { browserHistory } from 'react-router'
 import CSSModules from 'react-css-modules'
 import styles from './Home.scss'
 
 import CallToActionIcon from 'img/call-to-action-icon1.png'
 
 class Home extends React.Component {
+
+    handleSubmit(e) {
+        debugger
+        browserHistory.push(`/search/${this.props.postcode}`)
+    }
 
     render() {
         return (
@@ -17,7 +23,7 @@ class Home extends React.Component {
                                 <img src={CallToActionIcon} alt="" />
                             </div>
                         </div>
-                        <SearchPostcodeForm />
+                        <SearchPostcodeForm onSubmit={this.handleSubmit.bind(this)}/>
                     </div>
                     <div styleName="home-bg">
                         <div styleName="slogan" className="container">
@@ -35,29 +41,29 @@ class Home extends React.Component {
                             <div className="col-md-3 col-sm-6 col-xs-6 text-center">
                                 <div styleName="order-step">
                                     <i className="fa fa-map-marker fa-4x"></i>
-                                    <h5>1. Diga-nos onde está</h5>
-                                    <div className="bl-sort">Só precisamos do seu código postal.</div>
+                                    <h5 className="step-title">1. Diga-nos onde está</h5>
+                                    <div styleName="bl-sort">Só precisamos do seu código postal.</div>
                                 </div>
                             </div>
                             <div className="col-md-3 col-sm-6 col-xs-6 text-center">
                                 <div styleName="order-step">
                                     <i className="fa fa-cutlery fa-4x"></i>
-                                    <h5>2. Escolha um takeaway</h5>
-                                    <div className="bl-sort">O que lhe apetece comer?</div>
+                                    <h5 className="step-title">2. Escolha um takeaway</h5>
+                                    <div styleName="bl-sort">O que lhe apetece comer?</div>
                                 </div>
                             </div>
                             <div className="col-md-3 col-sm-6 col-xs-6 text-center">
                                 <div styleName="order-step">
                                     <i className="fa fa-credit-card fa-4x"></i>
-                                    <h5>3. Dinheiro ou cartão</h5>
-                                    <div className="bl-sort">Aceitamos as duas formas de pagamento.</div>
+                                    <h5 className="step-title">3. Dinheiro ou cartão</h5>
+                                    <div styleName="bl-sort">Aceitamos as duas formas de pagamento.</div>
                                 </div>
                             </div>
                             <div className="col-md-3 col-sm-6 col-xs-6 text-center">
                                 <div styleName="order-step">
                                     <i className="fa fa-thumbs-up fa-4x"></i>
-                                    <h5>4. Já está</h5>
-                                    <div className="bl-sort">A sua comida está a caminho!</div>
+                                    <h5 className="step-title">4. Já está</h5>
+                                    <div styleName="bl-sort">A sua comida está a caminho!</div>
                                 </div>
                             </div>
                         </div>

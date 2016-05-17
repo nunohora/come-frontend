@@ -1,29 +1,17 @@
 import React, { PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
-import { browserHistory } from 'react-router'
+import formValidation from './FormValidation'
 import classnames from 'classnames'
 import CSSModules from 'react-css-modules'
 import styles from './SearchPostcodeForm.scss'
 
 const fields = ['postcode']
 
-const validate = values => {
-    const errors = {}
-
-    if (!values.postcode) {
-        errors.postcode = 'Campo Obrigatório'
-    }
-    else if (!/[0-9]{4}-[0-9]{3}/.test(values.postcode)) {
-        errors.postcode = 'Codigo postal invalido'
-    }
-
-    return errors
-}
-
 class SearchPostcodeForm extends React.Component {
 
     static propTypes = {
-        fields: PropTypes.object.isRequired
+        fields: PropTypes.object.isRequired,
+        handleSubmit: PropTypes.func.isRequired
     }
 
     constructor(props) {
@@ -34,15 +22,8 @@ class SearchPostcodeForm extends React.Component {
 
     onKeyPress(e) {
         if (e.key === 'Enter') {
-            this.props.handleSubmit(e);
+            this.props.handleSubmit(e)
         }
-    }
-
-    handleSubmit(e) {
-        e.preventDefault()
-
-        browserHistory.push(`/search/${this.props.postcode}`)
-        debugger
     }
 
     getClasses() {
@@ -60,11 +41,14 @@ class SearchPostcodeForm extends React.Component {
     renderHelpText(message) {
         return (
             <small ref='helpBlock' className="help-block">{message}</small>
-        );
+        )
     }
 
     render() {
-        const { fields: { postcode }, handleSubmit } = this.props
+        const {
+            fields: { postcode },
+            handleSubmit
+        } = this.props
 
         return (
             <div styleName="postcode-text" className="css-table">
@@ -79,12 +63,16 @@ class SearchPostcodeForm extends React.Component {
                                 ref="postcode"
                                 className="form-control"
                                 type="text"
-                                placeholder="Insira o seu codigo postal*"/>
+                                placeholder="Insira o seu codigo postal*"
+                                {...postcode} />
+
                             { postcode.touched && postcode.error && <small ref='helpBlock' className="help-block">
                                 { postcode.error }</small>
                             }
                         </div>
-                        <button styleName="submit-postcode" className="btn btn-default-red-inverse"
+                        <button styleName="submit-postcode"
+                                className="btn btn-default-red-inverse"
+                                onClick={handleSubmit}
                                 type="submit">
                             Procure um takeaway
                         </button>
@@ -95,8 +83,10 @@ class SearchPostcodeForm extends React.Component {
     }
 }
 
+const cssModules = CSSModules(SearchPostcodeForm, styles)
+
 export default reduxForm({
     form: 'SearchPostcodeForm',
     fields,
-    validate
-})(CSSModules(SearchPostcodeForm, styles))
+    validate: formValidation
+})(cssModules)

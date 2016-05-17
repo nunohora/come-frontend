@@ -62,9 +62,6 @@
     width: 100%;
     height: auto;
     background-color: #fff;
-    h6 {
-        margin: 20px 0 5px 0;
-    }
     .order-step {
         position: relative;
         width: 100%;
@@ -82,9 +79,9 @@
                 padding: 0 6px;
             }
         }
-        .bl-sort {
-            color: #999;
-            font-size: 14px;
-        }
+    }
+    .bl-sort {
+        color: #999;
+        font-size: 14px;
     }
 }

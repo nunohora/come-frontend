@@ -6,9 +6,9 @@ import restaurantList from './modules/restaurantList'
 import user from './modules/user'
 
 export default combineReducers({
-    form: formReducer,
     restaurant,
     restaurantList,
     user,
-    router
+    router,
+    form: formReducer
 })

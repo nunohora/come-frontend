@@ -1,11 +1,11 @@
 /* global Promise, dispatch */
 
-import utils from '../../utils'
+import api from 'utils/api'
 
 export const GET_REST_BY_ID = 'GET_REST_BY_ID'
 
 export function getRestById(id) {
-    Promise.all([utils.getRestaurantById(id), utils.getRestaurantProducts(id)])
+    Promise.all([api.getRestaurantById(id), api.getRestaurantProducts(id)])
         .then((place, products) => {
             dispatch({
                 type: GET_REST_BY_ID,

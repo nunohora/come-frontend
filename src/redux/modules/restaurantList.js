@@ -1,4 +1,4 @@
-import { getRestaurantsByLocation } from '../../utils'
+import { getRestaurantsByLocation } from 'utils/api'
 import _ from 'underscore'
 import update from 'react-addons-update'
 

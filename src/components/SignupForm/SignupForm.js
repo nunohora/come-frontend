@@ -1,12 +1,12 @@
 /* global Promise */
 
-import utils from '../../utils'
+import api from 'utils/api'
 
 export const USER_LOGIN = 'USER_LOGIN'
 export const USER_LOGOUT = 'USER_LOGOUT'
 
 export function loginUser(dispatch, params) {
-    Promise(utils.loginUser(params))
+    Promise(api.loginUser(params))
         .then(response => {
             dispatch({
                 type: USER_LOGIN,
