@@ -2,6 +2,7 @@ import React from 'react'
 import SearchPostcodeForm from 'components/SearchPostcodeForm/SearchPostcodeForm'
 import CSSModules from 'react-css-modules'
 import styles from './Home.scss'
+
 import CallToActionIcon from 'img/call-to-action-icon1.png'
 
 class Home extends React.Component {
