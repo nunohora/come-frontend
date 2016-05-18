@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { showLock, login, logout } from 'redux/modules/lock'
+import { login, logout } from 'redux/modules/lock'
 import CSSModules from 'react-css-modules'
 import styles from './Header.scss'
 
@@ -12,14 +12,11 @@ class NavBar extends React.Component {
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
         login: PropTypes.func.isRequired,
-        logout: PropTypes.func.isRequired,
-        showLock: PropTypes.func.isRequired
+        logout: PropTypes.func.isRequired
     }
 
     constructor(props) {
-        super(props);
-
-        this.state = {};
+        super(props)
     }
 
     renderLoggedIn() {
@@ -42,10 +39,10 @@ class NavBar extends React.Component {
         return (
             <ul styleName="navbar-nav" className="navbar-right">
                 <li>
-                    <a onClick={this.props.showLock}>Login</a>
+                    <a onClick={this.props.login}>Login</a>
                 </li>
                 <li>
-                    <a onClick={this.props.showLock}>Signup</a>
+                    <a onClick={this.props.login}>Signup</a>
                 </li>
                 <li>
                     <Link to="/help">Ajuda</Link>
@@ -80,13 +77,13 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    profile: state.profile
+    profile: state.profile,
+    isAuthenticated: state.isAuthenticated
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-    login: (creds) => { login(dispatch, creds) },
-    logout: () => { logout(dispatch) },
-    showLock: () => { dispatch(showLock) }
+    login: () => { dispatch(login(dispatch)) },
+    logout: () => { logout(dispatch) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(NavBar, styles))

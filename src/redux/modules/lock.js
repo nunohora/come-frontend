@@ -1,7 +1,6 @@
 import Auth0Lock from 'auth0-lock'
 import update from 'react-addons-update'
 
-export const SHOW_LOCK = 'SHOW_LOCK'
 export const LOCK_SUCCESS = 'LOCK_SUCCESS'
 export const LOCK_ERROR = 'LOCK_ERROR'
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
@@ -19,20 +18,12 @@ function lockSuccess(profile, token) {
 
 function lockError(err) {
     return {
-        type: LOCK_ERROR
-    }
-}
-
-export function showLock() {
-    lock.show()
-
-    return {
-        type: SHOW_LOCK
+        type: LOCK_ERROR,
+        errorMessage: err.message
     }
 }
 
 export function login(dispatch) {
-
     return () => {
         lock.show((err, profile, token) => {
             if (err) {
@@ -70,7 +61,10 @@ export function receiveLogout() {
     }
 }
 
-const initialState = { isFetching: false, isAuthenticated: localStorage.getItem('id_token') ? true : false }
+const initialState = {
+    isFetching: false,
+    isAuthenticated: localStorage.getItem('id_token') ? true : false
+}
 
 //Reducer
 export default function reducer(state = initialState, action = {}) {

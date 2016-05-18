@@ -47,14 +47,6 @@ function setCategories(list, totalResults) {
     return cats
 }
 
-const initialState = {
-    postcode: '',
-    categories: [],
-    list: [],
-    number: 0,
-    isFetching: false
-}
-
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
@@ -80,6 +72,14 @@ const ACTION_HANDLERS = {
     }
 }
 
+
+const initialState = {
+    postcode: '',
+    categories: [],
+    list: [],
+    number: 0,
+    isFetching: false
+}
 
 // ------------------------------------
 // Reducer
