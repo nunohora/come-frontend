@@ -1,6 +1,5 @@
 /* global Promise */
 
-import api from 'utils/api'
 import update from 'react-addons-update'
 
 export const USER_LOGIN = 'USER_LOGIN'
@@ -9,6 +8,8 @@ export const USER_LOGOUT = 'USER_LOGOUT'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
 // ------------------------------------
 // Actions
@@ -86,7 +87,7 @@ export function loginUser(dispatch, creds) {
     }
 }
 
-export function logoutUser() {
+export function logoutUser(dispatch) {
     return dispatch => {
         dispatch(requestLogout)
         localStorage.removeItem('id_token')

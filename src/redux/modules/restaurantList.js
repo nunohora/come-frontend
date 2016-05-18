@@ -1,26 +1,21 @@
-import { getRestaurantsByLocation } from 'utils/api'
+import { CALL_API } from 'redux/middleware/api'
 import _ from 'underscore'
 import update from 'react-addons-update'
 
-const SEARCH_POSTCODE = 'SEARCH_POSTCODE'
-const GET_CATEGORIES = 'GET_CATEGORIES'
-const GET_RESTAURANTS = 'GET_RESTAURANTS'
-const GET_RESULT_NUMBER = 'GET_RESULT_NUMBER'
+export const SEARCH_REQUEST = 'SEARCH_REQUEST'
+export const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
+export const SEARCH_FAILURE = 'SEARCH_FAILURE'
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function getRestListByLocation(dispatch, postcode) {
-    getRestaurantsByLocation(postcode)
-        .then(response => {
-            dispatch({
-                type: SEARCH_POSTCODE,
-                data: {
-                    postcode,
-                    ...response.data
-                }
-            })
-        });
+export function getRestListByLocation(postcode) {
+    return {
+        [CALL_API]: {
+            endpoint: `search?location=${postcode}`,
+            types: [SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE]
+        }
+    }
 }
 
 function setCategories(list, totalResults) {
@@ -57,19 +52,30 @@ const initialState = {
     categories: [],
     list: [],
     number: 0,
-    loaded: false
+    isFetching: false
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-    [SEARCH_POSTCODE]: (state, data) => {
+    [SEARCH_REQUEST]: state => {
+        return update(state, {
+            isFetching: true
+        })
+    },
+    [SEARCH_SUCCESS]: (state, data) => {
         return update(state, {
             postcode: { $set: data.postcode },
             categories: { $set: setCategories(data.search, data.meta.total_results) },
             list: { $set: data.search},
-            number: { $set: data.meta.total_results }
+            number: { $set: data.meta.total_results },
+            isFetching: false
+        })
+    },
+    [SEARCH_FAILURE]: (state) => {
+        return update(state, {
+            isFetching: false
         })
     }
 }

@@ -1,25 +1,11 @@
 import React, { PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
+import formValidation from './FormValidation'
 import classnames from 'classnames'
 import Loader from 'react-loader'
-import { loginUser } from 'redux/modules/user'
+import { login } from 'redux/modules/lock'
 
 const fields = ['email', 'password']
-
-const validate = values => {
-    const errors = {}
-
-    if (!values.email) {
-        errors.email = 'Campo Obrigatório'
-    }
-    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Email inválido'
-    }
-
-    if (!values.password) {
-        errors.password = 'Campo Obrigatório'
-    }
-}
 
 class LoginForm extends React.Component {
 
@@ -38,20 +24,14 @@ class LoginForm extends React.Component {
 
     onKeyPress(e) {
         if (e.key === 'Enter') {
-            this.handleSubmit(e);
+            this.props.handleSubmit(e);
         }
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-
-        debugger
     }
 
     getClasses(field) {
         return classnames({
             'form-group': true,
-            'has-error': !this.props.isValid(field)
+            'has-error': true
         });
     }
 
@@ -118,7 +98,7 @@ class LoginForm extends React.Component {
 export default reduxForm({
     form: 'LoginForm',
     fields,
-    validate
+    validate: formValidation
 }, null, {
     loginUser: () => (loginUser(dispatch, credentials))
 })(LoginForm)

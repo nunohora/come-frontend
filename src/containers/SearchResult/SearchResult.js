@@ -9,7 +9,7 @@ import ResultNumber from 'components/ResultNumber/ResultNumber'
 class SearchResult extends React.Component {
 
     static propTypes = {
-        loaded: PropTypes.bool.isRequired,
+        isFetching: PropTypes.bool.isRequired,
         postcode: PropTypes.string.isRequired,
         id: PropTypes.number,
         categories: PropTypes.array.isRequired,
@@ -34,7 +34,7 @@ class SearchResult extends React.Component {
 
         return (
             <div className="container">
-                <Loader loaded={ true } className="spinner"></Loader>
+                <Loader loaded={ props.isFetching } className="spinner"></Loader>
                 <ResultNumber number={ props.number } postcode={ props.postcode }/>
                 <div className="col-md-3">
                     <Categories categories={ props.categories } postcode={ props.postcode }/>
@@ -46,7 +46,7 @@ class SearchResult extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-    loaded: state.loaded,
+    isFetching: state.isFetching,
     categories: state.restaurantList.categories,
     list: state.restaurantList.list,
     number: state.restaurantList.number,
@@ -54,8 +54,4 @@ const mapStateToProps = (state, props) => ({
     id: props.params.id
 })
 
-const mapDispatchToProps = (dispatch, props) => ({
-    getRestListByLocation: () => { getRestListByLocation(dispatch, props.params.location) }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResult)
+export default connect(mapStateToProps)(SearchResult)

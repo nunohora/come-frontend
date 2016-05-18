@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Modal, ModalTrigger } from 'react-bootstrap'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { logoutUser } from 'redux/modules/user'
+import { showLock, loginUser, logoutUser } from 'redux/modules/lock'
 import LoginForm from 'components/LoginForm/LoginForm'
 import SignupForm from 'components/SignupForm/SignupForm'
 import CSSModules from 'react-css-modules'
@@ -14,6 +14,7 @@ class NavBar extends React.Component {
 
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
+        loginUser: PropTypes.func.isRequired,
         logoutUser: PropTypes.func.isRequired
     }
 
@@ -32,6 +33,16 @@ class NavBar extends React.Component {
         })
     }
 
+    handleLogin(props) {
+        debugger;
+        this.props.login()
+    }
+
+    handleLogout(props) {
+        debugger;
+        this.props.logout();
+    }
+
     openLogin() {
         this.setState({ showLoginModal: true })
     }
@@ -48,7 +59,7 @@ class NavBar extends React.Component {
                         <Modal.Title>Login</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <LoginForm />
+                        <LoginForm onSubmit={this.handleLogin.bind(this)}/>
                     </Modal.Body>
                 </Modal>
                 <Modal show={this.state.showSignupModal} onHide={this.close}>
@@ -62,13 +73,13 @@ class NavBar extends React.Component {
         return (
             <ul styleName="navbar-nav" className="navbar-right">
                 <li>
-                    <a>Olá {this.props.username}</a>
+                    <a>Olá {this.props.profile}</a>
                 </li>
                 <li>
                     <a>A minha conta</a>
                 </li>
                 <li>
-                    <a onClick={this.onLogoutClick}>Logout</a>
+                    <a onClick={this.handleLogout.bind(this)}>Logout</a>
                 </li>
             </ul>
         )
@@ -117,9 +128,10 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    username: state.username
+    profile: state.profile
 })
 
 export default connect((mapStateToProps), {
+    loginUser,
     logoutUser
 })(CSSModules(NavBar, styles))
