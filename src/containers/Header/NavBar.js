@@ -13,7 +13,7 @@ import headerLogo from 'img/header-logo.png'
 class NavBar extends React.Component {
 
     static propTypes = {
-        username: PropTypes.string,
+        isAuthenticated: PropTypes.bool.isRequired,
         logoutUser: PropTypes.func.isRequired
     }
 
@@ -91,7 +91,9 @@ class NavBar extends React.Component {
     }
 
     render() {
-        const renderNav = this.props.username ? this.renderLoggedIn.bind(this) : this.renderLoggedOut.bind(this);
+        const { isAuthenticated } = this.props
+
+        const renderNav = isAuthenticated ? this.renderLoggedIn.bind(this) : this.renderLoggedOut.bind(this);
 
         return (
             <div styleName="header-nav-bar">

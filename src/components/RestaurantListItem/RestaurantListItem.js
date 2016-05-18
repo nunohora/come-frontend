@@ -85,7 +85,7 @@ class RestaurantListItem extends React.Component {
                         </div>
                     </div>
                     <Link to={ url } styleName="see-menu" className="btn btn-default-red-inverse view-menu">
-                        <i className="fa fa-list-ul"></i>
+                        <i styleName="icon" className="fa fa-list-ul"></i>
                         Ver Menu
                     </Link>
                 </div>

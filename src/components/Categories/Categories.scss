@@ -26,14 +26,30 @@
     .list-item {
         width: 100%;
         height: auto;
-        padding: 15px 0;
+        padding: 0;
         border-top: 1px solid #ccc;
         position: relative;
-        line-height: 5px;
+        line-height: 24px;
         color: #323430;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        a {
+            display: block;
+            height: 30px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     }
 
     .list-item:first-child {
         border-top: none;
+    }
+
+    .tag {
+        float: right;
     }
 }
