@@ -1,10 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Modal, ModalTrigger } from 'react-bootstrap'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { showLock, loginUser, logoutUser } from 'redux/modules/lock'
-import LoginForm from 'components/LoginForm/LoginForm'
-import SignupForm from 'components/SignupForm/SignupForm'
+import { showLock, login, logout } from 'redux/modules/lock'
 import CSSModules from 'react-css-modules'
 import styles from './Header.scss'
 
@@ -14,59 +11,15 @@ class NavBar extends React.Component {
 
     static propTypes = {
         isAuthenticated: PropTypes.bool.isRequired,
-        loginUser: PropTypes.func.isRequired,
-        logoutUser: PropTypes.func.isRequired
+        login: PropTypes.func.isRequired,
+        logout: PropTypes.func.isRequired,
+        showLock: PropTypes.func.isRequired
     }
 
     constructor(props) {
         super(props);
-        this.renderModals = this.renderModals.bind(this);
-        this.close = this.close.bind(this);
 
         this.state = {};
-    }
-
-    close() {
-        this.setState({
-            showSignupModal: false,
-            showLoginModal: false
-        })
-    }
-
-    handleLogin(props) {
-        debugger;
-        this.props.login()
-    }
-
-    handleLogout(props) {
-        debugger;
-        this.props.logout();
-    }
-
-    openLogin() {
-        this.setState({ showLoginModal: true })
-    }
-
-    openSignup() {
-        this.setState({ showSignupModal: true })
-    }
-
-    renderModals() {
-        return (
-            <div>
-                <Modal show={this.state.showLoginModal} onHide={this.close}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Login</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <LoginForm onSubmit={this.handleLogin.bind(this)}/>
-                    </Modal.Body>
-                </Modal>
-                <Modal show={this.state.showSignupModal} onHide={this.close}>
-                    <SignupForm />
-                </Modal>
-            </div>
-        )
     }
 
     renderLoggedIn() {
@@ -79,7 +32,7 @@ class NavBar extends React.Component {
                     <a>A minha conta</a>
                 </li>
                 <li>
-                    <a onClick={this.handleLogout.bind(this)}>Logout</a>
+                    <a onClick={this.props.logout}>Logout</a>
                 </li>
             </ul>
         )
@@ -89,10 +42,10 @@ class NavBar extends React.Component {
         return (
             <ul styleName="navbar-nav" className="navbar-right">
                 <li>
-                    <a onClick={this.openLogin.bind(this)}>Login</a>
+                    <a onClick={this.props.showLock}>Login</a>
                 </li>
                 <li>
-                    <a onClick={this.openSignup.bind(this)}>Signup</a>
+                    <a onClick={this.props.showLock}>Signup</a>
                 </li>
                 <li>
                     <Link to="/help">Ajuda</Link>
@@ -121,7 +74,6 @@ class NavBar extends React.Component {
                         </div>
                     </div>
                 </nav>
-                {this.renderModals()}
             </div>
         )
     }
@@ -131,7 +83,10 @@ const mapStateToProps = (state) => ({
     profile: state.profile
 })
 
-export default connect((mapStateToProps), {
-    loginUser,
-    logoutUser
-})(CSSModules(NavBar, styles))
+const mapDispatchToProps = (dispatch, props) => ({
+    login: (creds) => { login(dispatch, creds) },
+    logout: () => { logout(dispatch) },
+    showLock: () => { dispatch(showLock) }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(NavBar, styles))

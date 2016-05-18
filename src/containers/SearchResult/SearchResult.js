@@ -9,6 +9,7 @@ import ResultNumber from 'components/ResultNumber/ResultNumber'
 class SearchResult extends React.Component {
 
     static propTypes = {
+        getRestListByLocation: PropTypes.func.isRequired,
         isFetching: PropTypes.bool.isRequired,
         postcode: PropTypes.string.isRequired,
         id: PropTypes.number,
@@ -54,4 +55,8 @@ const mapStateToProps = (state, props) => ({
     id: props.params.id
 })
 
-export default connect(mapStateToProps)(SearchResult)
+const mapDispatchToProps= (dispatch) => ({
+    getRestListByLocation: (props) => { dispatch(getRestListByLocation(props)) }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult)
