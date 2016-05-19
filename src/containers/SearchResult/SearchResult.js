@@ -33,9 +33,11 @@ class SearchResult extends React.Component {
     render() {
         const { props } = this
 
+        console.log(props.isFetching)
+
         return (
             <div className="container">
-                <Loader loaded={ props.isFetching } className="spinner"></Loader>
+                <Loader loaded={ !props.isFetching } className="spinner"></Loader>
                 <ResultNumber number={ props.number } postcode={ props.postcode }/>
                 <div className="col-md-3">
                     <Categories categories={ props.categories } postcode={ props.postcode }/>
@@ -47,7 +49,7 @@ class SearchResult extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-    isFetching: state.isFetching,
+    isFetching: state.restaurantList.isFetching,
     categories: state.restaurantList.categories,
     list: state.restaurantList.list,
     number: state.restaurantList.number,
