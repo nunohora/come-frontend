@@ -45,10 +45,7 @@ class SearchPostcodeForm extends React.Component {
     }
 
     render() {
-        const {
-            fields: { postcode },
-            handleSubmit
-        } = this.props
+        const { fields: { postcode }, handleSubmit } = this.props
 
         return (
             <div styleName="postcode-text" className="css-table">

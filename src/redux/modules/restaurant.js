@@ -1,10 +1,13 @@
-/* global Promise, dispatch */
+import { CALL_API } from 'redux/middleware/api'
 
-import api from 'redux/utils/api'
+export const GET_DETAILS_REQUEST = 'GET_DETAILS_REQUEST'
+export const GET_DETAILS_SUCCESS = 'GET_DETAILS_SUCCESS'
+export const GET_DETAILS_FAILURE = 'GET_DETAILS_FAILURE'
 
-export const GET_REST_BY_ID = 'GET_REST_BY_ID'
-
-export function getRestById(id) {
+// ------------------------------------
+// Actions
+// ------------------------------------
+export function getRestaurantDetails(id) {
     Promise.all([api.getRestaurantById(id), api.getRestaurantProducts(id)])
         .then((place, products) => {
             dispatch({
@@ -22,20 +25,37 @@ export const actions = {
     getRestById
 }
 
-//Reducer
-const initialState = {
-    place: {},
-    products: [],
-    meta: {}
+// ------------------------------------
+// Action Handlers
+// ------------------------------------
+const ACTION_HANDLERS = {
+    [GET_DETAILS_REQUEST]: (state, data) => {
+        return Object.assign({}, state, {
+            isFetching: true
+        })
+    },
+    [GET_DETAILS_SUCCESS]: (state, data) => {
+        return Object.assign({}, state, {
+            isFetching: false
+        })
+    },
+    [GET_DETAILS_FAILURE]: (state) => {
+        return Object.assign({}, state, {
+            isFetching: false
+        })
+    }
 }
 
-export default function restaurantReducer(state = initialState, action = {}) {
-    switch (action.type) {
-        case GET_REST_BY_ID:
-            return {
-                ...state
-            }
-        default:
-            return state
-    }
+
+const initialState = {
+    isFetching: false
+}
+
+// ------------------------------------
+// Reducer
+// ------------------------------------
+export default function restaurantListReducer(state = initialState, action = {}) {
+    const handler = ACTION_HANDLERS[action.type]
+
+    return handler ? handler(state, action) : state
 }

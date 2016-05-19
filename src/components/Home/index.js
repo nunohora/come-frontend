@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchPostcodeForm from 'components/SearchPostcodeForm/SearchPostcodeForm'
+import SearchPostcodeForm from 'components/SearchPostcodeForm'
 import CSSModules from 'react-css-modules'
 import styles from './Home.scss'
 

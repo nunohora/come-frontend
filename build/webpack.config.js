@@ -31,9 +31,9 @@ webpackConfig.entry = {
     app: __DEV__
         ? [APP_ENTRY_PATH, `webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`]
         : [APP_ENTRY_PATH],
+    normalize: 'normalize-scss',
     bootstrap: 'bootstrap-loader',
-    fontAwesome: 'font-awesome-sass-loader',
-    normalize: 'normalize-scss'
+    fontAwesome: 'font-awesome-sass-loader'
 }
 
 // ------------------------------------

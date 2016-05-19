@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { getRestaurantDetails } from 'redux/modules/restaurant'
 import Loader from 'react-loader'
-import MenuCategories from 'components/MenuCategories/MenuCategories'
-import RestaurantInfo from 'components/RestInfo/RestInfo'
-import RestaurantReviews from 'components/RestReviews/RestReviews'
-import RestaurantMenu from 'components/RestMenu/RestMenu'
+import MenuCategories from 'components/MenuCategories'
+import RestaurantInfo from 'components/RestInfo'
+import RestaurantReviews from 'components/RestReviews'
+import RestaurantMenu from 'components/RestMenu'
 
 class Restaurant extends React.Component {
 
@@ -14,7 +14,7 @@ class Restaurant extends React.Component {
     }
 
     componentWillMount() {
-        this.props.getRestaurantDetails(this.props.postcode)
+        this.props.getRestaurantDetails(this.props.id)
     }
 
     render() {
@@ -37,7 +37,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps= (dispatch) => ({
-    getRestListByLocation: (props) => { getRestListByLocation(dispatch, props) }
+    getRestaurantDetails: (id) => { getRestaurantDetails(dispatch, id) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Restaurant)
