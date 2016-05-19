@@ -9,7 +9,6 @@ import CoreLayout from 'layouts/CoreLayout/CoreLayout'
 import Home from 'components/Home/Home'
 import SearchResult from 'containers/SearchResult/SearchResult'
 import Help from 'containers/Help/Help'
-import Login from 'containers/Login/Login'
 import Signup from 'containers/Signup/Signup'
 import Restaurant from 'containers/Restaurant/Restaurant'
 import NotFound from 'containers/NotFound/NotFound'
@@ -21,7 +20,6 @@ export default (store) => (
         <Route component={ SearchResult } path='/search/:location/:id' />
         <Route component={ SearchResult } path='/search/:location/:id/:category' />
         <Route component={ Help } path='/help' />
-        <Route component={ Login } path='/login' />
         <Route component={ Signup } path='/signup' />
         <Route component={ Restaurant } path='/places/:id/:slug' />
         <Route component={ NotFound } path='*' />

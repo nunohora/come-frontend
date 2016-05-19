@@ -1,5 +1,4 @@
 import Auth0Lock from 'auth0-lock'
-import update from 'react-addons-update'
 
 export const LOCK_SUCCESS = 'LOCK_SUCCESS'
 export const LOCK_ERROR = 'LOCK_ERROR'
@@ -61,38 +60,49 @@ export function receiveLogout() {
     }
 }
 
+// ------------------------------------
+// Action Handlers
+// ------------------------------------
+const ACTION_HANDLERS = {
+    [LOCK_SUCCESS]: (state, data) => {
+        return Object.assign({}, state, {
+            isFetching: false,
+            isAuthenticated: true,
+            profile: data.profile,
+            errorMessage: ''
+        })
+    },
+    [LOCK_ERROR]: (state, data) => {
+        return Object.assign({}, state, {
+            isFetching: false,
+            isAuthenticated: false,
+            errorMessage: data.message
+        })
+    },
+    [LOGOUT_REQUEST]: (state) => {
+        return Object.assign({}, state, {
+            isFetching: false,
+            isAuthenticated: true
+        })
+    },
+    [LOGOUT_SUCCESS]: (state) => {
+        return Object.assign({}, state, {
+            isFetching: true,
+            isAuthenticated: false
+        })
+    }
+}
+
 const initialState = {
     isFetching: false,
     isAuthenticated: localStorage.getItem('id_token') ? true : false
 }
 
-//Reducer
-export default function reducer(state = initialState, action = {}) {
-    switch(action.type) {
-        case LOCK_SUCCESS:
-            return update(state, {
-                isFetching: false,
-                isAuthenticated: true,
-                profile: action.profile,
-                errorMessage: ''
-            })
-        case LOCK_ERROR:
-            return update(state, {
-                isFetching: false,
-                isAuthenticated: false,
-                errorMessage: action.message
-            })
-        case LOGOUT_REQUEST:
-            return update(state, {
-                isFetching: false,
-                isAuthenticated: true
-            })
-        case LOGOUT_SUCCESS:
-            return update(state, {
-                isFetching: true,
-                isAuthenticated: false
-            })
-        default:
-            return state
-    }
+// ------------------------------------
+// Reducer
+// ------------------------------------
+export default function lockReducer(state = initialState, action = {}) {
+    const handler = ACTION_HANDLERS[action.type]
+
+    return handler ? handler(state, action) : state
 }
