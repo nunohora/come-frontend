@@ -56,7 +56,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps= (dispatch) => ({
-    getRestListByLocation: (props) => { dispatch(getRestListByLocation(props)) }
+    getRestListByLocation: (props) => { getRestListByLocation(dispatch, props) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResult)
