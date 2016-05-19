@@ -95,7 +95,8 @@ const ACTION_HANDLERS = {
 
 const initialState = {
     isFetching: false,
-    isAuthenticated: localStorage.getItem('id_token') ? true : false
+    isAuthenticated: localStorage.getItem('id_token') ? true : false,
+    profile: {}
 }
 
 // ------------------------------------

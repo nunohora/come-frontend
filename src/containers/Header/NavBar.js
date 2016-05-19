@@ -10,6 +10,7 @@ import headerLogo from 'img/header-logo.png'
 class NavBar extends React.Component {
 
     static propTypes = {
+        nickname: PropTypes.string.isRequired,
         isAuthenticated: PropTypes.bool.isRequired,
         login: PropTypes.func.isRequired,
         logout: PropTypes.func.isRequired
@@ -20,10 +21,12 @@ class NavBar extends React.Component {
     }
 
     renderLoggedIn() {
+        debugger
+
         return (
             <ul styleName="navbar-nav" className="navbar-right">
                 <li>
-                    <a>Olá {this.props.profile}</a>
+                    <a>Olá {this.props.nickname}</a>
                 </li>
                 <li>
                     <a>A minha conta</a>
@@ -77,8 +80,8 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    profile: state.profile,
-    isAuthenticated: state.isAuthenticated
+    nickname: state.user.profile.nickname,
+    isAuthenticated: state.user.isAuthenticated
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
