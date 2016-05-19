@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import RestaurantListItem from 'components/RestaurantListItem/RestaurantListItem'
+import RestaurantListItem from 'components/RestListItem/RestListItem'
 
 export default class RestaurantList extends React.Component {
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import slug from 'slug'
 import CSSModules from 'react-css-modules'
 import Image from './blog-post.jpg'
-import styles from './RestaurantListItem.scss'
+import styles from './RestListItem.scss'
 
 class RestaurantListItem extends React.Component {
 

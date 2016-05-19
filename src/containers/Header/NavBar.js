@@ -10,7 +10,7 @@ import headerLogo from 'img/header-logo.png'
 class NavBar extends React.Component {
 
     static propTypes = {
-        nickname: PropTypes.string.isRequired,
+        nickname: PropTypes.string,
         isAuthenticated: PropTypes.bool.isRequired,
         login: PropTypes.func.isRequired,
         logout: PropTypes.func.isRequired
@@ -21,8 +21,6 @@ class NavBar extends React.Component {
     }
 
     renderLoggedIn() {
-        debugger
-
         return (
             <ul styleName="navbar-nav" className="navbar-right">
                 <li>
