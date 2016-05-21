@@ -57,7 +57,7 @@ class RestaurantListItem extends React.Component {
             slug: slug(this.props.name, {lower: true})
         };
 
-        const url = `places/${params.id}/${params.slug}`
+        const url = `/places/${params.id}/${params.slug}`
 
         return (
             <div styleName="restaurant-list-item">
