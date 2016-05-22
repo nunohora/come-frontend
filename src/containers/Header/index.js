@@ -1,7 +1,7 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import NavBar from './NavBar'
-import styles from './Header.scss'
+import styles from './styles.scss'
 
 class Header extends React.Component {
     render() {

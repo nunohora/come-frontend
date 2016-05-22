@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import slug from 'slug'
 import CSSModules from 'react-css-modules'
-import styles from './Categories.scss'
+import styles from './styles.scss'
 
 class Categories extends React.Component {
 

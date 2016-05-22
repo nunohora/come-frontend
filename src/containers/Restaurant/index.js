@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { getRestaurant } from 'redux/modules/restaurant'
 import Loader from 'react-loader'
 import MenuCategories from 'components/MenuCategories'
-import RestaurantInfo from 'components/RestInfo'
-import RestaurantReviews from 'components/RestReviews'
 import RestaurantMenu from 'components/RestMenu'
 
 class Restaurant extends React.Component {
@@ -27,9 +25,9 @@ class Restaurant extends React.Component {
             <div className="container">
                 <Loader loaded={!props.isFetching} className="spinner"></Loader>
                 <div className="col-md-3">
-                    <MenuCategories />
+                    <MenuCategories categories={props.menuCategories} />
                 </div>
-                <RestaurantMenu />
+                <RestaurantMenu list={props.productList} />
             </div>
         )
     }
@@ -37,8 +35,9 @@ class Restaurant extends React.Component {
 
 const mapStateToProps = (state, props) => ({
     isFetching: state.restaurant.isFetching,
-    menuCategories: state.restaurant.categories,
+    menuCategories: state.restaurant.menuCategories,
     productList: state.restaurant.productList,
+    meta: state.restaurant.meta,
     id: props.params.id
 })
 

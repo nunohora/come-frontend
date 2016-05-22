@@ -27,7 +27,10 @@ export function getRestaurant(dispatch, id) {
         dispatch({
             type: GET_RESTAURANT_SUCCESS,
             isFetching: true,
-            meta: data[0].response.meta,
+            meta: {
+                ...data[0].response.meta,
+                ...data[0].response.place
+            },
             products: data[1].response.products
         })
     }).catch(() => {
@@ -71,11 +74,11 @@ const ACTION_HANDLERS = {
         return Object.assign({}, state, {
             isFetching: false,
             meta: data.meta,
-            productList: data.products
+            productList: data.products,
+            menuCategories: [1, 2]
         })
     },
     [GET_RESTAURANT_FAILURE]: state => {
-        debugger
         return Object.assign({}, state, {
             isFetching: false
         })
@@ -84,9 +87,9 @@ const ACTION_HANDLERS = {
 
 
 const initialState = {
-    categories: [],
-    menuCategories: [],
+    meta: {},
     productList: [],
+    menuCategories: [],
     isFetching: false
 }
 

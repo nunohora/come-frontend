@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './Footer.scss'
+import classes from './styles.scss'
 
 import HeaderLogo from 'img/header-logo.png'
 

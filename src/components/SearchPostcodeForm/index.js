@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form'
 import formValidation from './FormValidation'
 import classnames from 'classnames'
 import CSSModules from 'react-css-modules'
-import styles from './SearchPostcodeForm.scss'
+import styles from './styles.scss'
 
 const fields = ['postcode']
 

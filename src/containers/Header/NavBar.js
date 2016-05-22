@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { login, logout } from 'redux/modules/lock'
 import CSSModules from 'react-css-modules'
-import styles from './Header.scss'
+import styles from './styles.scss'
 
 import headerLogo from 'img/header-logo.png'
 
