@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import slug from 'slug'
-import CSSModules from 'react-css-modules'
-import styles from './styles.scss'
 
-class Categories extends React.Component {
+export default class Categories extends React.Component {
 
     static propTypes = {
         categories: PropTypes.array.isRequired,
@@ -19,15 +17,15 @@ class Categories extends React.Component {
             rep += `/${id}/${slug(name, {lower: true})}`
         }
 
-        return rep;
+        return rep
     }
 
     renderCategory(category) {
         return (
-            <li styleName="list-item" key={category.id}>
+            <li className="list-item" key={category.id}>
                 <Link to={this.buildUrl(category)}>
                     {category.name}
-                    <span styleName='tag'>{category.number}</span>
+                    <span className='tag'>{category.number}</span>
                 </Link>
             </li>
         )
@@ -35,16 +33,14 @@ class Categories extends React.Component {
 
     render() {
         return (
-            <div styleName="side-panel">
-                <h6 styleName="title">Categorias</h6>
-                <div styleName="categories">
+            <div className="side-panel">
+                <h6 className="title">Categorias</h6>
+                <div className="categories">
                     <ul className="list-unstyled">
                         { this.props.categories.map(category => ( this.renderCategory(category) )) }
                     </ul>
                 </div>
             </div>
-        );
+        )
     }
 }
-
-export default CSSModules(Categories, styles)

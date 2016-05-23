@@ -41,7 +41,7 @@ class Restaurant extends React.Component {
                 <div className="col-md-3">
                     <MenuCategories categories={props.menuCategories} />
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-9">
                     <RestaurantHeader meta={props.meta} />
                     <RestaurantMenu list={props.productList} />
                 </div>

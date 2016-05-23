@@ -9,7 +9,7 @@ export default class ResultNumber extends React.Component {
 
     render() {
         return (
-            <div className="col-md-10">
+            <div className="col-md-12">
                 <h5>{this.props.number} resultados para {this.props.postcode}</h5>
             </div>
         );

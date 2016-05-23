@@ -26,9 +26,6 @@ export default (store) => (
             <Route component={ Restaurant } path="reviews" />
             <Route component={ Restaurant } path="info" />
         </Route>
-        <Route component={ Restaurant } path='/places/:id/:slug/menu' />
-        <Route component={ Restaurant } path='/places/:id/:slug/reviews' />
-        <Route component={ Restaurant } path='/places/:id/:slug/info' />
         <Route component={ NotFound } path='*' />
     </Route>
 )
