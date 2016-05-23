@@ -16,7 +16,7 @@ class Restaurant extends React.Component {
         meta: PropTypes.object.isRequired,
         productList: PropTypes.array.isRequired,
         id: PropTypes.string.isRequired,
-        page: PropTypes.string.isRequired
+        path: PropTypes.string.isRequired
     }
 
     componentWillMount() {
@@ -25,13 +25,14 @@ class Restaurant extends React.Component {
 
     renderClasses(name) {
         return classnames({
-            'active': name === this.props.route.path
+            'active': name === this.props.path
         })
     }
 
     render() {
         const { props } = this
 
+        console.log(props)
         return (
             <div className="container">
                 <Loader loaded={!props.isFetching} className="spinner"></Loader>
@@ -39,6 +40,7 @@ class Restaurant extends React.Component {
                     <MenuCategories categories={props.menuCategories} />
                 </div>
                 <div className="col-md-6">
+                    <RestaurantHeader meta={props.meta} />
                     <ul className="nav nav-tabs" role="tablist">
                         <li className={this.renderClasses('menu')} >
                             <Link to="menu" role="tab">Menu</Link>
@@ -50,7 +52,6 @@ class Restaurant extends React.Component {
                             <Link to="info" role="tab">Informação</Link>
                         </li>
                     </ul>
-                    <RestaurantHeader meta={props.meta} />
                     <RestaurantMenu list={props.productList} />
                 </div>
             </div>
@@ -63,7 +64,8 @@ const mapStateToProps = (state, props) => ({
     menuCategories: state.restaurant.menuCategories,
     productList: state.restaurant.productList,
     meta: state.restaurant.meta,
-    id: props.params.id
+    id: props.params.id,
+    path: props.route.path
 })
 
 const mapDispatchToProps= (dispatch) => ({

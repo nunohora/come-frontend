@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import slug from 'slug'
 import CSSModules from 'react-css-modules'
-import Image from './blog-post.jpg'
+import Image from 'img/blog-post.jpg'
 import styles from './styles.scss'
 
 class RestaurantListItem extends React.Component {
@@ -31,8 +31,7 @@ class RestaurantListItem extends React.Component {
         );
     }
 
-    renderCategories() {
-        const categories = this.props.categories
+    renderCategories(categories = []) {
         let string = ''
 
         categories.forEach(category => {
@@ -81,7 +80,7 @@ class RestaurantListItem extends React.Component {
                             </p>
                         </div>
                         <div className="tag-list">
-                            {this.renderCategories()}
+                            {this.renderCategories(this.props.categories)}
                         </div>
                     </div>
                     <Link to={ url } styleName="see-menu" className="btn btn-default-red-inverse view-menu">
