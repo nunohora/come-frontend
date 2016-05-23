@@ -29,13 +29,13 @@ class Restaurant extends React.Component {
                 <Loader loaded={!props.isFetching} className="spinner"></Loader>
                 <ul className="nav nav-tabs" role="tablist">
                     <li className="active">
-                        <Link role="tab">Menu</Link>
+                        <Link to="menu" role="tab">Menu</Link>
                     </li>
                     <li className="">
-                        <Link role="tab">Reviews</Link>
+                        <Link to="reviews" role="tab">Reviews</Link>
                     </li>
                     <li className="">
-                        <Link role="tab">Info</Link>
+                        <Link to="info" role="tab">Info</Link>
                     </li>
                 </ul>
                 <div className="col-md-3">

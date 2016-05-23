@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, IndexRoute, Redirect } from 'react-router'
+import { Route, IndexRoute, IndexRedirect } from 'react-router'
 
 // NOTE: here we're making use of the `resolve.root` configuration
 // option in webpack, which allows us to specify import paths as if
@@ -20,10 +20,15 @@ export default (store) => (
         <Route component={ SearchResult } path='/search/:location/:id' />
         <Route component={ SearchResult } path='/search/:location/:id/:category' />
         <Route component={ Help } path='/help' />
+        <Route path='/places/:id/:slug'>
+            <IndexRedirect to="menu" />
+            <Route component={ Restaurant } path="menu" />
+            <Route component={ Restaurant } path="reviews" />
+            <Route component={ Restaurant } path="info" />
+        </Route>
         <Route component={ Restaurant } path='/places/:id/:slug/menu' />
         <Route component={ Restaurant } path='/places/:id/:slug/reviews' />
         <Route component={ Restaurant } path='/places/:id/:slug/info' />
-        <Redirect from="/places/:id/:slug" to="/places/:id/:slug/menu" />
         <Route component={ NotFound } path='*' />
     </Route>
 )
