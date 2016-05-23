@@ -23,7 +23,7 @@ class RestaurantHeader extends React.Component {
                     (27)
                 </span>
             </div>
-        );
+        )
     }
 
     renderCategories(categories = []) {
@@ -42,7 +42,7 @@ class RestaurantHeader extends React.Component {
                 <i styleName="icon" className="fa fa-cutlery"></i>
                 { string }
             </p>
-        );
+        )
     }
 
     render() {
