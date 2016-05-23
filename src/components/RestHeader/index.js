@@ -8,9 +8,7 @@ export default class RestaurantHeader extends React.Component {
 
     render() {
         return (
-            <div className="col-md-9">
-                <div></div>
-            </div>
+            <div></div>
         )
     }
 }

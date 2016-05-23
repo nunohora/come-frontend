@@ -8,15 +8,15 @@ export default class MenuCategories extends React.Component {
 
     render() {
         return (
-            <div styleName="side-panel">
-                <h6 styleName="title">Categorias</h6>
-                <div styleName="categories">
+            <div className="side-panel">
+                <h6 className="title">Categorias</h6>
+                <div className="categories">
                     <ul className="list-unstyled">
-                        {
-                            this.props.categories.map(category => {
-                                return <li styleName="list-item">{category.name}</li>
-                            })
-                        }
+                        <li className="list-item">Entradas</li>
+                        <li className="list-item">Carne</li>
+                        <li className="list-item">Peixe</li>
+                        <li className="list-item">Sobremesas</li>
+                        <li className="list-item">Bebidas</li>
                     </ul>
                 </div>
             </div>

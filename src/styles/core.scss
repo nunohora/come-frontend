@@ -175,4 +175,14 @@
             float: right;
         }
     }
+
+    .nav-tabs {
+        border-bottom: 3px solid #e00000;
+
+        li.active a {
+            background: #e00000;
+            color: #fff;
+            border: 1px solid #e00000;
+        }
+    }
 }

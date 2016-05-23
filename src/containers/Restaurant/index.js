@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import classnames from 'classnames'
 import { getRestaurant } from 'redux/modules/restaurant'
 import Loader from 'react-loader'
 import MenuCategories from 'components/MenuCategories'
@@ -14,11 +15,18 @@ class Restaurant extends React.Component {
         menuCategories: PropTypes.array.isRequired,
         meta: PropTypes.object.isRequired,
         productList: PropTypes.array.isRequired,
-        id: PropTypes.string.isRequired
+        id: PropTypes.string.isRequired,
+        page: PropTypes.string.isRequired
     }
 
     componentWillMount() {
         this.props.getRestaurant(this.props.id)
+    }
+
+    renderClasses(name) {
+        return classnames({
+            'active': name === this.props.route.path
+        })
     }
 
     render() {
@@ -27,21 +35,21 @@ class Restaurant extends React.Component {
         return (
             <div className="container">
                 <Loader loaded={!props.isFetching} className="spinner"></Loader>
-                <ul className="nav nav-tabs" role="tablist">
-                    <li className="active">
-                        <Link to="menu" role="tab">Menu</Link>
-                    </li>
-                    <li className="">
-                        <Link to="reviews" role="tab">Reviews</Link>
-                    </li>
-                    <li className="">
-                        <Link to="info" role="tab">Info</Link>
-                    </li>
-                </ul>
                 <div className="col-md-3">
                     <MenuCategories categories={props.menuCategories} />
                 </div>
-                <div className="col-md-9">
+                <div className="col-md-6">
+                    <ul className="nav nav-tabs" role="tablist">
+                        <li className={this.renderClasses('menu')} >
+                            <Link to="menu" role="tab">Menu</Link>
+                        </li>
+                        <li className={this.renderClasses('reviews')}>
+                            <Link to="reviews" role="tab">Reviews</Link>
+                        </li>
+                        <li className={this.renderClasses('info')}>
+                            <Link to="info" role="tab">Informação</Link>
+                        </li>
+                    </ul>
                     <RestaurantHeader meta={props.meta} />
                     <RestaurantMenu list={props.productList} />
                 </div>
