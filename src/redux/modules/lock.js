@@ -39,6 +39,7 @@ export function login(dispatch) {
 export function logout(dispatch) {
     dispatch(requestLogout)
     localStorage.removeItem('id_token')
+    localStorage.removeItem('profile')
     dispatch(receiveLogout())
 }
 
@@ -94,7 +95,7 @@ const ACTION_HANDLERS = {
 const initialState = {
     isFetching: false,
     isAuthenticated: localStorage.getItem('id_token') ? true : false,
-    profile: {}
+    profile: localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : {},
 }
 
 // ------------------------------------
