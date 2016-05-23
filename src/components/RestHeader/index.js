@@ -1,6 +1,10 @@
 import React, { PropTypes } from 'react'
 
-export default class RestaurantMenu extends React.Component {
+export default class RestaurantHeader extends React.Component {
+
+    static propTypes = {
+        meta: PropTypes.object.isRequired
+    }
 
     render() {
         return (

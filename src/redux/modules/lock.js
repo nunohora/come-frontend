@@ -37,11 +37,9 @@ export function login(dispatch) {
 }
 
 export function logout(dispatch) {
-    return dispatch => {
-        dispatch(requestLogout)
-        localStorage.removeItem('id_token')
-        dispatch(receiveLogout())
-    }
+    dispatch(requestLogout)
+    localStorage.removeItem('id_token')
+    dispatch(receiveLogout())
 }
 
 export function requestLogout() {

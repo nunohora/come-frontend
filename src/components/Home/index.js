@@ -7,8 +7,12 @@ import CallToActionIcon from 'img/call-to-action-icon1.png'
 
 class Home extends React.Component {
 
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
+    }
+
     handleSubmit(props) {
-        this.props.history.push(`/search/${props.postcode}`)
+        this.context.router.push(`/search/${props.postcode}`)
     }
 
     render() {

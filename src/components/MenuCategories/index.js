@@ -14,7 +14,7 @@ export default class MenuCategories extends React.Component {
                     <ul className="list-unstyled">
                         {
                             this.props.categories.map(category => {
-                                return <li styleName="list-item" key={category.id}>{category.name}</li>
+                                return <li styleName="list-item">{category.name}</li>
                             })
                         }
                     </ul>
