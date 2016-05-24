@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { getRestListByLocation } from 'redux/modules/restaurantList'
+import { modules } from '@come/redux-store'
 import Loader from 'react-loader'
 import RestaurantList from 'components/RestList'
 import Categories from 'components/Categories'
 import ResultNumber from 'components/ResultNumber'
+
+const { getRestListByLocation } = modules.restaurantList
 
 class SearchResult extends React.Component {
 

@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import RestMenuItem from 'components/RestMenuItem'
+import styles from './styles.scss'
 
-export default class RestaurantMenu extends React.Component {
+class RestaurantMenu extends React.Component {
 
     static propTypes = {
         list: PropTypes.array.isRequired
@@ -24,3 +25,5 @@ export default class RestaurantMenu extends React.Component {
         )
     }
 }
+
+export default CSSModules(RestaurantMenu, styles)

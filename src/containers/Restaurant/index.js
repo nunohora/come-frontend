@@ -2,11 +2,13 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
-import { getRestaurant } from 'redux/modules/restaurant'
+import { modules } from '@come/redux-store'
 import Loader from 'react-loader'
 import MenuCategories from 'components/MenuCategories'
 import RestaurantHeader from 'components/RestHeader'
 import RestaurantMenu from 'components/RestMenu'
+
+const { getRestaurant } = modules.restaurant
 
 class Restaurant extends React.Component {
 
@@ -32,7 +34,6 @@ class Restaurant extends React.Component {
     render() {
         const { props } = this
 
-        console.log(props)
         return (
             <div className="container">
                 <Loader loaded={!props.isFetching} className="spinner"></Loader>

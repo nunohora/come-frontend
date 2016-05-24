@@ -1,5 +1,10 @@
 import memoize from 'lru-memoize'
-import { createValidator, required, postcode } from 'redux/utils/validation'
+import { utils } from '@come/redux-store'
+
+
+console.log(utils)
+
+const { createValidator, required, postcode } = utils.validation
 
 const postcodeValidation = createValidator({
     postcode: [required, postcode]

@@ -5,7 +5,7 @@ import { useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import makeRoutes from './routes'
 import Root from 'containers/Root/index'
-import configureStore from 'redux/configureStore'
+import { configureStore } from '@come/redux-store'
 
 // Configure history for react-router
 const browserHistory = useRouterHistory(createBrowserHistory)({
