@@ -5,7 +5,7 @@ import { useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import makeRoutes from './routes'
 import Root from 'containers/Root/index'
-import { configureStore } from '@come/redux-store'
+import configureStore from './configureStore'
 
 // Configure history for react-router
 const browserHistory = useRouterHistory(createBrowserHistory)({
@@ -18,6 +18,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 // react-router-redux of its location.
 const initialState = window.__INITIAL_STATE__
 const store = configureStore(initialState, browserHistory)
+
 const history = syncHistoryWithStore(browserHistory, store, {
     selectLocationState: (state) => state.router
 })
