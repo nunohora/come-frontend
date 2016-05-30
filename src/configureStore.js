@@ -7,7 +7,6 @@ import { reducer as form } from 'redux-form'
 
 export default function configureStore(initialState = {}, history) {
     // Compose final middleware
-
     let middleware = applyMiddleware(thunk, routerMiddleware(history), api)
 
     // Combining all the reducers, common and specific to web
