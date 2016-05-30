@@ -80,7 +80,7 @@
     "redux-thunk": "^2.0.0"
   },
   "devDependencies": {
-    "@come/redux-store": "^1.2.9",
+    "@come/redux-store": "^1.2.18",
     "auth0-lock": "^9.2.1",
     "axios": "^0.9.1",
     "babel-cli": "^6.9.0",
@@ -141,7 +141,6 @@
     "postcss-loader": "^0.8.0",
     "react-addons-css-transition-group": "^15.0.1",
     "react-addons-test-utils": "^15.0.1",
-    "react-addons-update": "^15.0.1",
     "react-bootstrap": "^0.29.0",
     "react-css-modules": "^3.7.6",
     "react-loader": "^2.2.0",

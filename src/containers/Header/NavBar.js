@@ -80,8 +80,8 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    nickname: state.user.profile.nickname,
-    isAuthenticated: state.user.isAuthenticated
+    nickname: state.lock.profile.nickname,
+    isAuthenticated: state.lock.isAuthenticated
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
