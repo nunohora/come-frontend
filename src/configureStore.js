@@ -4,6 +4,7 @@ import thunk from 'redux-thunk'
 import { modules, api } from '@come/redux-store'
 import { routerMiddleware, routerReducer as router } from 'react-router-redux'
 import { reducer as form } from 'redux-form'
+import lock from './reducers/lock'
 
 export default function configureStore(initialState = {}, history) {
     // Compose final middleware
@@ -11,7 +12,7 @@ export default function configureStore(initialState = {}, history) {
 
     // Combining all the reducers, common and specific to web
     const combinedReducers = combineReducers({
-        lock: modules.lock.reducer,
+        lock: lock.reducer,
         restaurant: modules.restaurant.reducer,
         restaurantList: modules.restaurantList.reducer,
         router,

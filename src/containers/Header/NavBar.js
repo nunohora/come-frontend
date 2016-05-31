@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { modules } from '@come/redux-store'
+import lock from 'reducers/lock'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
 
 import headerLogo from 'img/header-logo.png'
 
-const { login, logout } = modules.lock
+const { login, logout } = lock
 
 class NavBar extends React.Component {
 
