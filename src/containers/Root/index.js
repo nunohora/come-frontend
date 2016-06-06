@@ -2,6 +2,7 @@
 import React, { PropTypes } from 'react'
 import { Provider } from 'react-redux'
 import { Router, withRouter } from 'react-router'
+import { IntlProvider } from 'react-intl'
 
 class Root extends React.Component {
     static propTypes = {
@@ -20,11 +21,13 @@ class Root extends React.Component {
 
     render() {
         return (
-            <Provider store={this.props.store}>
-                <div style={{ height: '100%' }}>
-                    {this.content}
-                </div>
-            </Provider>
+            <IntlProvider locale="en">
+                <Provider store={this.props.store}>
+                    <div style={{ height: '100%' }}>
+                        {this.content}
+                    </div>
+                </Provider>
+            </IntlProvider>
         )
     }
 }
