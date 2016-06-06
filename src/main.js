@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ga from 'react-ga'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import { useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
@@ -11,6 +12,16 @@ import configureStore from './configureStore'
 const browserHistory = useRouterHistory(createBrowserHistory)({
     basename: __BASENAME__
 })
+
+//Initialize google analytics
+ga.initialize('UA-78777053-1', {
+    debug: true,
+
+})
+
+function logPageView() {
+    ga.pageview(window.location.pathname)
+}
 
 // Create redux store and sync with react-router-redux. We have installed the
 // react-router-redux reducer under the key "router" in src/routes/index.js,
@@ -31,6 +42,6 @@ const routes = makeRoutes(store)
 // Now that redux and react-router have been configured, we can render the
 // React application to the DOM!
 ReactDOM.render(
-    <Root history={history} routes={routes} store={store} />,
+    <Root history={history} routes={routes} store={store} onUpdate={logPageView}/>,
     document.getElementById('root')
 )

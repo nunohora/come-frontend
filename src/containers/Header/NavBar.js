@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import ga from 'react-ga'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import lock from 'reducers/lock'
@@ -32,20 +33,35 @@ class NavBar extends React.Component {
                     <a>A minha conta</a>
                 </li>
                 <li>
-                    <a onClick={this.props.logout}>Logout</a>
+                    <a onClick={this.logout.bind(this)}>Logout</a>
                 </li>
             </ul>
         )
+    }
+
+    login() {
+        ga.event({ category: 'NavBar', action: 'Login' })
+        this.props.login()
+    }
+
+    signup() {
+        ga.event({ category: 'NavBar', action: 'Signup' })
+        this.props.login()
+    }
+
+    logout() {
+        ga.event({ category: 'NavBar', action: 'Logout' })
+        this.props.logout()
     }
 
     renderLoggedOut() {
         return (
             <ul styleName="navbar-nav" className="navbar-right">
                 <li>
-                    <a onClick={this.props.login}>Login</a>
+                    <a onClick={this.login.bind(this)}>Login</a>
                 </li>
                 <li>
-                    <a onClick={this.props.login}>Signup</a>
+                    <a onClick={this.signup.bind(this)}>Signup</a>
                 </li>
                 <li>
                     <Link to="/help">Ajuda</Link>
