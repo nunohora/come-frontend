@@ -1,5 +1,5 @@
 import memoize from 'lru-memoize'
-import { utils } from '@come/redux-store'
+import { utils } from 'nuno-redux-store'
 
 const { createValidator, required, postcode } = utils.validation
 

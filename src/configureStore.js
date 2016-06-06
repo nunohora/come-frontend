@@ -1,7 +1,7 @@
 /*global require module */
 import { applyMiddleware, createStore, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-import { modules, api } from '@come/redux-store'
+import { modules, api } from 'nuno-redux-store'
 import { routerMiddleware, routerReducer as router } from 'react-router-redux'
 import { reducer as form } from 'redux-form'
 import lock from './reducers/lock'
@@ -23,7 +23,7 @@ export default function configureStore(initialState = {}, history) {
     const store = middleware(createStore)(combinedReducers, initialState)
 
     if (module.hot) {
-        module.hot.accept('@come/redux-store', () => {
+        module.hot.accept('nuno-redux-store', () => {
             const nextRootReducer = combinedReducers.default
 
             store.replaceReducer(nextRootReducer)
