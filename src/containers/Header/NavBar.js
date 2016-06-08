@@ -8,7 +8,7 @@ import styles from './styles.scss'
 
 import headerLogo from 'img/header-logo.png'
 
-const { login, logout } = lock
+const { login, signup, logout } = lock
 
 class NavBar extends React.Component {
 
@@ -16,6 +16,7 @@ class NavBar extends React.Component {
         nickname: PropTypes.string,
         isAuthenticated: PropTypes.bool.isRequired,
         login: PropTypes.func.isRequired,
+        signup: PropTypes.func.isRequired,
         logout: PropTypes.func.isRequired
     }
 
@@ -46,7 +47,7 @@ class NavBar extends React.Component {
 
     signup() {
         ga.event({ category: 'NavBar', action: 'Signup' })
-        this.props.login()
+        this.props.signup()
     }
 
     logout() {
@@ -102,6 +103,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
     login: () => { dispatch(login(dispatch)) },
+    signup: () => { dispatch(signup(dispatch))},
     logout: () => { logout(dispatch) }
 })
 

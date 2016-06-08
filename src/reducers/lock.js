@@ -24,7 +24,7 @@ function lockError(err) {
 
 function login(dispatch) {
     return () => {
-        lock.show((err, profile, token) => {
+        lock.showSignin((err, profile, token) => {
             if (err) {
                 dispatch(lockError(err))
                 return
@@ -32,6 +32,18 @@ function login(dispatch) {
             localStorage.setItem('profile', JSON.stringify(profile))
             localStorage.setItem('id_token', token)
             dispatch(lockSuccess(profile, token))
+        })
+    }
+}
+
+function signup(dispatch) {
+    return () => {
+        lock.showSignup((err) => {
+            if (err) {
+                dispatch(lockError(err))
+                return
+            }
+            lock.hide()
         })
     }
 }
@@ -110,6 +122,7 @@ function reducer(state = initialState, action = {}) {
 export default {
     reducer,
     login,
+    signup,
     logout,
     requestLogout,
     receiveLogout
