@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchPostcodeForm from 'components/SearchPostcodeForm'
+import { FormattedMessage } from 'react-intl'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
 
@@ -30,9 +31,11 @@ class Home extends React.Component {
                     <div styleName="home-bg">
                         <div styleName="slogan" className="container">
                             <h1 className="text-right">
-                                <span>Tens fome?!</span>
+                                <span>
+                                    <FormattedMessage id="TENS_FOME"/>
+                                </span>
                                 <br/>
-                                <span>Come!</span>
+                                <span><FormattedMessage id="COME"/></span>
                             </h1>
                         </div>
                     </div>
@@ -43,29 +46,45 @@ class Home extends React.Component {
                             <div className="col-md-3 col-sm-6 col-xs-6 text-center">
                                 <div styleName="order-step">
                                     <i className="fa fa-map-marker fa-4x"></i>
-                                    <h5 className="step-title">1. Diga-nos onde está</h5>
-                                    <div styleName="bl-sort">Só precisamos do seu código postal.</div>
+                                    <h5 className="step-title">
+                                        <FormattedMessage id="ONDE_ESTA" />
+                                    </h5>
+                                    <div styleName="bl-sort">
+                                        <FormattedMessage id="PRECISAMOS_CODIGO_POSTAL" />
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-md-3 col-sm-6 col-xs-6 text-center">
                                 <div styleName="order-step">
                                     <i className="fa fa-cutlery fa-4x"></i>
-                                    <h5 className="step-title">2. Escolha um takeaway</h5>
-                                    <div styleName="bl-sort">O que lhe apetece comer?</div>
+                                    <h5 className="step-title">
+                                        <FormattedMessage id="ESCOLHA_TAKEAWAY" />
+                                    </h5>
+                                    <div styleName="bl-sort">
+                                        <FormattedMessage id="APETECE_COMER" />
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-md-3 col-sm-6 col-xs-6 text-center">
                                 <div styleName="order-step">
                                     <i className="fa fa-credit-card fa-4x"></i>
-                                    <h5 className="step-title">3. Dinheiro ou cartão</h5>
-                                    <div styleName="bl-sort">Aceitamos as duas formas de pagamento.</div>
+                                    <h5 className="step-title">
+                                        <FormattedMessage id="DINHEIRO_OU_CARTAO" />
+                                    </h5>
+                                    <div styleName="bl-sort">
+                                        <FormattedMessage id="ACEITAMOS_PAGAMENTO" />
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-md-3 col-sm-6 col-xs-6 text-center">
                                 <div styleName="order-step">
                                     <i className="fa fa-thumbs-up fa-4x"></i>
-                                    <h5 className="step-title">4. Já está</h5>
-                                    <div styleName="bl-sort">A sua comida está a caminho!</div>
+                                    <h5 className="step-title">
+                                        <FormattedMessage id="JA_ESTA" />
+                                    </h5>
+                                    <div styleName="bl-sort">
+                                        <FormattedMessage id="COMIDA_CAMINHO" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

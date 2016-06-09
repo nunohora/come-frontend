@@ -1,11 +1,7 @@
 /* global require */
 import React, { PropTypes } from 'react'
-import { modules } from 'nuno-redux-store'
-import { Provider } from 'react-redux'
+import { Provider } from 'react-intl-redux'
 import { Router, withRouter } from 'react-router'
-import { IntlProvider } from 'react-intl'
-
-const { translations } = modules
 
 class Root extends React.Component {
     static propTypes = {
@@ -24,15 +20,11 @@ class Root extends React.Component {
 
     render() {
         return (
-            <IntlProvider
-                locale="pt"
-                messages={translations}>
-                <Provider store={this.props.store}>
-                    <div style={{ height: '100%' }}>
-                        {this.content}
-                    </div>
-                </Provider>
-            </IntlProvider>
+            <Provider store={this.props.store}>
+                <div style={{ height: '100%' }}>
+                    {this.content}
+                </div>
+            </Provider>
         )
     }
 }

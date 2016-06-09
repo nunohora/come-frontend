@@ -1,6 +1,7 @@
 import React from 'react'
 import CSSModules from 'react-css-modules'
 import NavBar from './NavBar'
+import LocaleChange from './LocaleChange'
 import styles from './styles.scss'
 
 class Header extends React.Component {
@@ -10,6 +11,7 @@ class Header extends React.Component {
                 <div styleName="header-top-bar">
                     <div className="container">
                         <div className="row">
+                            <LocaleChange />
                             <ul styleName="header-social">
                                 <li>
                                     <i className="fa fa-lg fa-facebook-square"></i>
