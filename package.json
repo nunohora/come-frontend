@@ -89,6 +89,7 @@
     "babel-cli": "^6.9.0",
     "babel-core": "^6.3.17",
     "babel-eslint": "^6.0.0-beta.6",
+    "babel-jest": "^12.1.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-transform": "^2.0.0",
     "babel-plugin-transform-react-constant-elements": "^6.5.0",
@@ -126,6 +127,7 @@
     "fs-extra": "^0.30.0",
     "html-webpack-plugin": "^2.7.1",
     "imports-loader": "^0.6.5",
+    "jest-cli": "^12.1.1",
     "json-loader": "^0.5.4",
     "karma": "^0.13.21",
     "karma-coverage": "^1.0.0",
@@ -169,5 +171,21 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.6.0",
     "yargs": "^4.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "modulePaths": [
+      "/shared/vendor/modules"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(css|less)$": "<rootDir>/tests/styleMock.js",
+      "^.+\\.(gif|ttf|eot|svg)$": "<rootDir>/tests/fileMock.js"
+    }
   }
 }
