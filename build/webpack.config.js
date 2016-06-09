@@ -11,6 +11,8 @@ const {__DEV__, __PROD__, __TEST__} = config.globals
 
 debug('Create configuration.')
 
+console.log(config)
+
 const webpackConfig = {
     name: 'client',
     target: 'web',
@@ -22,6 +24,7 @@ const webpackConfig = {
     },
     module: {}
 }
+
 // ------------------------------------
 // Entry Points
 // ------------------------------------
@@ -33,7 +36,8 @@ webpackConfig.entry = {
         : [APP_ENTRY_PATH],
     normalize: 'normalize-scss',
     bootstrap: 'bootstrap-loader',
-    fontAwesome: 'font-awesome-sass-loader'
+    fontAwesome: 'font-awesome-sass-loader',
+    intl: 'intl'
 }
 
 // ------------------------------------
