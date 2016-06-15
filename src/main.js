@@ -15,8 +15,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 
 //Initialize google analytics
 ga.initialize('UA-78777053-1', {
-    debug: true,
-
+    debug: true
 })
 
 function logPageView() {
@@ -34,6 +33,10 @@ const history = syncHistoryWithStore(browserHistory, store, {
     selectLocationState: (state) => state.router
 })
 
+history.listen(location => {
+    console.log('location: ', location)
+})
+
 // Now that we have the Redux store, we can create our routes. We provide
 // the store to the route definitions so that routes have access to it for
 // hooks such as `onEnter`.
@@ -42,6 +45,6 @@ const routes = makeRoutes(store)
 // Now that redux and react-router have been configured, we can render the
 // React application to the DOM!
 ReactDOM.render(
-    <Root history={history} routes={routes} store={store} onUpdate={logPageView}/>,
+    <Root history={history} routes={routes} store={store} onUpdate={logPageView} />,
     document.getElementById('root')
 )

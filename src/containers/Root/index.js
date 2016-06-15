@@ -21,9 +21,7 @@ class Root extends React.Component {
     render() {
         return (
             <Provider store={this.props.store}>
-                <div style={{ height: '100%' }}>
-                    {this.content}
-                </div>
+                {this.content}
             </Provider>
         )
     }

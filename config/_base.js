@@ -15,7 +15,7 @@ const config = {
     dir_client : 'src',
     dir_dist   : 'dist',
     dir_server : 'server',
-    dir_test   : 'tests',
+    dir_test   : '__tests__',
 
     // ----------------------------------
     // Server Configuration
@@ -43,7 +43,8 @@ const config = {
         'react-redux',
         'react-router',
         'react-router-redux',
-        'redux'
+        'redux',
+        'redux-form'
     ],
 
     // ----------------------------------
