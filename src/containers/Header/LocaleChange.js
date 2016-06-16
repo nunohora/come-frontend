@@ -22,8 +22,8 @@ class LocaleChange extends React.Component {
     }
 }
 
-const mapDispatchToProps= (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
     changeLocale: (locale, messages) => { dispatch(update({ locale, messages })) }
 })
 
-export default connect({}, mapDispatchToProps)(LocaleChange)
+export default connect(null, mapDispatchToProps)(LocaleChange)
