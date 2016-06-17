@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import classNames from 'classnames'
+import ga from 'react-ga'
 import { connect } from 'react-redux'
 import { update } from 'react-intl-redux'
 import { translations } from 'nuno-redux-store'
@@ -14,6 +15,7 @@ class LocaleChange extends React.Component {
 
     changeLocale(newLocale) {
         this.props.changeLocale(newLocale, translations[newLocale])
+        ga.event({ category: 'TopBar', action: 'Locale Change', value: newLocale})
     }
 
     getClasses(locale) {
