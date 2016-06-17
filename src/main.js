@@ -14,7 +14,7 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 })
 
 //Initialize google analytics
-ga.initialize('UA-78777053-1', {
+ga.initialize('UA-78777053-2', {
     debug: true
 })
 
