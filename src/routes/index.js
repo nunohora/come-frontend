@@ -11,21 +11,22 @@ import Home from 'components/Home'
 import SearchResult from 'containers/SearchResult'
 import Help from 'containers/Help'
 import Restaurant from 'containers/Restaurant'
+import PrivacyPolicy from 'components/PrivacyPolicy'
 import NotFound from 'containers/NotFound'
 
 export default (store) => (
-    <Route path='/' component={ CoreLayout }>
-        <IndexRoute component={ Home } />
-        <Route component={ SearchResult } path='/search/:location' />
-        <Route component={ SearchResult } path='/search/:location/:id' />
-        <Route component={ SearchResult } path='/search/:location/:id/:category' />
-        <Route component={ Help } path='/help' />
+    <Route path='/' component={CoreLayout}>
+        <IndexRoute component={Home} />
+        <Route component={SearchResult} path='search/:location' />
+        <Route component={SearchResult} path='search/:location/:id' />
+        <Route component={SearchResult} path='search/:location/:id/:category' />
+        <Route component={Help} path='/help' />
         <Route path='/places/:id/:slug'>
             <IndexRedirect to="menu" />
-            <Route component={ Restaurant } path="menu" />
-            <Route component={ Restaurant } path="reviews" />
-            <Route component={ Restaurant } path="info" />
+            <Route component={Restaurant} path="menu" />
+            <Route component={Restaurant} path="reviews" />
+            <Route component={Restaurant} path="info" />
         </Route>
-        <Route component={ NotFound } path='*' />
+        <Route component={NotFound} path='*' />
     </Route>
 )

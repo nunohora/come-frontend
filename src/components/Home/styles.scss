@@ -3,6 +3,7 @@
 
     .call-to-action-section {
         position: absolute;
+        padding: 0;
         top: 42%;
         z-index: 2;
         margin-left: auto;
@@ -28,7 +29,6 @@
 
 .slogan {
     margin: 0;
-    padding-bottom: 50px;
     font-size: 40px;
     font-weight: normal;
     text-align: right;
@@ -51,7 +51,8 @@
     vertical-align: middle;
     text-align: center;
     img {
-        margin-top: 35px;
+        height: 90px;
+        margin-top: 19px;
     }
 }
 

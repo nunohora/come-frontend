@@ -80,8 +80,7 @@ class NavBar extends React.Component {
             <div styleName="header-nav-bar">
                 <nav className="navbar" role="navigation">
                     <div className="container">
-                        <div styleName="navbar-header" className="col-md-3">
-
+                        <div className="col-md-3">
                             <Link className="navbar-brand" to="/">
                                 <img src={headerLogo} alt="TakeAway" />
                             </Link>

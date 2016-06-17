@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
 
-import CallToActionIcon from 'img/call-to-action-icon1.png'
+import logoIcon from 'img/logo1.png'
 
 class Home extends React.Component {
 
@@ -20,10 +20,10 @@ class Home extends React.Component {
         return (
             <div>
                 <div styleName="home-top-wrapper">
-                    <div styleName="call-to-action-section">
+                    <div className="container" styleName="call-to-action-section">
                         <div className="css-table-cell">
                             <div styleName="call-to-action-icon">
-                                <img src={CallToActionIcon} alt="" />
+                                <img src={logoIcon} alt="" />
                             </div>
                         </div>
                         <SearchPostcodeForm onSubmit={this.handleSubmit.bind(this)}/>
@@ -34,8 +34,6 @@ class Home extends React.Component {
                                 <span>
                                     <FormattedMessage id="TENS_FOME"/>
                                 </span>
-                                <br/>
-                                <span><FormattedMessage id="COME"/></span>
                             </h1>
                         </div>
                     </div>

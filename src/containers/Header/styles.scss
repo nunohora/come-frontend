@@ -6,9 +6,15 @@
 }
 
 .header-top-bar {
-    padding: 0;
+    padding: 2px 0;
     background: #1a1a1a;
-    color: #ffffff;
+
+    a.locale-change {
+        float: right;
+        color: white;
+        text-decoration: underline;
+        font-size: 14px;
+    }
 }
 
 .header-login {
@@ -54,20 +60,6 @@
     margin: 0;
     border: none;
     margin-bottom: 20px;
-
-    .navbar-header {
-        margin-bottom: 20px;
-        margin-top: 10px;
-        position: relative;
-    }
-    .navbar-brand {
-        padding: 0;
-        margin: 0;
-        img {
-            margin-top: 15px;
-            margin-left: 10px;
-        }
-    }
     .navbar-nav {
         padding: 0;
         float: right !important;

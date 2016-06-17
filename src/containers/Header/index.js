@@ -12,17 +12,6 @@ class Header extends React.Component {
                     <div className="container">
                         <div className="row">
                             <LocaleChange />
-                            <ul styleName="header-social">
-                                <li>
-                                    <i className="fa fa-lg fa-facebook-square"></i>
-                                </li>
-                                <li>
-                                    <i className="fa fa-lg fa-twitter-square"></i>
-                                </li>
-                                <li>
-                                    <i className="fa fa-lg fa-google-plus-square"></i>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>

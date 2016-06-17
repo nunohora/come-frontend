@@ -5,17 +5,24 @@ import HeaderLogo from 'img/header-logo.png'
 
 export default class Footer extends React.Component {
     render() {
-        return (
+        return ( 
             <footer className={classes.footer}>
                 <div className="container">
                     <div className={classes.mainFooter}>
                         <div className="row">
                             <div className="col-sm-6 col-md-3">
                                 <img src={HeaderLogo} alt="" />
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Proin nibh augue, suscipit a, scelerisque sed.
-                                </p>
+                                <ul styleName="header-social">
+                                    <li>
+                                        <i className="fa fa-lg fa-facebook-square"></i>
+                                    </li>
+                                    <li>
+                                        <i className="fa fa-lg fa-twitter-square"></i>
+                                    </li>
+                                    <li>
+                                        <i className="fa fa-lg fa-google-plus-square"></i>
+                                    </li>
+                                </ul>
                             </div>
 
                             <div className="col-sm-6 col-md-3">
@@ -71,6 +78,6 @@ export default class Footer extends React.Component {
                     </div>
                 </div>
             </footer>
-        );
+        )
     }
 }
