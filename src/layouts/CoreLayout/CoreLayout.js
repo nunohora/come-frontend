@@ -14,10 +14,10 @@ import Footer from 'containers/Footer'
 //
 // CoreLayout is a pure function of its props, so we can
 // define it with a plain javascript function...
-function CoreLayout({ children }) {
+function CoreLayout({ route, children }) {
     return (
         <div>
-            <Header />
+            <Header routes={route} />
             <ReactCSSTransitionGroup
                 className="page-content"
                 transitionName="page-transition"

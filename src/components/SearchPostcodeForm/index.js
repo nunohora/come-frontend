@@ -60,7 +60,7 @@ class SearchPostcodeForm extends React.Component {
                                 ref="postcode"
                                 className="form-control"
                                 type="text"
-                                placeholder="Insira o seu codigo postal*"
+                                placeholder="Código postal*"
                                 {...postcode} />
 
                             { postcode.touched && postcode.error && <small ref='helpBlock' className="help-block">

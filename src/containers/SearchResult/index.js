@@ -36,14 +36,15 @@ class SearchResult extends React.Component {
         const { props } = this
 
         return (
-            <div className="container">
-                <Loader loaded={ !props.isFetching } className="spinner"></Loader>
-                <ResultNumber number={ props.number } postcode={ props.postcode }/>
-                <div className="col-md-3">
-                    <Categories categories={ props.categories } postcode={ props.postcode }/>
+            <Loader loaded={ !props.isFetching } className="spinner">
+                <div className="container">
+                    <ResultNumber number={ props.number } postcode={ props.postcode }/>
+                    <div className="col-md-3">
+                        <Categories categories={ props.categories } postcode={ props.postcode }/>
+                    </div>
+                    <RestaurantList list={ props.id ? this.filterByCategory(props.id, props.list) : props.list } />
                 </div>
-                <RestaurantList list={ props.id ? this.filterByCategory(props.id, props.list) : props.list } />
-            </div>
+            </Loader>
         )
     }
 }

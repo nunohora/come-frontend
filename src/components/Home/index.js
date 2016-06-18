@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchPostcodeForm from 'components/SearchPostcodeForm'
+import ga from 'react-ga'
 import { FormattedMessage } from 'react-intl'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
@@ -13,6 +14,11 @@ class Home extends React.Component {
     }
 
     handleSubmit(props) {
+        ga.event({
+            category: 'Search',
+            action: 'Search Postcode',
+            value: props.postcode
+        })
         this.context.router.push(`/search/${props.postcode}`)
     }
 
@@ -56,10 +62,10 @@ class Home extends React.Component {
                                 <div styleName="order-step">
                                     <i className="fa fa-cutlery fa-4x"></i>
                                     <h5 className="step-title">
-                                        <FormattedMessage id="ESCOLHA_TAKEAWAY" />
+                                        <FormattedMessage id="APETECE_COMER" />
                                     </h5>
                                     <div styleName="bl-sort">
-                                        <FormattedMessage id="APETECE_COMER" />
+                                        <FormattedMessage id="EXPLORA_LISTA" />
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +84,7 @@ class Home extends React.Component {
                                 <div styleName="order-step">
                                     <i className="fa fa-thumbs-up fa-4x"></i>
                                     <h5 className="step-title">
-                                        <FormattedMessage id="JA_ESTA" />
+                                        <FormattedMessage id="PEDIDO_EFECTUADO" />
                                     </h5>
                                     <div styleName="bl-sort">
                                         <FormattedMessage id="COMIDA_CAMINHO" />
@@ -89,7 +95,7 @@ class Home extends React.Component {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }
 

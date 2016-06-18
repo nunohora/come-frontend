@@ -85,6 +85,12 @@
                 -o-transition: all .4s ease;
                 transition: all .4s ease;
             }
+            &:last-child {
+                padding-right: 0;
+            }
         }
+    }
+    .logo {
+        padding-top: 0px;
     }
 }

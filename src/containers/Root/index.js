@@ -12,7 +12,7 @@ class Root extends React.Component {
 
     get content() {
         return (
-            <Router history={this.props.history}>
+            <Router history={this.props.history} routes={this.props.routes}>
                 {this.props.routes}
             </Router>
         )

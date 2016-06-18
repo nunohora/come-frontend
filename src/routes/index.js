@@ -15,9 +15,9 @@ import PrivacyPolicy from 'components/PrivacyPolicy'
 import NotFound from 'containers/NotFound'
 
 export default (store) => (
-    <Route path='/' component={CoreLayout}>
+    <Route path='/' component={CoreLayout} breadcrumbIgnore>
         <IndexRoute component={Home} />
-        <Route component={SearchResult} path='search/:location' />
+        <Route component={SearchResult} path='search/:location' breadcrumbName=":location"/>
         <Route component={SearchResult} path='search/:location/:id' />
         <Route component={SearchResult} path='search/:location/:id/:category' />
         <Route component={Help} path='/help' />

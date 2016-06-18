@@ -81,7 +81,7 @@ class NavBar extends React.Component {
                 <nav className="navbar" role="navigation">
                     <div className="container">
                         <div className="col-md-3">
-                            <Link className="navbar-brand" to="/">
+                            <Link styleName="logo" className="navbar-brand" to="/">
                                 <img src={headerLogo} alt="TakeAway" />
                             </Link>
                         </div>
@@ -102,7 +102,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
     login: () => { dispatch(login(dispatch)) },
-    signup: () => { dispatch(signup(dispatch))},
+    signup: () => { dispatch(signup(dispatch)) },
     logout: () => { logout(dispatch) }
 })
 
