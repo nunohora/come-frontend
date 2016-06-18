@@ -19,9 +19,7 @@ class LocaleChange extends React.Component {
     }
 
     getClasses(locale) {
-        return classNames({
-            'hide': locale === this.props.locale
-        })
+        return classNames({ 'hide': locale === this.props.locale })
     }
 
     render() {

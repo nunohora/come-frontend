@@ -35,6 +35,7 @@ webpackConfig.entry = {
     normalize: 'normalize-scss',
     bootstrap: 'bootstrap-loader',
     fontAwesome: 'font-awesome-sass-loader',
+    fetch: 'whatwg-fetch',
     intl: 'intl'
 }
 
