@@ -1,9 +1,9 @@
 import Auth0Lock from 'auth0-lock'
 
-export const LOCK_SUCCESS = 'LOCK_SUCCESS'
-export const LOCK_ERROR = 'LOCK_ERROR'
-export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+const LOCK_SUCCESS = 'LOCK_SUCCESS'
+const LOCK_ERROR = 'LOCK_ERROR'
+const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
+const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
 const lock = new Auth0Lock('***REMOVED***', '***REMOVED***')
 
