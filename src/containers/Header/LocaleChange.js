@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import ga from 'react-ga'
 import { connect } from 'react-redux'
 import { update } from 'react-intl-redux'
-import { translations } from 'nuno-redux-store'
+import { translations } from 'redux-store'
 import styles from './styles.scss'
 
 class LocaleChange extends React.Component {

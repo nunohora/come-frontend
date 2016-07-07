@@ -18,10 +18,10 @@ ga.initialize('UA-78777053-2', {
     debug: true
 })
 
-// Create redux store and sync with react-router-redux. We have installed the
-// react-router-redux reducer under the key "router" in src/routes/index.js,
+// Create redux-store store and sync with react-router-redux-store. We have installed the
+// react-router-redux-store reducer under the key "router" in src/routes/index.js,
 // so we need to provide a custom `selectLocationState` to inform
-// react-router-redux of its location.
+// react-router-redux-store of its location.
 const initialState = window.__INITIAL_STATE__
 const store = configureStore(initialState, browserHistory)
 
@@ -38,7 +38,7 @@ history.listen(location => {
 // hooks such as `onEnter`.
 const routes = makeRoutes(store)
 
-// Now that redux and react-router have been configured, we can render the
+// Now that redux-store and react-router have been configured, we can render the
 // React application to the DOM!
 ReactDOM.render(
     <Root history={history} routes={routes} store={store} />,

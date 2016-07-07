@@ -2,13 +2,11 @@ import React, { PropTypes } from 'react'
 import ga from 'react-ga'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import lock from 'reducers/lock'
+import { login, signup, logout } from 'redux-store/modules/lock'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
 
 import headerLogo from 'img/header-logo.png'
-
-const { login, signup, logout } = lock
 
 class NavBar extends React.Component {
 
@@ -95,10 +93,14 @@ class NavBar extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    nickname: state.lock.profile.nickname,
-    isAuthenticated: state.lock.isAuthenticated
-})
+const mapStateToProps = (state) => {
+    console.log('state: ', state)
+    
+    return {
+        nickname: state.lock.profile.nickname,
+        isAuthenticated: state.lock.isAuthenticated
+    }
+}
 
 const mapDispatchToProps = (dispatch, props) => ({
     login: () => { dispatch(login(dispatch)) },

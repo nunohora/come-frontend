@@ -8,6 +8,9 @@ const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 const lock = new Auth0Lock('***REMOVED***', '***REMOVED***')
 
 function lockSuccess(profile, token) {
+    console.log('profile: ', profile)
+    console.log('token: ', token)
+
     return {
         type: LOCK_SUCCESS,
         profile,
@@ -22,7 +25,7 @@ function lockError(err) {
     }
 }
 
-function login(dispatch) {
+export function login(dispatch) {
     return () => {
         lock.showSignin((err, profile, token) => {
             if (err) {
@@ -36,7 +39,7 @@ function login(dispatch) {
     }
 }
 
-function signup(dispatch) {
+export function signup(dispatch) {
     return () => {
         lock.showSignup((err) => {
             if (err) {
@@ -48,7 +51,7 @@ function signup(dispatch) {
     }
 }
 
-function logout(dispatch) {
+export function logout(dispatch) {
     dispatch(requestLogout)
     localStorage.removeItem('id_token')
     localStorage.removeItem('profile')
@@ -113,17 +116,8 @@ const initialState = {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-function reducer(state = initialState, action = {}) {
+export default function reducer(state = initialState, action = {}) {
     const handler = ACTION_HANDLERS[action.type]
 
     return handler ? handler(state, action) : state
-}
-
-export default {
-    reducer,
-    login,
-    signup,
-    logout,
-    requestLogout,
-    receiveLogout
 }

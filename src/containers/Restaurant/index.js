@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
-import { modules } from 'nuno-redux-store'
+import modules from 'redux-store/modules'
 import Loader from 'react-loader'
 import MenuCategories from 'components/MenuCategories'
 import RestaurantHeader from 'components/RestHeader'
 import RestaurantMenu from 'components/RestMenu'
 
-const { getRestaurant } = modules.restaurant
+const { restaurant: { getRestaurant } } = modules
 
 class Restaurant extends React.Component {
 

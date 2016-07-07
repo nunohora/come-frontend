@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { modules } from 'nuno-redux-store'
+import modules from 'redux-store/modules'
 import Loader from 'react-loader'
 import RestaurantList from 'components/RestList'
 import Categories from 'components/Categories'
 import ResultNumber from 'components/ResultNumber'
 
-const { getRestListByLocation } = modules.restaurantList
+const { restaurantList: { getRestListByLocation } } = modules
 
 class SearchResult extends React.Component {
 
@@ -58,7 +58,7 @@ const mapStateToProps = (state, props) => ({
     id: props.params.id
 })
 
-const mapDispatchToProps= (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     getRestListByLocation: (props) => { getRestListByLocation(dispatch, props) }
 })
 

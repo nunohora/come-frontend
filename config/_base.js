@@ -40,11 +40,11 @@ const config = {
     compiler_vendor : [
         'history',
         'react',
-        'react-redux',
+        'react-redux-store',
         'react-router',
-        'react-router-redux',
-        'redux',
-        'redux-form'
+        'react-router-redux-store',
+        'redux-store',
+        'redux-store-form'
     ],
 
     // ----------------------------------

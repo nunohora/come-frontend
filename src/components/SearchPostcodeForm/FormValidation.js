@@ -1,7 +1,5 @@
 import memoize from 'lru-memoize'
-import { utils } from 'nuno-redux-store'
-
-const { createValidator, required, postcode } = utils.validation
+import { createValidator, required, postcode } from 'redux-store/utils/validation'
 
 const postcodeValidation = createValidator({
     postcode: [required, postcode]

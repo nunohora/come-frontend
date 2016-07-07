@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { modules } from '@come/redux-store'
+import { modules } from '@come/redux-store-store'
 
 const { getOrderItems } = modules.order
 
