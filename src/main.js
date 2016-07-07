@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ga from 'react-ga'
+import firebase from 'firebase'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import { useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
@@ -17,6 +18,16 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 ga.initialize('UA-78777053-2', {
     debug: true
 })
+
+
+//Initialize Firebase
+const config = {
+    apiKey: "AIzaSyAasMVi3qKg4HRCihCqdRTQu88JTxBAdgc",
+    authDomain: "come-frontend.firebaseapp.com",
+    databaseURL: "https://come-frontend.firebaseio.com",
+    storageBucket: "come-frontend.appspot.com"
+}
+firebase.initializeApp(config)
 
 // Create redux-store store and sync with react-router-redux-store. We have installed the
 // react-router-redux-store reducer under the key "router" in src/routes/index.js,
