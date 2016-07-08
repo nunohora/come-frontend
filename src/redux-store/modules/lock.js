@@ -8,9 +8,6 @@ const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 const lock = new Auth0Lock('***REMOVED***', '***REMOVED***')
 
 function lockSuccess(profile, token) {
-    console.log('profile: ', profile)
-    console.log('token: ', token)
-
     return {
         type: LOCK_SUCCESS,
         profile,

@@ -32,7 +32,7 @@ class Home extends React.Component {
                                 <img src={logoIcon} alt="" />
                             </div>
                         </div>
-                        <SearchPostcodeForm onSubmit={this.handleSubmit.bind(this)}/>
+                        <SearchPostcodeForm onSubmit={this.handleSubmit.bind(this)} />
                     </div>
                     <div styleName="home-bg">
                         <div styleName="slogan" className="container">

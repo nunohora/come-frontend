@@ -19,7 +19,6 @@ ga.initialize('UA-78777053-2', {
     debug: true
 })
 
-
 //Initialize Firebase
 const config = {
     apiKey: "AIzaSyAasMVi3qKg4HRCihCqdRTQu88JTxBAdgc",

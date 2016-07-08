@@ -1,14 +1,15 @@
 import React from 'react'
-import classes from './styles.scss'
+import CSSModules from 'react-css-modules'
+import styles from './styles.scss'
 
 import HeaderLogo from 'img/header-logo.png'
 
-export default class Footer extends React.Component {
+class Footer extends React.Component {
     render() {
-        return ( 
-            <footer className={classes.footer}>
+        return (
+            <footer className={styles.footer}>
                 <div className="container">
-                    <div className={classes.mainFooter}>
+                    <div className={styles.mainFooter}>
                         <div className="row">
                             <div className="col-sm-6 col-md-3">
                                 <img src={HeaderLogo} alt="" />
@@ -29,7 +30,7 @@ export default class Footer extends React.Component {
                                 <h5>Quick Links</h5>
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <ul className={classes.mainFooter.footerLinks}>
+                                        <ul className={styles.mainFooter.footerLinks}>
                                             <li><a href="#">Home</a></li>
                                             <li><a href="#">Menu Card</a></li>
                                             <li><a href="#">reservation</a></li>
@@ -37,7 +38,7 @@ export default class Footer extends React.Component {
                                     </div>
 
                                     <div className="col-md-6">
-                                        <ul className={classes.mainFooter.footerLinks}>
+                                        <ul className={styles.mainFooter.footerLinks}>
                                             <li><a href="#">about us</a></li>
                                             <li><a href="#">news &amp; events</a></li>
                                             <li><a href="#">contact us</a></li>
@@ -65,7 +66,7 @@ export default class Footer extends React.Component {
                             <div className="col-sm-6 col-md-3">
                                 <h5>Newsletter</h5>
                                 <p>Sign up for our newsletter!</p>
-                                <div className={classes.footerSubscribe}>
+                                <div className={styles.footerSubscribe}>
                                     <form>
                                         <input type="Email" placeholder="Email address..." />
                                         <button type="submit" value="">
@@ -81,3 +82,5 @@ export default class Footer extends React.Component {
         )
     }
 }
+
+export default CSSModules(Footer, styles)
