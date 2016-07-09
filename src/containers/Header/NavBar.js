@@ -94,8 +94,6 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('state: ', state)
-
     return {
         nickname: state.lock.profile.nickname,
         isAuthenticated: state.lock.isAuthenticated

@@ -1,0 +1,17 @@
+{
+    "search": [{
+        "id": 1,
+        "name": "Restaurante 1",
+        "zone_name": "Rua de blabla 123",
+        "categories": [{
+            "name": "Indiana"
+        }, {
+            "name": "Chinesa"
+        }, {
+            "name": "Italiana"
+        }]
+    }],
+    "meta": {
+        "total_results": 5
+    }
+}

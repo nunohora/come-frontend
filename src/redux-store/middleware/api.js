@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3001/v1/'
+const BASE_URL = 'http://demo3318934.mockable.io/'
 
 function callApi(endpoint, authenticated) {
 

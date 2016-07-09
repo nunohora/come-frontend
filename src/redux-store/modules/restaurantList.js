@@ -26,6 +26,7 @@ function searchRequest(postcode) {
         postcode: postcode
     }
 }
+
 function setCategories(list, totalResults) {
     const cats = [{
         id: 0,
@@ -66,6 +67,8 @@ const ACTION_HANDLERS = {
         })
     },
     [SEARCH_SUCCESS]: (state, data) => {
+        console.log('data: ', data)
+
         return Object.assign({}, state, {
             postcode: data.postcode,
             categories: setCategories(data.response.search, data.response.meta.total_results),

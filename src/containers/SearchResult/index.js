@@ -12,7 +12,6 @@ class SearchResult extends React.Component {
         getRestListByLocation: PropTypes.func.isRequired,
         isFetching: PropTypes.bool.isRequired,
         postcode: PropTypes.string.isRequired,
-        id: PropTypes.number,
         categories: PropTypes.array.isRequired,
         list: PropTypes.array.isRequired,
         number: PropTypes.number.isRequired
@@ -22,10 +21,10 @@ class SearchResult extends React.Component {
         this.props.getRestListByLocation(this.props.postcode)
     }
 
-    filterByCategory(catId, list) {
+    filterByCategory(category, list) {
         return list.filter(restaurant => {
             return restaurant.categories.some(cat => {
-                return parseInt(catId, 10) === cat.id
+                return category === cat.name
             })
         })
     }
@@ -40,7 +39,7 @@ class SearchResult extends React.Component {
                     <div className="col-md-3">
                         <Categories categories={ props.categories } postcode={ props.postcode }/>
                     </div>
-                    <RestaurantList list={ props.id ? this.filterByCategory(props.id, props.list) : props.list } />
+                    <RestaurantList list={ props.category ? this.filterByCategory(props.category, props.list) : props.list } />
                 </div>
             </Loader>
         )

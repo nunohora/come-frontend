@@ -18,8 +18,7 @@ export default (store) => (
     <Route path='/' component={CoreLayout} breadcrumbIgnore>
         <IndexRoute component={Home} />
         <Route component={SearchResult} path='search/:location' breadcrumbName=":location"/>
-        <Route component={SearchResult} path='search/:location/:id' />
-        <Route component={SearchResult} path='search/:location/:id/:category' />
+        <Route component={SearchResult} path='search/:location/:category' />
         <Route component={Help} path='/help' />
         <Route path='/places/:id/:slug'>
             <IndexRedirect to="menu" />

@@ -7,13 +7,13 @@ import HeaderLogo from 'img/header-logo.png'
 class Footer extends React.Component {
     render() {
         return (
-            <footer className={styles.footer}>
+            <footer styleName="footer">
                 <div className="container">
-                    <div className={styles.mainFooter}>
+                    <div styleName="footer-main">
                         <div className="row">
                             <div className="col-sm-6 col-md-3">
                                 <img src={HeaderLogo} alt="" />
-                                <ul styleName="header-social">
+                                <ul styleName="social">
                                     <li>
                                         <i className="fa fa-lg fa-facebook-square"></i>
                                     </li>
@@ -30,7 +30,7 @@ class Footer extends React.Component {
                                 <h5>Quick Links</h5>
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <ul className={styles.mainFooter.footerLinks}>
+                                        <ul styleName="footer-links">
                                             <li><a href="#">Home</a></li>
                                             <li><a href="#">Menu Card</a></li>
                                             <li><a href="#">reservation</a></li>
@@ -38,7 +38,7 @@ class Footer extends React.Component {
                                     </div>
 
                                     <div className="col-md-6">
-                                        <ul className={styles.mainFooter.footerLinks}>
+                                        <ul styleName="footer-links">
                                             <li><a href="#">about us</a></li>
                                             <li><a href="#">news &amp; events</a></li>
                                             <li><a href="#">contact us</a></li>
@@ -66,7 +66,7 @@ class Footer extends React.Component {
                             <div className="col-sm-6 col-md-3">
                                 <h5>Newsletter</h5>
                                 <p>Sign up for our newsletter!</p>
-                                <div className={styles.footerSubscribe}>
+                                <div styleName="footer-subscribe">
                                     <form>
                                         <input type="Email" placeholder="Email address..." />
                                         <button type="submit" value="">
