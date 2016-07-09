@@ -34,7 +34,7 @@ class RestaurantHeader extends React.Component {
         return (
             <p>
                 <i styleName="icon" className="fa fa-cutlery"></i>
-                { string }
+                {string}
             </p>
         )
     }

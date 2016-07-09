@@ -1,9 +1,11 @@
 const ADD_ORDER_ITEM_REQUEST = 'ADD_ORDER_ITEM_REQUEST'
 const ADD_ORDER_ITEM_SUCCESS = 'ADD_ORDER_ITEM_SUCCESS'
 const ADD_ORDER_ITEM_FAILURE = 'ADD_ORDER_ITEM_FAILURE'
+
 const REMOVE_ORDER_ITEM_REQUEST = 'REMOVE_ORDER_ITEM_REQUEST'
 const REMOVE_ORDER_ITEM_SUCCESS = 'REMOVE_ORDER_ITEM_SUCCESS'
 const REMOVE_ORDER_ITEM_FAILURE = 'REMOVE_ORDER_ITEM_FAILURE'
+
 const GET_ORDERS_REQUEST = 'GET_ORDERS_REQUEST'
 const GET_ORDERS_SUCCESS = 'GET_ORDERS_SUCCESS'
 const GET_ORDERS_FAILURE = 'GET_ORDERS_FAILURE'
@@ -30,48 +32,8 @@ export function getOrdersForRestaurant(dispatch, restId) {
     })
 }
 
-function addOrderItem(item) {
-    storage.save({
-        key: 'orders'
-    }).then(res => {
-        console.log('here!!!')
-    }).catch((err, res) => {
-        console.log('error!!!')
-    })
-}
-
-function addOrderItemSuccess(item) {
-    return {
-        type: ADD_ORDER_ITEM_SUCCESS,
-        order
-    }
-}
-
-function addOrderItemFailure(item) {
-    return {
-        type: ADD_ORDER_ITEM_FAILURE,
-        isFetching: false,
-        order
-    }
-}
-
-function addOrderItemRequest(item) {
-    return {
-        type: ADD_ORDER_ITEM_REQUEST,
-        isFetching: true,
-        item
-    }
-}
-
-function addOrderItem(dispatch, order) {
-    dispatch(addOrderItemRequest())
-
-    let orders = getLocalStorageOrdersForRestaurant(restId)
-
-    return {
-        type: ADD_ORDER_ITEM,
-        order
-    }
+export function addOrderItem(item) {
+    console.log('orderItem')
 }
 
 // ------------------------------------

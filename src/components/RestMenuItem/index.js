@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import AddToCartButton from 'containers/AddToCartButton'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
 
@@ -25,9 +26,7 @@ class RestaurantMenuItem extends React.Component {
                             <h4>£{item.price}</h4>
                         </div>
                         <div className="qty-cart text-center clearfix">
-                            <button>
-                                <i className="fa fa-shopping-cart"></i>
-                            </button>
+                            <AddToCartButton name={item.name} price={item.price} />
                         </div>
                     </div>
                 </div>
