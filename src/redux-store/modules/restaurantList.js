@@ -67,13 +67,11 @@ const ACTION_HANDLERS = {
         })
     },
     [SEARCH_SUCCESS]: (state, data) => {
-        console.log('data: ', data)
-
         return Object.assign({}, state, {
             postcode: data.postcode,
-            categories: setCategories(data.response.search, data.response.meta.total_results),
+            categories: setCategories(data.response.search, data.response.search.length),
             list: data.response.search,
-            number: data.response.meta.total_results,
+            number: data.response.search.length,
             isFetching: false
         })
     },

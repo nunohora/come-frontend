@@ -15,17 +15,17 @@ class SearchResult extends React.Component {
         categories: PropTypes.array.isRequired,
         list: PropTypes.array.isRequired,
         number: PropTypes.number.isRequired,
-        id: PropTypes.number
+        id: PropTypes.string
     }
 
     componentWillMount() {
         this.props.getRestListByLocation(this.props.postcode)
     }
 
-    filterByCategory(category, list) {
+    filterByCategory(id, list) {
         return list.filter(restaurant => {
             return restaurant.categories.some(cat => {
-                return category === cat.name
+                return id === cat.id
             })
         })
     }
@@ -53,7 +53,7 @@ const mapStateToProps = (state, props) => ({
     list: state.restaurantList.list,
     number: state.restaurantList.number,
     postcode: props.params.location,
-    id: props.params.id
+    id: parseInt(props.params.id, 10)
 })
 
 const mapDispatchToProps = dispatch => ({
