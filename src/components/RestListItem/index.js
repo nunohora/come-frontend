@@ -28,14 +28,14 @@ class RestaurantListItem extends React.Component {
                     (27)
                 </span>
             </div>
-        );
+        )
     }
 
     renderCategories(categories = []) {
         let string = ''
 
         categories.forEach(category => {
-            string = string + category.name;
+            string = string + category.name
 
             if (categories.indexOf(category) + 1 !== categories.length) {
                 string += ', '
@@ -47,14 +47,14 @@ class RestaurantListItem extends React.Component {
                 <i styleName="icon" className="fa fa-cutlery"></i>
                 { string }
             </p>
-        );
+        )
     }
 
     render() {
         const params = {
             id: this.props.id,
             slug: slug(this.props.name, {lower: true})
-        };
+        }
 
         const url = `/places/${params.id}/${params.slug}`
 

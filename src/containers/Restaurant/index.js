@@ -2,13 +2,11 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
-import modules from 'redux-store/modules'
+import { getRestaurant } from 'redux-store/modules/restaurant'
 import Loader from 'react-loader'
 import MenuCategories from 'components/MenuCategories'
 import RestaurantHeader from 'components/RestHeader'
 import RestaurantMenu from 'components/RestMenu'
-
-const { restaurant: { getRestaurant } } = modules
 
 class Restaurant extends React.Component {
 
@@ -16,9 +14,9 @@ class Restaurant extends React.Component {
         getRestaurant: PropTypes.func.isRequired,
         menuCategories: PropTypes.array.isRequired,
         meta: PropTypes.object.isRequired,
-        productList: PropTypes.array.isRequired,
+        menu: PropTypes.array.isRequired,
         id: PropTypes.string.isRequired,
-        path: PropTypes.string.isRequired
+        path: PropTypes.string
     }
 
     componentWillMount() {
@@ -44,7 +42,7 @@ class Restaurant extends React.Component {
                     <RestaurantHeader meta={props.meta} />
                     <ul className="nav nav-tabs" role="tablist">
                         <li className={this.renderClasses('menu')} >
-                            <Link to="menu" role="tab">Menu</Link>
+                            <Link to="" role="tab">Menu</Link>
                         </li>
                         <li className={this.renderClasses('reviews')}>
                             <Link to="reviews" role="tab">Reviews</Link>
@@ -53,7 +51,7 @@ class Restaurant extends React.Component {
                             <Link to="info" role="tab">Informação</Link>
                         </li>
                     </ul>
-                    <RestaurantMenu list={props.productList} />
+                    <RestaurantMenu list={props.menu} />
                 </div>
             </div>
         )
@@ -63,7 +61,7 @@ class Restaurant extends React.Component {
 const mapStateToProps = (state, props) => ({
     isFetching: state.restaurant.isFetching,
     menuCategories: state.restaurant.menuCategories,
-    productList: state.restaurant.productList,
+    menu: state.restaurant.menu,
     meta: state.restaurant.meta,
     id: props.params.id,
     path: props.route.path

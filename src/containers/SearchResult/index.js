@@ -15,7 +15,7 @@ class SearchResult extends React.Component {
         categories: PropTypes.array.isRequired,
         list: PropTypes.array.isRequired,
         number: PropTypes.number.isRequired,
-        id: PropTypes.string
+        id: PropTypes.number
     }
 
     componentWillMount() {

@@ -1,0 +1,42 @@
+{
+    "meta": {
+        "name": "Restaurant Bla",
+        "rating": 4,
+        "address": "Wall Street 123",
+        "categories": [{
+            "id": 1,
+            "name": "Indiana"
+        }, {
+            "id": 2,
+            "name": "Chinesa"
+        }, {
+            "id": 3,
+            "name": "Italiana"
+        }],
+        "opening_times": "Opens at 08:00",
+        "thumbnail": "https://placeholdit.imgix.net/~text?txtsize=33&txt=150%C3%97100&w=150&h=100"
+    },
+    "menu": [{
+        "name": "Starters",
+        "Items": [{
+            "name": "Rossois",
+            "description": "small pastries",
+            "price": 4.99
+        }, {
+            "name": "Croquetes",
+            "description": "pz",
+            "price": 3.99
+        }]
+    }, {
+        "name": "Meat",
+        "Items": [{
+            "name": "Frango",
+            "description": "Frango estufado",
+            "price": 10
+        }, {
+            "name": "Bife",
+            "description": "bife com batata e arroz",
+            "price": 15.90
+        }]
+    }]
+}

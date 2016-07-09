@@ -60,7 +60,7 @@ class RestaurantHeader extends React.Component {
                         <div className="address">
                             <p>
                                 <i styleName="icon" className="fa fa-map-marker"></i>
-                                {props.meta.zone_name}
+                                {props.meta.address}
                             </p>
                         </div>
                         <div className="tag-list">
