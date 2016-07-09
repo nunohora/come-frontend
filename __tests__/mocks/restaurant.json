@@ -18,7 +18,7 @@
     },
     "menu": [{
         "name": "Starters",
-        "Items": [{
+        "items": [{
             "name": "Rossois",
             "description": "small pastries",
             "price": 4.99
@@ -29,7 +29,7 @@
         }]
     }, {
         "name": "Meat",
-        "Items": [{
+        "items": [{
             "name": "Frango",
             "description": "Frango estufado",
             "price": 10

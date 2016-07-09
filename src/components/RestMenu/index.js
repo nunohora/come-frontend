@@ -1,18 +1,18 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
-import RestMenuItem from 'components/RestMenuItem'
+import RestMenuGroup from 'components/RestMenuGroup'
 import styles from './styles.scss'
 
 class RestaurantMenu extends React.Component {
 
     static propTypes = {
-        list: PropTypes.array.isRequired
+        list: PropTypes.array
     }
 
-    renderProductList(list = []) {
-        return list.map(item => {
+    renderProductGroups(list = []) {
+        return list.map((group, index) => {
             return (
-                <RestMenuItem item={item} key={item.id} />
+                <RestMenuGroup group={group} key={index} />
             )
         })
     }
@@ -20,7 +20,7 @@ class RestaurantMenu extends React.Component {
     render() {
         return (
             <ul>
-                {this.renderProductList(this.props.list)}
+                {this.renderProductGroups(this.props.list)}
             </ul>
         )
     }

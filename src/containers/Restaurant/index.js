@@ -30,28 +30,28 @@ class Restaurant extends React.Component {
     }
 
     render() {
-        const { props } = this
+        const { props: { params } } = this
 
         return (
             <div className="container">
-                <Loader loaded={!props.isFetching} className="spinner"></Loader>
+                <Loader loaded={!this.props.isFetching} className="spinner"></Loader>
                 <div className="col-md-3">
-                    <MenuCategories categories={props.menuCategories} />
+                    <MenuCategories categories={this.props.menuCategories} />
                 </div>
                 <div className="col-md-6">
-                    <RestaurantHeader meta={props.meta} />
+                    <RestaurantHeader meta={this.props.meta} />
                     <ul className="nav nav-tabs" role="tablist">
-                        <li className={this.renderClasses('menu')} >
-                            <Link to="" role="tab">Menu</Link>
+                        <li className={this.renderClasses.bind(this, 'menu')} >
+                            <Link activeClassName="active" to={`/places/${params.id}/${params.slug}`} role="tab">Menu</Link>
                         </li>
-                        <li className={this.renderClasses('reviews')}>
-                            <Link to="reviews" role="tab">Reviews</Link>
+                        <li className={this.renderClasses.bind(this, 'reviews')}>
+                            <Link to={`/places/${params.id}/${params.slug}/reviews`} role="tab">Reviews</Link>
                         </li>
-                        <li className={this.renderClasses('info')}>
-                            <Link to="info" role="tab">Informação</Link>
+                        <li className={this.renderClasses.bind(this, 'info')}>
+                            <Link to={`/places/${params.id}/${params.slug}/info`} role="tab">Informação</Link>
                         </li>
                     </ul>
-                    <RestaurantMenu list={props.menu} />
+                    <RestaurantMenu list={this.props.menu} />
                 </div>
             </div>
         )

@@ -2,30 +2,27 @@ import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
 
-class RestaurantItem extends React.Component {
+class RestaurantMenuItem extends React.Component {
 
     static propTypes = {
         item: PropTypes.object.isRequired
     }
 
     render() {
+        const { item } = this.props
+
         return (
             <div className="item-list">
-                <div className="list-image">
-                    <img alt="" />
-                </div>
                 <div className="all-details">
                     <div className="visible-option">
                         <div className="details">
-                            <h6>{}</h6>
+                            <h6>{item.name}</h6>
                             <p className="m-with-details">
-                                Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor,
-                                et mollis pede metus eget nisi. Praesent sodales velit quis augue.
+                                {item.description}
                             </p>
                         </div>
                         <div className="price-option fl">
-                            <h4>$ 9.95</h4>
-                            <button className="toggle">Option</button>
+                            <h4>£{item.price}</h4>
                         </div>
                         <div className="qty-cart text-center clearfix">
                             <button>
@@ -39,4 +36,4 @@ class RestaurantItem extends React.Component {
     }
 }
 
-export default CSSModules(RestaurantItem, styles)
+export default CSSModules(RestaurantMenuItem, styles)

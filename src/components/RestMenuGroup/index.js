@@ -6,22 +6,24 @@ import styles from './styles.scss'
 class RestaurantMenuGroup extends React.Component {
 
     static propTypes = {
-        productList: PropTypes.object.isRequired
+        group: PropTypes.object.isRequired
     }
 
     renderProductList(list = []) {
-        return list.map(item => {
+        return list.map((item, index) => {
             return (
-                <RestMenuItem item={item} key={item.id} />
+                <RestMenuItem item={item} key={index} />
             )
         })
     }
 
     render() {
+        const { group: { items, name }} = this.props
         return (
-            <ul>
-                {this.renderProductList(this.props.list)}
-            </ul>
+            <div>
+                <h5>{name}</h5>
+                {this.renderProductList(items)}
+            </div>
         )
     }
 }

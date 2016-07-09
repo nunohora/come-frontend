@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
+import Rating from 'react-rating'
 import Image from 'img/blog-post.jpg'
 import styles from './styles.scss'
 
@@ -9,20 +10,13 @@ class RestaurantHeader extends React.Component {
         meta: PropTypes.object.isRequired
     }
 
-    renderRating() {
+    renderRating(rating) {
         return (
-            <div styleName="rating">
-                <span className="rating-stars">
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                </span>
-                <span styleName="rating-number">
-                    (27)
-                </span>
-            </div>
+            <Rating
+                readonly="true"
+                fractions={3}
+                initialRate={rating}
+                />
         )
     }
 
@@ -46,7 +40,7 @@ class RestaurantHeader extends React.Component {
     }
 
     render() {
-        const { props } = this
+        const { meta } = this.props
 
         return (
             <div styleName="restaurant-header">
@@ -55,16 +49,16 @@ class RestaurantHeader extends React.Component {
                         <img className="" src={ Image } alt="" />
                     </div>
                     <div className="col-md-6">
-                        <h5>{props.meta.name}</h5>
-                        {this.renderRating()}
+                        <h5>{meta.name}</h5>
+                        {this.renderRating(meta.rating)}
                         <div className="address">
                             <p>
                                 <i styleName="icon" className="fa fa-map-marker"></i>
-                                {props.meta.address}
+                                {meta.address}
                             </p>
                         </div>
                         <div className="tag-list">
-                            {this.renderCategories(props.meta.categories)}
+                            {this.renderCategories(meta.categories)}
                         </div>
                     </div>
                 </div>
