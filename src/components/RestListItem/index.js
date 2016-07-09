@@ -35,7 +35,7 @@ class RestaurantListItem extends React.Component {
         let string = ''
 
         categories.forEach(category => {
-            string = string + category.name;
+            string = string + category;
 
             if (categories.indexOf(category) + 1 !== categories.length) {
                 string += ', '

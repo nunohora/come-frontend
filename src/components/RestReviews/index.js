@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class Restaurant extends React.Component {
+export class RestaurantReviewsList extends React.Component {
     render() {
         return (
             <div className="container">

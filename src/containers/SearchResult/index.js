@@ -14,7 +14,8 @@ class SearchResult extends React.Component {
         postcode: PropTypes.string.isRequired,
         categories: PropTypes.array.isRequired,
         list: PropTypes.array.isRequired,
-        number: PropTypes.number.isRequired
+        number: PropTypes.number.isRequired,
+        id: PropTypes.number
     }
 
     componentWillMount() {
@@ -39,7 +40,7 @@ class SearchResult extends React.Component {
                     <div className="col-md-3">
                         <Categories categories={ props.categories } postcode={ props.postcode }/>
                     </div>
-                    <RestaurantList list={ props.category ? this.filterByCategory(props.category, props.list) : props.list } />
+                    <RestaurantList list={ props.id ? this.filterByCategory(props.id, props.list) : props.list } />
                 </div>
             </Loader>
         )

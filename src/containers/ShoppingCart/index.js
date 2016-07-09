@@ -4,7 +4,7 @@ import { modules } from '@come/redux-store-store'
 
 const { getOrderItems } = modules.order
 
-class SearchResult extends React.Component {
+class ShoppingCart extends React.Component {
 
     static propTypes = {
     }
