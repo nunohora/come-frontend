@@ -26,7 +26,7 @@ class RestaurantMenuItem extends React.Component {
                             <h4>£{item.price}</h4>
                         </div>
                         <div className="qty-cart text-center clearfix">
-                            <AddToCartButton name={item.name} price={item.price} />
+                            <AddToCartButton id={item.id} name={item.name} price={item.price} />
                         </div>
                     </div>
                 </div>

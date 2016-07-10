@@ -32,3 +32,18 @@ export function findWhere(list, props) {
     // No matches
     return null
 }
+
+export function removeFirstFromList(list, prop, value) {
+    let newArray = list.slice()
+
+    for (let i = 0; i < newArray.length; i++) {
+        let obj = newArray[i]
+
+        if (obj[prop] === value) {
+            newArray.splice(i, 1)
+            break
+        }
+    }
+
+    return newArray
+}

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
+import ShoppingCartItem from 'containers/ShoppingCartItem'
 import { changeRadioButton } from 'redux-store/modules/shoppingCart'
 
 class ShoppingCart extends React.Component {
@@ -20,7 +21,11 @@ class ShoppingCart extends React.Component {
             <div>
                 <ul>
                     {props.orders.map((order, index) => {
-                        return <li key={index}>{order.name}</li>
+                        return <ShoppingCartItem
+                            key={index}
+                            id={order.id}
+                            price={order.price}
+                            name={order.name} />
                     })}
                 </ul>
                 <div>Subtotal: {props.subtotal}</div>
@@ -43,8 +48,6 @@ class ShoppingCart extends React.Component {
 
         let orderList
 
-        console.log(props)
-        
         if (props.orders.length) {
             orderList = this.renderOrderItems.bind(this)
         }

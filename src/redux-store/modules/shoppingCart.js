@@ -1,3 +1,5 @@
+import { removeFirstFromList } from '../utils/generic'
+
 const ADD_ORDER_ITEM_REQUEST = 'ADD_ORDER_ITEM_REQUEST'
 const ADD_ORDER_ITEM_SUCCESS = 'ADD_ORDER_ITEM_SUCCESS'
 const ADD_ORDER_ITEM_FAILURE = 'ADD_ORDER_ITEM_FAILURE'
@@ -28,12 +30,15 @@ export function addOrderItem(dispatch, item) {
 }
 
 export function removeOrderItem(dispatch, itemId) {
-    let orders = JSON.parse(localStorage.getItem('order_items'))
+    let ordersArray = JSON.parse(localStorage.getItem('order_items'))
 
-    
+    const orders = removeFirstFromList(ordersArray, 'id', itemId)
+
+    localStorage.setItem('order_items', JSON.stringify(orders))
+
     dispatch({
         type: REMOVE_ORDER_ITEM_SUCCESS,
-        
+        orders
     })
 }
 
@@ -67,6 +72,11 @@ const ACTION_HANDLERS = {
     [TO_COLLECT_CHANGE_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
             toCollect: data.toCollect
+        })
+    },
+    [REMOVE_ORDER_ITEM_SUCCESS]: (state, data) => {
+        return Object.assign({}, state, {
+            orders: data.orders
         })
     }
 }
