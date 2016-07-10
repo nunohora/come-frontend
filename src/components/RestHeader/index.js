@@ -13,7 +13,7 @@ class RestaurantHeader extends React.Component {
     renderRating(rating) {
         return (
             <Rating
-                readonly="true"
+                readonly={true}
                 fractions={3}
                 initialRate={rating}
                 />

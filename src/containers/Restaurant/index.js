@@ -7,6 +7,7 @@ import Loader from 'react-loader'
 import MenuCategories from 'components/MenuCategories'
 import RestaurantHeader from 'components/RestHeader'
 import RestaurantMenu from 'components/RestMenu'
+import ShoppingCart from 'containers/ShoppingCart'
 
 class Restaurant extends React.Component {
 
@@ -52,6 +53,9 @@ class Restaurant extends React.Component {
                         </li>
                     </ul>
                     <RestaurantMenu list={this.props.menu} />
+                </div>
+                <div className="col-md-3">
+                    <ShoppingCart />
                 </div>
             </div>
         )

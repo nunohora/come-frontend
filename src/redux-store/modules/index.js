@@ -7,5 +7,6 @@ import lock from './lock'
 export default {
     restaurant,
     restaurantList,
-    lock
+    lock,
+    shoppingCart
 }

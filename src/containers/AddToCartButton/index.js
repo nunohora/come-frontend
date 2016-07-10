@@ -6,12 +6,14 @@ class AddToCartButton extends React.Component {
 
     static propTypes = {
         name: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
         addOrderItem: PropTypes.func.isRequired
     }
 
     handleClick() {
-        console.log('click!')
+        const { name, price } = this.props
+
+        this.props.addOrderItem({ name, price })
     }
 
     render() {
@@ -27,4 +29,4 @@ const mapDispatchToProps= (dispatch) => ({
     addOrderItem: (props) => { addOrderItem(dispatch, props) }
 })
 
-export default connect({}, mapDispatchToProps)(AddToCartButton)
+export default connect(null, mapDispatchToProps)(AddToCartButton)

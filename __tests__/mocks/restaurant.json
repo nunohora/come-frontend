@@ -19,10 +19,12 @@
     "menu": [{
         "name": "Starters",
         "items": [{
+            "id": 1,
             "name": "Rossois",
             "description": "small pastries",
             "price": 4.99
         }, {
+            "id": 2,
             "name": "Croquetes",
             "description": "pz",
             "price": 3.99
@@ -30,10 +32,12 @@
     }, {
         "name": "Meat",
         "items": [{
+            "id": 3,
             "name": "Frango",
             "description": "Frango estufado",
             "price": 10
         }, {
+            "id": 4,
             "name": "Bife",
             "description": "bife com batata e arroz",
             "price": 15.90

@@ -10,67 +10,69 @@ const GET_ORDERS_REQUEST = 'GET_ORDERS_REQUEST'
 const GET_ORDERS_SUCCESS = 'GET_ORDERS_SUCCESS'
 const GET_ORDERS_FAILURE = 'GET_ORDERS_FAILURE'
 
-export function getOrdersForRestaurant(dispatch, restId) {
+const TO_COLLECT_CHANGE_SUCCESS = 'TO_COLLECT_CHANGE_SUCCESS'
+
+export function addOrderItem(dispatch, item) {
+    const orderItems = localStorage.getItem('order_items')
+
+    let orders = orderItems ? JSON.parse(orderItems) : []
+
+    orders.push(item)
+
+    localStorage.setItem('order_items', JSON.stringify(orders))
+
     dispatch({
-        type: GET_ORDERS_REQUEST
-    })
-
-    storage.load({
-        key: 'orders'
-    }).then(res => {
-        dispatch({ type: GET_ORDERS_SUCCESS, res })
-    }).catch((err, res) => {
-        console.log('error: ', err)
-        console.log('response: ', res)
-
-        if (err) {
-            dispatch({ type: GET_ORDERS_FAILURE })
-        }
-        else {
-            dispatch({ type: GET_ORDERS_SUCCESS, orders: {} })
-        }
+        type: ADD_ORDER_ITEM_SUCCESS,
+        orders
     })
 }
 
-export function addOrderItem(item) {
-    console.log('orderItem')
+export function removeOrderItem(dispatch, itemId) {
+    let orders = JSON.parse(localStorage.getItem('order_items'))
+
+    
+    dispatch({
+        type: REMOVE_ORDER_ITEM_SUCCESS,
+        
+    })
+}
+
+export function changeRadioButton(dispatch, toCollect) {
+    dispatch({
+        type: TO_COLLECT_CHANGE_SUCCESS,
+        toCollect
+    })
+}
+
+function getSubtotal(orders) {
+    let subtotal = 0
+
+    orders.forEach(order => { subtotal = subtotal + order.price })
+
+    return subtotal
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-    [ADD_ORDER_ITEM_REQUEST]: (state) => {
-        return Object.assign({}, state, {
-            isFetching: true
-        })
-    },
     [ADD_ORDER_ITEM_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
-            isFetching: false,
-            isAuthenticated: false
+            isFetching: true,
+            orders: data.orders,
+            subtotal: getSubtotal(data.orders),
+            total: state.subtotal + state.deliveryFee
         })
     },
-    [ADD_ORDER_ITEM_FAILURE]: (state) => {
+    [TO_COLLECT_CHANGE_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
-            isFetching: false
-        })
-    },
-    [REMOVE_ORDER_ITEM_REQUEST]: (state) => {
-        return Object.assign({}, state, {
-            isFetching: true
-        })
-    },
-    [ADD_ORDER_ITEM_SUCCESS]: (state, data) => {
-        return Object.assign({}, state, {
-            isFetching: false,
-            isAuthenticated: false
+            toCollect: data.toCollect
         })
     }
 }
 
 const initialState = {
-    orders: [],
+    orders: localStorage.getItem('order_items') ? JSON.parse(localStorage.getItem('order_items')) : [],
     subtotal: 0,
     deliveryFee: 0,
     total: 0,
