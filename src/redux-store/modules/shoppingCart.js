@@ -63,10 +63,9 @@ function getSubtotal(orders) {
 const ACTION_HANDLERS = {
     [ADD_ORDER_ITEM_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
-            isFetching: true,
             orders: data.orders,
             subtotal: getSubtotal(data.orders),
-            total: state.subtotal + state.deliveryFee
+            total: getSubtotal(data.orders)
         })
     },
     [TO_COLLECT_CHANGE_SUCCESS]: (state, data) => {
@@ -76,17 +75,23 @@ const ACTION_HANDLERS = {
     },
     [REMOVE_ORDER_ITEM_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
-            orders: data.orders
+            orders: data.orders,
+            subtotal: getSubtotal(data.orders),
+            total: getSubtotal(data.orders)
         })
     }
 }
 
+const orders = localStorage.getItem('order_items') ? JSON.parse(localStorage.getItem('order_items')) : []
+const subtotal = getSubtotal(orders)
+
 const initialState = {
-    orders: localStorage.getItem('order_items') ? JSON.parse(localStorage.getItem('order_items')) : [],
-    subtotal: 0,
+    orders: orders,
+    subtotal: subtotal,
     deliveryFee: 0,
-    total: 0,
-    toCollect: false
+    total: subtotal,
+    toCollect: false,
+    orderDetails: {}
 }
 
 // ------------------------------------

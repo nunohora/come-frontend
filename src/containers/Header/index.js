@@ -22,9 +22,8 @@ class Header extends React.Component {
                     </div>
                 </div>
                 <NavBar />
-                <Breadcrumbs routes={this.props.routes} />
             </header>
-        );
+        )
     }
 }
 
