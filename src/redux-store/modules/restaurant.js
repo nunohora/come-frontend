@@ -3,54 +3,61 @@
 import { CALL_API } from '../middleware/api'
 import slug from 'slug'
 
-export const GET_RESTAURANT_REQUEST = 'GET_RESTAURANT_REQUEST'
-export const GET_RESTAURANT_SUCCESS = 'GET_RESTAURANT_SUCCESS'
-export const GET_RESTAURANT_FAILURE = 'GET_RESTAURANT_FAILURE'
+export const GET_MENU_REQUEST = 'GET_MENU_REQUEST'
+export const GET_MENU_SUCCESS = 'GET_MENU_SUCCESS'
+export const GET_MENU_FAILURE = 'GET_MENU_FAILURE'
 
-export const GET_DETAILS_REQUEST = 'GET_DETAILS_REQUEST'
-export const GET_DETAILS_SUCCESS = 'GET_DETAILS_SUCCESS'
-export const GET_DETAILS_FAILURE = 'GET_DETAILS_FAILURE'
+export const GET_REVIEWS_REQUEST = 'GET_REVIEWS_REQUEST'
+export const GET_REVIEWS_SUCCESS = 'GET_REVIEWS_SUCCESS'
+export const GET_REVIEWS_FAILURE = 'GET_REVIEWS_FAILURE'
 
-export const GET_PRODUCTS_REQUEST = 'GET_PRODUCTS_REQUEST'
-export const GET_PRODUCTS_SUCCESS = 'GET_PRODUCTS_SUCCESS'
-export const GET_PRODUCTS_FAILURE = 'GET_PRODUCTS_FAILURE'
+export const GET_INFO_REQUEST = 'GET_INFO_REQUEST'
+export const GET_INFO_SUCCESS = 'GET_INFO_SUCCESS'
+export const GET_INFO_FAILURE = 'GET_INFO_FAILURE'
 
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function getRestaurant(dispatch, id) {
-    dispatch(getRestaurantRequest())
+export function getRestaurantMenu(dispatch, id) {
+    dispatch({ type: GET_MENU_REQUEST })
 
     dispatch({
         [CALL_API]: {
-            endpoint: `places`,
-            types: [GET_RESTAURANT_REQUEST, GET_RESTAURANT_SUCCESS, GET_RESTAURANT_FAILURE]
+            endpoint: `places/1`,
+            types: [GET_MENU_REQUEST, GET_MENU_SUCCESS, GET_MENU_FAILURE]
         }
     })
 }
 
-function getRestaurantProducts(id) {
-    return {
+export function getRestaurantReviews(dispatch, id) {
+    dispatch({
         [CALL_API]: {
-            endpoint: `places/${id}/products`,
-            types: [GET_PRODUCTS_REQUEST, GET_PRODUCTS_SUCCESS, GET_PRODUCTS_FAILURE]
+            endpoint: `places/1/reviews`,
+            types: [GET_REVIEWS_REQUEST, GET_REVIEWS_SUCCESS, GET_REVIEWS_FAILURE]
         }
-    }
+    })
 }
 
-function getRestaurantRequest() {
-    return {
-        type: GET_RESTAURANT_REQUEST,
-        isFetching: true
-    }
+export function getRestaurantInfo(dispatch, id) {
+    dispatch({
+        [CALL_API]: {
+            endpoint: `places/1/info`,
+            types: [GET_INFO_REQUEST, GET_INFO_SUCCESS, GET_INFO_FAILURE]
+        }
+    })
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-    [GET_RESTAURANT_SUCCESS]: (state, data) => {
+    [GET_MENU_REQUEST]: state => {
+        return Object.assign({}, state, {
+            isFetching: true
+        })
+    },
+    [GET_MENU_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
             isFetching: false,
             meta: data.response.meta,
@@ -58,9 +65,31 @@ const ACTION_HANDLERS = {
             menuCategories: data.response.menu.map((item) => item.name)
         })
     },
-    [GET_RESTAURANT_FAILURE]: state => {
+    [GET_MENU_FAILURE]: state => {
         return Object.assign({}, state, {
             isFetching: false
+        })
+    },
+    [GET_REVIEWS_SUCCESS]: (state, data) => {
+        return Object.assign({}, state, {
+            isFetching: false,
+            reviews: data.response.reviews
+        })
+    },
+    [GET_REVIEWS_REQUEST]: state => {
+        return Object.assign({}, state, {
+            isFetching: true
+        })
+    },
+    [GET_INFO_SUCCESS]: (state, data) => {
+        return Object.assign({}, state, {
+            isFetching: false,
+            info: data.info
+        })
+    },
+    [GET_INFO_REQUEST]: state => {
+        return Object.assign({}, state, {
+            isFetching: true
         })
     }
 }
@@ -75,6 +104,8 @@ const initialState = {
     },
     menu: [],
     menuCategories: [],
+    reviews: [],
+    info: {},
     isFetching: false
 }
 

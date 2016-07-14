@@ -1,0 +1,20 @@
+{
+    "info": {
+        "description": "blablablabla",
+        "openingTimes": [{
+            "day": "monday",
+            "times": "18h00 - 00h01"
+        }, {
+            "day": "tuesday",
+            "times": "18h00 - 00h01"
+        }, {
+            "day": "wednesday",
+            "times": "18h00 - 00h01"
+        }],
+        "deliveryAreas": [
+            "4050 Porto",
+            "3000 Lisboa",
+            "3500 Coimbra"
+        ]
+    }
+}

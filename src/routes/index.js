@@ -11,8 +11,12 @@ import Home from 'components/Home'
 import SearchResult from 'containers/SearchResult'
 import Help from 'containers/Help'
 import Restaurant from 'containers/Restaurant'
+import RestaurantMenu from 'components/RestMenu'
+import RestaurantReviews from 'components/RestReviews'
+import RestaurantInfo from 'components/RestInfo'
 import PrivacyPolicy from 'components/PrivacyPolicy'
 import CheckoutConfirmDetails from 'containers/CheckoutConfirmDetails'
+import CheckoutPayment from 'containers/CheckoutPayment'
 import NotFound from 'containers/NotFound'
 
 export default (store) => (
@@ -22,13 +26,14 @@ export default (store) => (
         <Route component={SearchResult} path='search/:location/:id' />
         <Route component={SearchResult} path='search/:location/:id/:category' />
         <Route component={Help} path='/help' />
-        <Route path='/places/:id/:slug'>
-            <IndexRoute component={Restaurant} />
-            <Route component={Restaurant} path="reviews" />
-            <Route component={Restaurant} path="info" />
+        <Route path='/places/:id/:slug' component={Restaurant} >
+            <IndexRoute component={RestaurantMenu} />
+            <Route component={RestaurantReviews} path="reviews" />
+            <Route component={RestaurantInfo} path="info" />
         </Route>
         <Route path='/checkout/:basketId'>
             <IndexRoute component={CheckoutConfirmDetails} />
+            <Route component={CheckoutPayment} />
         </Route>
         <Route component={NotFound} path='*' />
     </Route>

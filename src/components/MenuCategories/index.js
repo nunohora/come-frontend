@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 import slug from 'slug'
 
 export default class MenuCategories extends React.Component {
@@ -8,11 +9,11 @@ export default class MenuCategories extends React.Component {
     }
 
     renderCategory(category, id) {
-        const href = `#${slug(category, { lower: true })}`
+        const href = `${this.props.path}#${slug(category, { lower: true })}`
 
         return (
             <li className="list-item" key={id}>
-                <a href={href}>{category}</a>
+                <Link to={href} role="tab">{category}</Link>
             </li>
         )
     }

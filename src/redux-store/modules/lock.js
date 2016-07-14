@@ -76,6 +76,8 @@ function receiveLogout() {
 // ------------------------------------
 const ACTION_HANDLERS = {
     [LOCK_SUCCESS]: (state, data) => {
+        console.log('profile: ', data.profile)
+
         return Object.assign({}, state, {
             isFetching: false,
             isAuthenticated: true,
@@ -107,7 +109,7 @@ const ACTION_HANDLERS = {
 const initialState = {
     isFetching: false,
     isAuthenticated: localStorage.getItem('id_token') ? true : false,
-    profile: localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : {},
+    profile: localStorage.getItem('profile') ? JSON.parse(localStorage.getItem('profile')) : {}
 }
 
 // ------------------------------------

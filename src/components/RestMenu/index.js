@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
+import { connect } from 'react-redux'
 import RestMenuGroup from 'components/RestMenuGroup'
 import styles from './styles.scss'
 
 class RestaurantMenu extends React.Component {
 
     static propTypes = {
-        list: PropTypes.array
+        menu: PropTypes.array.isRequired
     }
 
     renderProductGroups(list = []) {
@@ -20,10 +21,15 @@ class RestaurantMenu extends React.Component {
     render() {
         return (
             <ul>
-                {this.renderProductGroups(this.props.list)}
+                {this.renderProductGroups(this.props.menu)}
             </ul>
         )
     }
 }
 
-export default CSSModules(RestaurantMenu, styles)
+const mapStateToProps = (state, props) => ({
+    isFetching: state.restaurant.isFetching,
+    menu: state.restaurant.menu
+})
+
+export default connect(mapStateToProps, null)(CSSModules(RestaurantMenu, styles))

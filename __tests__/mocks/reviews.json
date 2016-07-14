@@ -1,0 +1,15 @@
+{
+    "reviews": [{
+        "name": "John Doe",
+        "description": "baaaad",
+        "rating": 4.5
+    }, {
+        "name": "Rosie",
+        "description": "A+++++",
+        "rating": 5
+    }, {
+        "name": "Nuno",
+        "description": "ok",
+        "rating": 2.5
+    }]
+}

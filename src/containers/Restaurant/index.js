@@ -2,17 +2,16 @@ import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
-import { getRestaurant } from 'redux-store/modules/restaurant'
+import { getRestaurantMenu } from 'redux-store/modules/restaurant'
 import Loader from 'react-loader'
 import MenuCategories from 'components/MenuCategories'
 import RestaurantHeader from 'components/RestHeader'
-import RestaurantMenu from 'components/RestMenu'
 import ShoppingCart from 'containers/ShoppingCart'
 
 class Restaurant extends React.Component {
 
     static propTypes = {
-        getRestaurant: PropTypes.func.isRequired,
+        getRestaurantMenu: PropTypes.func.isRequired,
         menuCategories: PropTypes.array.isRequired,
         meta: PropTypes.object.isRequired,
         menu: PropTypes.array.isRequired,
@@ -20,14 +19,26 @@ class Restaurant extends React.Component {
         path: PropTypes.string
     }
 
+    constructor(props) {
+        super(props)
+        this.renderClasses.bind(this)
+        this.getUrl.bind(this)
+    }
+
     componentWillMount() {
-        this.props.getRestaurant(this.props.id)
+        this.props.getRestaurantMenu(this.props.id)
     }
 
     renderClasses(name) {
         return classnames({
             'active': name === this.props.path
         })
+    }
+
+    getUrl() {
+        const { props: { params: { id, slug }}} = this
+
+        return `/places/${id}/${slug}`
     }
 
     render() {
@@ -37,22 +48,22 @@ class Restaurant extends React.Component {
             <div className="container">
                 <Loader loaded={!this.props.isFetching} className="spinner"></Loader>
                 <div className="col-md-3">
-                    <MenuCategories categories={this.props.menuCategories} />
+                    <MenuCategories categories={this.props.menuCategories} path={this.getUrl()} />
                 </div>
                 <div className="col-md-6">
                     <RestaurantHeader meta={this.props.meta} />
                     <ul className="nav nav-tabs" role="tablist">
-                        <li className={this.renderClasses.bind(this, 'menu')} >
+                        <li className={this.renderClasses('menu')} >
                             <Link activeClassName="active" to={`/places/${params.id}/${params.slug}`} role="tab">Menu</Link>
                         </li>
-                        <li className={this.renderClasses.bind(this, 'reviews')}>
-                            <Link to={`/places/${params.id}/${params.slug}/reviews`} role="tab">Reviews</Link>
+                        <li className={this.renderClasses('reviews')}>
+                            <Link to={`${this.getUrl()}/reviews`} role="tab">Reviews</Link>
                         </li>
-                        <li className={this.renderClasses.bind(this, 'info')}>
-                            <Link to={`/places/${params.id}/${params.slug}/info`} role="tab">Informação</Link>
+                        <li className={this.renderClasses('info')}>
+                            <Link to={`${this.getUrl()}/info`} role="tab">Informação</Link>
                         </li>
                     </ul>
-                    <RestaurantMenu list={this.props.menu} />
+                    {this.props.children}
                 </div>
                 <div className="col-md-3">
                     <ShoppingCart />
@@ -72,7 +83,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps= (dispatch) => ({
-    getRestaurant: (id) => { getRestaurant(dispatch, id) }
+    getRestaurantMenu: (id) => { getRestaurantMenu(dispatch, id) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Restaurant)
