@@ -31,7 +31,7 @@ export default function configureStore(initialState = {}, history) {
         }
     }
 
-    // Combining all the modules, common and specific to web
+    // Combining all the modules
     const combinedReducers = combineReducers({
         lock,
         restaurant,

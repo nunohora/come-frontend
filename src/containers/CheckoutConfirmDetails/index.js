@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 class CheckoutConfirmDetails extends React.Component {
 
     static propTypes = {
-        baskedId: PropTypes.number.isRequired,
-        user: PropTypes.obj.isRequired
+        basketId: PropTypes.number.isRequired,
+        user: PropTypes.object.isRequired
     }
 
     render() {
@@ -18,15 +18,8 @@ class CheckoutConfirmDetails extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-    orders: state.shoppingCart.orders,
-    subtotal: state.shoppingCart.subtotal,
-    total: state.shoppingCart.total,
-    toCollect: state.shoppingCart.toCollect,
-    deliveryFee: state.shoppingCart.deliveryFee
+    user: state.lock.profile,
+    basketId: parseInt(props.params.basketId, 10)
 })
 
-const mapDispatchToProps= (dispatch) => ({
-    changeRadioButton: (toCollect) => { changeRadioButton(dispatch, toCollect) }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CheckoutConfirmDetails)
+export default connect(mapStateToProps, null)(CheckoutConfirmDetails)

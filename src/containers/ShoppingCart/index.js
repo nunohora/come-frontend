@@ -5,6 +5,10 @@ import { changeRadioButton } from 'redux-store/modules/shoppingCart'
 
 class ShoppingCart extends React.Component {
 
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
+    }
+
     static propTypes = {
         orders: PropTypes.array.isRequired,
         subtotal: PropTypes.number.isRequired,
@@ -43,6 +47,10 @@ class ShoppingCart extends React.Component {
         return <div>O carrinho está vazio</div>
     }
 
+    onSubmit() {
+        this.context.router.push(`/checkout/1`)
+    }
+
     render() {
         const { props } = this
 
@@ -57,7 +65,11 @@ class ShoppingCart extends React.Component {
 
         return (
             <div className="side-panel">
-                <button className="btn btn-default-red-inverse" type="submit">
+                <button
+                    className="btn btn-default-red-inverse"
+                    disabled={!props.orders.length}
+                    onClick={this.onSubmit.bind(this)}
+                    type="submit">
                     Checkout
                 </button>
                 <h6 className="title">O seu pedido</h6>

@@ -33,7 +33,7 @@ export default (store) => (
         </Route>
         <Route path='/checkout/:basketId'>
             <IndexRoute component={CheckoutConfirmDetails} />
-            <Route component={CheckoutPayment} />
+            <Route component={CheckoutPayment} path="payment"/>
         </Route>
         <Route component={NotFound} path='*' />
     </Route>
