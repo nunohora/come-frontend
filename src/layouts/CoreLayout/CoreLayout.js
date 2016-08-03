@@ -15,15 +15,26 @@ import Footer from 'containers/Footer'
 // CoreLayout is a pure function of its props, so we can
 // define it with a plain javascript function...
 function CoreLayout({ route, children }) {
+
+    let items = () => {
+        return (
+            <div key={children}>
+                {children}
+            </div>
+        )
+    }
+
     return (
         <div>
             <Header routes={route} />
             <ReactCSSTransitionGroup
                 className="page-content"
                 transitionName="page-transition"
+                transitionAppear={true}
+                transitionAppearTimeout={500}
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={500}>
-                {children}
+                {items}
             </ReactCSSTransitionGroup>
             <Footer />
         </div>

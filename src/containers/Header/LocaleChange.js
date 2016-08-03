@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
+import FontAwesome from 'react-fontawesome'
 import classNames from 'classnames'
 import ga from 'react-ga'
 import { connect } from 'react-redux'
@@ -24,18 +25,27 @@ class LocaleChange extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <a styleName="locale-change"
-                   className={this.getClasses('pt')}
-                   onClick={this.changeLocale.bind(this, 'pt')}>
-                    Português
-                </a>
-                <a styleName="locale-change"
-                   className={this.getClasses('en')}
-                   onClick={this.changeLocale.bind(this, 'en')}>
-                    English
-                </a>
-            </div>
+            <ul styleName="menu">
+                <li className="has-dropdown toggle-sub">
+                    <a>{this.props.locale}</a>
+                    <FontAwesome
+                        name="angle-down"
+                        size="2x"
+                    />
+                    <ul>
+                        <li>
+                            <a onClick={this.changeLocale.bind(this, 'en')}>
+                                English
+                            </a>
+                        </li>
+                        <li>
+                            <a onClick={this.changeLocale.bind(this, 'pt')}>
+                                Português
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         )
     }
 }

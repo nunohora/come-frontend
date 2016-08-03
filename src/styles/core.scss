@@ -13,20 +13,19 @@
     }
 
     body {
-        background: #ffffff;
-        color: #423338;
-        font-size: 16px;
-        font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        line-height: 24px;
-        cursor: default;
         -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 13px;
+        line-height: 24px;
+        font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #666;
+        overflow-x: hidden;
     }
 
     *,
     *:before,
     *:after {
-        box-sizing: inherit;
-    }
+        box-sizing: border-box;    }
 
     a {
         color: #343434;
@@ -44,30 +43,39 @@
         }
     }
 
-    h4 {
-        font-size: 24px;
+    nav {
+        height: 55px;
+        max-height: 55px;
+        line-height: 53px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    h5 {
-        font-weight: 700;
-        font-size: 18px;
+    ul {
+        list-style: none;
+        margin-bottom: 0;
     }
 
-    p {
-        margin: 0 0 10px;
+    .page-transition-enter {
+        opacity: 0.01;
+    }
+    .page-transition-enter.page-transition-enter-active {
+        opacity: 1;
+        transition: opacity 500ms ease-in;
+    }
+    .page-transition-leave {
+        opacity: 1;
+    }
+    .page-transition-leave.page-transition-leave-active {
+        opacity: 0.01;
+        transition: opacity 300ms ease-in;
     }
 
-    .css-table {
-        display: table;
+    .left {
+        float: left;
     }
 
-    .css-table-cell {
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-    .text-center {
-        text-align: center;
+    .right {
+        float: right;
     }
 
     .btn {
@@ -183,20 +191,5 @@
         right: 0;
         top: 0;
         bottom: 0;
-    }
-
-    .nav-tabs {
-        border-bottom: 3px solid #e00000;
-
-        li.active a {
-            background: #e00000;
-            color: #fff;
-            border: 1px solid #e00000;
-        }
-    }
-
-    //Auth0 custom form
-    #a0-lock {
-        color: red;
     }
 }
