@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
-import FontAwesome from 'react-fontawesome'
 import classNames from 'classnames'
 import ga from 'react-ga'
 import { connect } from 'react-redux'
 import { update } from 'react-intl-redux'
 import { translations } from 'redux-store'
 import styles from './styles.scss'
+
+let TiChevronLeft = require('react-icons/lib/ti/chevron-left')
 
 class LocaleChange extends React.Component {
 
@@ -28,11 +29,8 @@ class LocaleChange extends React.Component {
             <ul styleName="menu">
                 <li className="has-dropdown toggle-sub">
                     <a>{this.props.locale}</a>
-                    <FontAwesome
-                        name="angle-down"
-                        size="2x"
-                    />
-                    <ul>
+                    <TiChevronLeft size={20} styleName="dropdown-arrow" />
+                    <ul styleName="dropdown-menu">
                         <li>
                             <a onClick={this.changeLocale.bind(this, 'en')}>
                                 English

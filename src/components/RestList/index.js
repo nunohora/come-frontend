@@ -20,9 +20,9 @@ export default class RestaurantList extends React.Component {
 
     render() {
         return (
-            <div className="col-md-9">
-                { this.props.list.map(restaurant => ( this.renderRestaurants(restaurant))) }
+            <div>
+                {this.props.list.map(restaurant => ( this.renderRestaurants(restaurant)))}
             </div>
-        );
+        )
     }
 }

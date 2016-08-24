@@ -4,11 +4,13 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { login, signup, logout } from 'redux-store/modules/lock'
 import CSSModules from 'react-css-modules'
-import FontAwesome from 'react-fontawesome'
 import LocaleChange from './LocaleChange'
 import styles from './styles.scss'
 
 import headerLogo from 'img/header-logo.png'
+
+let TiUser = require('react-icons/lib/ti/user')
+let TiChevronLeft = require('react-icons/lib/ti/chevron-left')
 
 class Header extends React.Component {
 
@@ -23,18 +25,6 @@ class Header extends React.Component {
 
     constructor(props) {
         super(props)
-    }
-
-    renderLoggedIn() {
-        return (
-            <ul>
-                <li>
-                    <FontAwesome
-                        name="user"
-                    />
-                </li>
-            </ul>
-        )
     }
 
     login() {
@@ -52,14 +42,41 @@ class Header extends React.Component {
         this.props.logout()
     }
 
+    renderLoggedIn() {
+        return (
+            <div styleName="user">
+                <span>{this.props.nickname}</span>
+                <TiUser size={30} styleName="user-icon" />
+                <TiChevronLeft size={20} styleName="dropdown-arrow" />
+                <ul styleName="dropdown-menu">
+                    <li>
+                        <Link to="/account">Conta</Link>
+                    </li>
+                    <li>
+                        <Link to="/orders">Pedidos</Link>
+                    </li>
+                    <li>
+                        <Link to="/payments">Pagamentos</Link>
+                    </li>
+                    <li>
+                        <Link to="/addresses">Moradas</Link>
+                    </li>
+                    <li>
+                        <a>Logout</a>
+                    </li>
+                    <li>
+                        <Link to="/help">Ajuda</Link>
+                    </li>                    
+                </ul>
+            </div>
+        )
+    }
+
     renderLoggedOut() {
         return (
             <ul styleName="menu">
                 <li>
-                    <a onClick={this.login.bind(this)}>Login</a>
-                </li>
-                <li>
-                    <a onClick={this.signup.bind(this)}>Signup</a>
+                    <a className="btn btn-sm btn-filled" styleName="header-btn" onClick={this.login.bind(this)}>Login</a>
                 </li>
                 <li>
                     <Link to="/help">Ajuda</Link>
@@ -85,7 +102,7 @@ class Header extends React.Component {
                         <div className="module left" styleName="module-widget-handle">
                             {renderNav()}
                         </div>
-                        <div className="module left">
+                        <div className="module left" styleName="module-widget-handle">
                             <LocaleChange />
                         </div>
                     </div>

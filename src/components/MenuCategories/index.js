@@ -12,7 +12,7 @@ export default class MenuCategories extends React.Component {
         const href = `${this.props.path}#${slug(category, { lower: true })}`
 
         return (
-            <li className="list-item" key={id}>
+            <li key={id}>
                 <Link to={href} role="tab">{category}</Link>
             </li>
         )
@@ -20,13 +20,12 @@ export default class MenuCategories extends React.Component {
 
     render() {
         return (
-            <div className="side-panel">
+            <div className="widget">
                 <h6 className="title">Categorias</h6>
-                <div className="categories">
-                    <ul className="list-unstyled">
-                        { this.props.categories.map((category, index) => ( this.renderCategory(category, index))) }
-                    </ul>
-                </div>
+                <hr />
+                <ul className="link-list">
+                    { this.props.categories.map((category, index) => ( this.renderCategory(category, index))) }
+                </ul>
             </div>
         )
     }

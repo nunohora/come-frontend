@@ -23,18 +23,35 @@ class ShoppingCart extends React.Component {
 
         return (
             <div>
-                <ul>
-                    {props.orders.map((order, index) => {
-                        return <ShoppingCartItem
-                            key={index}
-                            id={order.id}
-                            price={order.price}
-                            name={order.name} />
-                    })}
-                </ul>
-                <div>Subtotal: {props.subtotal}</div>
-                <div>Taxa de entrega: {props.deliveryFee}</div>
-                <div>Total: {props.total}</div>
+                <table className="table">
+                    <tbody>
+                        {props.orders.map((order, index) => {
+                            return <ShoppingCartItem
+                                key={index}
+                                id={order.id}
+                                price={order.price}
+                                name={order.name} />
+                        })}
+                    </tbody>
+                </table>
+                <table className="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Subtotal</th>
+                            <td>{props.subtotal}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Taxa de entrega</th>
+                            <td>{props.deliveryFee}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Total</th>
+                            <td>
+                                <strong>{props.total}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         )
     }
@@ -64,15 +81,13 @@ class ShoppingCart extends React.Component {
         }
 
         return (
-            <div className="side-panel">
-                <button
-                    className="btn btn-default-red-inverse"
+            <div>
+                <h5 className="uppercase">Carrinho</h5>
+                <input 
+                    type="submit"
                     disabled={!props.orders.length}
                     onClick={this.onSubmit.bind(this)}
-                    type="submit">
-                    Checkout
-                </button>
-                <h6 className="title">O seu pedido</h6>
+                    value="Checkout" />
                 <form>
                     <label>
                         <input

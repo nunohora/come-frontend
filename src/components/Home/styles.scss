@@ -1,87 +1,68 @@
-.home-top-wrapper {
-    position: relative;
-
-    .call-to-action-section {
-        position: absolute;
-        padding: 0;
-        top: 42%;
-        z-index: 2;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        height: 130px;
-        -webkit-border-radius: 6px;
-        border-radius: 6px;
-        background: #f2f2f2;
-        color: #343434;
-    }
-}
-
-.home-bg {
-    background-image: url('img/japanese_ramen.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 500px;
-}
-
-.slogan {
-    margin: 0;
-    font-size: 40px;
-    font-weight: normal;
-    text-align: right;
-    line-height: 1.2em;
-    color: #ffffff;
-    span {
-        font-size: 65px;
-        font-weight: 700;
-    }
-}
-
-.call-to-action-icon {
-    position: absolute;
-    display: block;
-    width: 130px;
-    height: 100%;
-    -webkit-border-radius: 6px 0 0 6px;
-    border-radius: 6px 0 0 6px;
-    background: #e00000;
-    vertical-align: middle;
-    text-align: center;
-    img {
-        height: 90px;
-        margin-top: 19px;
-    }
-}
-
-
-.order-steps {
-    position: relative;
-    margin: 0;
+.home-container:before {
+	position: absolute;
+    content: '';
     width: 100%;
-    height: auto;
-    background-color: #fff;
-    .order-step {
-        position: relative;
-        width: 100%;
-        height: auto;
-        padding: 30px;
-        text-align: left;
-        i {
-            text-align: center;
-            width: 100%;
-        }
-        p {
-            margin: 10px 0px 15px 0px;
-            color: #666;
-            span {
-                padding: 0 6px;
-            }
-        }
-    }
-    .bl-sort {
-        color: #999;
-        font-size: 14px;
-    }
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #292929;
+    opacity: 0.3;
+    z-index: 2;
+}
+
+.home-container .container {
+    position: relative;
+    z-index: 3;
+}
+
+.bg-holder {
+	position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: url("img/home.png");
+    background-size: cover !important;
+    background-position: 50% 50% !important;
+}
+
+.feature {
+    padding: 32px;
+    margin-bottom: 24px;
+    height: 280px;
+    background: rgba(34, 34, 34, 0.4);
+    color: #fff;
+}
+
+.feature h5 {
+    color: #fff;
+}
+
+.feature p {
+    margin-bottom: 0;
+}
+
+.icon {
+	display: block;
+	font-size: 32px;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #47b475;
+    text-align: center;
+    line-height: 80px;
+    color: #47b475;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+}
+
+.steps {
+    display: flex;
+    flex-direction: row;
+    z-index: 3;
+    position: relative;
 }

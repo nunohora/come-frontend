@@ -22,7 +22,7 @@ export default class Categories extends React.Component {
 
     renderCategory(category) {
         return (
-            <li className="list-item" key={category.id}>
+            <li key={category.id}>
                 <Link to={this.buildUrl(category)}>
                     {category.name}
                     <span className='tag'>{category.number}</span>
@@ -33,13 +33,12 @@ export default class Categories extends React.Component {
 
     render() {
         return (
-            <div className="side-panel">
+            <div className="widget">
                 <h6 className="title">Categorias</h6>
-                <div className="categories">
-                    <ul className="list-unstyled">
-                        { this.props.categories.map(category => ( this.renderCategory(category) )) }
-                    </ul>
-                </div>
+                <hr />
+                <ul className="link-list">
+                    { this.props.categories.map(category => ( this.renderCategory(category) )) }
+                </ul>
             </div>
         )
     }

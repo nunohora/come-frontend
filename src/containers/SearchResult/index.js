@@ -34,15 +34,19 @@ class SearchResult extends React.Component {
         const { props } = this
 
         return (
-            <Loader loaded={ !props.isFetching } className="spinner">
+            <section>
                 <div className="container">
-                    <ResultNumber number={ props.number } postcode={ props.postcode }/>
-                    <div className="col-md-3">
-                        <Categories categories={ props.categories } postcode={ props.postcode }/>
+                    <div className="row">
+                        <div className="col-md-9 col-md-push-3">
+                            <RestaurantList list={ props.id ? this.filterByCategory(props.id, props.list) : props.list } />
+                        </div>
+                        <div className="col-md-3 col-md-pull-9 hidden-sm">
+                            <ResultNumber number={ props.number } postcode={ props.postcode }/>
+                            <Categories categories={ props.categories } postcode={ props.postcode }/>
+                        </div>
                     </div>
-                    <RestaurantList list={ props.id ? this.filterByCategory(props.id, props.list) : props.list } />
                 </div>
-            </Loader>
+            </section>
         )
     }
 }

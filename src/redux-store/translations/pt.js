@@ -3,7 +3,7 @@ export default {
     "COME": "Come!",
     "ONDE_ESTA": "1. Diz-nos onde estás",
     "PRECISAMOS_CODIGO_POSTAL": "Introduz o teu código postal completo na caixa de pesquisa e clica em procurar.",
-    "APETECE_COMER": "2. O que te apetece comer?",
+    "APETECE_COMER": "2. Que te apetece?",
     "EXPLORA_LISTA": "Explora a lista de restaurantes que aceitam pedidos para a tua zona",
     "DINHEIRO_OU_CARTAO": "3. Dinheiro ou cartão",
     "ACEITAMOS_PAGAMENTO": "Paga como te der mais jeito. Com cartão no checkout ou com dinheiro na altura da entrega.",

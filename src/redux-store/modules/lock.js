@@ -5,7 +5,18 @@ const LOCK_ERROR = 'LOCK_ERROR'
 const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
 const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
-const lock = new Auth0Lock('***REMOVED***', '***REMOVED***')
+const clientId = '***REMOVED***'
+const domain = '***REMOVED***'
+
+const options = {
+    theme: {
+        logo: 'https://s3-eu-west-1.amazonaws.com/come.pt/img/android-icon-192x192-transparent.png',
+        primaryColor: 'green'
+    },
+    socialButtonStyle: 'big'
+}
+
+const lock = new Auth0Lock(clientId, domain, options)
 
 function lockSuccess(profile, token) {
     return {
@@ -24,7 +35,7 @@ function lockError(err) {
 
 export function login(dispatch) {
     return () => {
-        lock.showSignin((err, profile, token) => {
+        lock.show((err, profile, token) => {
             if (err) {
                 dispatch(lockError(err))
                 return
@@ -38,7 +49,7 @@ export function login(dispatch) {
 
 export function signup(dispatch) {
     return () => {
-        lock.showSignup((err) => {
+        lock.show((err) => {
             if (err) {
                 dispatch(lockError(err))
                 return

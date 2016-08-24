@@ -5,6 +5,8 @@ import classnames from 'classnames'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
 
+let FaSearch = require('react-icons/lib/fa/search')
+
 const fields = ['postcode']
 
 class SearchPostcodeForm extends React.Component {
@@ -48,33 +50,25 @@ class SearchPostcodeForm extends React.Component {
         const { fields: { postcode }, handleSubmit } = this.props
 
         return (
-            <div styleName="postcode-text" className="css-table">
-                <div className="css-table-cell">
-                    <h4>Encomende comida online</h4>
-                    <p>Procure por takeaways perto de si</p>
-                </div>
-                <div styleName="main-postcode-search" className="css-table-cell">
-                    <form onSubmit={handleSubmit} onKeyPress={this.onKeyPress.bind(this)}>
-                        <div styleName={this.getClasses('postcode ')}>
-                            <input
-                                ref="postcode"
-                                className="form-control"
-                                type="text"
-                                placeholder="Código postal*"
-                                {...postcode} />
-
-                            { postcode.touched && postcode.error && <small ref='helpBlock' className="help-block">
-                                { postcode.error }</small>
-                            }
-                        </div>
-                        <button styleName="submit-postcode"
-                                className="btn btn-default-red-inverse"
-                                onClick={handleSubmit}
-                                type="submit">
-                            Procure um takeaway
-                        </button>
-                    </form>
-                </div>
+            <div className="text-center">
+                <h3 className="uppercase">Encomende comida online</h3>
+                <p>
+                    We'll be launching our new site in the coming weeks. Hit the form below to get notified as we launch. Thanks for your interest!
+                </p>
+                <form className="halves" onSubmit={handleSubmit} onKeyPress={this.onKeyPress.bind(this)}>
+                    <div>
+                        <input
+                            ref="postcode"
+                            className="form-control"
+                            type="text"
+                            placeholder="Código postal*"
+                            {...postcode} />
+                    </div>
+                    <button onClick={handleSubmit} className="mb16" type="submit">
+                        <FaSearch size={20} styleName="icon" />
+                        Procurar locais
+                    </button>
+                </form>
             </div>
         )
     }

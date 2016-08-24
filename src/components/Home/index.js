@@ -5,7 +5,12 @@ import { FormattedMessage } from 'react-intl'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
 
-import logoIcon from 'img/logo1.png'
+import symbol from 'img/come-symbol.png'
+
+let TiLocationOutline = require('react-icons/lib/ti/location-outline')
+let TiThList = require('react-icons/lib/ti/th-list-outline')
+let TiCreditCard = require('react-icons/lib/ti/credit-card')
+let TiThumbsOk = require('react-icons/lib/ti/thumbs-ok')
 
 class Home extends React.Component {
 
@@ -24,77 +29,81 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
-                <div styleName="home-top-wrapper">
-                    <div className="container" styleName="call-to-action-section">
-                        <div className="css-table-cell">
-                            <div styleName="call-to-action-icon">
-                                <img src={logoIcon} alt="" />
-                            </div>
+            <section styleName="home-container">
+                <div styleName="bg-holder"></div>
+                <div styleName="container" className="v-align-transform">
+                    <div className="row">
+                        <div className="col-sm-12 text-center">
+                            <img src={symbol} />
                         </div>
-                        <SearchPostcodeForm onSubmit={this.handleSubmit.bind(this)} />
                     </div>
-                    <div styleName="home-bg">
-                        <div styleName="slogan" className="container">
-                            <h1 className="text-right">
-                                <span>
-                                    <FormattedMessage id="TENS_FOME"/>
-                                </span>
-                            </h1>
+                    <div className="row">
+                        <div className="col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1">
+                            <SearchPostcodeForm onSubmit={this.handleSubmit.bind(this)} />
                         </div>
                     </div>
                 </div>
-                <div styleName="order-steps">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-3 col-sm-6 col-xs-6 text-center">
-                                <div styleName="order-step">
-                                    <i className="fa fa-map-marker fa-4x"></i>
-                                    <h5 className="step-title">
-                                        <FormattedMessage id="ONDE_ESTA" />
-                                    </h5>
-                                    <div styleName="bl-sort">
-                                        <FormattedMessage id="PRECISAMOS_CODIGO_POSTAL" />
-                                    </div>
+                <div className="container">
+                    <div  styleName="steps" className="row">
+                        <div className="col-sm-3">
+                            <div styleName="feature">
+                                <div className="text-center">
+                                    <TiLocationOutline size={80} styleName="icon" />
+                                    <FormattedMessage 
+                                            id="ONDE_ESTA"
+                                            className="uppercase"
+                                            tagName="h5" />
                                 </div>
-                            </div>
-                            <div className="col-md-3 col-sm-6 col-xs-6 text-center">
-                                <div styleName="order-step">
-                                    <i className="fa fa-cutlery fa-4x"></i>
-                                    <h5 className="step-title">
-                                        <FormattedMessage id="APETECE_COMER" />
-                                    </h5>
-                                    <div styleName="bl-sort">
-                                        <FormattedMessage id="EXPLORA_LISTA" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-3 col-sm-6 col-xs-6 text-center">
-                                <div styleName="order-step">
-                                    <i className="fa fa-credit-card fa-4x"></i>
-                                    <h5 className="step-title">
-                                        <FormattedMessage id="DINHEIRO_OU_CARTAO" />
-                                    </h5>
-                                    <div styleName="bl-sort">
-                                        <FormattedMessage id="ACEITAMOS_PAGAMENTO" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-3 col-sm-6 col-xs-6 text-center">
-                                <div styleName="order-step">
-                                    <i className="fa fa-thumbs-up fa-4x"></i>
-                                    <h5 className="step-title">
-                                        <FormattedMessage id="PEDIDO_EFECTUADO" />
-                                    </h5>
-                                    <div styleName="bl-sort">
-                                        <FormattedMessage id="COMIDA_CAMINHO" />
-                                    </div>
-                                </div>
+                                <FormattedMessage 
+                                    id="PRECISAMOS_CODIGO_POSTAL"
+                                    tagName="p" />
                             </div>
                         </div>
-                    </div>
+                        <div className="col-sm-3">
+                            <div styleName="feature">
+                                <div className="text-center">
+                                    <TiThList size={80} styleName="icon" />
+                                    <FormattedMessage 
+                                        id="APETECE_COMER" 
+                                        className="uppercase"
+                                        tagName="h5" />
+                                </div>
+                                <FormattedMessage 
+                                    id="EXPLORA_LISTA" 
+                                    tagName="p" />
+                            </div>
+                        </div>
+                        <div className="col-sm-3">
+                            <div styleName="feature">
+                                <div className="text-center">
+                                    <TiCreditCard size={80} styleName="icon" />
+                                    <FormattedMessage 
+                                        id="DINHEIRO_OU_CARTAO" 
+                                        className="uppercase"
+                                        tagName="h5" />
+                                </div>
+                                <FormattedMessage 
+                                    id="ACEITAMOS_PAGAMENTO" 
+                                    tagName="p" />
+                            </div>
+                        </div>
+
+                        <div className="col-sm-3">
+                            <div styleName="feature">
+                                <div className="text-center">
+                                    <TiThumbsOk size={80} styleName="icon" />
+                                    <FormattedMessage id="PEDIDO_EFECTUADO" 
+                                        className="uppercase" 
+                                        tagName="h5" />
+                                </div>
+                                <FormattedMessage 
+                                    id="COMIDA_CAMINHO" 
+                                    tagName="p" />
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
-            </div>
+            </section>
         )
     }
 }

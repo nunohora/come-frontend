@@ -28,13 +28,18 @@ function CoreLayout({ route, children }) {
         <div>
             <Header routes={route} />
             <ReactCSSTransitionGroup
-                className="page-content"
-                transitionName="page-transition"
+                component="div"
+                className="main-container"
+                transitionName={{
+                    enter: 'enter',
+                    leave: 'leave',
+                    appear: 'appear'
+                }}
                 transitionAppear={true}
-                transitionAppearTimeout={500}
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={500}>
-                {items}
+                transitionAppearTimeout={1500}
+                transitionEnterTimeout={1500}
+                transitionLeaveTimeout={1500}>
+                {items()}
             </ReactCSSTransitionGroup>
             <Footer />
         </div>
