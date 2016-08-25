@@ -27,20 +27,25 @@ function CoreLayout({ route, children }) {
     return (
         <div>
             <Header routes={route} />
-            <ReactCSSTransitionGroup
-                component="div"
-                className="main-container"
-                transitionName={{
-                    enter: 'enter',
-                    leave: 'leave',
-                    appear: 'appear'
-                }}
-                transitionAppear={true}
-                transitionAppearTimeout={1500}
-                transitionEnterTimeout={1500}
-                transitionLeaveTimeout={1500}>
-                {items()}
-            </ReactCSSTransitionGroup>
+            <div className="main-container">
+                <section className="fullscreen image-bg">
+                    <ReactCSSTransitionGroup
+                        component="div"
+                        className="container v-align-transform"
+                        transitionName={{
+                            enter: 'enter',
+                            leave: 'leave',
+                            appear: 'appear'
+                        }}
+                        transitionAppear={true}
+                        transitionAppearTimeout={1500}
+                        transitionEnterTimeout={1500}
+                        transitionLeaveTimeout={1500}>
+                        <div className="bg-holder"></div>
+                        {items()}
+                    </ReactCSSTransitionGroup>
+                </section>
+            </div>
             <Footer />
         </div>
     )

@@ -13,24 +13,20 @@ class RestaurantMenuItem extends React.Component {
         const { item } = this.props
 
         return (
-            <div className="item-list">
-                <div className="all-details">
-                    <div className="visible-option">
-                        <div className="details">
-                            <h6>{item.name}</h6>
-                            <p className="m-with-details">
-                                {item.description}
-                            </p>
-                        </div>
-                        <div className="price-option fl">
-                            <h4>£{item.price}</h4>
-                        </div>
-                        <div className="qty-cart text-center clearfix">
-                            <AddToCartButton id={item.id} name={item.name} price={item.price} />
-                        </div>
-                    </div>
+            <li>
+                <div>
+                    <h6>{item.name}</h6>
+                    <p>
+                        {item.description}
+                    </p>
                 </div>
-            </div>
+                <div>
+                    <h4>£{item.price}</h4>
+                </div>
+                <div>
+                    <AddToCartButton id={item.id} name={item.name} price={item.price} />
+                </div>
+            </li>
         )
     }
 }

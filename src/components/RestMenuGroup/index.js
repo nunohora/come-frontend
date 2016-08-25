@@ -22,7 +22,9 @@ class RestaurantMenuGroup extends React.Component {
         return (
             <div>
                 <h5>{name}</h5>
-                {this.renderProductList(items)}
+                <ul>
+                    {this.renderProductList(items)}
+                </ul>
             </div>
         )
     }

@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { addOrderItem } from 'redux-store/modules/shoppingCart'
 
+let TiPlus = require('react-icons/lib/ti/plus')
+
 class AddToCartButton extends React.Component {
 
     static propTypes = {
@@ -19,9 +21,9 @@ class AddToCartButton extends React.Component {
 
     render() {
         return (
-            <button onClick={this.handleClick.bind(this)}>
-                <i className="fa fa-shopping-cart"></i>
-            </button>
+            <a styleName="icon" className="btn btn-icon" onClick={this.handleClick.bind(this)}>
+                <TiPlus />
+            </a>
         )
     }
 }

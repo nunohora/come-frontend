@@ -34,19 +34,15 @@ class SearchResult extends React.Component {
         const { props } = this
 
         return (
-            <section>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-9 col-md-push-3">
-                            <RestaurantList list={ props.id ? this.filterByCategory(props.id, props.list) : props.list } />
-                        </div>
-                        <div className="col-md-3 col-md-pull-9 hidden-sm">
-                            <ResultNumber number={ props.number } postcode={ props.postcode }/>
-                            <Categories categories={ props.categories } postcode={ props.postcode }/>
-                        </div>
-                    </div>
+            <div className="row normal-container">
+                <div className="col-md-9 col-md-push-3">
+                    <RestaurantList list={ props.id ? this.filterByCategory(props.id, props.list) : props.list } />
                 </div>
-            </section>
+                <div className="col-md-3 col-md-pull-9 hidden-sm">
+                    <ResultNumber number={ props.number } postcode={ props.postcode }/>
+                    <Categories categories={ props.categories } postcode={ props.postcode }/>
+                </div>
+            </div>
         )
     }
 }

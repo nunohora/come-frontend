@@ -30,8 +30,6 @@ class Restaurant extends React.Component {
     }
 
     renderClasses(name) {
-        console.log(this.props)
-
         return classnames({
             'active': name === this.props.path
         })
@@ -47,43 +45,39 @@ class Restaurant extends React.Component {
         const { props: { params } } = this
 
         return (
-            <section>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-3 hidden-sm">
-                            <MenuCategories categories={this.props.menuCategories} path={this.getUrl()} />
-                        </div>
-                        <div className="col-md-5">
-                            <RestaurantHeader meta={this.props.meta} />
-                            <div className="tabbed-content button-tabs">
-                                <ul className="tabs">
-                                    <li className={this.renderClasses('menu')}>
-                                        <div className="tab-title">
-                                            <Link to={`/places/${params.id}/${params.slug}`} role="tab">Menu</Link>
-                                        </div>
-                                    </li>
-                                    <li className={this.renderClasses('reviews')}>
-                                        <div className="tab-title">
-                                            <Link to={`${this.getUrl()}/reviews`} role="tab">Reviews</Link>
-                                        </div>
-                                    </li>
-                                    <li className={this.renderClasses('info')}>
-                                        <div className="tab-title">
-                                            <Link to={`${this.getUrl()}/info`} role="tab">Informação</Link>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="tab-content">
-                                {this.props.children}           
-                            </div>
-                        </div>
-                        <div className="col-md-3 hidden-sm">
-                            <ShoppingCart />
-                        </div>
+            <div className="row normal-container">
+                <div className="col-md-3 hidden-sm">
+                    <MenuCategories categories={this.props.menuCategories} path={this.getUrl()} />
+                </div>
+                <div className="col-md-5">
+                    <RestaurantHeader meta={this.props.meta} />
+                    <div className="tabbed-content button-tabs">
+                        <ul className="tabs">
+                            <li className={this.renderClasses('menu')}>
+                                <div className="tab-title">
+                                    <Link to={`/places/${params.id}/${params.slug}`} role="tab">Menu</Link>
+                                </div>
+                            </li>
+                            <li className={this.renderClasses('reviews')}>
+                                <div className="tab-title">
+                                    <Link to={`${this.getUrl()}/reviews`} role="tab">Reviews</Link>
+                                </div>
+                            </li>
+                            <li className={this.renderClasses('info')}>
+                                <div className="tab-title">
+                                    <Link to={`${this.getUrl()}/info`} role="tab">Informação</Link>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="tab-content">
+                        {this.props.children}           
                     </div>
                 </div>
-            </section>
+                <div className="col-md-3 hidden-sm">
+                    <ShoppingCart />
+                </div>
+            </div>
         )
     }
 }

@@ -50,26 +50,20 @@ class SearchPostcodeForm extends React.Component {
         const { fields: { postcode }, handleSubmit } = this.props
 
         return (
-            <div className="text-center">
-                <h3 className="uppercase">Encomende comida online</h3>
-                <p>
-                    We'll be launching our new site in the coming weeks. Hit the form below to get notified as we launch. Thanks for your interest!
-                </p>
-                <form className="halves" onSubmit={handleSubmit} onKeyPress={this.onKeyPress.bind(this)}>
-                    <div>
-                        <input
-                            ref="postcode"
-                            className="form-control"
-                            type="text"
-                            placeholder="Código postal*"
-                            {...postcode} />
-                    </div>
-                    <button onClick={handleSubmit} className="mb16" type="submit">
-                        <FaSearch size={20} styleName="icon" />
-                        Procurar locais
-                    </button>
-                </form>
-            </div>
+            <form className="halves" onSubmit={handleSubmit} onKeyPress={this.onKeyPress.bind(this)}>
+                <div>
+                    <input
+                        ref="postcode"
+                        className="form-control"
+                        type="text"
+                        placeholder="Código postal*"
+                        {...postcode} />
+                </div>
+                <button onClick={handleSubmit} className="mb16" type="submit">
+                    <FaSearch size={20} styleName="icon" />
+                    Procurar locais
+                </button>
+            </form>
         )
     }
 }
