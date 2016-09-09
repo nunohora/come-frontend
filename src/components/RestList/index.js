@@ -14,7 +14,7 @@ export default class RestaurantList extends React.Component {
                 id={ restaurant.id }
                 name={ restaurant.name }
                 address={ restaurant.zone_name }
-                categories = { restaurant.categories } />
+                categories = { restaurant.food_categories } />
         )
     }
 

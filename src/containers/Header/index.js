@@ -44,31 +44,33 @@ class Header extends React.Component {
 
     renderLoggedIn() {
         return (
-            <div styleName="user">
-                <span>{this.props.nickname}</span>
-                <TiUser size={30} styleName="user-icon" />
-                <TiChevronLeft size={20} styleName="dropdown-arrow" />
-                <ul styleName="dropdown-menu">
-                    <li>
-                        <Link to="/account">Conta</Link>
-                    </li>
-                    <li>
-                        <Link to="/orders">Pedidos</Link>
-                    </li>
-                    <li>
-                        <Link to="/payments">Pagamentos</Link>
-                    </li>
-                    <li>
-                        <Link to="/addresses">Moradas</Link>
-                    </li>
-                    <li>
-                        <a>Logout</a>
-                    </li>
-                    <li>
-                        <Link to="/help">Ajuda</Link>
-                    </li>                    
-                </ul>
-            </div>
+            <ul styleName="user">
+                <li>
+                    <span>{this.props.nickname}</span>
+                    <TiUser size={30} styleName="user-icon" />
+                    <TiChevronLeft size={20} styleName="dropdown-arrow" />
+                    <ul styleName="dropdown-menu">
+                        <li styleName="menu-item">
+                            <Link to="/account">Conta</Link>
+                        </li>
+                        <li styleName="menu-item">
+                            <Link to="/orders">Pedidos</Link>
+                        </li>
+                        <li styleName="menu-item">
+                            <Link to="/payments">Pagamentos</Link>
+                        </li>
+                        <li styleName="menu-item">
+                            <Link to="/addresses">Moradas</Link>
+                        </li>
+                        <li styleName="menu-item">
+                            <a>Logout</a>
+                        </li>
+                        <li styleName="menu-item">
+                            <Link to="/help">Ajuda</Link>
+                        </li>                    
+                    </ul>                    
+                </li>
+            </ul>
         )
     }
 

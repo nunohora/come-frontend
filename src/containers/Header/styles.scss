@@ -10,6 +10,7 @@
     padding: 0 32px;
 }
 
+.user,
 .menu {
     width: 100%;
     height: 55px;
@@ -26,6 +27,7 @@
     -webkit-transform: translate3d(0, 10px, 0);
     -moz-transform: translate3d(0, 10px, 0);
     visibility: hidden;
+    display: none;
     margin-top: -10px;
     margin-left: -60px;
 
@@ -47,14 +49,9 @@
     vertical-align: top;
 }
 
-.user:hover {
-    .dropdown-menu {
-        visibility: visible;
-    }
-}
-
 .menu:hover {
     .dropdown-menu {
+        display: block;
         visibility: visible;
     }
 }
@@ -95,19 +92,19 @@
 }
 
 .user {
-    composes: icon-white;
-}
-
-.user:hover ul {
-    visibility: visible;
+    composes: menu;
+    color: #fff;
 }
 
 .user .dropdown-arrow {
     margin-left: -6px;
+    opacity: 0.7;
+    color: #fff;
 }
 
 .user-icon {
     composes: icon;
+    composes: icon-white;
     margin-left: 5px;
 }
 

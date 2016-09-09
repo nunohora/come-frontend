@@ -27,7 +27,7 @@ class LocaleChange extends React.Component {
     render() {
         return (
             <ul styleName="menu">
-                <li className="has-dropdown toggle-sub">
+                <li>
                     <a>{this.props.locale}</a>
                     <TiChevronLeft size={20} styleName="dropdown-arrow" />
                     <ul styleName="languages-dropdown-menu">

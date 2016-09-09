@@ -51,6 +51,8 @@ class RestaurantListItem extends React.Component {
     }
 
     render() {
+        console.log('props: ', this.props)
+        
         const params = {
             id: this.props.id,
             slug: slug(this.props.name, {lower: true})
