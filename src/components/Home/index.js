@@ -41,7 +41,7 @@ class Home extends React.Component {
                     </h1>
                 </div>
                 <div className="row">
-                    <div className="col-md-4 col-md-offset-4 col-sm-10 col-sm-offset-1 mb40 mb-xs-24">
+                    <div className="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 mb40 mb-xs-24">
                         <SearchPostcodeForm onSubmit={this.handleSubmit.bind(this)} />
                     </div>
                 </div>

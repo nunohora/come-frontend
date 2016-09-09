@@ -15,7 +15,7 @@ const config = {
     dir_client : 'src',
     dir_dist   : 'dist',
     dir_server : 'server',
-    dir_test   : '__tests__',
+    dir_test   : 'tests',
 
     // ----------------------------------
     // Server Configuration

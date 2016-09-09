@@ -26,7 +26,25 @@
     -webkit-transform: translate3d(0, 10px, 0);
     -moz-transform: translate3d(0, 10px, 0);
     visibility: hidden;
-    margin-top: -1px;
+    margin-top: -10px;
+    margin-left: -60px;
+
+    a {
+        height: auto;
+        padding: 6px 24px;
+    }
+}
+
+.languages-dropdown-menu {
+    composes: dropdown-menu;
+    max-width: 150px;
+}
+
+.menu-item {
+    position: relative;
+    line-height: 24px;
+    width: 100%;
+    vertical-align: top;
 }
 
 .user:hover {

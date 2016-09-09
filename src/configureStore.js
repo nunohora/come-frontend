@@ -1,6 +1,7 @@
 /*global require module */
 import { applyMiddleware, createStore, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
+import createLogger from 'redux-logger'
 import { api, translations } from 'redux-store'
 import { routerMiddleware, routerReducer as router } from 'react-router-redux'
 import { reducer as form } from 'redux-form'
@@ -17,8 +18,11 @@ import shoppingCart from 'redux-store/modules/shoppingCart'
 addLocaleData([...pt, ...en])
 
 export default function configureStore(initialState = {}, history) {
+    // Redux logger middleware
+    const logger = createLogger()
+
     // Compose final middleware
-    let middleware = applyMiddleware(thunk, routerMiddleware(history), api)
+    let middleware = applyMiddleware(thunk, routerMiddleware(history), api, logger)
 
     const state = {
         ...initialState,

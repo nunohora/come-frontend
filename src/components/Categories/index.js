@@ -10,11 +10,11 @@ export default class Categories extends React.Component {
     }
 
     buildUrl(category) {
-        const { name, id } = category
+        const { name } = category
         let rep = `/search/${this.props.postcode}`
 
         if (category.name !== 'Total') {
-            rep += `/${id}/${slug(name, {lower: true})}`
+            rep += `/${slug(name, {lower: true})}`
         }
 
         return rep

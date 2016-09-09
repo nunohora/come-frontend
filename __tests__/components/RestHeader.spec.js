@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import TestUtils from 'react-addons-test-utils'
 import RestHeader from '../../src/components/RestHeader'
 
-describe('Restaurant Header', () => {
+describe('<RestHeader />', () => {
 
     const meta = {
         name: 'joe bloggs',
@@ -17,11 +17,13 @@ describe('Restaurant Header', () => {
         }]
     }
 
+    const renderer = TestUtils.createRenderer()
+
     it('renders with right props', () => {
-        const restHeader = TestUtils.renderIntoDocument(
+        renderer.render(
             <RestHeader meta={meta} />
         )
 
-        const restHeaderNode = ReactDOM.findDOMNode(restHeader)
+        console.log(renderer.getRenderOutput())
     })
 })

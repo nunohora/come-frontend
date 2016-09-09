@@ -46,7 +46,7 @@ class RestaurantHeader extends React.Component {
             <div styleName="restaurant-header">
                 <div className="row">
                     <div className="col-md-3">
-                        <img className="" src={ Image } alt="" />
+                        <img src={ Image } alt="" />
                     </div>
                     <div className="col-md-6">
                         <h5>{meta.name}</h5>

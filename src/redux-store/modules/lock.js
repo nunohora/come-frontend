@@ -1,4 +1,4 @@
-import Auth0Lock from 'auth0-lock'
+import AuthService from 'redux-store/utils/authService'
 
 const LOCK_SUCCESS = 'LOCK_SUCCESS'
 const LOCK_ERROR = 'LOCK_ERROR'
@@ -9,6 +9,7 @@ const clientId = '***REMOVED***'
 const domain = '***REMOVED***'
 
 const options = {
+    autoclose: true,
     theme: {
         logo: 'https://s3-eu-west-1.amazonaws.com/come.pt/img/android-icon-192x192-transparent.png',
         primaryColor: 'green'
@@ -16,15 +17,7 @@ const options = {
     socialButtonStyle: 'big'
 }
 
-const lock = new Auth0Lock(clientId, domain, options)
-
-function lockSuccess(profile, token) {
-    return {
-        type: LOCK_SUCCESS,
-        profile,
-        token
-    }
-}
+const lock = new AuthService(clientId, domain, options)
 
 function lockError(err) {
     return {
@@ -34,17 +27,7 @@ function lockError(err) {
 }
 
 export function login(dispatch) {
-    return () => {
-        lock.show((err, profile, token) => {
-            if (err) {
-                dispatch(lockError(err))
-                return
-            }
-            localStorage.setItem('profile', JSON.stringify(profile))
-            localStorage.setItem('id_token', token)
-            dispatch(lockSuccess(profile, token))
-        })
-    }
+    lock.login(dispatch)
 }
 
 export function signup(dispatch) {
@@ -87,8 +70,6 @@ function receiveLogout() {
 // ------------------------------------
 const ACTION_HANDLERS = {
     [LOCK_SUCCESS]: (state, data) => {
-        console.log('profile: ', data.profile)
-
         return Object.assign({}, state, {
             isFetching: false,
             isAuthenticated: true,
@@ -117,6 +98,7 @@ const ACTION_HANDLERS = {
     }
 }
 
+console.log(localStorage.getItem('id_token'));
 const initialState = {
     isFetching: false,
     isAuthenticated: localStorage.getItem('id_token') ? true : false,

@@ -23,8 +23,7 @@ export default (store) => (
     <Route path='/' component={CoreLayout}>
         <IndexRoute component={Home} />
         <Route component={SearchResult} path='search/:location' />
-        <Route component={SearchResult} path='search/:location/:id' />
-        <Route component={SearchResult} path='search/:location/:id/:category' />
+        <Route component={SearchResult} path='search/:location/:slug' />
         <Route component={Help} path='/help' />
         <Route path='/places/:id/:slug' component={Restaurant} >
             <IndexRoute component={RestaurantMenu} />

@@ -28,7 +28,7 @@ function CoreLayout({ route, children }) {
         <div>
             <Header routes={route} />
             <div className="main-container">
-                <section className="fullscreen image-bg">
+                <section className="fullscreen">
                     <ReactCSSTransitionGroup
                         component="div"
                         className="container v-align-transform"
@@ -38,9 +38,10 @@ function CoreLayout({ route, children }) {
                             appear: 'appear'
                         }}
                         transitionAppear={true}
-                        transitionAppearTimeout={1500}
-                        transitionEnterTimeout={1500}
-                        transitionLeaveTimeout={1500}>
+                        transitionAppearTimeout={500}
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={500}
+                    >
                         <div className="bg-holder"></div>
                         {items()}
                     </ReactCSSTransitionGroup>

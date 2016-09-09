@@ -41,3 +41,78 @@ button[type="submit"] {
     letter-spacing: 1px;
     border-radius: 0 !important;
 }
+
+select {
+    height: 50px;
+    background: #f5f5f5;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    position: relative;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #777;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.form-error,
+.form-success {
+    background: #58ce38;
+    padding: 12px;
+    width: 80%;
+    color: #fff;
+    clear: both;
+    display: block;
+    max-width: 700px;
+    position: relative;
+    top: 16px;
+    margin: 0 auto;
+    word-break: break-word;
+}
+
+.field-error {
+  outline: 1px solid #ce3838 !important;
+}
+
+.form-error a,
+.form-success a {
+    display: block;
+    color: #fff;
+}
+
+.attempted-submit .field-error {
+    outline: 1px solid #ce3838 !important;
+}
+
+.select-option {
+    position: relative;
+    cursor: pointer;
+    height: 50px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.select-option select {
+    margin-bottom: 0;
+}
+
+.select-option .icon {
+    position: absolute;
+    font-size: 18px;
+    right: 20px;
+    top: 14px;
+    z-index: 2;
+    pointer-events: none;
+    cursor: pointer;
+    transform: rotate(-90deg);
+}
+.input-lh {
+    line-height: 50px;
+}

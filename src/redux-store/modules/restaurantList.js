@@ -13,7 +13,7 @@ export function getRestListByLocation(dispatch, postcode) {
 
     dispatch({
         [CALL_API]: {
-            endpoint: `search?location=${postcode}`,
+            endpoint: `search/${postcode}`,
             types: [SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE]
         }
     })
@@ -35,7 +35,7 @@ function setCategories(list, totalResults) {
     }];
 
     list.map(restaurant => {
-        restaurant.categories.map(cat => {
+        restaurant.food_categories.map(cat => {
 
             const { name } = cat
             const exists = findWhere(cats, { name: name })
@@ -69,9 +69,9 @@ const ACTION_HANDLERS = {
     [SEARCH_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
             postcode: data.postcode,
-            categories: setCategories(data.response.search, data.response.search.length),
-            list: data.response.search,
-            number: data.response.search.length,
+            categories: setCategories(data.response, data.response.length),
+            list: data.response,
+            number: data.response.length,
             isFetching: false
         })
     },

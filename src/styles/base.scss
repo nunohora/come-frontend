@@ -85,11 +85,6 @@ footer {
     overflow: hidden;
 }
 
-.image-bg h1, .image-bg h2, .image-bg h3, 
-.image-bg h4, .image-bg h5, .image-bg h6 {
-    color: #ffffff;
-}
-
 .bg-holder {
     position: absolute;
     width: 100%;
@@ -121,29 +116,25 @@ footer {
 
 .enter {
     opacity: 0.01;
+    transition: opacity .5s ease-in;
 }
-
 .enter.enter-active {
     opacity: 1;
-    transition: opacity 1000ms ease-in;
 }
 .leave {
     opacity: 1;
+    transition: opacity .5s ease-in;
 }
 .leave.leave-active {
     opacity: 0.01;
-    transition: opacity 500ms ease-in;
 }
-
 .appear {
-  opacity: 0.01;
+    opacity: 0.01;
+    transition: opacity .5s ease-in;
 }
-
 .appear.appear-active {
-  opacity: 1;
-  transition: opacity .5s ease-in;
+    opacity: 1;
 }
-
 .navbar-icons {
     color: #fff;
     opacity: .7;
