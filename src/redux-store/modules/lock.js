@@ -98,7 +98,6 @@ const ACTION_HANDLERS = {
     }
 }
 
-console.log(localStorage.getItem('id_token'));
 const initialState = {
     isFetching: false,
     isAuthenticated: localStorage.getItem('id_token') ? true : false,

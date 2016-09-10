@@ -63,7 +63,7 @@ class Header extends React.Component {
                             <Link to="/addresses">Moradas</Link>
                         </li>
                         <li styleName="menu-item">
-                            <a>Logout</a>
+                            <a onClick={this.props.logout}>Logout</a>
                         </li>
                         <li styleName="menu-item">
                             <Link to="/help">Ajuda</Link>

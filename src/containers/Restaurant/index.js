@@ -16,7 +16,8 @@ class Restaurant extends React.Component {
         meta: PropTypes.object.isRequired,
         menu: PropTypes.array.isRequired,
         id: PropTypes.string.isRequired,
-        path: PropTypes.string
+        location: PropTypes.object.isRequired,
+        path: PropTypes.string.isRequired
     }
 
     constructor(props) {
@@ -30,15 +31,20 @@ class Restaurant extends React.Component {
     }
 
     renderClasses(name) {
+        // Naughty hack!
+        const { pathname } = this.props.location 
+        let path = pathname.split('/')
+        let string = path[path.length - 1]
+        
         return classnames({
-            'active': name === this.props.path
+            'tab': true,
+            'active': name === string
         })
     }
 
     getUrl() {
-        const { props: { params: { id, slug }}} = this
-
-        return `/places/${id}/${slug}`
+        const { props: { params: { slug }}} = this
+        return `/places/${slug}`
     }
 
     render() {
@@ -49,26 +55,18 @@ class Restaurant extends React.Component {
                 <div className="col-md-3 hidden-sm">
                     <MenuCategories categories={this.props.menuCategories} path={this.getUrl()} />
                 </div>
-                <div className="col-md-5">
+                <div className="col-md-6">
                     <RestaurantHeader meta={this.props.meta} />
-                    <div className="tabbed-content button-tabs">
-                        <ul className="tabs">
-                            <li className={this.renderClasses('menu')}>
-                                <div className="tab-title">
-                                    <Link to={`/places/${params.id}/${params.slug}`} role="tab">Menu</Link>
-                                </div>
-                            </li>
-                            <li className={this.renderClasses('reviews')}>
-                                <div className="tab-title">
-                                    <Link to={`${this.getUrl()}/reviews`} role="tab">Reviews</Link>
-                                </div>
-                            </li>
-                            <li className={this.renderClasses('info')}>
-                                <div className="tab-title">
-                                    <Link to={`${this.getUrl()}/info`} role="tab">Informação</Link>
-                                </div>
-                            </li>
-                        </ul>
+                    <div className="button-tabs">
+                        <div className={this.renderClasses('menu')}>
+                            <Link to={`${this.getUrl()}`} role="tab">Menu</Link>
+                        </div>
+                        <div className={this.renderClasses('reviews')}>
+                            <Link to={`${this.getUrl()}/reviews`} role="tab">Reviews</Link>
+                        </div>
+                        <div className={this.renderClasses('info')}>
+                            <Link to={`${this.getUrl()}/info`} role="tab">Informação</Link>
+                        </div>
                     </div>
                     <div className="tab-content">
                         {this.props.children}           

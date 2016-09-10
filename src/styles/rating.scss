@@ -1,0 +1,13 @@
+.small-star {
+	display: block;
+	height: 16px;
+	width: 16px;
+}
+
+.empty-star {
+	background: url("../img/star-grey.png");
+}
+
+.full-star {
+	background: url("../img/star-yellow.png");
+}

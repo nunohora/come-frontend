@@ -36,9 +36,10 @@ class Home extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <h1 className="text-center mb40 mb-xs-24">
-                        Comida sem sair de casa
-                    </h1>
+                    <div className="text-center mb40 mb-xs-24">
+                        <FormattedMessage id="HOME_SLOGAN"
+                            tagName="h1" />
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 mb40 mb-xs-24">
@@ -50,42 +51,33 @@ class Home extends React.Component {
                         <div styleName="feature">
                             <div className="text-center">
                                 <FaMapMarker size={80} styleName="icon" />
-                                <FormattedMessage 
-                                        id="ONDE_ESTA"
-                                        className="uppercase"
-                                        tagName="h5" />
+                                <div className="uppercase">
+                                    <FormattedMessage id="ONDE_ESTA" tagName="h5" />
+                                </div>
                             </div>
-                            <FormattedMessage 
-                                id="PRECISAMOS_CODIGO_POSTAL"
-                                tagName="p" />
+                            <FormattedMessage id="PRECISAMOS_CODIGO_POSTAL" tagName="p" />
                         </div>
                     </div>
                     <div className="col-sm-3">
                         <div styleName="feature">
                             <div className="text-center">
                                 <TiThList size={80} styleName="icon" />
-                                <FormattedMessage 
-                                    id="APETECE_COMER" 
-                                    className="uppercase"
-                                    tagName="h5" />
+                                <div className="uppercase">
+                                    <FormattedMessage id="APETECE_COMER" tagName="h5" />
+                                </div>
                             </div>
-                            <FormattedMessage 
-                                id="EXPLORA_LISTA" 
-                                tagName="p" />
+                            <FormattedMessage id="EXPLORA_LISTA" tagName="p" />
                         </div>
                     </div>
                     <div className="col-sm-3">
                         <div styleName="feature">
                             <div className="text-center">
                                 <TiCreditCard size={80} styleName="icon" />
-                                <FormattedMessage 
-                                    id="DINHEIRO_OU_CARTAO" 
-                                    className="uppercase"
-                                    tagName="h5" />
+                                <div className="uppercase">
+                                    <FormattedMessage id="DINHEIRO_OU_CARTAO" tagName="h5" />
+                                </div>
                             </div>
-                            <FormattedMessage 
-                                id="ACEITAMOS_PAGAMENTO" 
-                                tagName="p" />
+                            <FormattedMessage id="ACEITAMOS_PAGAMENTO" tagName="p" />
                         </div>
                     </div>
 
@@ -93,9 +85,9 @@ class Home extends React.Component {
                         <div styleName="feature">
                             <div className="text-center">
                                 <TiThumbsOk size={80} styleName="icon" />
-                                <FormattedMessage id="PEDIDO_EFECTUADO" 
-                                    className="uppercase" 
-                                    tagName="h5" />
+                                <div className="uppercase">
+                                    <FormattedMessage id="PEDIDO_EFECTUADO" tagName="h5" />
+                                </div>
                             </div>
                             <FormattedMessage 
                                 id="COMIDA_CAMINHO" 

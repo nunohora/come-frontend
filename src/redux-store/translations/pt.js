@@ -1,6 +1,5 @@
 export default {
-    "TENS_FOME": "Tens fome?!",
-    "COME": "Come!",
+    "HOME_SLOGAN": "Come sem sair de casa.",
     "ONDE_ESTA": "1. Diz-nos onde estás",
     "PRECISAMOS_CODIGO_POSTAL": "Introduz o teu código postal completo na caixa de pesquisa e clica em procurar.",
     "APETECE_COMER": "2. Que te apetece?",
@@ -11,5 +10,7 @@ export default {
     "COMIDA_CAMINHO": "Agora podes relaxar, o teu pedido está a ser preparado e em breve estará a caminho!",
     "ENCOMENDE_ONLINE": "Encomenda comida online",
     "PROCURE_PERTO_SI": "Procure for restaurantes perto de si",
-    "CODIGO_POSTAL_INVALIDO": "Código postal inválido"
+    "CODIGO_POSTAL_INVALIDO": "Código postal inválido",
+    "PROCURAR_LOCAIS": "Procurar Locais",
+    "CATEGORIES": "Categorias"
 }

@@ -1,18 +1,22 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
-import Breadcrumbs from 'react-router-breadcrumbs'
+import Breadcrumbs from 'react-breadcrumbs'
 import styles from './styles.scss'
 
 class BreadcrumbsNav extends React.Component {
 
     static propTypes = {
-        routes: PropTypes.object
+        routes: PropTypes.object,
+        params: PropTypes.object
     }
 
     render() {
         return (
             <div>
-                <Breadcrumbs routes={this.props.routes} separator=" -> "/>
+                <Breadcrumbs 
+                    routes={this.props.routes} 
+                    params={this.props.params}
+                    separator=" -> "/>
             </div>
         )
     }

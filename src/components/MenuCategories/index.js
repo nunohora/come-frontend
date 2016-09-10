@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
+import { FormattedMessage } from 'react-intl'
 import slug from 'slug'
 
 export default class MenuCategories extends React.Component {
@@ -21,7 +22,9 @@ export default class MenuCategories extends React.Component {
     render() {
         return (
             <div className="widget">
-                <h6 className="title">Categorias</h6>
+                <div className="title">
+                    <FormattedMessage id="CATEGORIES" tagName="h5" />
+                </div>
                 <hr />
                 <ul className="link-list">
                     { this.props.categories.map((category, index) => ( this.renderCategory(category, index))) }

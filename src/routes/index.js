@@ -25,7 +25,7 @@ export default (store) => (
         <Route component={SearchResult} path='search/:location' />
         <Route component={SearchResult} path='search/:location/:slug' />
         <Route component={Help} path='/help' />
-        <Route path='/places/:id/:slug' component={Restaurant} >
+        <Route path='/places/:slug' component={Restaurant} >
             <IndexRoute component={RestaurantMenu} />
             <Route component={RestaurantReviews} path="reviews" />
             <Route component={RestaurantInfo} path="info" />

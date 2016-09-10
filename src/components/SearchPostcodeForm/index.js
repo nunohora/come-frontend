@@ -1,5 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
@@ -20,16 +21,18 @@ const validate = values => {
 }
 
 
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
-    <div>
-        <input 
-            {...input} 
-            placeholder={label} 
-            type={type} 
-            className={classNames({ 'field-error': touched && error })}
-            />
-    </div>
-)
+const renderField = ({ input, label, type, meta: { touched, error } }) => {
+    return (
+        <div>
+            <input 
+                {...input} 
+                placeholder={label} 
+                type={type} 
+                className={classNames({ 'field-error': touched && error })}
+                />
+        </div>        
+    )
+}
 
 class SearchPostcodeForm extends React.Component {
 
@@ -40,17 +43,17 @@ class SearchPostcodeForm extends React.Component {
     }
 
     render() {
-        const { error, handleSubmit, pristine, reset, submitting } = this.props
+        const { error, handleSubmit, submitting } = this.props
 
-        console.log(error)
+        console.log('ERROR: ', this.props)
+
         return (
             <form className="halves" onSubmit={handleSubmit} onKeyPress={this.onKeyPress.bind(this)}>
                 <Field name="postcode" type="text" component={renderField} label="Postcode" />
                 <button onClick={handleSubmit} className="mb16 btn" type="submit">
                     <FaSearch size={20} styleName="icon" />
-                    Procurar locais
+                    <FormattedMessage id="PROCURAR_LOCAIS" tagName="span" />
                 </button>
-                {error && <div className="form-error">{error}</div>}
             </form>
         )
     }

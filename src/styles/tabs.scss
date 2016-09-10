@@ -1,21 +1,9 @@
 .button-tabs {
-	.tabs {
-		display: inline-block;
-	    overflow: hidden;	
-	}
-
-	.tabs li {
-	    display: inline-block;
-	    cursor: pointer;
-	}
-
-	.tabs > li {
-		margin-bottom: 8px;
-	    float: left;
-	}
-
-	.tab-title {
-		padding: 13px;
+	display: flex;
+	align-items: center;
+	
+	.tab {
+	    flex-grow: 1;
 	    display: inline-block;
 	    text-align: center;
 	    min-width: 150px;
@@ -31,11 +19,12 @@
 	    -moz-transition: all 0.3s ease;
 	}
 
-	.tab-title:hover {
+	.tab:hover {
 	    background: #eee;
 	}
 
-	.tab-title a {
+	.tab a {
+		display: block;
     	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	    color: #666;
 	    font-size: 12px;
@@ -44,9 +33,10 @@
 	    text-transform: uppercase;
 	    letter-spacing: 2px;
 	    font-weight: 700;
+	    padding: 13px;
 	}
 
-	.active .tab-title {
+	.active .tab {
 		background: #47b475;
     	color: #fff;
 	}
