@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { FormattedMessage } from 'react-intl'
+import CSSModules from 'react-css-modules'
+import styles from './styles.scss'
 import slug from 'slug'
 
-export default class Categories extends React.Component {
+class Categories extends React.Component {
 
     static propTypes = {
         categories: PropTypes.array.isRequired,
@@ -24,9 +26,9 @@ export default class Categories extends React.Component {
     renderCategory(category) {
         return (
             <li key={category.id}>
-                <Link to={this.buildUrl(category)}>
-                    {category.name}
-                    <span className='tag'>{category.number}</span>
+                <Link styleName="link" to={this.buildUrl(category)}>
+                    <span>{category.name}</span>
+                    <span styleName="number">{category.number}</span>
                 </Link>
             </li>
         )
@@ -39,10 +41,12 @@ export default class Categories extends React.Component {
                     <FormattedMessage id="CATEGORIES" tagName="h5" />
                 </div>
                 <hr />
-                <ul className="link-list">
+                <ul>
                     { this.props.categories.map(category => ( this.renderCategory(category) )) }
                 </ul>
             </div>
         )
     }
 }
+
+export default CSSModules(Categories, styles)

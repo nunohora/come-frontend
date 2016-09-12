@@ -50,7 +50,7 @@ class RestaurantListItem extends React.Component {
 
         return (
             <p>
-                <FaCutlery size={30} styleName="icon" />
+                <FaCutlery size={25} />
                 {string}
             </p>
         )
@@ -76,7 +76,7 @@ class RestaurantListItem extends React.Component {
                         </h3>
                         {this.renderRating(3)}
                         <div className="address">
-                            <FaMapMarker size={30} styleName="icon" />
+                            <FaMapMarker size={30} />
                             {props.address}
                         </div>
                         <div className="tag-list">
@@ -84,7 +84,7 @@ class RestaurantListItem extends React.Component {
                         </div>
                     </div>
                     <Link to={url} styleName="see-menu" className="btn btn-default-red-inverse view-menu">
-                        <TiThList size={20} styleName="icon" />
+                        <TiThList size={20} />
                         Ver Menu
                     </Link>
                 </div>
