@@ -5,6 +5,7 @@ import Image from 'img/blog-post.jpg'
 import styles from './styles.scss'
 
 let FaMapMarker = require('react-icons/lib/fa/map-marker')
+let FaCutlery = require('react-icons/lib/fa/cutlery')
 
 class RestaurantHeader extends React.Component {
 
@@ -21,8 +22,9 @@ class RestaurantHeader extends React.Component {
                 readonly={true} 
                 fractions={3} 
                 initialRate={rating} />
-                <span>{rating}</span>
-                <span>27 reviews</span>
+                <div>
+                    {rating} (27 reviews)
+                </div>
             </div>
         )
     }
@@ -39,10 +41,10 @@ class RestaurantHeader extends React.Component {
         })
 
         return (
-            <p>
-                <i styleName="icon" className="fa fa-cutlery"></i>
+            <div>
+                <FaCutlery size={15} />
                 {string}
-            </p>
+            </div>
         )
     }
 
@@ -52,20 +54,20 @@ class RestaurantHeader extends React.Component {
         return (
             <div styleName="restaurant-header">
                 <div className="row">
-                    <div className="col-md-6">
-                        <img src={ Image } alt="" />
+                    <div className="col-md-5">
+                        <img src={Image} alt="" />
                     </div>
-                    <div className="col-md-6">
-                        <h5>Restaurant O Aderito</h5>
+                    <div className="col-md-7">
+                        <h2>{meta.name}</h2>
                         {this.renderRating(4.5)}
                         <div className="address">
                             <p>
-                                <FaMapMarker size={50} styleName="icon" />
+                                <FaMapMarker size={20} />
                                 {meta.address}
                             </p>
                         </div>
                         <div className="tag-list">
-                            {this.renderCategories(meta.categories)}
+                            {this.renderCategories(meta.food_categories)}
                         </div>
                     </div>
                 </div>

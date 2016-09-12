@@ -19,30 +19,30 @@ export const GET_INFO_FAILURE = 'GET_INFO_FAILURE'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function getRestaurantMenu(dispatch, id) {
+export function getRestaurantMenu(dispatch, slug) {
     dispatch({ type: GET_MENU_REQUEST })
 
     dispatch({
         [CALL_API]: {
-            endpoint: `places/1`,
+            endpoint: `places/${slug}`,
             types: [GET_MENU_REQUEST, GET_MENU_SUCCESS, GET_MENU_FAILURE]
         }
     })
 }
 
-export function getRestaurantReviews(dispatch, id) {
+export function getRestaurantReviews(dispatch, slug) {
     dispatch({
         [CALL_API]: {
-            endpoint: `places/1/reviews`,
+            endpoint: `places/${slug}/reviews`,
             types: [GET_REVIEWS_REQUEST, GET_REVIEWS_SUCCESS, GET_REVIEWS_FAILURE]
         }
     })
 }
 
-export function getRestaurantInfo(dispatch, id) {
+export function getRestaurantInfo(dispatch, slug) {
     dispatch({
         [CALL_API]: {
-            endpoint: `places/1/info`,
+            endpoint: `places/${slug}}/info`,
             types: [GET_INFO_REQUEST, GET_INFO_SUCCESS, GET_INFO_FAILURE]
         }
     })

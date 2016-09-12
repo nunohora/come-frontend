@@ -7,21 +7,18 @@ export default class RestaurantList extends React.Component {
         list: PropTypes.array.isRequired
     }
 
-    renderRestaurants(restaurant) {
-        return (
-            <RestaurantListItem
-                key={ restaurant.id }
-                id={ restaurant.id }
-                name={ restaurant.name }
-                address={ restaurant.zone_name }
-                categories = { restaurant.food_categories } />
-        )
-    }
-
     render() {
         return (
             <div>
-                {this.props.list.map(restaurant => ( this.renderRestaurants(restaurant)))}
+                {this.props.list.map(rest => (
+                    <RestaurantListItem 
+                        key={rest.id}
+                        id={rest.id}
+                        name={rest.name}
+                        address={rest.zone_name}
+                        categories={rest.food_categories}
+                        slug = {rest.slug} />
+                ))}
             </div>
         )
     }

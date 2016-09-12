@@ -12,5 +12,7 @@ export default {
     "PROCURE_PERTO_SI": "Find takeaways close to you",
     "CODIGO_POSTAL_INVALIDO": "Invalid postcode",
     "PROCURAR_LOCAIS": "Find Takeaways",
-    "CATEGORIES": "Categories"
+    "CATEGORIES": "Categories",
+    "CHANGE_LOCATION?": "change location?",
+    "RESULTS_FOR": "results for"
 }

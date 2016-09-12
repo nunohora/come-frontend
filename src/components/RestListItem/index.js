@@ -1,9 +1,14 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import slug from 'slug'
+import Rating from 'react-rating'
 import CSSModules from 'react-css-modules'
 import Image from 'img/blog-post.jpg'
 import styles from './styles.scss'
+
+let FaMapMarker = require('react-icons/lib/fa/map-marker')
+let FaCutlery = require('react-icons/lib/fa/cutlery')
+let TiThList = require('react-icons/lib/ti/th-list')
 
 class RestaurantListItem extends React.Component {
 
@@ -11,21 +16,22 @@ class RestaurantListItem extends React.Component {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         address: PropTypes.string.isRequired,
-        categories: PropTypes.array.isRequired
+        categories: PropTypes.array.isRequired,
+        slug: PropTypes.string.isRequired
     }
 
-    renderRating() {
+    renderRating(rating) {
         return (
-            <div styleName="rating">
-                <span className="rating-stars">
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                    <span>☆</span>
-                </span>
-                <span styleName="rating-number">
-                    (27)
+            <div>
+                <Rating 
+                empty="small-star empty-star"
+                full="small-star full-star"
+                styleName="rating"
+                readonly={true} 
+                fractions={3} 
+                initialRate={rating} />
+                <span>
+                    {rating} (27 reviews)
                 </span>
             </div>
         )
@@ -44,49 +50,41 @@ class RestaurantListItem extends React.Component {
 
         return (
             <p>
-                <i styleName="icon" className="fa fa-cutlery"></i>
-                { string }
+                <FaCutlery size={30} styleName="icon" />
+                {string}
             </p>
         )
     }
 
     render() {
-        console.log('props: ', this.props)
-        
-        const params = {
-            id: this.props.id,
-            slug: slug(this.props.name, {lower: true})
-        }
-
-        const url = `/places/${params.id}/${params.slug}`
+        const { props } = this
+        const url = `/places/${props.slug}`
 
         return (
             <div styleName="restaurant-list-item">
                 <div className="row">
                     <div className="col-md-3">
                         <div styleName="restaurant-list-img">
-                            <img className="" src={ Image } alt="" />
+                            <img className="" src={Image} alt="" />
                         </div>
                     </div>
                     <div className="col-md-9">
-                        <h5>
-                            <Link to={ url }>
-                                {this.props.name}
+                        <h3>
+                            <Link to={url}>
+                                 {props.name}
                             </Link>
-                        </h5>
-                        {this.renderRating()}
+                        </h3>
+                        {this.renderRating(3)}
                         <div className="address">
-                            <p>
-                                <i styleName="icon" className="fa fa-map-marker"></i>
-                                {this.props.address}
-                            </p>
+                            <FaMapMarker size={30} styleName="icon" />
+                            {props.address}
                         </div>
                         <div className="tag-list">
-                            {this.renderCategories(this.props.categories)}
+                            {this.renderCategories(props.categories)}
                         </div>
                     </div>
-                    <Link to={ url } styleName="see-menu" className="btn btn-default-red-inverse view-menu">
-                        <i styleName="icon" className="fa fa-list-ul"></i>
+                    <Link to={url} styleName="see-menu" className="btn btn-default-red-inverse view-menu">
+                        <TiThList size={20} styleName="icon" />
                         Ver Menu
                     </Link>
                 </div>

@@ -15,9 +15,8 @@ class Restaurant extends React.Component {
         menuCategories: PropTypes.array.isRequired,
         meta: PropTypes.object.isRequired,
         menu: PropTypes.array.isRequired,
-        id: PropTypes.string.isRequired,
-        location: PropTypes.object.isRequired,
-        path: PropTypes.string.isRequired
+        slug: PropTypes.string.isRequired,
+        location: PropTypes.object.isRequired
     }
 
     constructor(props) {
@@ -27,7 +26,7 @@ class Restaurant extends React.Component {
     }
 
     componentWillMount() {
-        this.props.getRestaurantMenu(this.props.id)
+        this.props.getRestaurantMenu(this.props.slug)
     }
 
     renderClasses(name) {
@@ -85,12 +84,11 @@ const mapStateToProps = (state, props) => ({
     menuCategories: state.restaurant.menuCategories,
     menu: state.restaurant.menu,
     meta: state.restaurant.meta,
-    id: props.params.id,
-    path: props.route.path
+    slug: props.params.slug
 })
 
 const mapDispatchToProps= (dispatch) => ({
-    getRestaurantMenu: (id) => { getRestaurantMenu(dispatch, id) }
+    getRestaurantMenu: (slug) => { getRestaurantMenu(dispatch, slug) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Restaurant)

@@ -12,5 +12,7 @@ export default {
     "PROCURE_PERTO_SI": "Procure for restaurantes perto de si",
     "CODIGO_POSTAL_INVALIDO": "Código postal inválido",
     "PROCURAR_LOCAIS": "Procurar Locais",
-    "CATEGORIES": "Categorias"
+    "CATEGORIES": "Categorias",
+    "CHANGE_LOCATION?": "mudar localização?",
+    "RESULTS_FOR": "resultados para"
 }
