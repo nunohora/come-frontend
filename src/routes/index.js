@@ -20,12 +20,11 @@ import CheckoutPayment from 'containers/CheckoutPayment'
 import NotFound from 'containers/NotFound'
 
 export default (store) => (
-    <Route path='/' component={CoreLayout}>
+    <Route path='/' name="Home" component={CoreLayout}>
         <IndexRoute component={Home} />
         <Route component={SearchResult} path='search/:location' />
         <Route component={SearchResult} path='search/:location/:slug' />
-        <Route component={Help} path='/help' />
-        <Route path='/places/:slug' component={Restaurant} >
+        <Route name="" path='/places/:slug' component={Restaurant} >
             <IndexRoute component={RestaurantMenu} />
             <Route component={RestaurantReviews} path="reviews" />
             <Route component={RestaurantInfo} path="info" />
@@ -34,6 +33,7 @@ export default (store) => (
             <IndexRoute component={CheckoutConfirmDetails} />
             <Route component={CheckoutPayment} path="payment"/>
         </Route>
+        <Route component={Help} path='/help' />
         <Route component={NotFound} path='*' />
     </Route>
 )

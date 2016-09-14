@@ -28,7 +28,7 @@ class Categories extends React.Component {
             <li key={category.id}>
                 <Link styleName="link" to={this.buildUrl(category)}>
                     <span>{category.name}</span>
-                    <span styleName="number">{category.number}</span>
+                    <span>{category.number}</span>
                 </Link>
             </li>
         )

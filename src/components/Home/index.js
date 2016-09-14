@@ -50,7 +50,7 @@ class Home extends React.Component {
                     <div className="col-sm-3">
                         <div styleName="feature">
                             <div className="text-center">
-                                <FaMapMarker size={80} styleName="icon" />
+                                <FaMapMarker size={80} />
                                 <div className="uppercase">
                                     <FormattedMessage id="ONDE_ESTA" tagName="h5" />
                                 </div>
@@ -61,7 +61,7 @@ class Home extends React.Component {
                     <div className="col-sm-3">
                         <div styleName="feature">
                             <div className="text-center">
-                                <TiThList size={80} styleName="icon" />
+                                <TiThList size={80} />
                                 <div className="uppercase">
                                     <FormattedMessage id="APETECE_COMER" tagName="h5" />
                                 </div>
@@ -72,7 +72,7 @@ class Home extends React.Component {
                     <div className="col-sm-3">
                         <div styleName="feature">
                             <div className="text-center">
-                                <TiCreditCard size={80} styleName="icon" />
+                                <TiCreditCard size={80} />
                                 <div className="uppercase">
                                     <FormattedMessage id="DINHEIRO_OU_CARTAO" tagName="h5" />
                                 </div>
@@ -84,7 +84,7 @@ class Home extends React.Component {
                     <div className="col-sm-3">
                         <div styleName="feature">
                             <div className="text-center">
-                                <TiThumbsOk size={80} styleName="icon" />
+                                <TiThumbsOk size={80} />
                                 <div className="uppercase">
                                     <FormattedMessage id="PEDIDO_EFECTUADO" tagName="h5" />
                                 </div>

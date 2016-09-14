@@ -62,9 +62,8 @@ select {
     cursor: pointer;
 }
 
-.form-error,
-.form-success {
-    background: #58ce38;
+.form-success,
+.form-error {
     padding: 12px;
     width: 80%;
     color: #fff;
@@ -77,14 +76,16 @@ select {
     word-break: break-word;
 }
 
-.field-error {
-  outline: 1px solid #ce3838 !important;
+.form-success {
+    background: #58ce38;
 }
 
-.form-error a,
-.form-success a {
-    display: block;
-    color: #fff;
+.form-error {
+    background: #ce3838;
+}
+
+.field-error {
+  outline: 1px solid #ce3838 !important;
 }
 
 .attempted-submit .field-error {

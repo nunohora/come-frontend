@@ -83,7 +83,7 @@ class RestaurantListItem extends React.Component {
                             {this.renderCategories(props.categories)}
                         </div>
                     </div>
-                    <Link to={url} styleName="see-menu" className="btn btn-default-red-inverse view-menu">
+                    <Link to={url} styleName="see-menu" className="btn btn-filled">
                         <TiThList size={20} />
                         Ver Menu
                     </Link>

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { getRestListByLocation } from 'redux-store/modules/restaurantList'
+import { FormattedMessage } from 'react-intl'
 import Loader from 'react-loader'
 import RestaurantList from 'components/RestList'
 import Categories from 'components/Categories'
@@ -10,7 +11,7 @@ import Breadcrumbs from 'components/Breadcrumbs'
 let TiChevronLeft = require('react-icons/lib/ti/chevron-left')
 
 class SearchResult extends React.Component {
-œ
+
     static propTypes = {
         getRestListByLocation: PropTypes.func.isRequired,
         isFetching: PropTypes.bool.isRequired,
@@ -55,11 +56,11 @@ class SearchResult extends React.Component {
                                 <div className="select-option">
                                     <TiChevronLeft size={20} className="icon" styleName="dropdown-arrow" />
                                     <select>
-                                        <option selected="" value="Default">Sort By</option>
-                                        <option value="Small">Distance</option>
-                                        <option value="Medium">Rating</option>
-                                        <option value="Larger">Newest First</option>
-                                        <option value="Larger">Restaurant Name</option>
+                                        <option defaultValue="Default"><FormattedMessage id="SORT_BY" /></option>
+                                        <option value="Small"><FormattedMessage id="DISTANCE" /></option>
+                                        <option value="Medium"><FormattedMessage id="RATING" /></option>
+                                        <option value="Larger"><FormattedMessage id="NEWEST_FIRST" /></option>
+                                        <option value="Larger"><FormattedMessage id="RESTAURANT_NAME" /></option>
                                     </select>
                                 </div>
                             </div>

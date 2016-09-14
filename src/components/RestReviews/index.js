@@ -14,7 +14,7 @@ export class RestaurantReviews extends React.Component {
 
     componentWillMount() {
         if (!this.props.reviews.length)  {
-            this.props.getRestaurantReviews(this.props.id)
+            this.props.getRestaurantReviews(this.props.params.slug)
         }
     }
 
@@ -42,7 +42,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps= (dispatch) => ({
-    getRestaurantReviews: (id) => { getRestaurantReviews(dispatch, id) }
+    getRestaurantReviews: (slug) => { getRestaurantReviews(dispatch, slug) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(RestaurantReviews, styles))

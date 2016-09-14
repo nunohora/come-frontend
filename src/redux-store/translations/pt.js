@@ -13,6 +13,16 @@ export default {
     "CODIGO_POSTAL_INVALIDO": "Código postal inválido",
     "PROCURAR_LOCAIS": "Procurar Locais",
     "CATEGORIES": "Categorias",
-    "CHANGE_LOCATION?": "mudar localização?",
-    "RESULTS_FOR": "resultados para"
+    "CHANGE_LOCATION?": "mudar localização?", 
+    "RESULTS_FOR": "resultados para",
+    "SHOPPING_CART": "Carrinho",
+    "ERROR_REQUIRED_POSTCODE": "Campo obrigatório.",
+    "ERROR_INVALID_POSTCODE": "O formato do código postal é inválido. Ex: 4000-444",
+    "SORT_BY": "Ordenar por",
+    "DISTANCE": "Distância",
+    "RATING": "Rating",
+    "NEWEST_FIRST": "Recentes",
+    "RESTAURANT_NAME": "Nome do Restaurante",
+    "COLLECTION": "Recolha",
+    "DELIVERY": "Entrega ao domicílio"
 }

@@ -2,6 +2,9 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ShoppingCartItem from 'containers/ShoppingCartItem'
 import { changeRadioButton } from 'redux-store/modules/shoppingCart'
+import { FormattedMessage } from 'react-intl'
+import CSSModules from 'react-css-modules'
+import styles from './styles.scss'
 
 class ShoppingCart extends React.Component {
 
@@ -16,6 +19,18 @@ class ShoppingCart extends React.Component {
         toCollect: PropTypes.bool.isRequired,
         deliveryFee: PropTypes.number.isRequired,
         changeRadioButton: PropTypes.func.isRequired
+    }
+
+    onRadioButtonClick(toCollect) {
+        this.props.changeRadioButton(toCollect)
+    }
+
+    renderEmptyShoppingCart() {
+        return <div className="text-center">O carrinho está vazio</div>
+    }
+
+    onSubmit() {
+        this.context.router.push(`/checkout/1`)
     }
 
     renderOrderItems() {
@@ -56,18 +71,6 @@ class ShoppingCart extends React.Component {
         )
     }
 
-    onRadioButtonClick(toCollect) {
-        this.props.changeRadioButton(toCollect)
-    }
-
-    renderEmptyShoppingCart() {
-        return <div>O carrinho está vazio</div>
-    }
-
-    onSubmit() {
-        this.context.router.push(`/checkout/1`)
-    }
-
     render() {
         const { props } = this
 
@@ -82,13 +85,13 @@ class ShoppingCart extends React.Component {
 
         return (
             <div>
-                <h5 className="uppercase">Carrinho</h5>
                 <input 
                     type="submit"
+                    styleName="checkout-button"
                     disabled={!props.orders.length}
                     onClick={this.onSubmit.bind(this)}
                     value="Checkout" />
-                <form>
+                <form styleName="checkboxes">
                     <label>
                         <input
                             type="radio"
@@ -96,7 +99,7 @@ class ShoppingCart extends React.Component {
                             name="collect"
                             checked={props.toCollect}
                             onChange={this.onRadioButtonClick.bind(this, true)} />
-                        Recolha
+                        <FormattedMessage id="COLLECTION" />
                     </label>
                     <label>
                         <input
@@ -105,7 +108,7 @@ class ShoppingCart extends React.Component {
                             name="delivery"
                             checked={!props.toCollect}
                             onChange={this.onRadioButtonClick.bind(this, false)} />
-                        Entrega ao domicílio
+                        <FormattedMessage id="DELIVERY" />
                     </label>
                 </form>
                 {orderList()}
@@ -126,4 +129,4 @@ const mapDispatchToProps= (dispatch) => ({
     changeRadioButton: (toCollect) => { changeRadioButton(dispatch, toCollect) }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart)
+export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(ShoppingCart, styles))

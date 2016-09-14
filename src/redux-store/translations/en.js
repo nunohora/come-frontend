@@ -14,5 +14,15 @@ export default {
     "PROCURAR_LOCAIS": "Find Takeaways",
     "CATEGORIES": "Categories",
     "CHANGE_LOCATION?": "change location?",
-    "RESULTS_FOR": "results for"
+    "RESULTS_FOR": "results for",
+    "SHOPPING_CART": "Shopping Cart",
+    "ERROR_REQUIRED_POSTCODE": "Postcode is required.",
+    "ERROR_INVALID_POSTCODE": "Invalid postcode format. Ex: 4050-444",
+    "SORT_BY": "Sort by",
+    "DISTANCE": "Distance",
+    "RATING": "Rating",
+    "NEWEST_FIRST": "Newest first",
+    "RESTAURANT_NAME": "Restaurant Name",
+    "COLLECTION": "Collection",
+    "DELIVERY": "Delivery"
 }

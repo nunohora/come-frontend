@@ -1,15 +1,10 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
+import { connect } from 'react-redux'
 import Breadcrumbs from 'react-breadcrumbs'
 import styles from './styles.scss'
 
 class BreadcrumbsNav extends React.Component {
-
-    static propTypes = {
-        routes: PropTypes.object,
-        params: PropTypes.object
-    }
-
     render() {
         return (
             <div>
