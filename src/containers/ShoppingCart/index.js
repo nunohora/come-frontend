@@ -26,7 +26,11 @@ class ShoppingCart extends React.Component {
     }
 
     renderEmptyShoppingCart() {
-        return <div className="text-center">O carrinho está vazio</div>
+        return (
+            <div className="text-center">
+                <FormattedMessage id="CART_EMPTY" />
+            </div>
+        )
     }
 
     onSubmit() {

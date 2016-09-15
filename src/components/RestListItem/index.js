@@ -26,12 +26,11 @@ class RestaurantListItem extends React.Component {
                 <Rating 
                 empty="small-star empty-star"
                 full="small-star full-star"
-                styleName="rating"
                 readonly={true} 
                 fractions={3} 
                 initialRate={rating} />
-                <span>
-                    {rating} (27 reviews)
+                <span styleName="reviews-number">
+                    (27 reviews)
                 </span>
             </div>
         )
@@ -49,10 +48,10 @@ class RestaurantListItem extends React.Component {
         })
 
         return (
-            <p>
-                <FaCutlery size={25} />
-                {string}
-            </p>
+            <div styleName="tag-list">
+                <FaCutlery size={15} />
+                <span>{string}</span>
+            </div>
         )
     }
 
@@ -75,17 +74,15 @@ class RestaurantListItem extends React.Component {
                             </Link>
                         </h3>
                         {this.renderRating(3)}
-                        <div className="address">
-                            <FaMapMarker size={30} />
-                            {props.address}
+                        <div styleName="address">
+                            <FaMapMarker size={20} />
+                            <span>{props.address}</span>
                         </div>
-                        <div className="tag-list">
-                            {this.renderCategories(props.categories)}
-                        </div>
+                        {this.renderCategories(props.categories)}
                     </div>
                     <Link to={url} styleName="see-menu" className="btn btn-filled">
                         <TiThList size={20} />
-                        Ver Menu
+                        <span>Ver Menu</span>
                     </Link>
                 </div>
             </div>

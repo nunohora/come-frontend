@@ -7,21 +7,17 @@ import styles from './styles.scss'
 class RestaurantMenu extends React.Component {
 
     static propTypes = {
-        menu: PropTypes.array.isRequired
-    }
-
-    renderProductGroups(list = []) {
-        return list.map((group, index) => {
-            return (
-                <RestMenuGroup group={group} key={index} />
-            )
-        })
+        menu: PropTypes.object.isRequired
     }
 
     render() {
+        const { menu } = this.props
+
         return (
-            <ul>
-                {this.renderProductGroups(this.props.menu)}
+            <ul className="accordion">
+                {Object.keys(menu).map((group, idx) => {
+                    return <RestMenuGroup group={menu[group]} name={group} key={idx} />
+                })}
             </ul>
         )
     }

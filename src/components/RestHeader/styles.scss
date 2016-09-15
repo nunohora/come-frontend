@@ -2,10 +2,14 @@
     margin-bottom: 20px;
 }
 
-.rating {
-    margin-bottom: 5px;
+.tag-list,
+.address {
+	span {
+		margin-left: 6px;
+		vertical-align: middle;
+	}
+}
 
-    .rating-number {
-        margin-left: 5px;
-    }
+.reviews-number {
+	vertical-align: text-bottom;
 }

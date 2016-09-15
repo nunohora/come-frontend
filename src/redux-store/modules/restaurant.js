@@ -48,6 +48,23 @@ export function getRestaurantInfo(dispatch, slug) {
     })
 }
 
+function setMenuByGroup(list) {
+    let groups = {};
+
+    list.forEach(menuItem => {
+        const menuGroup = menuItem.menu_group.name
+
+        if (!groups[menuGroup]) {
+            groups[menuGroup] = [menuItem]
+        }
+        else {
+            groups[menuGroup].push(menuItem)
+        }
+    })
+
+    return groups
+}
+
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
@@ -58,11 +75,13 @@ const ACTION_HANDLERS = {
         })
     },
     [GET_MENU_SUCCESS]: (state, data) => {
+        const menu = setMenuByGroup(data.response.menu)
+
         return Object.assign({}, state, {
             isFetching: false,
             meta: data.response.meta,
-            menu: data.response.menu,
-            menuCategories: data.response.menu.map((item) => item.name)
+            menu: menu,
+            menuCategories: Object.keys(menu)
         })
     },
     [GET_MENU_FAILURE]: state => {
@@ -73,7 +92,7 @@ const ACTION_HANDLERS = {
     [GET_REVIEWS_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
             isFetching: false,
-            reviews: data.response.reviews
+            reviews: data.response
         })
     },
     [GET_REVIEWS_REQUEST]: state => {
@@ -102,10 +121,9 @@ const initialState = {
         openingTimes: '',
         thumbnail: ''
     },
-    menu: [],
+    menu: {},
     menuCategories: [],
     reviews: [],
-    info: {},
     isFetching: false
 }
 

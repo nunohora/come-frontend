@@ -1,0 +1,27 @@
+.item {
+	border-bottom: 1px solid #ccc;
+}
+.top {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 12px;
+
+	.name {
+		flex-grow: 5;
+		align-self: center;
+		font-weight: 600;
+		margin: 0;
+	}
+
+	.price {
+		align-self: center;
+	}
+
+	.add-to-cart {
+		margin: 0 0 0 16px;
+	}
+}
+
+.description {
+	margin-top: 6px;
+}

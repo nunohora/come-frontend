@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 import { getRestaurantMenu } from 'redux-store/modules/restaurant'
@@ -7,6 +7,8 @@ import Loader from 'react-loader'
 import MenuCategories from 'components/MenuCategories'
 import RestaurantHeader from 'components/RestHeader'
 import ShoppingCart from 'containers/ShoppingCart'
+import GoBackButton from 'components/GoBackButton'
+import { FormattedMessage } from 'react-intl'
 
 class Restaurant extends React.Component {
 
@@ -14,7 +16,7 @@ class Restaurant extends React.Component {
         getRestaurantMenu: PropTypes.func.isRequired,
         menuCategories: PropTypes.array.isRequired,
         meta: PropTypes.object.isRequired,
-        menu: PropTypes.array.isRequired,
+        menu: PropTypes.object.isRequired,
         slug: PropTypes.string.isRequired,
         location: PropTypes.object.isRequired
     }
@@ -30,11 +32,13 @@ class Restaurant extends React.Component {
     }
 
     renderClasses(name) {
-        // Naughty hack!
         const { pathname } = this.props.location 
-        let path = pathname.split('/')
+        const path = pathname.split('/')
         let string = path[path.length - 1]
         
+        // Naughty hack!
+        if (string !== 'reviews' && string !== 'info') string = 'menu'
+
         return classnames({
             'tab': true,
             'active': name === string
@@ -51,6 +55,7 @@ class Restaurant extends React.Component {
 
         return (
             <div className="row normal-container">
+                <GoBackButton text="search" to="/" />
                 <div className="col-md-3 hidden-sm">
                     <MenuCategories categories={this.props.menuCategories} path={this.getUrl()} />
                 </div>
@@ -58,13 +63,13 @@ class Restaurant extends React.Component {
                     <RestaurantHeader meta={this.props.meta} />
                     <div className="button-tabs">
                         <div className={this.renderClasses('menu')}>
-                            <Link to={`${this.getUrl()}`} role="tab">Menu</Link>
+                            <Link to={`${this.getUrl()}`} role="tab"><FormattedMessage id="MENU" /></Link>
                         </div>
                         <div className={this.renderClasses('reviews')}>
-                            <Link to={`${this.getUrl()}/reviews`} role="tab">Reviews</Link>
+                            <Link to={`${this.getUrl()}/reviews`} role="tab"><FormattedMessage id="REVIEWS" /></Link>
                         </div>
                         <div className={this.renderClasses('info')}>
-                            <Link to={`${this.getUrl()}/info`} role="tab">Informação</Link>
+                            <Link to={`${this.getUrl()}/info`} role="tab"><FormattedMessage id="INFORMATION" /></Link>
                         </div>
                     </div>
                     <div className="tab-content">

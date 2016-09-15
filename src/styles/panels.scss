@@ -1,0 +1,30 @@
+.accordion {
+	.title {
+		font-size: 16px;
+	    font-weight: 600;
+	    padding: 16px 0;
+	    border-bottom: 1px solid #000;
+	    transition: all 0.3s ease;
+	    opacity: .7;
+	    cursor: pointer;
+	}
+	.title:hover {
+		opacity: 1;
+	}
+	.title span {
+		vertical-align: bottom;
+	}
+	.active .title {
+		opacity: 1;
+	}
+}
+
+.accordion .content {
+    overflow: hidden;
+    max-height: 0;
+}
+
+.accordion .active .content {
+	max-height: inherit;
+	transition: all 0.4s ease;
+}

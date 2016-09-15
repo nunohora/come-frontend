@@ -53,7 +53,11 @@ class SearchPostcodeForm extends React.Component {
         console.log('ERROR: ', this.props)
 
         return (
-            <form className="halves" onSubmit={handleSubmit} onKeyPress={this.onKeyPress.bind(this)}>
+            <form 
+                className="halves"
+                styleName="search-form"
+                onSubmit={handleSubmit} 
+                onKeyPress={this.onKeyPress.bind(this)}>
                 <Field name="postcode" type="text" handleSubmit={handleSubmit} component={renderField} label="Postcode" />
             </form>
         )

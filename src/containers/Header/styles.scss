@@ -108,12 +108,6 @@
     margin-left: 5px;
 }
 
-.dropdown-arrow {
-    composes: icon-white;
-    composes: icon;
-    transform: rotate(-90deg);
-}
-
 .module-widget-handle {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     padding: 0 24px;

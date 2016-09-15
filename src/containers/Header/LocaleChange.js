@@ -29,7 +29,7 @@ class LocaleChange extends React.Component {
             <ul styleName="menu">
                 <li>
                     <a>{this.props.locale}</a>
-                    <TiChevronLeft size={20} styleName="dropdown-arrow" />
+                    <TiChevronLeft size={20} className="dropdown-arrow" />
                     <ul styleName="languages-dropdown-menu">
                         <li styleName="menu-item">
                             <a onClick={this.changeLocale.bind(this, 'en')}>

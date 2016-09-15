@@ -24,5 +24,9 @@ export default {
     "NEWEST_FIRST": "Newest first",
     "RESTAURANT_NAME": "Restaurant Name",
     "COLLECTION": "Collection",
-    "DELIVERY": "Delivery"
+    "DELIVERY": "Delivery",
+    "CART_EMPTY": "Your shopping cart is empty.",
+    "MENU": "Menu",
+    "REVIEWS": "Reviews",
+    "INFORMATION": "Information"
 }

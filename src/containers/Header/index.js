@@ -48,7 +48,7 @@ class Header extends React.Component {
                 <li>
                     <span>{this.props.nickname}</span>
                     <TiUser size={30} styleName="user-icon" />
-                    <TiChevronLeft size={20} styleName="dropdown-arrow" />
+                    <TiChevronLeft size={20} className="dropdown-arrow" />
                     <ul styleName="dropdown-menu">
                         <li styleName="menu-item">
                             <Link to="/account">Conta</Link>

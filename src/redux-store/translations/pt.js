@@ -24,5 +24,9 @@ export default {
     "NEWEST_FIRST": "Recentes",
     "RESTAURANT_NAME": "Nome do Restaurante",
     "COLLECTION": "Recolha",
-    "DELIVERY": "Entrega ao domicílio"
+    "DELIVERY": "Entrega ao domicílio",
+    "CART_EMPTY": "O seu carrinho está vazio.",
+    "MENU": "Menu",
+    "REVIEWS": "Reviews",
+    "INFORMATION": "Informação"
 }
