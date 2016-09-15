@@ -14,7 +14,7 @@ class RestaurantMenuItem extends React.Component {
 
 
         return (
-            <li>
+            <li styleName="item">
                 <div styleName="top">
                     <h6 styleName="name">{item.name}</h6>
                     <div styleName="price">£{item.price}</div>

@@ -1,6 +1,11 @@
 .item {
 	border-bottom: 1px solid #ccc;
 }
+
+.item:last-child {
+	border-bottom: 0;
+}
+
 .top {
 	display: flex;
 	justify-content: flex-end;

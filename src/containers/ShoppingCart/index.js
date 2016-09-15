@@ -54,7 +54,7 @@ class ShoppingCart extends React.Component {
                     </tbody>
                 </table>
                 <table className="table">
-                    <tbody>
+                    <tbody styleName="table-inner">
                         <tr>
                             <th scope="row">Subtotal</th>
                             <td>{props.subtotal}</td>

@@ -52,9 +52,13 @@ export function changeRadioButton(dispatch, toCollect) {
 function getSubtotal(orders) {
     let subtotal = 0
 
-    orders.forEach(order => { subtotal = subtotal + order.price })
+    orders.forEach(order => { 
+        const price = parseFloat(order.price)
 
-    return subtotal
+        subtotal = subtotal + price
+    })
+
+    return subtotal.toFixed(2)
 }
 
 // ------------------------------------

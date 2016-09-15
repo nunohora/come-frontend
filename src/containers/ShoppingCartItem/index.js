@@ -23,17 +23,17 @@ class ShoppingCartItem extends React.Component {
         const { props } = this
 
         return (
-            <tr>
-                <th styleName="remove-row" scope="row">
+            <tr styleName="item-row">
+                <th styleName="remove-icon" scope="row">
                     <a onClick={this.handleClick.bind(this, props.id)}>
-                        <TiDelete size={20} styleName="icon" />
+                        <TiDelete size={20} />
                     </a>
                 </th>
                 <td>
-                    <span>{props.name}</span>
+                    {props.name}
                 </td>
-                <td>
-                    <span>{props.price}</span>
+                <td styleName="price">
+                    {props.price}
                 </td>
             </tr>
         )

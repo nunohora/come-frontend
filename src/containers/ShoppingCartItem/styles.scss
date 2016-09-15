@@ -1,7 +1,21 @@
-.icon {
-	margin-bottom: 3px;
+.item-row {
+	width: 10px;
+
+	a {
+		color: #ec1c25;
+		cursor: pointer;
+	}
+
+	span {
+		vertical-align: middle;
+	}
 }
 
-.remove-row {
-	width: 10px;
+th.remove-icon {
+	width: 20px;
+	padding-right: 0
+}
+
+.price {
+	text-align: right;
 }
