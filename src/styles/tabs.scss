@@ -46,3 +46,14 @@
     	color: #fff;
 	}
 }
+
+.vertical-tabbed-content {
+	.button-tabs {
+		display: block;
+		float: left;
+	}
+	.tab {
+		margin-bottom: 10px;
+		width: 100%;
+	}
+}

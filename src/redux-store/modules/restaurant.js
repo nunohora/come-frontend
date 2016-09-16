@@ -33,7 +33,7 @@ export function getRestaurantMenu(dispatch, slug) {
 export function getRestaurantReviews(dispatch, slug) {
     dispatch({
         [CALL_API]: {
-            endpoint: `places/${slug}/reviews`,
+            endpoint: `places/${slug}/reviews/`,
             types: [GET_REVIEWS_REQUEST, GET_REVIEWS_SUCCESS, GET_REVIEWS_FAILURE]
         }
     })

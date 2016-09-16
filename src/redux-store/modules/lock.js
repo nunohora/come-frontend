@@ -1,4 +1,4 @@
-import AuthService from 'redux-store/utils/authService'
+import Auth0Lock from 'auth0-lock'
 
 const LOCK_SUCCESS = 'LOCK_SUCCESS'
 const LOCK_ERROR = 'LOCK_ERROR'
@@ -17,7 +17,7 @@ const options = {
     socialButtonStyle: 'big'
 }
 
-const lock = new AuthService(clientId, domain, options)
+let lock
 
 function lockError(err) {
     return {
@@ -26,20 +26,13 @@ function lockError(err) {
     }
 }
 
-export function login(dispatch) {
-    lock.login(dispatch)
+export function initAuth(dispatch) {
+    lock = new Auth0Lock(clientId, domain, options)
+    lock.on('authenticated', onAuthenticated.bind(this, dispatch))
 }
 
-export function signup(dispatch) {
-    return () => {
-        lock.show((err) => {
-            if (err) {
-                dispatch(lockError(err))
-                return
-            }
-            lock.hide()
-        })
-    }
+export function login(dispatch) {
+    lock.show()
 }
 
 export function logout(dispatch) {
@@ -47,6 +40,15 @@ export function logout(dispatch) {
     localStorage.removeItem('id_token')
     localStorage.removeItem('profile')
     dispatch(receiveLogout())
+}
+
+function onAuthenticated(dispatch, authResult) {
+    lock.getProfile(authResult.idToken, (err, profile) => {
+        localStorage.setItem('id_token', JSON.stringify(authResult.idToken))
+        localStorage.setItem('profile', JSON.stringify(profile))
+
+        dispatch({ type: LOCK_SUCCESS })
+    })
 }
 
 function requestLogout() {
@@ -69,11 +71,11 @@ function receiveLogout() {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-    [LOCK_SUCCESS]: (state, data) => {
+    [LOCK_SUCCESS]: (state) => {
         return Object.assign({}, state, {
             isFetching: false,
             isAuthenticated: true,
-            profile: data.profile,
+            profile: JSON.parse(localStorage.getItem('profile')),
             errorMessage: ''
         })
     },

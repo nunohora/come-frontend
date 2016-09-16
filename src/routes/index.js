@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import { Route, IndexRoute, Redirect } from 'react-router'
 
 // NOTE: here we're making use of the `resolve.root` configuration
 // option in webpack, which allows us to specify import paths as if
@@ -18,13 +18,24 @@ import PrivacyPolicy from 'components/PrivacyPolicy'
 import CheckoutConfirmDetails from 'containers/CheckoutConfirmDetails'
 import CheckoutPayment from 'containers/CheckoutPayment'
 import NotFound from 'containers/NotFound'
+import User from 'containers/User'
+import MyAccount from 'containers/MyAccount'
+import MyOrders from 'containers/MyOrders'
+import MyPayments from 'containers/MyPayments'
+import MyAddresses from 'containers/MyAddresses'
 
 export default (store) => (
-    <Route path='/' name="Home" component={CoreLayout}>
+    <Route path='/' component={CoreLayout}>
         <IndexRoute component={Home} />
         <Route component={SearchResult} path='search/:location' />
         <Route component={SearchResult} path='search/:location/:slug' />
-        <Route name="" path='/places/:slug' component={Restaurant} >
+        <Route component={User} path="/user">
+            <Route component={MyAccount} path="my-account" />
+            <Route component={MyOrders} path="my-orders" />
+            <Route component={MyPayments} path="my-payments" />
+            <Route component={MyAddresses} path="my-addresses" />
+        </Route>
+        <Route path='/places/:slug' component={Restaurant} >
             <IndexRoute component={RestaurantMenu} />
             <Route component={RestaurantReviews} path="reviews" />
             <Route component={RestaurantInfo} path="info" />
@@ -35,5 +46,6 @@ export default (store) => (
         </Route>
         <Route component={Help} path='/help' />
         <Route component={NotFound} path='*' />
+        <Redirect from="/login/callback" to="/" />
     </Route>
 )

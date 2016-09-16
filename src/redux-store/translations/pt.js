@@ -28,5 +28,11 @@ export default {
     "CART_EMPTY": "O seu carrinho está vazio.",
     "MENU": "Menu",
     "REVIEWS": "Reviews",
-    "INFORMATION": "Informação"
+    "INFORMATION": "Informação",
+    "MY_ACCOUNT": "A Minha Conta",
+    "MY_ORDERS": "Os Meus Pedidos",
+    "MY_PAYMENTS": "Pagamentos",
+    "MY_ADDRESSES": "Moradas",
+    "LOGOUT": "Logout",
+    "HELP": "Ajuda"
 }

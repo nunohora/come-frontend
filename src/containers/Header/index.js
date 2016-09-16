@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react'
 import ga from 'react-ga'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { login, signup, logout } from 'redux-store/modules/lock'
+import { login, logout, initAuth } from 'redux-store/modules/lock'
 import CSSModules from 'react-css-modules'
+import { FormattedMessage } from 'react-intl'
 import LocaleChange from './LocaleChange'
 import styles from './styles.scss'
 
@@ -19,22 +20,21 @@ class Header extends React.Component {
         nickname: PropTypes.string,
         isAuthenticated: PropTypes.bool.isRequired,
         login: PropTypes.func.isRequired,
-        signup: PropTypes.func.isRequired,
-        logout: PropTypes.func.isRequired
+        logout: PropTypes.func.isRequired,
+        initAuth: PropTypes.func.isRequired
     }
 
     constructor(props) {
         super(props)
     }
 
+    componentWillMount() {
+        this.props.initAuth()
+    }
+
     login() {
         ga.event({ category: 'NavBar', action: 'Login' })
         this.props.login()
-    }
-
-    signup() {
-        ga.event({ category: 'NavBar', action: 'Signup' })
-        this.props.signup()
     }
 
     logout() {
@@ -51,22 +51,34 @@ class Header extends React.Component {
                     <TiChevronLeft size={20} className="dropdown-arrow" />
                     <ul styleName="dropdown-menu">
                         <li styleName="menu-item">
-                            <Link to="/account">Conta</Link>
+                            <Link to="/user/my-account">
+                                <FormattedMessage id="MY_ACCOUNT" tagName="span"/>
+                            </Link>
                         </li>
                         <li styleName="menu-item">
-                            <Link to="/orders">Pedidos</Link>
+                            <Link to="/user/my-orders">
+                                <FormattedMessage id="MY_ORDERS" tagName="span"/>
+                            </Link>
                         </li>
                         <li styleName="menu-item">
-                            <Link to="/payments">Pagamentos</Link>
+                            <Link to="/user/my-payments">
+                                <FormattedMessage id="MY_PAYMENTS" tagName="span"/>
+                            </Link>
                         </li>
                         <li styleName="menu-item">
-                            <Link to="/addresses">Moradas</Link>
+                            <Link to="/user/my-addresses">
+                                <FormattedMessage id="MY_ADDRESSES" tagName="span"/>
+                            </Link>
                         </li>
                         <li styleName="menu-item">
-                            <a onClick={this.props.logout}>Logout</a>
+                            <a onClick={this.props.logout}>
+                                <FormattedMessage id="LOGOUT" tagName="span"/>
+                            </a>
                         </li>
                         <li styleName="menu-item">
-                            <Link to="/help">Ajuda</Link>
+                            <Link to="/help">
+                                <FormattedMessage id="HELP" tagName="span"/>
+                            </Link>
                         </li>                    
                     </ul>                    
                 </li>
@@ -81,7 +93,9 @@ class Header extends React.Component {
                     <a className="btn btn-sm btn-filled" styleName="header-btn" onClick={this.login.bind(this)}>Login</a>
                 </li>
                 <li>
-                    <Link to="/help">Ajuda</Link>
+                    <Link to="/help">
+                        <FormattedMessage id="HELP" tagName="span"/>
+                    </Link>
                 </li>
             </ul>
         )
@@ -122,8 +136,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, props) => ({
-    login: () => { dispatch(login(dispatch)) },
-    signup: () => { dispatch(signup(dispatch)) },
+    initAuth: () => { initAuth(dispatch) },
+    login: () => { login(dispatch) },
     logout: () => { logout(dispatch) }
 })
 

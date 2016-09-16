@@ -28,5 +28,11 @@ export default {
     "CART_EMPTY": "Your shopping cart is empty.",
     "MENU": "Menu",
     "REVIEWS": "Reviews",
-    "INFORMATION": "Information"
+    "INFORMATION": "Information",
+    "MY_ACCOUNT": "My Account",
+    "MY_ORDERS": "My Orders",
+    "MY_PAYMENTS": "My Payments",
+    "MY_ADDRESSES": "My Addresses",
+    "LOGOUT": "Logout",
+    "HELP": "Help"
 }
