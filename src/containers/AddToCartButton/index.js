@@ -11,7 +11,7 @@ class AddToCartButton extends React.Component {
     static propTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
+        price: PropTypes.string.isRequired,
         addOrderItem: PropTypes.func.isRequired
     }
 

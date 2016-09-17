@@ -2,7 +2,8 @@
 import { applyMiddleware, createStore, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
-import { api, translations } from 'redux-store'
+import { apiMiddleware } from 'redux-api-middleware'
+import { translations } from 'redux-store'
 import { routerMiddleware, routerReducer as router } from 'react-router-redux'
 import { reducer as form } from 'redux-form'
 import { addLocaleData } from 'react-intl'
@@ -23,7 +24,7 @@ export default function configureStore(initialState = {}, history) {
     const logger = createLogger()
 
     // Compose final middleware
-    let middleware = applyMiddleware(thunk, routerMiddleware(history), api, logger)
+    let middleware = applyMiddleware(thunk, routerMiddleware(history), apiMiddleware, logger)
 
     const state = {
         ...initialState,

@@ -14,8 +14,8 @@ class ShoppingCart extends React.Component {
 
     static propTypes = {
         orders: PropTypes.array.isRequired,
-        subtotal: PropTypes.number.isRequired,
-        total: PropTypes.number.isRequired,
+        subtotal: PropTypes.string.isRequired,
+        total: PropTypes.string.isRequired,
         toCollect: PropTypes.bool.isRequired,
         deliveryFee: PropTypes.number.isRequired,
         changeRadioButton: PropTypes.func.isRequired

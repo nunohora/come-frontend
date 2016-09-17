@@ -1,6 +1,6 @@
 /* global Promise */
 
-//import { CALL_API } from '../middleware/api'
+//import { CALL_API } from 'redux-api-middleware'
 const GET_TRANSLATIONS_REQUEST = 'GET_TRANSLATIONS_REQUEST'
 const GET_TRANSLATIONS_SUCCESS = 'GET_TRANSLATIONS_SUCCESS'
 const GET_TRANSLATIONS_FAILURE = 'GET_TRANSLATIONS_FAILURE'

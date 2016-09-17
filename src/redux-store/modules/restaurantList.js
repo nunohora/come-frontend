@@ -1,4 +1,4 @@
-import { CALL_API } from '../middleware/api'
+import { CALL_API } from 'redux-api-middleware'
 import { findWhere } from '../utils/generic'
 
 export const SEARCH_REQUEST = 'SEARCH_REQUEST'
@@ -13,7 +13,8 @@ export function getRestListByLocation(dispatch, postcode) {
 
     dispatch({
         [CALL_API]: {
-            endpoint: `search/${postcode}`,
+            endpoint: `http://localhost:8000/search/${postcode}/`,
+            method: 'GET',
             types: [SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE]
         }
     })
@@ -69,9 +70,9 @@ const ACTION_HANDLERS = {
     [SEARCH_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
             postcode: data.postcode,
-            categories: setCategories(data.response, data.response.length),
-            list: data.response,
-            number: data.response.length,
+            categories: setCategories(data.payload, data.payload.length),
+            list: data.payload,
+            number: data.payload.length,
             isFetching: false
         })
     },

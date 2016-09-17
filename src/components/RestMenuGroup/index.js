@@ -40,8 +40,7 @@ class RestaurantMenuGroup extends React.Component {
         const icon = open ? <FaPlus size={18} /> : <FaMinus size={18} />
 
         return (
-            <li className={classNames({ active: open })}
-                >
+            <li className={classNames({ active: open })}>
                 <div 
                     className="title" 
                     styleName="group-title"

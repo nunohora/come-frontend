@@ -1,6 +1,6 @@
 /* global Promise */
 
-import { CALL_API } from '../middleware/api'
+import { CALL_API } from 'redux-api-middleware'
 import slug from 'slug'
 
 export const GET_MENU_REQUEST = 'GET_MENU_REQUEST'
@@ -24,7 +24,8 @@ export function getRestaurantMenu(dispatch, slug) {
 
     dispatch({
         [CALL_API]: {
-            endpoint: `places/${slug}`,
+            endpoint: `http://localhost:8000/places/${slug}/`,
+            method: 'GET',
             types: [GET_MENU_REQUEST, GET_MENU_SUCCESS, GET_MENU_FAILURE]
         }
     })
@@ -33,7 +34,8 @@ export function getRestaurantMenu(dispatch, slug) {
 export function getRestaurantReviews(dispatch, slug) {
     dispatch({
         [CALL_API]: {
-            endpoint: `places/${slug}/reviews/`,
+            endpoint: `http://localhost:8000/places/${slug}/reviews/`,
+            method: 'GET',
             types: [GET_REVIEWS_REQUEST, GET_REVIEWS_SUCCESS, GET_REVIEWS_FAILURE]
         }
     })
@@ -42,7 +44,7 @@ export function getRestaurantReviews(dispatch, slug) {
 export function getRestaurantInfo(dispatch, slug) {
     dispatch({
         [CALL_API]: {
-            endpoint: `places/${slug}}/info`,
+            endpoint: `http://localhost:8000/places/${slug}}/info/`,
             types: [GET_INFO_REQUEST, GET_INFO_SUCCESS, GET_INFO_FAILURE]
         }
     })
@@ -75,11 +77,11 @@ const ACTION_HANDLERS = {
         })
     },
     [GET_MENU_SUCCESS]: (state, data) => {
-        const menu = setMenuByGroup(data.response.menu)
+        const menu = setMenuByGroup(data.payload.menu)
 
         return Object.assign({}, state, {
             isFetching: false,
-            meta: data.response.meta,
+            meta: data.payload.meta,
             menu: menu,
             menuCategories: Object.keys(menu)
         })
@@ -92,7 +94,7 @@ const ACTION_HANDLERS = {
     [GET_REVIEWS_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
             isFetching: false,
-            reviews: data.response
+            reviews: data.payload
         })
     },
     [GET_REVIEWS_REQUEST]: state => {

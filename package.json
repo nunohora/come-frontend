@@ -59,7 +59,7 @@
     "type": "git",
     "url": "git+https://github.com/davezuko/react-redux-starter-kit.git"
   },
-  "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
+  "author": "Nuno Hora <nunohora@gmail.com> (http://nphora.co.uk)",
   "license": "MIT",
   "dependencies": {
     "auth0-lock": "^10.2.1",
@@ -90,6 +90,7 @@
     "react-router-redux": "^4.0.5",
     "react-stripe-checkout": "^1.8.0",
     "redux": "^3.5.2",
+    "redux-api-middleware": "^1.0.2",
     "redux-form": "^6.0.2",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",

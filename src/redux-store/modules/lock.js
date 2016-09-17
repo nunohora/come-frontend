@@ -4,11 +4,18 @@ const LOCK_SUCCESS = 'LOCK_SUCCESS'
 const LOCK_ERROR = 'LOCK_ERROR'
 const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
 const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
-
+const LOGIN_REQUEST = 'LOGIN_REQUEST'
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+const LOGIN_FAILURE = 'LOGIN_FAILURE'
+ 
 const clientId = '***REMOVED***'
 const domain = '***REMOVED***'
 
 const options = {
+    auth: {
+        params: { scope: 'openid email'},
+        redirectUrl: 'http://localhost:3000/login/callback'
+    },
     autoclose: true,
     theme: {
         logo: 'https://s3-eu-west-1.amazonaws.com/come.pt/img/android-icon-192x192-transparent.png',
@@ -46,6 +53,17 @@ function onAuthenticated(dispatch, authResult) {
     lock.getProfile(authResult.idToken, (err, profile) => {
         localStorage.setItem('id_token', JSON.stringify(authResult.idToken))
         localStorage.setItem('profile', JSON.stringify(profile))
+
+        dispatch({
+            [CALL_API]: {
+                endpoint: 'http://localhost:8000/login',
+                method: 'POST',
+                payload: {
+                    email: profile.email
+                },
+                types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE]
+            }
+        })
 
         dispatch({ type: LOCK_SUCCESS })
     })
