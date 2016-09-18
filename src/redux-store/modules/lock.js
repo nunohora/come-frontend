@@ -1,3 +1,4 @@
+import { CALL_API } from 'redux-api-middleware'
 import Auth0Lock from 'auth0-lock'
 
 const LOCK_SUCCESS = 'LOCK_SUCCESS'
@@ -14,7 +15,7 @@ const domain = '***REMOVED***'
 const options = {
     auth: {
         params: { scope: 'openid email'},
-        redirectUrl: 'http://localhost:3000/login/callback'
+        responseType: 'token'
     },
     autoclose: true,
     theme: {

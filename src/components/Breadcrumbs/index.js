@@ -1,20 +1,22 @@
 import React, { PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import { connect } from 'react-redux'
-import Breadcrumbs from 'react-breadcrumbs'
 import styles from './styles.scss'
 
-class BreadcrumbsNav extends React.Component {
+class Breadcrumbs extends React.Component {
     render() {
         return (
-            <div>
-                <Breadcrumbs 
-                    routes={this.props.routes} 
-                    params={this.props.params}
-                    separator=" -> "/>
-            </div>
+            <ol styleName="breadcrumbs">
+                <li>
+                    <a>Home</a>
+                </li>
+                <li>
+                    <a>Elements</a>
+                </li>
+                <li className="active">Pricing Tables</li>
+            </ol>
         )
     }
 }
 
-export default CSSModules(BreadcrumbsNav, styles)
+export default CSSModules(Breadcrumbs, styles)

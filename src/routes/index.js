@@ -39,7 +39,7 @@ export default (store) => (
             <Route component={CheckoutPayment} path='payment' />
         </Route>
         <Route component={Help} path='/help' />
-        <Route component={NotFound} path='*' />
         <Redirect from='login/callback' to='/' />
+        <Route component={NotFound} path='*' />
     </Route>
 )
