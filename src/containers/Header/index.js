@@ -17,7 +17,7 @@ class Header extends React.Component {
 
     static propTypes = {
         routes: PropTypes.object.isRequired,
-        nickname: PropTypes.string,
+        name: PropTypes.string,
         isAuthenticated: PropTypes.bool.isRequired,
         login: PropTypes.func.isRequired,
         logout: PropTypes.func.isRequired,
@@ -130,7 +130,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        nickname: state.lock.profile.nickname,
+        name: state.lock.profile.name,
         isAuthenticated: state.lock.isAuthenticated
     }
 }

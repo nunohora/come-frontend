@@ -27,12 +27,7 @@ class SearchResult extends React.Component {
         this.props.getRestListByLocation(this.props.postcode)
     }
 
-    filterBy(filterType, list) {
-        return list.filter(restaurant => {
-            return restaurant.food_categories.some(cat => {
-                return id === cat.id
-            })
-        })
+    sortBy() {
     }
 
     filterByCategory(slug, list) {
@@ -55,11 +50,21 @@ class SearchResult extends React.Component {
                             <div className="select-option">
                                 <TiChevronLeft size={20} className="icon dropdown-arrow select" />
                                 <select>
-                                    <option defaultValue="Default"><FormattedMessage id="SORT_BY" /></option>
-                                    <option value="Small"><FormattedMessage id="DISTANCE" /></option>
-                                    <option value="Medium"><FormattedMessage id="RATING" /></option>
-                                    <option value="Larger"><FormattedMessage id="NEWEST_FIRST" /></option>
-                                    <option value="Larger"><FormattedMessage id="RESTAURANT_NAME" /></option>
+                                    <FormattedMessage id="SORT_BY">
+                                        {message => <option value="">{message}</option>}
+                                    </FormattedMessage>
+                                    <FormattedMessage id="DISTANCE">
+                                        {message => <option value="Small">{message}</option>}
+                                    </FormattedMessage>
+                                    <FormattedMessage id="RATING">
+                                        {message => <option value="Medium">{message}</option>}
+                                    </FormattedMessage>
+                                    <FormattedMessage id="NEWEST_FIRST">
+                                        {message => <option value="Larger">{message}</option>}
+                                    </FormattedMessage>
+                                    <FormattedMessage id="RESTAURANT_NAME">
+                                        {message => <option value="Larger">{message}</option>}
+                                    </FormattedMessage>
                                 </select>
                             </div>
                         </div>

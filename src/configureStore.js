@@ -15,7 +15,6 @@ import restaurantList from 'redux-store/modules/restaurantList'
 import restaurant from 'redux-store/modules/restaurant'
 import lock from 'redux-store/modules/lock'
 import shoppingCart from 'redux-store/modules/shoppingCart'
-import breadcrumbs from 'redux-store/modules/breadcrumbs'
 
 addLocaleData([...pt, ...en])
 
@@ -45,8 +44,7 @@ export default function configureStore(initialState = {}, history) {
         shoppingCart,
         intl: intlReducer,
         router,
-        form,
-        breadcrumbs
+        form
     })
 
     // Create final store and subscribe router in debug env ie. for devtools

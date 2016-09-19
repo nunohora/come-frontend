@@ -57,11 +57,14 @@ function onAuthenticated(dispatch, authResult) {
 
         dispatch({
             [CALL_API]: {
-                endpoint: 'http://localhost:8000/login',
+                endpoint: 'http://localhost:8000/login/',
                 method: 'POST',
-                payload: {
-                    email: profile.email
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json',
+                    'Authorization': authResult.idToken
                 },
+                body: JSON.stringify({ email: profile.email }),
                 types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE]
             }
         })

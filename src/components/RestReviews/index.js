@@ -27,7 +27,7 @@ export class RestaurantReviews extends React.Component {
                         full="small-star full-star"
                         readonly={true} 
                         fractions={3} 
-                        initialRate={item.rating} />
+                        initialRate={parseInt(item.rating, 10)} />
                     <p>{item.description}</p>
                 </li>
             )

@@ -15,7 +15,7 @@ class RestaurantListItem extends React.Component {
     static propTypes = {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
-        address: PropTypes.string.isRequired,
+        address: PropTypes.string,
         categories: PropTypes.array.isRequired,
         slug: PropTypes.string.isRequired
     }
