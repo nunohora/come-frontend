@@ -13,7 +13,7 @@ export function getRestListByLocation(dispatch, postcode) {
 
     dispatch({
         [CALL_API]: {
-            endpoint: `http://localhost:8000/search/${postcode}/`,
+            endpoint: `http://api.come.dev:8000/search/${postcode}/`,
             method: 'GET',
             types: [SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE]
         }

@@ -28,3 +28,32 @@
 	max-height: inherit;
 	transition: all 0.4s ease;
 }
+
+.accordion-1 {
+	li {
+		margin-bottom: 10px;
+	}
+	.title {
+		background: #f5f5f5;
+	    padding: 13px;
+	    transition: all 0.3s ease;
+	    -webkit-transition: all 0.3s ease;
+	    -moz-transition: all 0.3s ease;
+	    border-bottom: 0px;
+
+	    span {
+			font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		    font-size: 12px;
+		    line-height: 24px;
+		    font-weight: 400;
+		    text-transform: uppercase;
+		    letter-spacing: 2px;
+		    font-weight: 700;
+	    }
+	}
+
+	.active .title {
+		background: #47b475;
+    	color: #fff;
+	}
+}

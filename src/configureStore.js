@@ -14,6 +14,7 @@ import { intlReducer } from 'react-intl-redux'
 import restaurantList from 'redux-store/modules/restaurantList'
 import restaurant from 'redux-store/modules/restaurant'
 import lock from 'redux-store/modules/lock'
+import user from 'redux-store/modules/user'
 import shoppingCart from 'redux-store/modules/shoppingCart'
 
 addLocaleData([...pt, ...en])
@@ -39,6 +40,7 @@ export default function configureStore(initialState = {}, history) {
     // Combining all the modules
     const combinedReducers = combineReducers({
         lock,
+        user,
         restaurant,
         restaurantList,
         shoppingCart,

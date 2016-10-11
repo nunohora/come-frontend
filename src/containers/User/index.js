@@ -4,16 +4,28 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import classnames from 'classnames'
 import { FormattedMessage } from 'react-intl'
+import { getUserAccount } from 'redux-store/modules/user'
 
-export default class User extends React.Component {
+class User extends React.Component {
+
+    static propTypes = {
+        addresses: PropTypes.array.isRequired,
+        payments: PropTypes.array.isRequired,
+        orders: PropTypes.array.isRequired,
+        getUserAccount: PropTypes.func.isRequired
+    }
 
     constructor(props) {
         super(props)
         this.renderClasses.bind(this)
     }
 
+    componentWillMount() {
+        this.props.getUserAccount()
+    }
+
     renderClasses(name) {
-        const { pathname } = this.props.location 
+        const { pathname } = this.props.location
         const path = pathname.split('/')
         let string = path[path.length - 1]
 
@@ -45,9 +57,21 @@ export default class User extends React.Component {
                     </div>
                     <div className="tab-content col-md-9">
                         {this.props.children}
-                    </div>                  
+                    </div>
                 </div>
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    addresses: state.user.addresses,
+    payments: state.user.payments,
+    orders: state.user.orders
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    getUserAccount: () => { getUserAccount(dispatch) }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(User)

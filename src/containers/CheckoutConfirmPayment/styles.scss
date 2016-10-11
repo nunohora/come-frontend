@@ -1,0 +1,33 @@
+.price {
+	text-align: right;
+}
+
+.no-border {
+	td {
+		border-top: 0px !important;
+	}
+}
+
+.border {
+	border-top: 1px solid #ddd;
+}
+
+.your-order-title {
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    margin-left: 8px;
+}
+
+.ruler {
+	margin-bottom: 12px;
+}
+
+.your-order-table {
+	margin-bottom: 10px;
+}

@@ -8,7 +8,7 @@ const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 const LOGIN_REQUEST = 'LOGIN_REQUEST'
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 const LOGIN_FAILURE = 'LOGIN_FAILURE'
- 
+
 const clientId = '***REMOVED***'
 const domain = '***REMOVED***'
 
@@ -22,7 +22,10 @@ const options = {
         logo: 'https://s3-eu-west-1.amazonaws.com/come.pt/img/android-icon-192x192-transparent.png',
         primaryColor: 'green'
     },
-    socialButtonStyle: 'big'
+    socialButtonStyle: 'big',
+    languageDictionary: {
+        title: 'Come.pt'
+    }
 }
 
 let lock
@@ -39,7 +42,7 @@ export function initAuth(dispatch) {
     lock.on('authenticated', onAuthenticated.bind(this, dispatch))
 }
 
-export function login(dispatch) {
+export function login() {
     lock.show()
 }
 
@@ -50,14 +53,18 @@ export function logout(dispatch) {
     dispatch(receiveLogout())
 }
 
+export function isAuthenticated() {
+    return localStorage.getItem('id_token') ? true : false
+}
+
 function onAuthenticated(dispatch, authResult) {
     lock.getProfile(authResult.idToken, (err, profile) => {
-        localStorage.setItem('id_token', JSON.stringify(authResult.idToken))
+        localStorage.setItem('id_token', authResult.idToken)
         localStorage.setItem('profile', JSON.stringify(profile))
 
         dispatch({
             [CALL_API]: {
-                endpoint: 'http://localhost:8000/login/',
+                endpoint: 'http://api.come.dev:8000/login/',
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

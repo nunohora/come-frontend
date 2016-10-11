@@ -3,7 +3,7 @@ import '../../styles/core.scss'
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Header from 'containers/Header'
-import Footer from 'containers/Footer'
+import Footer from 'components/Footer'
 
 // Note: Stateless/function components *will not* hot reload!
 // react-transform *only* works on component classes.

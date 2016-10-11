@@ -1,17 +1,21 @@
 .home-container {
     background-color: transparent;
-    
+
     h1, h2, h3, h4, h5, h6 {
         color: #fff;
     }
 }
 
 .feature {
-    padding: 32px;
+    padding: 16px;
     margin-bottom: 24px;
-    height: 280px;
+    height: 300px;
     background: rgba(34, 34, 34, 0.4);
     color: #fff;
+
+    .feature-title {
+        margin-top: 6px;
+    }
 }
 
 .feature h5 {
@@ -20,6 +24,7 @@
 
 .feature p {
     margin-bottom: 0;
+    font-size: 15px;
 }
 
 .icon {

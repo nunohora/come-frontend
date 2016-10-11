@@ -62,6 +62,15 @@ select {
     cursor: pointer;
 }
 
+textarea {
+    width: 100%;
+    border: none;
+    background: #f5f5f5;
+    margin-bottom: 24px;
+    border-radius: 0;
+    padding: 16px 20px;
+}
+
 .form-success,
 .form-error {
     padding: 12px;
@@ -116,4 +125,16 @@ select {
 }
 .input-lh {
     line-height: 50px;
+}
+.input-with-label {
+    span {
+        font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: #292929;
+        letter-spacing: 1px;
+        font-weight: 700;
+        display: block;
+        cursor: default;
+    }
 }

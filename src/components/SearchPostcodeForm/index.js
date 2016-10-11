@@ -12,7 +12,7 @@ const validate = values => {
 
     if (!values.postcode) {
         errors.postcode = 'ERROR_REQUIRED_POSTCODE'
-    } 
+    }
     else if (!/[0-9]{4}-[0-9]{3}/.test(values.postcode)) {
         errors.postcode = 'ERROR_INVALID_POSTCODE'
     }
@@ -24,10 +24,10 @@ const validate = values => {
 const renderField = ({ handleSubmit, input, label, type, meta: { touched, error } }) => {
     return (
         <div>
-            <input 
-                {...input} 
-                placeholder={label} 
-                type={type} 
+            <input
+                {...input}
+                placeholder={label}
+                type={type}
                 className={classNames({ 'field-error': touched && error })}
                 />
             <button onClick={handleSubmit} className="mb16 btn" type="submit">
@@ -35,7 +35,7 @@ const renderField = ({ handleSubmit, input, label, type, meta: { touched, error 
                 <FormattedMessage id="PROCURAR_LOCAIS" tagName="span" />
             </button>
             {touched && error && <div className="form-error"><FormattedMessage id={error} /></div>}
-        </div>        
+        </div>
     )
 }
 
@@ -50,13 +50,11 @@ class SearchPostcodeForm extends React.Component {
     render() {
         const { error, handleSubmit, submitting } = this.props
 
-        console.log('ERROR: ', this.props)
-
         return (
-            <form 
+            <form
                 className="halves"
                 styleName="search-form"
-                onSubmit={handleSubmit} 
+                onSubmit={handleSubmit}
                 onKeyPress={this.onKeyPress.bind(this)}>
                 <Field name="postcode" type="text" handleSubmit={handleSubmit} component={renderField} label="Postcode" />
             </form>

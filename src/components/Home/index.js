@@ -6,11 +6,10 @@ import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
 
 import symbol from 'img/come-symbol.png'
-
-let FaMapMarker = require('react-icons/lib/fa/map-marker')
-let TiThList = require('react-icons/lib/ti/th-list-outline')
-let TiCreditCard = require('react-icons/lib/ti/credit-card')
-let TiThumbsOk = require('react-icons/lib/ti/thumbs-ok')
+import note from 'img/note.png'
+import mapMarker from 'img/map.png'
+import sushi from 'img/sushi_box.png'
+import thumbsUp from 'img/thumbs_up.png'
 
 class Home extends React.Component {
 
@@ -50,8 +49,8 @@ class Home extends React.Component {
                     <div className="col-sm-3">
                         <div styleName="feature">
                             <div className="text-center">
-                                <FaMapMarker size={80} />
-                                <div className="uppercase">
+                                <img src={mapMarker} />
+                                <div className="uppercase" styleName="feature-title">
                                     <FormattedMessage id="ONDE_ESTA" tagName="h5" />
                                 </div>
                             </div>
@@ -61,8 +60,8 @@ class Home extends React.Component {
                     <div className="col-sm-3">
                         <div styleName="feature">
                             <div className="text-center">
-                                <TiThList size={80} />
-                                <div className="uppercase">
+                                <img src={sushi} />
+                                <div className="uppercase" styleName="feature-title">
                                     <FormattedMessage id="APETECE_COMER" tagName="h5" />
                                 </div>
                             </div>
@@ -72,8 +71,8 @@ class Home extends React.Component {
                     <div className="col-sm-3">
                         <div styleName="feature">
                             <div className="text-center">
-                                <TiCreditCard size={80} />
-                                <div className="uppercase">
+                                <img src={note} />
+                                <div className="uppercase" styleName="feature-title">
                                     <FormattedMessage id="DINHEIRO_OU_CARTAO" tagName="h5" />
                                 </div>
                             </div>
@@ -84,17 +83,17 @@ class Home extends React.Component {
                     <div className="col-sm-3">
                         <div styleName="feature">
                             <div className="text-center">
-                                <TiThumbsOk size={80} />
-                                <div className="uppercase">
+                                <img src={thumbsUp} />
+                                <div className="uppercase" styleName="feature-title">
                                     <FormattedMessage id="PEDIDO_EFECTUADO" tagName="h5" />
                                 </div>
                             </div>
-                            <FormattedMessage 
-                                id="COMIDA_CAMINHO" 
+                            <FormattedMessage
+                                id="COMIDA_CAMINHO"
                                 tagName="p" />
                         </div>
                     </div>
-                </div>                    
+                </div>
             </div>
         )
     }

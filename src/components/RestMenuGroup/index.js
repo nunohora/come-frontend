@@ -15,7 +15,7 @@ class RestaurantMenuGroup extends React.Component {
 
     constructor(props) {
         super(props)
-        
+
         this.state = {
             open: true
         }
@@ -41,8 +41,8 @@ class RestaurantMenuGroup extends React.Component {
 
         return (
             <li className={classNames({ active: open })}>
-                <div 
-                    className="title" 
+                <div
+                    className="title"
                     styleName="group-title"
                     onClick={this.onTitleClick.bind(this)}
                     >

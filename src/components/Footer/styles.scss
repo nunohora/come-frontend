@@ -26,6 +26,13 @@
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
+
+    a {
+        opacity: 0.5;
+    }
+    a:hover {
+        opacity: 1;
+    }
 }
 
 .instafeed li {
@@ -39,9 +46,41 @@
 }
 
 .sub {
-    opacity: 0.5;   
+    text-align: center;
 }
 
 .social {
+    composes: quick-links;
     margin: 0;
+
+    li {
+        float: left;
+        margin-right: 10px;
+        margin-top: -5px;
+    }
+}
+
+.back-to-top {
+    border-color: #fff;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+
+    &:hover,
+    &:visited {
+        background: none;
+        color: #fff;
+        opacity: 1;
+    }
+}
+
+.hash-tag {
+    font-size: 30px;
+    padding-top: 16px;
+    clear: both;
+}
+
+.logo-complete {
+    width: 260px;
 }

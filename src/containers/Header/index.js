@@ -46,7 +46,7 @@ class Header extends React.Component {
         return (
             <ul styleName="user">
                 <li>
-                    <span>{this.props.nickname}</span>
+                    <span>{this.props.name}</span>
                     <TiUser size={30} styleName="user-icon" />
                     <TiChevronLeft size={20} className="dropdown-arrow" />
                     <ul styleName="dropdown-menu">
@@ -76,11 +76,11 @@ class Header extends React.Component {
                             </a>
                         </li>
                         <li styleName="menu-item">
-                            <Link to="/help">
+                            <Link to="/faq">
                                 <FormattedMessage id="HELP" tagName="span"/>
                             </Link>
-                        </li>                    
-                    </ul>                    
+                        </li>
+                    </ul>
                 </li>
             </ul>
         )
@@ -113,6 +113,9 @@ class Header extends React.Component {
                         <Link to="/">
                             <img src={headerLogo} alt="TakeAway" />
                         </Link>
+                        <span className="label label-success" styleName="demo-label">
+                            DEMO
+                        </span>
                     </div>
                     <div className="module right">
                         <div className="module left" styleName="module-widget-handle">

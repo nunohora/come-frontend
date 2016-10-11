@@ -10,8 +10,29 @@ class CheckoutConfirmDetails extends React.Component {
 
     render() {
         return (
-            <div className="side-panel">
-                Confirm Details
+            <div className="row normal-container">
+                <div className="col-md-4 col-md-offset-4">
+                    <h4 className="uppercase mb16">Confirm details</h4>
+                    <div className="input-with-label text-left">
+                        <span>Mobile number</span>
+                        <input type="text" />
+                    </div>
+                    <div className="input-with-label text-left">
+                        <span>Address</span>
+                        <input type="text" />
+                    </div>
+                    <div className="input-with-label text-left">
+                        <span>City</span>
+                        <input type="text" />
+                    </div>
+                    <div className="input-with-label text-left">
+                        <span>Postcode</span>
+                        <input type="text" />
+                    </div>
+                    <button className="mb16 btn" type="submit">
+                        Confirm details
+                    </button>
+                </div>
             </div>
         )
     }

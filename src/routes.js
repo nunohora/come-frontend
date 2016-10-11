@@ -10,7 +10,8 @@ import RestaurantReviews from 'components/RestReviews'
 import RestaurantInfo from 'components/RestInfo'
 import PrivacyPolicy from 'components/PrivacyPolicy'
 import CheckoutConfirmDetails from 'containers/CheckoutConfirmDetails'
-import CheckoutPayment from 'containers/CheckoutPayment'
+import CheckoutConfirmTime from 'containers/CheckoutConfirmTime'
+import CheckoutConfirmPayment from 'containers/CheckoutConfirmPayment'
 import NotFound from 'containers/NotFound'
 import User from 'containers/User'
 import MyAccount from 'containers/MyAccount'
@@ -18,12 +19,21 @@ import MyOrders from 'containers/MyOrders'
 import MyPayments from 'containers/MyPayments'
 import MyAddresses from 'containers/MyAddresses'
 
+function isAuthenticated(nextState, replace) {
+    if (!localStorage.getItem('id_token')) {
+        replace({
+            pathname: '/notfound',
+            state: { nextPathname: nextState.location.pathname }
+        })
+    }
+}
+
 export default (store) => (
     <Route path='/' component={CoreLayout}>
         <IndexRoute component={Home} />
         <Route component={SearchResult} path='search/:location' />
         <Route component={SearchResult} path='search/:location/:slug' />
-        <Route component={User} path='/user'>
+        <Route component={User} path='/user' onEnter={isAuthenticated} >
             <Route component={MyAccount} path='my-account' />
             <Route component={MyOrders} path='my-orders' />
             <Route component={MyPayments} path='my-payments' />
@@ -36,10 +46,12 @@ export default (store) => (
         </Route>
         <Route path='/checkout/:basketId'>
             <IndexRoute component={CheckoutConfirmDetails} />
-            <Route component={CheckoutPayment} path='payment' />
+            <Route component={CheckoutConfirmTime} path="time" />
+            <Route component={CheckoutConfirmPayment} path='payment' />
         </Route>
         <Route component={Help} path='/help' />
         <Redirect from='login/callback' to='/' />
+        <Redirect path='/user' to='/user/my-account' />
         <Route component={NotFound} path='*' />
     </Route>
 )

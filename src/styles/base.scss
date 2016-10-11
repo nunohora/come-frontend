@@ -25,15 +25,15 @@ body {
     box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul, 
-ol, pre, table, blockquote, 
+h1, h2, h3, h4, h5, h6, p, ul,
+ol, pre, table, blockquote,
 input, button, select, textarea {
     margin-bottom: 24px;
     margin-top: 0;
     padding: 0;
 }
 
-h1, h2, h3, 
+h1, h2, h3,
 h4, h5, h6 {
     font-weight: 300;
     color: #292929;
@@ -54,7 +54,7 @@ a {
     cursor: poitner;
 }
 
-a, a:visited, a:focus, 
+a, a:visited, a:focus,
 a:active, a:hover {
     text-decoration: none;
     outline: none;
@@ -156,6 +156,7 @@ footer {
     background-color: white;
     position: relative;
     z-index: 3;
+    min-height: 600px;
 }
 
 .spinner {
@@ -227,4 +228,8 @@ section.fullscreen {
 
 .dropdown-arrow.select {
     color: #666;
+}
+
+.fade-half {
+    opacity: 0.5;
 }
