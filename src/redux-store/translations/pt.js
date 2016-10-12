@@ -13,7 +13,7 @@ export default {
     "CODIGO_POSTAL_INVALIDO": "Código postal inválido",
     "PROCURAR_LOCAIS": "Procurar Locais",
     "CATEGORIES": "Categorias",
-    "CHANGE_LOCATION?": "mudar localização?", 
+    "CHANGE_LOCATION?": "mudar localização?",
     "RESULTS_FOR": "resultados para",
     "SHOPPING_CART": "Carrinho",
     "ERROR_REQUIRED_POSTCODE": "Campo obrigatório.",

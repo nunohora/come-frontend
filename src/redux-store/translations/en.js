@@ -1,9 +1,9 @@
 export default {
     "HOME_SLOGAN": "Eat without leaving the house.",
     "ONDE_ESTA": "1. Tell us where you are",
-    "PRECISAMOS_CODIGO_POSTAL": "We just need your postcode.",
+    "PRECISAMOS_CODIGO_POSTAL": "We just need your postcode. Fill the input box and click the find button.",
     "APETECE_COMER": "2. Pick a takeaway",
-    "EXPLORA_LISTA": "Browse the list of restaurants that deliver to your area",
+    "EXPLORA_LISTA": "Browse the list of restaurants that deliver to your area.",
     "DINHEIRO_OU_CARTAO": "3. Cash or Card",
     "ACEITAMOS_PAGAMENTO": "We accept both ways of payment.",
     "PEDIDO_EFECTUADO": "4. All done",

@@ -7,14 +7,19 @@
 }
 
 .feature {
-    padding: 16px;
     margin-bottom: 24px;
     height: 300px;
-    background: rgba(34, 34, 34, 0.4);
+    background: rgba(34, 34, 34, 0.6);
     color: #fff;
 
     .feature-title {
         margin-top: 6px;
+    }
+}
+
+@media (max-width: 1200px) and (min-width: 990px) {
+    .feature {
+        height: 350px;
     }
 }
 
@@ -43,8 +48,6 @@
 }
 
 .steps {
-    display: flex;
-    flex-direction: row;
     z-index: 3;
     position: relative;
 }
