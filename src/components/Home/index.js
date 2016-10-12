@@ -41,17 +41,17 @@ class Home extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 mb40">
+                    <div className="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 mb40">
                         <SearchPostcodeForm onSubmit={this.handleSubmit.bind(this)} />
                     </div>
                 </div>
                 <div  styleName="steps">
                     <div className="col-sm-6 col-md-3 col-lg-3">
                         <div styleName="feature">
-                            <div className="col-xs-4 col-sm-12 col-md-12 col-lg-12 text-center">
+                            <div className="col-xs-3 col-sm-12 col-md-12 col-lg-12 text-center" styleName="feature-icon">
                                 <img src={mapMarker} />
                             </div>
-                            <div className="col-xs-8 col-sm-12 col-md-12 col-lg-12">
+                            <div className="col-xs-9 col-sm-12 col-md-12 col-lg-12" styleName="feature-text">
                                 <div className="text-center uppercase" styleName="feature-title">
                                     <FormattedMessage id="ONDE_ESTA" tagName="h5" />
                                 </div>
@@ -61,10 +61,10 @@ class Home extends React.Component {
                     </div>
                     <div className="col-sm-6 col-md-3 col-lg-3">
                         <div styleName="feature">
-                            <div className="col-xs-4 col-sm-12 col-md-12 col-lg-12 text-center">
+                            <div className="col-xs-3 col-sm-12 col-md-12 col-lg-12 text-center" styleName="feature-icon">
                                 <img src={sushi} />
                             </div>
-                            <div className="col-xs-8 col-sm-12 col-md-12 col-lg-12">
+                            <div className="col-xs-9 col-sm-12 col-md-12 col-lg-12" styleName="feature-text">
                                 <div className="text-center uppercase" styleName="feature-title">
                                     <FormattedMessage id="APETECE_COMER" tagName="h5" />
                                 </div>
@@ -74,10 +74,10 @@ class Home extends React.Component {
                     </div>
                     <div className="col-sm-6 col-md-3 col-lg-3">
                         <div styleName="feature">
-                            <div className="col-xs-4 col-sm-12 col-md-12 col-lg-12 text-center">
+                            <div className="col-xs-3 col-sm-12 col-md-12 col-lg-12 text-center" styleName="feature-icon">
                                 <img src={note} />
                             </div>
-                            <div className="col-xs-8 col-sm-12 col-md-12 col-lg-12">
+                            <div className="col-xs-9 col-sm-12 col-md-12 col-lg-12" styleName="feature-text">
                                 <div className="text-center uppercase" styleName="feature-title">
                                     <FormattedMessage id="DINHEIRO_OU_CARTAO" tagName="h5" />
                                 </div>
@@ -87,10 +87,10 @@ class Home extends React.Component {
                     </div>
                     <div className="col-sm-6 col-md-3 col-lg-3">
                         <div styleName="feature">
-                            <div className="col-xs-4 col-sm-12 col-md-12 col-lg-12 text-center">
+                            <div className="col-xs-3 col-sm-12 col-md-12 col-lg-12 text-center" styleName="feature-icon">
                                 <img src={thumbsUp} />
                             </div>
-                            <div className="col-xs-8 col-sm-12 col-md-12 col-lg-12">
+                            <div className="col-xs-9 col-sm-12 col-md-12 col-lg-12" styleName="feature-text">
                                 <div className="text-center uppercase" styleName="feature-title">
                                     <FormattedMessage id="PEDIDO_EFECTUADO" tagName="h5" />
                                 </div>

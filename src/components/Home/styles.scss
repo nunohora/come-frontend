@@ -23,6 +23,22 @@
     }
 }
 
+@media (max-width: 767px) {
+    .feature {
+        height: 140px;
+        h5 {
+            margin-bottom: 12px;
+        }
+    }
+    .feature-text {
+        margin-top: 27px;
+        .feature-title {
+            margin-top: 0;
+            text-align: left;
+        }
+    }
+}
+
 .feature h5 {
     color: #fff;
 }
@@ -30,6 +46,14 @@
 .feature p {
     margin-bottom: 0;
     font-size: 15px;
+}
+
+.feature-text {
+    padding: 0 10px;
+}
+
+.feature-icon {
+    margin-top: 10px;
 }
 
 .icon {
