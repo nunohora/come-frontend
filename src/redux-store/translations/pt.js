@@ -34,5 +34,6 @@ export default {
     "MY_PAYMENTS": "Pagamentos",
     "MY_ADDRESSES": "Moradas",
     "LOGOUT": "Logout",
-    "HELP": "Ajuda"
+    "HELP": "Ajuda",
+    "POSTCODE": "Código Postal"
 }

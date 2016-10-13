@@ -47,6 +47,7 @@
     line-height: 24px;
     width: 100%;
     vertical-align: top;
+    cursor: pointer;
 }
 
 .menu:hover {
@@ -66,7 +67,8 @@
     margin-right: 0;
 }
 
-.menu li a {
+.menu li a,
+.narrow-menu a {
     font-size: 11px;
     text-transform: uppercase;
     font-weight: 600;
@@ -133,4 +135,39 @@
     margin-left: 20px;
     margin-top: 8px;
     background-color: #47b475;
+}
+
+.narrow-menu {
+    position: absolute;
+    top: 56px;
+    margin: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    zoom: 1;
+    z-index: 9999;
+    transform: translate3d(0,0,0);
+    will-change: transform;
+    padding: 0;
+    background: #292929;
+    box-sizing: border-box;
+    padding: 0 16px;
+    border-top: 2px solid #fff;
+
+    a {
+        display: block;
+    }
+
+    li {
+        border-top: 1px solid #f0ede8;
+        cursor: pointer;
+    }
+
+    li:first-child {
+        border-top: 0;
+    }
+}
+
+.open .narrow-menu {
+    left: 0;
 }

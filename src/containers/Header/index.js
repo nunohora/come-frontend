@@ -6,12 +6,15 @@ import { login, logout, initAuth } from 'redux-store/modules/lock'
 import CSSModules from 'react-css-modules'
 import { FormattedMessage } from 'react-intl'
 import LocaleChange from './LocaleChange'
+import MediaQuery from 'react-responsive'
+import classNames from 'classnames'
 import styles from './styles.scss'
 
 import headerLogo from 'img/header-logo.png'
 
 let TiUser = require('react-icons/lib/ti/user')
 let TiChevronLeft = require('react-icons/lib/ti/chevron-left')
+let TiThMenu = require('react-icons/lib/ti/th-menu')
 
 class Header extends React.Component {
 
@@ -26,6 +29,10 @@ class Header extends React.Component {
 
     constructor(props) {
         super(props)
+
+        this.state = {
+            navOpen: false
+        }
     }
 
     componentWillMount() {
@@ -42,7 +49,7 @@ class Header extends React.Component {
         this.props.logout()
     }
 
-    renderLoggedIn() {
+    renderLoggedInWide() {
         return (
             <ul styleName="user">
                 <li>
@@ -86,7 +93,7 @@ class Header extends React.Component {
         )
     }
 
-    renderLoggedOut() {
+    renderLoggedOutWide() {
         return (
             <ul styleName="menu">
                 <li>
@@ -101,10 +108,69 @@ class Header extends React.Component {
         )
     }
 
+    renderLoggedInNarrow() {
+        return (
+            <ul styleName="narrow-menu">
+                <li styleName="menu-item">
+                    <Link to="/user/my-account">
+                        <FormattedMessage id="MY_ACCOUNT" tagName="span"/>
+                    </Link>
+                </li>
+                <li styleName="menu-item">
+                    <Link to="/user/my-orders">
+                        <FormattedMessage id="MY_ORDERS" tagName="span"/>
+                    </Link>
+                </li>
+                <li styleName="menu-item">
+                    <Link to="/user/my-payments">
+                        <FormattedMessage id="MY_PAYMENTS" tagName="span"/>
+                    </Link>
+                </li>
+                <li styleName="menu-item">
+                    <Link to="/user/my-addresses">
+                        <FormattedMessage id="MY_ADDRESSES" tagName="span"/>
+                    </Link>
+                </li>
+                <li styleName="menu-item">
+                    <a onClick={this.props.logout}>
+                        <FormattedMessage id="LOGOUT" tagName="span"/>
+                    </a>
+                </li>
+                <li styleName="menu-item">
+                    <Link to="/faq">
+                        <FormattedMessage id="HELP" tagName="span"/>
+                    </Link>
+                </li>
+            </ul>
+        )
+    }
+
+    renderLoggedOutNarrow() {
+        return (
+            <ul styleName="narrow-menu">
+                <li className="menu-item">
+                    <a onClick={this.login.bind(this)}>Login</a>
+                </li>
+                <li className="menu-item">
+                    <Link to="/help">
+                        <FormattedMessage id="HELP" tagName="span"/>
+                    </Link>
+                </li>
+            </ul>
+        )
+    }
+
+    onMenuIconClick() {
+        this.setState({ navOpen: !this.state.navOpen })
+    }
+
     render() {
         const { isAuthenticated } = this.props
 
-        const renderNav = isAuthenticated ? this.renderLoggedIn.bind(this) : this.renderLoggedOut.bind(this);
+        const renderNavWide = isAuthenticated ? this.renderLoggedInWide.bind(this) : this.renderLoggedOutWide.bind(this)
+        const renderNavNarrow = isAuthenticated ? this.renderLoggedInNarrow.bind(this) : this.renderLoggedOutNarrow.bind(this)
+
+        const classes = classNames({ open: this.state.navOpen })
 
         return (
             <header styleName="header">
@@ -117,9 +183,15 @@ class Header extends React.Component {
                             DEMO
                         </span>
                     </div>
-                    <div className="module right">
+                    <div className="module widget-handle mobile-toggle right visible-xs">
+                        <TiThMenu onClick={this.onMenuIconClick.bind(this)} size={20} className="dropdown-menu-icon" />
+                    </div>
+                    <MediaQuery styleName={classes} minDeviceWidth={767}>
+                        {renderNavNarrow()}
+                    </MediaQuery>
+                    <div className="right hidden-xs">
                         <div className="module left" styleName="module-widget-handle">
-                            {renderNav()}
+                            {renderNavWide()}
                         </div>
                         <div className="module left" styleName="module-widget-handle">
                             <LocaleChange />

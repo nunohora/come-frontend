@@ -24,16 +24,20 @@ const validate = values => {
 const renderField = ({ handleSubmit, input, label, type, meta: { touched, error } }) => {
     return (
         <div>
-            <input
-                {...input}
-                placeholder={label}
-                type={type}
-                className={classNames({ 'field-error': touched && error })}
-                />
-            <button onClick={handleSubmit} className="mb16 btn" type="submit">
-                <FaSearch size={20} />
-                <FormattedMessage id="PROCURAR_LOCAIS" tagName="span" />
-            </button>
+            <div className="col-xs-12 col-sm-6 col-md-6">
+                <input
+                    {...input}
+                    placeholder={label}
+                    type={type}
+                    className={classNames({ 'field-error': touched && error })}
+                    />
+            </div>
+            <div className="col-xs-12 col-sm-6 col-md-6">
+                <button onClick={handleSubmit} className="mb16 btn" type="submit">
+                    <FaSearch size={20} />
+                    <FormattedMessage id="PROCURAR_LOCAIS" tagName="span" />
+                </button>
+            </div>
             {touched && error && <div className="form-error"><FormattedMessage id={error} /></div>}
         </div>
     )
@@ -56,7 +60,14 @@ class SearchPostcodeForm extends React.Component {
                 styleName="search-form"
                 onSubmit={handleSubmit}
                 onKeyPress={this.onKeyPress.bind(this)}>
-                <Field name="postcode" type="text" handleSubmit={handleSubmit} component={renderField} label="Postcode" />
+                <FormattedMessage id="POSTCODE">
+                    {message => <Field
+                        name="postcode"
+                        type="text"
+                        handleSubmit={handleSubmit}
+                        component={renderField}
+                        label={message} />}
+                </FormattedMessage>
             </form>
         )
     }

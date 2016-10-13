@@ -6,7 +6,7 @@ import CSSModules from 'react-css-modules'
 import Image from 'img/blog-post.jpg'
 import styles from './styles.scss'
 
-let FaMapMarker = require('react-icons/lib/fa/map-marker')
+let FaMap = require('react-icons/lib/fa/map')
 let FaCutlery = require('react-icons/lib/fa/cutlery')
 let TiThList = require('react-icons/lib/ti/th-list')
 
@@ -23,11 +23,11 @@ class RestaurantListItem extends React.Component {
     renderRating(rating) {
         return (
             <div>
-                <Rating 
+                <Rating
                 empty="small-star empty-star"
                 full="small-star full-star"
-                readonly={true} 
-                fractions={3} 
+                readonly={true}
+                fractions={3}
                 initialRate={rating} />
                 <span styleName="reviews-number">
                     (27 reviews)
@@ -60,32 +60,28 @@ class RestaurantListItem extends React.Component {
         const url = `/places/${props.slug}`
 
         return (
-            <div styleName="restaurant-list-item">
-                <div className="row">
-                    <div className="col-md-3">
-                        <div styleName="restaurant-list-img">
-                            <img className="" src={Image} alt="" />
-                        </div>
-                    </div>
-                    <div className="col-md-9">
-                        <h3>
-                            <Link to={url}>
-                                 {props.name}
-                            </Link>
-                        </h3>
-                        {this.renderRating(3)}
-                        <div styleName="address">
-                            <FaMapMarker size={20} />
-                            <span>{props.address}</span>
-                        </div>
-                        {this.renderCategories(props.categories)}
-                    </div>
-                    <Link to={url} styleName="see-menu" className="btn btn-filled">
-                        <TiThList size={20} />
-                        <span>Ver Menu</span>
-                    </Link>
+            <li className="row" styleName="rest-item">
+                <div styleName="restaurant-list-img">
+                    <img className="" src={Image} alt="" />
                 </div>
-            </div>
+                <div styleName="rest-info">
+                    <h4 styleName="rest-name">
+                        <Link to={url}>
+                             {props.name}
+                        </Link>
+                    </h4>
+                    {this.renderRating(3)}
+                    <div styleName="address">
+                        <FaMap size={15} />
+                        <span>{props.address}</span>
+                    </div>
+                    {this.renderCategories(props.categories)}
+                </div>
+                <Link to={url} styleName="see-menu" className="btn btn-filled">
+                    <TiThList size={20} />
+                    <span>Ver Menu</span>
+                </Link>
+            </li>
         )
     }
 }

@@ -26,7 +26,44 @@ class Home extends React.Component {
         this.context.router.push(`/search/${props.postcode}`)
     }
 
+    renderStep(obj) {
+        return (
+            <div key={obj.icon} className="col-sm-6 col-md-3 col-lg-3">
+                <div styleName="feature">
+                    <div className="col-xs-3 col-sm-12 col-md-12 col-lg-12 text-center" styleName="feature-icon">
+                        <img src={obj.icon} />
+                    </div>
+                    <div className="col-xs-9 col-sm-12 col-md-12 col-lg-12" styleName="feature-text">
+                        <div className="text-center uppercase" styleName="feature-title">
+                            <FormattedMessage id={obj.title} tagName="h5" />
+                        </div>
+                        <FormattedMessage id={obj.desc} tagName="p" />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     render() {
+
+        const steps = [{
+            icon: mapMarker,
+            title: 'ONDE_ESTA',
+            desc: 'PRECISAMOS_CODIGO_POSTAL'
+        }, {
+            icon: sushi,
+            title: 'APETECE_COMER',
+            desc: 'EXPLORA_LISTA'
+        }, {
+            icon: note,
+            title: 'DINHEIRO_OU_CARTAO',
+            desc: 'ACEITAMOS_PAGAMENTO'
+        }, {
+            icon: thumbsUp,
+            title: 'PEDIDO_EFECTUADO',
+            desc: 'COMIDA_CAMINHO'
+        }]
+
         return (
             <div styleName="home-container" className="normal-container">
                 <div className="row">
@@ -46,58 +83,7 @@ class Home extends React.Component {
                     </div>
                 </div>
                 <div  styleName="steps">
-                    <div className="col-sm-6 col-md-3 col-lg-3">
-                        <div styleName="feature">
-                            <div className="col-xs-3 col-sm-12 col-md-12 col-lg-12 text-center" styleName="feature-icon">
-                                <img src={mapMarker} />
-                            </div>
-                            <div className="col-xs-9 col-sm-12 col-md-12 col-lg-12" styleName="feature-text">
-                                <div className="text-center uppercase" styleName="feature-title">
-                                    <FormattedMessage id="ONDE_ESTA" tagName="h5" />
-                                </div>
-                                <FormattedMessage id="PRECISAMOS_CODIGO_POSTAL" tagName="p" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-md-3 col-lg-3">
-                        <div styleName="feature">
-                            <div className="col-xs-3 col-sm-12 col-md-12 col-lg-12 text-center" styleName="feature-icon">
-                                <img src={sushi} />
-                            </div>
-                            <div className="col-xs-9 col-sm-12 col-md-12 col-lg-12" styleName="feature-text">
-                                <div className="text-center uppercase" styleName="feature-title">
-                                    <FormattedMessage id="APETECE_COMER" tagName="h5" />
-                                </div>
-                                <FormattedMessage id="EXPLORA_LISTA" tagName="p" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-md-3 col-lg-3">
-                        <div styleName="feature">
-                            <div className="col-xs-3 col-sm-12 col-md-12 col-lg-12 text-center" styleName="feature-icon">
-                                <img src={note} />
-                            </div>
-                            <div className="col-xs-9 col-sm-12 col-md-12 col-lg-12" styleName="feature-text">
-                                <div className="text-center uppercase" styleName="feature-title">
-                                    <FormattedMessage id="DINHEIRO_OU_CARTAO" tagName="h5" />
-                                </div>
-                                <FormattedMessage id="ACEITAMOS_PAGAMENTO" tagName="p" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-md-3 col-lg-3">
-                        <div styleName="feature">
-                            <div className="col-xs-3 col-sm-12 col-md-12 col-lg-12 text-center" styleName="feature-icon">
-                                <img src={thumbsUp} />
-                            </div>
-                            <div className="col-xs-9 col-sm-12 col-md-12 col-lg-12" styleName="feature-text">
-                                <div className="text-center uppercase" styleName="feature-title">
-                                    <FormattedMessage id="PEDIDO_EFECTUADO" tagName="h5" />
-                                </div>
-                                <FormattedMessage id="COMIDA_CAMINHO" tagName="p" />
-                            </div>
-                        </div>
-                    </div>
+                    {steps.map(step => { return this.renderStep(step) })}
                 </div>
             </div>
         )

@@ -34,5 +34,6 @@ export default {
     "MY_PAYMENTS": "My Payments",
     "MY_ADDRESSES": "My Addresses",
     "LOGOUT": "Logout",
-    "HELP": "Help"
+    "HELP": "Help",
+    "POSTCODE": "Postcode"
 }

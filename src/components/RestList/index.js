@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react'
 import RestaurantListItem from 'components/RestListItem'
+import CSSModules from 'react-css-modules'
+import styles from './styles.scss'
 
-export default class RestaurantList extends React.Component {
+class RestaurantList extends React.Component {
 
     static propTypes = {
         list: PropTypes.array.isRequired
@@ -9,17 +11,19 @@ export default class RestaurantList extends React.Component {
 
     render() {
         return (
-            <div>
+            <ul styleName="rest-list">
                 {this.props.list.map(rest => (
-                    <RestaurantListItem 
+                    <RestaurantListItem
                         key={rest.id}
                         id={rest.id}
                         name={rest.name}
-                        address={rest.zone_name}
+                        address={`${rest.location.address} - ${rest.location.city}`}
                         categories={rest.food_categories}
                         slug = {rest.slug} />
                 ))}
-            </div>
+            </ul>
         )
     }
 }
+
+export default CSSModules(RestaurantList, styles)
