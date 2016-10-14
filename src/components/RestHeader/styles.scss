@@ -1,5 +1,8 @@
 .restaurant-header {
-    margin-bottom: 20px;
+    display: flex;
+    font-size: 14px;
+    margin-bottom: 16px;
+    line-height: 28px;
 }
 
 .tag-list,
@@ -12,4 +15,29 @@
 
 .reviews-number {
 	vertical-align: text-bottom;
+}
+
+.tag {
+    background-color: #EC1C25;
+}
+
+.header-img {
+    height: 120px;
+    width: 140px;
+    border-radius: 4px;
+    overflow: hidden;
+
+    img {
+        height: 120px;
+        width: 140px;
+    }
+}
+
+.rest-info {
+	margin-left: 16px;
+
+	h3 {
+		margin-bottom: 5px;
+		color: #47b475;
+	}
 }

@@ -4,7 +4,7 @@ import Rating from 'react-rating'
 import Image from 'img/blog-post.jpg'
 import styles from './styles.scss'
 
-let FaMapMarker = require('react-icons/lib/fa/map-marker')
+let FaMap = require('react-icons/lib/fa/map')
 let FaCutlery = require('react-icons/lib/fa/cutlery')
 
 class RestaurantHeader extends React.Component {
@@ -16,32 +16,13 @@ class RestaurantHeader extends React.Component {
     renderRating(rating) {
         return (
             <div>
-                <Rating 
+                <Rating
                     empty="small-star empty-star"
                     full="small-star full-star"
-                    readonly={true} 
-                    fractions={3} 
+                    readonly={true}
+                    fractions={3}
                     initialRate={rating} />
                 <span styleName="reviews-number">(27 reviews)</span>
-            </div>
-        )
-    }
-
-    renderCategories(categories = []) {
-        let string = ''
-
-        categories.forEach(category => {
-            string = string + category.name;
-
-            if (categories.indexOf(category) + 1 !== categories.length) {
-                string += ', '
-            }
-        })
-
-        return (
-            <div styleName="tag-list">
-                <FaCutlery size={15} />
-                <span>{string}</span>
             </div>
         )
     }
@@ -51,18 +32,21 @@ class RestaurantHeader extends React.Component {
 
         return (
             <div styleName="restaurant-header">
-                <div className="row">
-                    <div className="col-md-5">
-                        <img src={Image} alt="" />
+                <div styleName="header-img">
+                    <img src={Image} alt={meta.name} />
+                </div>
+                <div styleName="rest-info">
+                    <h3>{meta.name}</h3>
+                    {this.renderRating(4.5)}
+                    <div styleName="address">
+                        <FaMap size={15} />
+                        <span>{meta.location.address} - {meta.location.city}</span>
                     </div>
-                    <div className="col-md-7">
-                        <h2>{meta.name}</h2>
-                        {this.renderRating(4.5)}
-                        <div styleName="address">
-                            <FaMapMarker size={20} />
-                            <span>{meta.address}</span>
-                        </div>
-                        {this.renderCategories(meta.food_categories)}
+                    <div styleName="tag-list">
+                        <FaCutlery size={15} />
+                        {meta.food_categories.map(cat => {
+                            return <span key={cat.id} className="label label-warning" styleName="tag">{cat.name}</span>
+                        })}
                     </div>
                 </div>
             </div>

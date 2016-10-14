@@ -1,8 +1,21 @@
 .reviews {
-	list-style-type: none;
-	margin-top: 12px;
+	li:first-child {
+		border-top: 0;
+	}
+	li {
+		border-top: 1px solid #ccc;
+		padding: 9px 0;
+	}
+
+	p {
+		margin-bottom: 0;
+	}
 }
 
 .reviewer {
 	font-weight: bold;
+}
+
+.date {
+	float: right;
 }

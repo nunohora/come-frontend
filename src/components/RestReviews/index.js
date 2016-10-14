@@ -4,13 +4,15 @@ import Rating from 'react-rating'
 import { connect } from 'react-redux'
 import { getRestaurantReviews } from 'redux-store/modules/restaurant'
 import Loader from 'react-loader'
+import moment from 'moment'
 import styles from './styles.scss'
 
 export class RestaurantReviews extends React.Component {
 
     static propTypes = {
         getRestaurantReviews: PropTypes.func.isRequired,
-        reviews: PropTypes.array.isRequired
+        reviews: PropTypes.array.isRequired,
+        isFetchingReviews: PropTypes.bool.isRequired
     }
 
     componentWillMount() {
@@ -21,12 +23,17 @@ export class RestaurantReviews extends React.Component {
         return list.map((item, index) => {
             return (
                 <li key={index}>
-                    <div styleName="reviewer">{item.reviewer}</div>
-                    <Rating 
+                    <div>
+                        <span styleName="reviewer">{item.reviewer}</span>
+                        <span styleName="date">
+                            {moment(item.date).format('DD/MM/YYYY')}
+                        </span>
+                    </div>
+                    <Rating
                         empty="small-star empty-star"
                         full="small-star full-star"
-                        readonly={true} 
-                        fractions={3} 
+                        readonly={true}
+                        fractions={3}
                         initialRate={parseInt(item.rating, 10)} />
                     <p>{item.description}</p>
                 </li>
@@ -36,15 +43,17 @@ export class RestaurantReviews extends React.Component {
 
     render() {
         return (
-            <ul styleName="reviews">
-                {this.renderReviewList(this.props.reviews)}
-            </ul>
+            <Loader loaded={!this.props.isFetchingReviews}>
+                <ul styleName="reviews">
+                    {this.renderReviewList(this.props.reviews)}
+                </ul>
+            </Loader>
         )
     }
 }
 
 const mapStateToProps = (state, props) => ({
-    isFetching: state.restaurant.isFetching,
+    isFetchingReviews: state.restaurant.isFetchingReviews,
     reviews: state.restaurant.reviews
 })
 

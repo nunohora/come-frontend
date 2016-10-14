@@ -7,7 +7,6 @@ import Loader from 'react-loader'
 import MenuCategories from 'components/MenuCategories'
 import RestaurantHeader from 'components/RestHeader'
 import ShoppingCart from 'containers/ShoppingCart'
-import GoBackButton from 'components/GoBackButton'
 import { FormattedMessage } from 'react-intl'
 
 class Restaurant extends React.Component {
@@ -32,10 +31,10 @@ class Restaurant extends React.Component {
     }
 
     renderClasses(name) {
-        const { pathname } = this.props.location 
+        const { pathname } = this.props.location
         const path = pathname.split('/')
         let string = path[path.length - 1]
-        
+
         // Naughty hack!
         if (string !== 'reviews' && string !== 'info') string = 'menu'
 
@@ -46,39 +45,39 @@ class Restaurant extends React.Component {
     }
 
     getUrl() {
-        const { props: { params: { slug }}} = this
-        return `/places/${slug}`
+        return `/places/${this.props.params.slug}`
     }
 
     render() {
-        const { props: { params } } = this
+        const { props } = this
 
         return (
             <div className="row normal-container">
-                <GoBackButton text="search" to="/" />
-                <div className="col-md-3 hidden-sm">
-                    <MenuCategories categories={this.props.menuCategories} path={this.getUrl()} />
-                </div>
-                <div className="col-md-6">
-                    <RestaurantHeader meta={this.props.meta} />
-                    <div className="button-tabs">
-                        <div className={this.renderClasses('menu')}>
-                            <Link to={`${this.getUrl()}`} role="tab"><FormattedMessage id="MENU" /></Link>
+                <Loader loaded={!props.isFetching}>
+                    <div className="col-md-3 hidden-sm">
+                        <MenuCategories categories={props.menuCategories} path={this.getUrl()} />
+                    </div>
+                    <div className="col-md-6">
+                        <RestaurantHeader meta={props.meta} />
+                        <div className="button-tabs">
+                            <div className={this.renderClasses('menu')}>
+                                <Link to={`${this.getUrl()}`} role="tab"><FormattedMessage id="MENU" /></Link>
+                            </div>
+                            <div className={this.renderClasses('reviews')}>
+                                <Link to={`${this.getUrl()}/reviews`} role="tab"><FormattedMessage id="REVIEWS" /></Link>
+                            </div>
+                            <div className={this.renderClasses('info')}>
+                                <Link to={`${this.getUrl()}/info`} role="tab"><FormattedMessage id="INFORMATION" /></Link>
+                            </div>
                         </div>
-                        <div className={this.renderClasses('reviews')}>
-                            <Link to={`${this.getUrl()}/reviews`} role="tab"><FormattedMessage id="REVIEWS" /></Link>
-                        </div>
-                        <div className={this.renderClasses('info')}>
-                            <Link to={`${this.getUrl()}/info`} role="tab"><FormattedMessage id="INFORMATION" /></Link>
+                        <div className="tab-content">
+                            {props.children}
                         </div>
                     </div>
-                    <div className="tab-content">
-                        {this.props.children}           
+                    <div className="col-md-3 hidden-sm">
+                        <ShoppingCart />
                     </div>
-                </div>
-                <div className="col-md-3 hidden-sm">
-                    <ShoppingCart />
-                </div>
+                </Loader>
             </div>
         )
     }

@@ -6,7 +6,6 @@ import Loader from 'react-loader'
 import RestaurantList from 'components/RestList'
 import Categories from 'components/Categories'
 import ResultNumber from 'components/ResultNumber'
-import GoBackButton from 'components/GoBackButton'
 
 let TiChevronLeft = require('react-icons/lib/ti/chevron-left')
 
@@ -43,11 +42,10 @@ class SearchResult extends React.Component {
 
         return (
             <div className="row normal-container">
-                <GoBackButton text="search" to="/" />
                 <Loader loaded={!this.props.isFetching}>
                     <div className="col-md-9 col-md-push-3">
                         <div className="row">
-                            <div className="col-md-4 col-sm-4 masonry-item col-xs-12">
+                            <div className="col-xs-4 col-sm-4 col-md-4">
                                 <div className="select-option">
                                     <TiChevronLeft size={20} className="icon dropdown-arrow select" />
                                     <select>
@@ -69,7 +67,7 @@ class SearchResult extends React.Component {
                                     </select>
                                 </div>
                             </div>
-                            <div className="col-md-8 text-right">
+                            <div className="col-xs-8 col-md-8 text-right">
                                 <ResultNumber number={ props.number } postcode={ props.postcode }/>
                             </div>
                         </div>

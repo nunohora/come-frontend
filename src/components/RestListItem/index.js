@@ -4,11 +4,12 @@ import slug from 'slug'
 import Rating from 'react-rating'
 import CSSModules from 'react-css-modules'
 import Image from 'img/blog-post.jpg'
+import MediaQuery from 'react-responsive'
 import styles from './styles.scss'
 
 let FaMap = require('react-icons/lib/fa/map')
 let FaCutlery = require('react-icons/lib/fa/cutlery')
-let TiThList = require('react-icons/lib/ti/th-list')
+let MdFormatListBulleted = require('react-icons/lib/md/format-list-bulleted')
 
 class RestaurantListItem extends React.Component {
 
@@ -63,9 +64,15 @@ class RestaurantListItem extends React.Component {
                         })}
                     </div>
                 </div>
-                <Link to={url} styleName="see-menu" className="btn btn-filled">
-                    <TiThList size={20} />
-                    <span>Ver Menu</span>
+                <MediaQuery minWidth={767}>
+                    <Link to={url} styleName="see-menu" className="btn btn-filled">
+                        <MdFormatListBulleted size={20} />
+                        <span>Ver Menu</span>
+                    </Link>
+                </MediaQuery>
+                <Link to={url} styleName="see-menu-narrow" className="btn btn-filled visible-xs-block">
+                    <MdFormatListBulleted size={20} />
+                    <span>Menu</span>
                 </Link>
             </li>
         )

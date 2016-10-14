@@ -93,13 +93,18 @@ const ACTION_HANDLERS = {
     },
     [GET_REVIEWS_SUCCESS]: (state, data) => {
         return Object.assign({}, state, {
-            isFetching: false,
+            isFetchingReviews: false,
             reviews: data.payload
         })
     },
     [GET_REVIEWS_REQUEST]: state => {
         return Object.assign({}, state, {
-            isFetching: true
+            isFetchingReviews: true
+        })
+    },
+    [GET_REVIEWS_FAILURE]: state => {
+        return Object.assign({}, state, {
+            isFetchingReviews: false
         })
     },
     [GET_INFO_SUCCESS]: (state, data) => {
@@ -126,7 +131,8 @@ const initialState = {
     menu: {},
     menuCategories: [],
     reviews: [],
-    isFetching: false
+    isFetching: false,
+    isFetchingReviews: false
 }
 
 // ------------------------------------

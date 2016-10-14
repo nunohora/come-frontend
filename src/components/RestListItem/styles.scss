@@ -2,6 +2,7 @@
     cursor: pointer;
     display: flex;
     margin-left: 15px;
+    text-overflow: ellipsis;
 }
 
 .rest-item:hover {
@@ -24,8 +25,6 @@
     width: 120px;
     border-radius: 4px;
     overflow: hidden;
-    vertical-align: middle;
-    box-sizing: border-box;
 
     img {
         height: 103px;
@@ -53,6 +52,13 @@
     align-self: center;
     margin-bottom: 0;
     margin-right: 0;
+}
+
+.see-menu-narrow {
+    composes: see-menu;
+    min-width: 0;
+    width: 100px;
+    padding: 0;
 }
 
 .tag {
