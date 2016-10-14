@@ -1,6 +1,7 @@
 .rest-item {
     cursor: pointer;
     display: flex;
+    margin-left: 15px;
 }
 
 .rest-item:hover {
@@ -22,7 +23,6 @@
     height: 103px;
     width: 120px;
     border-radius: 4px;
-    margin-left: 15px;
     overflow: hidden;
     vertical-align: middle;
     box-sizing: border-box;
@@ -46,12 +46,15 @@
 .see-menu {
     span {
         margin-left: 6px;
-        vertical-align: middle;
     }
 }
 
 .see-menu {
     align-self: center;
     margin-bottom: 0;
-    margin-right: 16px;
+    margin-right: 0;
+}
+
+.tag {
+    background-color: #EC1C25;
 }

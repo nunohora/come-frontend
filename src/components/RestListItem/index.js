@@ -36,25 +36,6 @@ class RestaurantListItem extends React.Component {
         )
     }
 
-    renderCategories(categories = []) {
-        let string = ''
-
-        categories.forEach(category => {
-            string = string + category.name
-
-            if (categories.indexOf(category) + 1 !== categories.length) {
-                string += ', '
-            }
-        })
-
-        return (
-            <div styleName="tag-list">
-                <FaCutlery size={15} />
-                <span>{string}</span>
-            </div>
-        )
-    }
-
     render() {
         const { props } = this
         const url = `/places/${props.slug}`
@@ -75,7 +56,12 @@ class RestaurantListItem extends React.Component {
                         <FaMap size={15} />
                         <span>{props.address}</span>
                     </div>
-                    {this.renderCategories(props.categories)}
+                    <div styleName="tag-list">
+                        <FaCutlery size={15} />
+                        {props.categories.map(cat => {
+                            return <span key={cat.id} className="label label-warning" styleName="tag">{cat.name}</span>
+                        })}
+                    </div>
                 </div>
                 <Link to={url} styleName="see-menu" className="btn btn-filled">
                     <TiThList size={20} />

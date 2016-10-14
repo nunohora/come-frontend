@@ -13,15 +13,16 @@ class ResultNumber extends React.Component {
 
     render() {
         return (
-            <span className="input-lh" styleName="results">
-            	<strong>{this.props.number}</strong>&nbsp;
-                <FormattedMessage id="RESULTS_FOR" />&nbsp;
-                <strong>{this.props.postcode}</strong>
-                 &nbsp;
-                <Link to="" >
+            <div>
+                <div styleName="results-number">
+                    <strong>{this.props.number}</strong>&nbsp;
+                    <FormattedMessage id="RESULTS_FOR" />&nbsp;
+                    <strong>{this.props.postcode}</strong>
+                </div>
+                <Link to="" styleName="change-location">
                     (<FormattedMessage id="CHANGE_LOCATION?" />)
                 </Link>
-        	</span>
+        	</div>
         );
     }
 }
