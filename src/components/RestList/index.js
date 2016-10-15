@@ -19,6 +19,8 @@ class RestaurantList extends React.Component {
                         name={rest.name}
                         address={`${rest.location.address} - ${rest.location.city}`}
                         categories={rest.food_categories}
+                        rating={rest.rating}
+                        reviewNumber={rest.num_reviews}
                         slug = {rest.slug} />
                 ))}
             </ul>

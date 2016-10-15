@@ -13,7 +13,7 @@ class RestaurantHeader extends React.Component {
         meta: PropTypes.object.isRequired
     }
 
-    renderRating(rating) {
+    renderRating(rating, number) {
         return (
             <div>
                 <Rating
@@ -21,8 +21,8 @@ class RestaurantHeader extends React.Component {
                     full="small-star full-star"
                     readonly={true}
                     fractions={3}
-                    initialRate={rating} />
-                <span styleName="reviews-number">(27 reviews)</span>
+                    initialRate={parseFloat(rating)} />
+                <span styleName="reviews-number">{number} reviews</span>
             </div>
         )
     }
@@ -37,7 +37,7 @@ class RestaurantHeader extends React.Component {
                 </div>
                 <div styleName="rest-info">
                     <h3>{meta.name}</h3>
-                    {this.renderRating(4.5)}
+                    {this.renderRating(meta.rating, meta.num_reviews)}
                     <div styleName="address">
                         <FaMap size={15} />
                         <span>{meta.location.address} - {meta.location.city}</span>

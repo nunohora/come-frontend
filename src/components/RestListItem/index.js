@@ -18,10 +18,12 @@ class RestaurantListItem extends React.Component {
         name: PropTypes.string.isRequired,
         address: PropTypes.string,
         categories: PropTypes.array.isRequired,
-        slug: PropTypes.string.isRequired
+        slug: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        reviewNumber: PropTypes.number.isRequired
     }
 
-    renderRating(rating) {
+    renderRating(rating, number) {
         return (
             <div>
                 <Rating
@@ -31,7 +33,7 @@ class RestaurantListItem extends React.Component {
                 fractions={3}
                 initialRate={rating} />
                 <span styleName="reviews-number">
-                    (27 reviews)
+                    {number} reviews
                 </span>
             </div>
         )
@@ -52,7 +54,7 @@ class RestaurantListItem extends React.Component {
                              {props.name}
                         </Link>
                     </h4>
-                    {this.renderRating(3)}
+                    {this.renderRating(props.rating, props.reviewNumber)}
                     <div styleName="address">
                         <FaMap size={15} />
                         <span>{props.address}</span>
