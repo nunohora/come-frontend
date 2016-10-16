@@ -54,10 +54,10 @@ class Restaurant extends React.Component {
         return (
             <div className="row normal-container">
                 <Loader loaded={!props.isFetching}>
-                    <div className="col-md-3 hidden-sm">
+                    <div className="col-md-3 col-lg-3">
                         <MenuCategories categories={props.menuCategories} path={this.getUrl()} />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-sm-8 col-md-6 col-lg-6">
                         <RestaurantHeader meta={props.meta} />
                         <div className="button-tabs">
                             <div className={this.renderClasses('menu')}>
@@ -74,7 +74,7 @@ class Restaurant extends React.Component {
                             {props.children}
                         </div>
                     </div>
-                    <div className="col-md-3 hidden-sm">
+                    <div className="col-sm-4 col-md-3 col-lg-3">
                         <ShoppingCart />
                     </div>
                 </Loader>

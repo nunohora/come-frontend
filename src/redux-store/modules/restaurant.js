@@ -132,7 +132,11 @@ const initialState = {
     menuCategories: [],
     reviews: [],
     isFetching: false,
-    isFetchingReviews: false
+    isFetchingReviews: false,
+    location: {
+        latitude: 0,
+        longitude: 0
+    }
 }
 
 // ------------------------------------
