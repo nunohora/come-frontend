@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
 import LogoComplete from 'img/logo-complete.png'
+import { FormattedMessage } from 'react-intl'
 
 let TiSocialTwitter = require('react-icons/lib/ti/social-twitter')
 let TiSocialFacebook = require('react-icons/lib/ti/social-facebook')
@@ -18,27 +19,39 @@ class Footer extends React.Component {
                         </div>
                         <div className="col-sm-6 col-md-4">
                             <div className="widget">
-                                <h6 className="title">Atalhos</h6>
+                                <FormattedMessage id="QUICK_LINKS">
+                                    { message => <h6 className="title">{message}</h6> }
+                                </FormattedMessage>
                                 <hr />
                                 <ul styleName="quick-links">
                                     <li>
-                                        <Link to="/about-us">About Come.pt</Link>
+                                        <FormattedMessage id="ABOUT_US">
+                                            { message => <Link to="/about-us">{message}</Link> }
+                                        </FormattedMessage>
                                     </li>
                                     <li>
-                                        <Link to="/restaurant-partner">Become a Restaurant Partner</Link>
+                                        <FormattedMessage id="BECOME_PARTNER">
+                                            { message => <Link to="/restaurant-partner">{message}</Link> }
+                                        </FormattedMessage>
                                     </li>
                                     <li>
-                                        <Link to="/faq">FAQs</Link>
+                                        <FormattedMessage id="FAQS">
+                                            { message => <Link to="/faq">{message}</Link> }
+                                        </FormattedMessage>
                                     </li>
                                     <li>
-                                        <a href="mailto:ola@come.pt">Contact us</a>
+                                        <FormattedMessage id="CONTACT_US">
+                                            { message => <a href="mailto:ola@come.pt">{message}</a> }
+                                        </FormattedMessage>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div className="col-sm-6 col-md-4">
                             <div className="widget">
-                                <h6 className="title">Social Networks</h6>
+                                <FormattedMessage id="SOCIAL_NETWORKS">
+                                    { message => <h6 className="title">{message}</h6> }
+                                </FormattedMessage>
                                 <hr />
                                 <ul styleName="social">
                                     <li>

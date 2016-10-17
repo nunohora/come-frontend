@@ -35,5 +35,13 @@ export default {
     "MY_ADDRESSES": "My Addresses",
     "LOGOUT": "Logout",
     "HELP": "Help",
-    "POSTCODE": "Postcode"
+    "POSTCODE": "Postcode",
+    "QUICK_LINKS": "Quick Links",
+    "SOCIAL_NETWORKS": "Social Networks",
+    "ABOUT_US": "About us",
+    "BECOME_PARTNER": "Become a restaurant partner",
+    "SEE_MENU": "See Menu",
+    "MENU": "Menu",
+    "FAQS": "FAQs",
+    "CONTACT_US": "Contact us"
 }

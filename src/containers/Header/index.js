@@ -190,17 +190,17 @@ class Header extends React.Component {
                             DEMO
                         </span>
                     </div>
-                    <div className="module widget-handle mobile-toggle right visible-xs">
+                    <div className="widget-handle mobile-toggle right visible-xs" styleName="module-right">
                         <TiThMenu onClick={this.onMenuIconClick.bind(this)} size={20} className="dropdown-menu-icon" />
                     </div>
                     <MediaQuery className={classes} styleName="narrow-menu" maxWidth={767}>
                         {renderNavNarrow()}
                     </MediaQuery>
                     <div className="right hidden-xs">
-                        <div className="module left" styleName="module-widget-handle">
+                        <div className="left" styleName="module-widget-handle">
                             {renderNavWide()}
                         </div>
-                        <div className="module left" styleName="module-widget-handle">
+                        <div className="module-right left" styleName="module-widget-handle">
                             <LocaleChange />
                         </div>
                     </div>

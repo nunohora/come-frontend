@@ -24,7 +24,7 @@ export default {
     "NEWEST_FIRST": "Recentes",
     "RESTAURANT_NAME": "Nome do Restaurante",
     "COLLECTION": "Recolha",
-    "DELIVERY": "Entrega ao domicílio",
+    "DELIVERY": "Entrega",
     "CART_EMPTY": "O seu carrinho está vazio.",
     "MENU": "Menu",
     "REVIEWS": "Reviews",
@@ -35,5 +35,13 @@ export default {
     "MY_ADDRESSES": "Moradas",
     "LOGOUT": "Logout",
     "HELP": "Ajuda",
-    "POSTCODE": "Código Postal"
+    "POSTCODE": "Código Postal",
+    "QUICK_LINKS": "Atalhos",
+    "SOCIAL_NETWORKS": "Redes Sociais",
+    "ABOUT_US": "Sobre nós",
+    "BECOME_PARTNER": "Tenho um restaurante",
+    "SEE_MENU": "See Menu",
+    "MENU": "Menu",
+    "FAQS": "Perguntas frequentes",
+    "CONTACT_US": "Contacte-nos"
 }

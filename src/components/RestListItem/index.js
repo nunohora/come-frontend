@@ -5,6 +5,7 @@ import Rating from 'react-rating'
 import CSSModules from 'react-css-modules'
 import Image from 'img/blog-post.jpg'
 import MediaQuery from 'react-responsive'
+import { FormattedMessage } from 'react-intl'
 import styles from './styles.scss'
 
 let FaMap = require('react-icons/lib/fa/map')
@@ -19,7 +20,7 @@ class RestaurantListItem extends React.Component {
         address: PropTypes.string,
         categories: PropTypes.array.isRequired,
         slug: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
+        rating: PropTypes.string.isRequired,
         reviewNumber: PropTypes.number.isRequired
     }
 
@@ -31,7 +32,7 @@ class RestaurantListItem extends React.Component {
                 full="small-star full-star"
                 readonly={true}
                 fractions={3}
-                initialRate={rating} />
+                initialRate={parseFloat(rating)} />
                 <span styleName="reviews-number">
                     {number} reviews
                 </span>
@@ -69,12 +70,12 @@ class RestaurantListItem extends React.Component {
                 <MediaQuery minWidth={767}>
                     <Link to={url} styleName="see-menu" className="btn btn-filled">
                         <MdFormatListBulleted size={20} />
-                        <span>Ver Menu</span>
+                        <FormattedMessage id="SEE_MENU" />
                     </Link>
                 </MediaQuery>
                 <Link to={url} styleName="see-menu-narrow" className="btn btn-filled visible-xs-block">
                     <MdFormatListBulleted size={20} />
-                    <span>Menu</span>
+                    <FormattedMessage id="MENU" />
                 </Link>
             </li>
         )

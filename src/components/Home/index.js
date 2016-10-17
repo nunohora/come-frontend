@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchPostcodeForm from 'components/SearchPostcodeForm'
 import ga from 'react-ga'
+import MediaQuery from 'react-responsive'
 import { FormattedMessage } from 'react-intl'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
@@ -78,7 +79,7 @@ class Home extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 mb40">
+                    <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 mb40">
                         <SearchPostcodeForm onSubmit={this.handleSubmit.bind(this)} />
                     </div>
                 </div>

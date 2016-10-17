@@ -7,7 +7,12 @@
 .module {
     height: 55px;
     display: inline-block;
-    padding: 0 32px;
+    padding-left: 32px;
+}
+
+.module-right {
+    composes: module;
+    padding: 0 32px 0 0;
 }
 
 .user,
