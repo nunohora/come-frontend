@@ -156,6 +156,7 @@
 
     a {
         display: block;
+        line-height: 37px;
     }
 
     li {
@@ -166,8 +167,4 @@
     li:first-child {
         border-top: 0;
     }
-}
-
-.open .narrow-menu {
-    left: 0;
 }

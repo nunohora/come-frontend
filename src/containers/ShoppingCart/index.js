@@ -4,6 +4,7 @@ import ShoppingCartItem from 'containers/ShoppingCartItem'
 import { changeRadioButton } from 'redux-store/modules/shoppingCart'
 import { FormattedMessage } from 'react-intl'
 import CSSModules from 'react-css-modules'
+import { isAuthenticated, login } from'redux-store/modules/lock'
 import styles from './styles.scss'
 
 class ShoppingCart extends React.Component {
@@ -18,7 +19,9 @@ class ShoppingCart extends React.Component {
         total: PropTypes.string.isRequired,
         toCollect: PropTypes.bool.isRequired,
         deliveryFee: PropTypes.number.isRequired,
-        changeRadioButton: PropTypes.func.isRequired
+        changeRadioButton: PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.func.isRequired,
+        login: PropTypes.func.isRequired
     }
 
     onRadioButtonClick(toCollect) {
@@ -89,7 +92,7 @@ class ShoppingCart extends React.Component {
 
         return (
             <div>
-                <input 
+                <input
                     type="submit"
                     styleName="checkout-button"
                     disabled={!props.orders.length}
@@ -130,7 +133,9 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps= (dispatch) => ({
-    changeRadioButton: (toCollect) => { changeRadioButton(dispatch, toCollect) }
+    changeRadioButton: (toCollect) => { changeRadioButton(dispatch, toCollect) },
+    isAuthenticated: () => { isAuthenticated() },
+    login: () => { login() }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(ShoppingCart, styles))

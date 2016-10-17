@@ -38,6 +38,7 @@
 
 .rest-info {
 	margin-left: 16px;
+    flex-grow: 2;
 
 	h3 {
 		margin-bottom: 5px;
@@ -47,5 +48,12 @@
 }
 
 .rest-open {
-    color: white;
+    font-size: 12px;
+    float: right;
+}
+
+.rest-open-text {
+    vertical-align: middle;
+    color: #47B475;
+    margin-left: 4px;
 }

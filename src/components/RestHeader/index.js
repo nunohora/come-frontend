@@ -44,15 +44,15 @@ class RestaurantHeader extends React.Component {
                         <span>{meta.location.address} - {meta.location.city}</span>
                     </div>
                     <div>
-                        <div styleName="tag-list">
+                        <span styleName="tag-list">
                             <FaCutlery size={15} />
                             {meta.food_categories.map(cat => {
                                 return <span key={cat.id} className="label label-warning" styleName="tag">{cat.name}</span>
                             })}
-                        </div>
+                        </span>
                         <span styleName="rest-open">
                             <FaClockO size={15} />
-                            Aberto
+                            <span styleName="rest-open-text">Aberto</span>
                         </span>
                     </div>
                 </div>

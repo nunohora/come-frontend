@@ -110,7 +110,7 @@ class Header extends React.Component {
 
     renderLoggedInNarrow() {
         return (
-            <ul styleName="narrow-menu">
+            <ul onClick={this.onMenuItemClick.bind(this)}>
                 <li styleName="menu-item">
                     <Link to="/user/my-account">
                         <FormattedMessage id="MY_ACCOUNT" tagName="span"/>
@@ -147,7 +147,7 @@ class Header extends React.Component {
 
     renderLoggedOutNarrow() {
         return (
-            <ul styleName="narrow-menu">
+            <ul onClick={this.onMenuItemClick.bind(this)}>
                 <li className="menu-item">
                     <a onClick={this.login.bind(this)}>Login</a>
                 </li>
@@ -162,6 +162,11 @@ class Header extends React.Component {
 
     onMenuIconClick() {
         this.setState({ navOpen: !this.state.navOpen })
+        console.warn('click')
+    }
+
+    onMenuItemClick() {
+        this.setState({ navOpen: false })
     }
 
     render() {
@@ -170,7 +175,9 @@ class Header extends React.Component {
         const renderNavWide = isAuthenticated ? this.renderLoggedInWide.bind(this) : this.renderLoggedOutWide.bind(this)
         const renderNavNarrow = isAuthenticated ? this.renderLoggedInNarrow.bind(this) : this.renderLoggedOutNarrow.bind(this)
 
-        const classes = classNames({ open: this.state.navOpen })
+        const classes = classNames({
+            'narrow-menu-open': this.state.navOpen
+        })
 
         return (
             <header styleName="header">
@@ -186,7 +193,7 @@ class Header extends React.Component {
                     <div className="module widget-handle mobile-toggle right visible-xs">
                         <TiThMenu onClick={this.onMenuIconClick.bind(this)} size={20} className="dropdown-menu-icon" />
                     </div>
-                    <MediaQuery styleName={classes} minDeviceWidth={767}>
+                    <MediaQuery className={classes} styleName="narrow-menu" maxWidth={767}>
                         {renderNavNarrow()}
                     </MediaQuery>
                     <div className="right hidden-xs">
