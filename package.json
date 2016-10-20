@@ -34,7 +34,7 @@
       }
     },
     "deploy": {
-      "command": "npm run clean && npm run compile && firebase deploy --token '1/1GfmNyCwN2NMRr85kMpu5KazEoeHU3qpJWOhf0IvvEQ'",
+      "command": "npm run clean && npm run compile",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*"

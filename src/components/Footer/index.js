@@ -77,7 +77,9 @@ class Footer extends React.Component {
                 <div className="col-sm-12">
                     <div styleName="sub">© Copyright 2016 - Come.pt</div>
                 </div>
-                <a className="btn btn-sm fade-half" styleName="back-to-top" href="#">Back to top</a>
+                <FormattedMessage id="BACK_TO_TOP">
+                    { message => <a className="btn btn-sm fade-half" styleName="back-to-top" href="#">{message}</a> }
+                </FormattedMessage>
             </footer>
         )
     }
