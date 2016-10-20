@@ -43,5 +43,6 @@ export default {
     "SEE_MENU": "See Menu",
     "MENU": "Menu",
     "FAQS": "FAQs",
-    "CONTACT_US": "Contact us"
+    "CONTACT_US": "Contact us",
+    "BACK_TO_TOP": "Back to Top"
 }
