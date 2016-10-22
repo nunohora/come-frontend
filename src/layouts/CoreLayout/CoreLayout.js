@@ -14,46 +14,48 @@ import Footer from 'components/Footer'
 //
 // CoreLayout is a pure function of its props, so we can
 // define it with a plain javascript function...
-function CoreLayout({ route, children }) {
+export default class CoreLayout extends React.Component {
 
-    let items = () => {
+    static propTypes = {
+        children: PropTypes.element
+    }
+
+    render() {
+        const { props } = this
+
+        let items = () => {
+            return (
+                <div key={props.children}>
+                    {props.children}
+                </div>
+            )
+        }
+
         return (
-            <div key={children}>
-                {children}
+            <div>
+                <Header routes={props.route} />
+                <div className="main-container">
+                    <section className="fullscreen">
+                        <ReactCSSTransitionGroup
+                            component="div"
+                            className="container v-align-transform"
+                            transitionName={{
+                                enter: 'enter',
+                                leave: 'leave',
+                                appear: 'appear'
+                            }}
+                            transitionAppear={true}
+                            transitionAppearTimeout={500}
+                            transitionEnterTimeout={500}
+                            transitionLeaveTimeout={500}
+                        >
+                            <div className="bg-holder"></div>
+                            {items()}
+                        </ReactCSSTransitionGroup>
+                    </section>
+                </div>
+                <Footer />
             </div>
         )
     }
-
-    return (
-        <div>
-            <Header routes={route} />
-            <div className="main-container">
-                <section className="fullscreen">
-                    <ReactCSSTransitionGroup
-                        component="div"
-                        className="container v-align-transform"
-                        transitionName={{
-                            enter: 'enter',
-                            leave: 'leave',
-                            appear: 'appear'
-                        }}
-                        transitionAppear={true}
-                        transitionAppearTimeout={500}
-                        transitionEnterTimeout={500}
-                        transitionLeaveTimeout={500}
-                    >
-                        <div className="bg-holder"></div>
-                        {items()}
-                    </ReactCSSTransitionGroup>
-                </section>
-            </div>
-            <Footer />
-        </div>
-    )
 }
-
-CoreLayout.propTypes = {
-    children: PropTypes.element
-}
-
-export default CoreLayout
