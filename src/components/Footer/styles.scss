@@ -60,21 +60,6 @@
     }
 }
 
-.back-to-top {
-    border-color: #fff;
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-
-    &:hover,
-    &:visited {
-        background: none;
-        color: #fff;
-        opacity: 1;
-    }
-}
-
 .hash-tag {
     font-size: 30px;
     padding-top: 16px;
