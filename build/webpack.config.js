@@ -32,9 +32,6 @@ webpackConfig.entry = {
     app: __DEV__
         ? [APP_ENTRY_PATH, `webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`]
         : [APP_ENTRY_PATH],
-    normalize: 'normalize-scss',
-    bootstrap: 'bootstrap-loader',
-    fontAwesome: 'font-awesome-sass-loader',
     intl: 'intl'
 }
 
@@ -186,15 +183,6 @@ webpackConfig.module.loaders.push({
         BASE_CSS_LOADER,
         'postcss',
         'sass?sourceMap'
-    ]
-})
-webpackConfig.module.loaders.push({
-    test: /\.css$/,
-    exclude: excludeCSSModules,
-    loaders: [
-        'style',
-        BASE_CSS_LOADER,
-        'postcss'
     ]
 })
 
