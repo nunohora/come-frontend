@@ -16,6 +16,7 @@ export const GET_INFO_SUCCESS = 'GET_INFO_SUCCESS'
 export const GET_INFO_FAILURE = 'GET_INFO_FAILURE'
 
 
+const endpoint = 'http://api.come.pt'
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -24,7 +25,7 @@ export function getRestaurantMenu(dispatch, slug) {
 
     dispatch({
         [CALL_API]: {
-            endpoint: `http://api.come.dev:8000/places/${slug}/`,
+            endpoint: `${endpoint}/places/${slug}/`,
             method: 'GET',
             types: [GET_MENU_REQUEST, GET_MENU_SUCCESS, GET_MENU_FAILURE]
         }
@@ -34,7 +35,7 @@ export function getRestaurantMenu(dispatch, slug) {
 export function getRestaurantReviews(dispatch, slug) {
     dispatch({
         [CALL_API]: {
-            endpoint: `http://api.come.dev:8000/places/${slug}/reviews/`,
+            endpoint: `${endpoint}/places/${slug}/reviews/`,
             method: 'GET',
             types: [GET_REVIEWS_REQUEST, GET_REVIEWS_SUCCESS, GET_REVIEWS_FAILURE]
         }
@@ -44,7 +45,7 @@ export function getRestaurantReviews(dispatch, slug) {
 export function getRestaurantInfo(dispatch, slug) {
     dispatch({
         [CALL_API]: {
-            endpoint: `http://api.come.dev:8000/places/${slug}}/info/`,
+            endpoint: `${endpoint}/places/${slug}}/info/`,
             types: [GET_INFO_REQUEST, GET_INFO_SUCCESS, GET_INFO_FAILURE]
         }
     })

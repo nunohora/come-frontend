@@ -6,6 +6,8 @@ export const GET_ACCOUNT_REQUEST = 'GET_ACCOUNT_REQUEST'
 export const GET_ACCOUNT_SUCCESS = 'GET_ACCOUNT_SUCCESS'
 export const GET_ACCOUNT_FAILURE = 'GET_ACCOUNT_FAILURE'
 
+const endpoint = 'http://api.come.pt'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -14,7 +16,7 @@ export function getUserAccount(dispatch) {
 
     dispatch({
         [CALL_API]: {
-            endpoint: `http://api.come.dev:8000/user/account/`,
+            endpoint: `${endpoint}/user/account/`,
             method: 'GET',
             headers: {
                 'Authorization': localStorage.getItem('id_token') ? localStorage.getItem('id_token') : ''
