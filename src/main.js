@@ -15,8 +15,8 @@ const browserHistory = useRouterHistory(createBrowserHistory)({
 })
 
 //Initialize google analytics
-ga.initialize('UA-78777053-2', {
-    debug: true
+ga.initialize('UA-78777053-4', {
+    debug: false
 })
 
 // Create redux-store store and sync with react-router-redux-store. We have installed the
