@@ -64,7 +64,7 @@ function onAuthenticated(dispatch, authResult) {
 
         dispatch({
             [CALL_API]: {
-                endpoint: 'http://api.come.dev:8000/login/',
+                endpoint: 'http://api.come.pt/login/',
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
