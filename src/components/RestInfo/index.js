@@ -24,6 +24,9 @@ export class RestaurantInfo extends React.Component {
                 </h3>
                 <div styleName="map">
                     <GoogleMap
+                        bootstrapURLKeys= {{
+                            key: 'AIzaSyBPiEkEaC6T3Q8w-mRtRuektEIjtFmJ-Lo'
+                        }}
                         defaultCenter={center}
                         defaultZoom={9}>
                     </GoogleMap>
