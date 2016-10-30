@@ -1,7 +1,7 @@
 //__tests__/components/RestHeader.spec.js
+jest.unmock('../../src/components/RestHeader')
 
 import React from 'react'
-import ReactDOM from 'react-dom'
 import TestUtils from 'react-addons-test-utils'
 import RestHeader from '../../src/components/RestHeader'
 
@@ -23,7 +23,5 @@ describe('<RestHeader />', () => {
         renderer.render(
             <RestHeader meta={meta} />
         )
-
-        console.log(renderer.getRenderOutput())
     })
 })

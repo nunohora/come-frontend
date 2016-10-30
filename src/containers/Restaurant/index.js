@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import classnames from 'classnames'
 import { getRestaurantMenu } from 'redux-store/modules/restaurant'
+import { addOrderItem } from 'redux-store/modules/shoppingCart'
 import Loader from 'react-loader'
 import MenuCategories from 'components/MenuCategories'
 import RestaurantHeader from 'components/RestHeader'
@@ -15,9 +17,10 @@ class Restaurant extends React.Component {
         getRestaurantMenu: PropTypes.func.isRequired,
         menuCategories: PropTypes.array.isRequired,
         meta: PropTypes.object.isRequired,
-        menu: PropTypes.object.isRequired,
+        menu: PropTypes.array.isRequired,
         slug: PropTypes.string.isRequired,
-        location: PropTypes.object.isRequired
+        location: PropTypes.object.isRequired,
+        isFetching: PropTypes.bool.isRequired
     }
 
     constructor(props) {
@@ -51,6 +54,14 @@ class Restaurant extends React.Component {
     render() {
         const { props } = this
 
+        const childrenWithProps = React.Children.map(props.children, child => {
+            return React.cloneElement(child, {
+                addOrderItem: props.addOrderItem,
+                menu: props.menu,
+                isFetching: props.isFetching
+            })
+        })
+
         return (
             <div className="row normal-container">
                 <Loader loaded={!props.isFetching}>
@@ -71,7 +82,7 @@ class Restaurant extends React.Component {
                             </div>
                         </div>
                         <div className="tab-content">
-                            {props.children}
+                            {childrenWithProps}
                         </div>
                     </div>
                     <div className="col-sm-4 col-md-3 col-lg-3">
@@ -91,8 +102,9 @@ const mapStateToProps = (state, props) => ({
     slug: props.params.slug
 })
 
-const mapDispatchToProps= (dispatch) => ({
-    getRestaurantMenu: (slug) => { getRestaurantMenu(dispatch, slug) }
+const mapDispatchToProps = (dispatch, props) => ({
+    getRestaurantMenu: (slug) => { getRestaurantMenu(dispatch, slug) },
+    addOrderItem: (item) => { addOrderItem(dispatch, props.params.slug, item) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Restaurant)

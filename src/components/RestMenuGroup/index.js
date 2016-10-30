@@ -10,7 +10,8 @@ let FaMinus = require('react-icons/lib/fa/minus')
 class RestaurantMenuGroup extends React.Component {
 
     static propTypes = {
-        group: PropTypes.array.isRequired
+        group: PropTypes.array.isRequired,
+        addOrderItem: PropTypes.func.isRequired
     }
 
     constructor(props) {
@@ -19,14 +20,6 @@ class RestaurantMenuGroup extends React.Component {
         this.state = {
             open: true
         }
-    }
-
-    renderProductList(list = []) {
-        return list.map((item, index) => {
-            return (
-                <RestMenuItem item={item} key={index} />
-            )
-        })
     }
 
     onTitleClick() {
@@ -50,7 +43,7 @@ class RestaurantMenuGroup extends React.Component {
                     <span styleName="real-title">{name}</span>
                 </div>
                 <div className="content">
-                    {this.renderProductList(group)}
+                    {group.map((item, index) => { return <RestMenuItem item={item} key={index} addOrderItem={this.props.addOrderItem} /> })}
                 </div>
             </li>
         )

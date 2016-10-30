@@ -6,7 +6,7 @@ export const GET_ACCOUNT_REQUEST = 'GET_ACCOUNT_REQUEST'
 export const GET_ACCOUNT_SUCCESS = 'GET_ACCOUNT_SUCCESS'
 export const GET_ACCOUNT_FAILURE = 'GET_ACCOUNT_FAILURE'
 
-const endpoint = 'http://api.come.pt'
+const endpoint = 'http://come.dev:8000'
 
 // ------------------------------------
 // Actions

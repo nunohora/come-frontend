@@ -18,7 +18,7 @@ export default {
     "SHOPPING_CART": "Shopping Cart",
     "ERROR_REQUIRED_POSTCODE": "Postcode is required.",
     "ERROR_INVALID_POSTCODE": "Invalid postcode format. Ex: 4050-444",
-    "SORT_BY": "Sort by",
+    "RECOMMENDED": "Recommended",
     "DISTANCE": "Distance",
     "RATING": "Rating",
     "NEWEST_FIRST": "Newest first",

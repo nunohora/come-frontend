@@ -16,7 +16,7 @@ export const GET_INFO_SUCCESS = 'GET_INFO_SUCCESS'
 export const GET_INFO_FAILURE = 'GET_INFO_FAILURE'
 
 
-const endpoint = 'http://api.come.pt'
+const endpoint = 'http://come.dev:8000'
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -52,7 +52,7 @@ export function getRestaurantInfo(dispatch, slug) {
 }
 
 function setMenuByGroup(list) {
-    let groups = {};
+    let groups = [];
 
     list.forEach(menuItem => {
         const menuGroup = menuItem.menu_group.name
@@ -129,7 +129,7 @@ const initialState = {
         openingTimes: '',
         thumbnail: ''
     },
-    menu: {},
+    menu: [],
     menuCategories: [],
     reviews: [],
     isFetching: false,

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ShoppingCartItem from 'containers/ShoppingCartItem'
-import { changeRadioButton } from 'redux-store/modules/shoppingCart'
+import { changeRadioButton, removeOrderItem, getOrdersForRest } from 'redux-store/modules/shoppingCart'
 import { FormattedMessage } from 'react-intl'
 import CSSModules from 'react-css-modules'
 import { isAuthenticated, login } from'redux-store/modules/lock'
@@ -15,17 +15,19 @@ class ShoppingCart extends React.Component {
 
     static propTypes = {
         orders: PropTypes.array.isRequired,
-        subtotal: PropTypes.string.isRequired,
-        total: PropTypes.string.isRequired,
+        subtotal: PropTypes.number.isRequired,
+        total: PropTypes.number.isRequired,
         toCollect: PropTypes.bool.isRequired,
         deliveryFee: PropTypes.number.isRequired,
         changeRadioButton: PropTypes.func.isRequired,
         isAuthenticated: PropTypes.func.isRequired,
-        login: PropTypes.func.isRequired
+        removeOrderItem: PropTypes.func.isRequired,
+        login: PropTypes.func.isRequired,
+        restName: PropTypes.string.isRequired
     }
 
-    onRadioButtonClick(toCollect) {
-        this.props.changeRadioButton(toCollect)
+    componentWillMount() {
+        this.props.getOrdersForRest(this.props.restName)
     }
 
     renderEmptyShoppingCart() {
@@ -52,7 +54,9 @@ class ShoppingCart extends React.Component {
                                 key={index}
                                 id={order.id}
                                 price={order.price}
-                                name={order.name} />
+                                name={order.name}
+                                restName={props.restName}
+                                removeOrderItem={props.removeOrderItem} />
                         })}
                     </tbody>
                 </table>
@@ -79,23 +83,15 @@ class ShoppingCart extends React.Component {
     }
 
     render() {
-        const { props } = this
-
-        let orderList
-
-        if (props.orders.length) {
-            orderList = this.renderOrderItems.bind(this)
-        }
-        else {
-            orderList = this.renderEmptyShoppingCart
-        }
+        const { props: { toCollect, orders, changeRadioButton } } = this
+        const orderList = orders.length ? this.renderOrderItems.bind(this) : this.renderEmptyShoppingCart
 
         return (
             <div>
                 <input
                     type="submit"
                     styleName="checkout-button"
-                    disabled={!props.orders.length}
+                    disabled={!orders.length}
                     onClick={this.onSubmit.bind(this)}
                     value="Checkout" />
                 <form styleName="checkboxes">
@@ -104,8 +100,8 @@ class ShoppingCart extends React.Component {
                             type="radio"
                             id="collect"
                             name="collect"
-                            checked={props.toCollect}
-                            onChange={this.onRadioButtonClick.bind(this, true)} />
+                            checked={toCollect}
+                            onChange={changeRadioButton.bind(this, true)} />
                         <FormattedMessage id="COLLECTION" />
                     </label>
                     <label>
@@ -113,8 +109,8 @@ class ShoppingCart extends React.Component {
                             type="radio"
                             id="delivery"
                             name="delivery"
-                            checked={!props.toCollect}
-                            onChange={this.onRadioButtonClick.bind(this, false)} />
+                            checked={!toCollect}
+                            onChange={changeRadioButton.bind(this, false)} />
                         <FormattedMessage id="DELIVERY" />
                     </label>
                 </form>
@@ -129,13 +125,16 @@ const mapStateToProps = (state, props) => ({
     subtotal: state.shoppingCart.subtotal,
     total: state.shoppingCart.total,
     toCollect: state.shoppingCart.toCollect,
-    deliveryFee: state.shoppingCart.deliveryFee
+    deliveryFee: state.shoppingCart.deliveryFee,
+    restName: state.restaurant.meta.name
 })
 
-const mapDispatchToProps= (dispatch) => ({
+const mapDispatchToProps= (dispatch, props) => ({
     changeRadioButton: (toCollect) => { changeRadioButton(dispatch, toCollect) },
     isAuthenticated: () => { isAuthenticated() },
-    login: () => { login() }
+    login: () => { login() },
+    removeOrderItem: (restName, id) => { removeOrderItem(dispatch, restName, id) },
+    getOrdersForRest: (restName) => { getOrdersForRest(dispatch, restName) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(ShoppingCart, styles))

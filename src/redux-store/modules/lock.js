@@ -13,7 +13,7 @@ const clientId = '***REMOVED***'
 const domain = '***REMOVED***'
 
 const options = {
-    callbackUrl: 'http://demo.come.pt',
+    callbackUrl: 'http://come.dev:3000',
     auth: {
         params: {
             scope: 'openid email',

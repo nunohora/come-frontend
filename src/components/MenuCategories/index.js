@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
+import CSSModules from 'react-css-modules'
 import { FormattedMessage } from 'react-intl'
 import slug from 'slug'
+import styles from './styles.scss'
 
-export default class MenuCategories extends React.Component {
+class MenuCategories extends React.Component {
 
     static propTypes = {
         categories: PropTypes.array.isRequired
@@ -26,10 +28,12 @@ export default class MenuCategories extends React.Component {
                     <FormattedMessage id="CATEGORIES" tagName="h5" />
                 </div>
                 <hr />
-                <ul className="link-list">
+                <ul styleName="link-list">
                     { this.props.categories.map((category, index) => ( this.renderCategory(category, index))) }
                 </ul>
             </div>
         )
     }
 }
+
+export default CSSModules(MenuCategories, styles)

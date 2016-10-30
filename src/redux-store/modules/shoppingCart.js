@@ -14,14 +14,10 @@ const GET_ORDERS_FAILURE = 'GET_ORDERS_FAILURE'
 
 const TO_COLLECT_CHANGE_SUCCESS = 'TO_COLLECT_CHANGE_SUCCESS'
 
-export function addOrderItem(dispatch, item) {
-    const orderItems = localStorage.getItem('order_items')
+export function getOrdersForRest(dispatch, restName) {
+    const allOrders = localStorage.getItem('order_items')
 
-    let orders = orderItems ? JSON.parse(orderItems) : []
-
-    orders.push(item)
-
-    localStorage.setItem('order_items', JSON.stringify(orders))
+    const orders = allOrders && allOrders[restName] ? allOrders[restName] : []
 
     dispatch({
         type: ADD_ORDER_ITEM_SUCCESS,
@@ -29,24 +25,49 @@ export function addOrderItem(dispatch, item) {
     })
 }
 
-export function removeOrderItem(dispatch, itemId) {
-    let ordersArray = JSON.parse(localStorage.getItem('order_items'))
+export function addOrderItem(dispatch, restName, item) {
+    const orderItems = localStorage.getItem('order_items')
+    let allOrders = []
 
-    const orders = removeFirstFromList(ordersArray, 'id', itemId)
+    if (orderItems) {
+        allOrders = JSON.parse(orderItems)
+    }
 
-    localStorage.setItem('order_items', JSON.stringify(orders))
+    if (allOrders && allOrders[restName]) {
+        allOrders[restName].push(item)
+    }
+    else {
+        allOrders[restName] = []
+    }
+
+    localStorage.setItem('order_items', JSON.stringify(allOrders))
 
     dispatch({
-        type: REMOVE_ORDER_ITEM_SUCCESS,
-        orders
+        type: ADD_ORDER_ITEM_SUCCESS,
+        orders: allOrders[restName]
     })
 }
 
-export function changeRadioButton(dispatch, toCollect) {
+export function removeOrderItem(dispatch, restName, itemId) {
+    let allOrders = JSON.parse(localStorage.getItem('order_items'))
+
+    allOrders = removeFirstFromList(allOrders[restName], 'id', itemId)
+
+    localStorage.setItem('order_items', JSON.stringify(allOrders))
+
     dispatch({
-        type: TO_COLLECT_CHANGE_SUCCESS,
-        toCollect
+        type: REMOVE_ORDER_ITEM_SUCCESS,
+        orders: allOrders[restName]
     })
+}
+
+export function changeRadioButton(toCollect) {
+    return dispatch => {
+        dispatch({
+            type: TO_COLLECT_CHANGE_SUCCESS,
+            toCollect
+        })
+    }
 }
 
 function getSubtotal(orders) {
@@ -57,6 +78,8 @@ function getSubtotal(orders) {
 
         subtotal = subtotal + price
     })
+
+    console.log('subtotal: ', subtotal.toFixed(2))
 
     return subtotal.toFixed(2)
 }
@@ -86,14 +109,11 @@ const ACTION_HANDLERS = {
     }
 }
 
-const orders = localStorage.getItem('order_items') ? JSON.parse(localStorage.getItem('order_items')) : []
-const subtotal = getSubtotal(orders)
-
 const initialState = {
-    orders: orders,
-    subtotal: subtotal,
+    orders: [],
+    subtotal: 0,
     deliveryFee: 0,
-    total: subtotal,
+    total: 0,
     toCollect: false,
     orderDetails: {}
 }

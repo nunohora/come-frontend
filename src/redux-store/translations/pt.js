@@ -18,7 +18,7 @@ export default {
     "SHOPPING_CART": "Carrinho",
     "ERROR_REQUIRED_POSTCODE": "Campo obrigatório.",
     "ERROR_INVALID_POSTCODE": "O formato do código postal é inválido. Ex: 4000-444",
-    "SORT_BY": "Ordenar por",
+    "RECOMMENDED": "Recomendado",
     "DISTANCE": "Distância",
     "RATING": "Rating",
     "NEWEST_FIRST": "Recentes",

@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
 import CSSModules from 'react-css-modules'
-import { removeOrderItem } from 'redux-store/modules/shoppingCart'
 import styles from './styles.scss'
 
 let TiDelete = require('react-icons/lib/ti/delete')
@@ -12,11 +10,8 @@ class ShoppingCartItem extends React.Component {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
-        removeOrderItem: PropTypes.func.isRequired
-    }
-
-    handleClick(id) {
-        this.props.removeOrderItem(id)
+        removeOrderItem: PropTypes.func.isRequired,
+        restName: PropTypes.string.isRequired
     }
 
     render() {
@@ -25,7 +20,7 @@ class ShoppingCartItem extends React.Component {
         return (
             <tr styleName="item-row">
                 <th styleName="remove-icon" scope="row">
-                    <a onClick={this.handleClick.bind(this, props.id)}>
+                    <a onClick={props.removeOrderItem.bind(this, props.restName, props.id)}>
                         <TiDelete size={20} />
                     </a>
                 </th>
@@ -40,8 +35,4 @@ class ShoppingCartItem extends React.Component {
     }
 }
 
-const mapDispatchToProps= (dispatch) => ({
-    removeOrderItem: (id) => { removeOrderItem(dispatch, id) }
-})
-
-export default connect(null, mapDispatchToProps)(CSSModules(ShoppingCartItem, styles))
+export default CSSModules(ShoppingCartItem, styles)

@@ -5,6 +5,8 @@ export const SEARCH_REQUEST = 'SEARCH_REQUEST'
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
 export const SEARCH_FAILURE = 'SEARCH_FAILURE'
 
+const endpoint = 'http://come.dev:8000'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -13,7 +15,7 @@ export function getRestListByLocation(dispatch, postcode) {
 
     dispatch({
         [CALL_API]: {
-            endpoint: `http://api.come.pt/search/${postcode}/`,
+            endpoint: `${endpoint}/search/${postcode}/`,
             method: 'GET',
             types: [SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE]
         }
