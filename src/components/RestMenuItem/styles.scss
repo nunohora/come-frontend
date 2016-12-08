@@ -1,5 +1,6 @@
 .item {
 	border-bottom: 1px solid #ccc;
+	padding: 8px 0;
 }
 
 .item:last-child {
@@ -9,7 +10,6 @@
 .top {
 	display: flex;
 	justify-content: flex-end;
-	margin-top: 12px;
 
 	.name {
 		flex-grow: 5;
@@ -27,8 +27,8 @@
 	}
 }
 
-.description {
-	margin-top: 6px;
+.description p {
+	margin-bottom: 0;
 }
 
 .add-to-cart-button a {

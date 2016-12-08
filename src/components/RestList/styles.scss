@@ -1,4 +1,7 @@
 .rest-list {
+	max-height: 800px;
+	overflow: scroll;
+
 	li:first-child {
 		border-top: 0;
 		padding-top: 0;

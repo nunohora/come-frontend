@@ -1,11 +1,9 @@
 import React from 'react'
 import SearchPostcodeForm from 'components/SearchPostcodeForm'
 import ga from 'react-ga'
-import MediaQuery from 'react-responsive'
 import { FormattedMessage } from 'react-intl'
 import CSSModules from 'react-css-modules'
 import styles from './styles.scss'
-
 import symbol from 'img/come-symbol.png'
 import note from 'img/note.png'
 import mapMarker from 'img/map.png'

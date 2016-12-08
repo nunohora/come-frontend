@@ -106,7 +106,10 @@ class SearchResult extends React.Component {
         return (
             <div className="row normal-container">
                 <Loader loaded={!this.props.isFetching}>
-                    <div className="col-md-9 col-md-push-3">
+                    <div className="hidden-sm col-md-3">
+                        <Categories categories={props.categories} postcode={props.postcode} />
+                    </div>
+                    <div className="col-md-9">
                         <div className="row">
                             <div className="col-xs-4 col-sm-4 col-md-4">
                                 <div className="select-option">
@@ -137,9 +140,6 @@ class SearchResult extends React.Component {
                         <div className="row">
                             <RestaurantList list={restList} />
                         </div>
-                    </div>
-                    <div className="col-md-3 col-md-pull-9 hidden-sm">
-                        <Categories categories={props.categories} postcode={props.postcode} />
                     </div>
                 </Loader>
             </div>

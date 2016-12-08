@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import ShoppingCartItem from 'containers/ShoppingCartItem'
+import ShoppingCartItem from 'components/ShoppingCartItem'
 import { changeRadioButton, removeOrderItem, getOrdersForRest } from 'redux-store/modules/shoppingCart'
 import { FormattedMessage } from 'react-intl'
 import CSSModules from 'react-css-modules'
@@ -15,10 +15,10 @@ class ShoppingCart extends React.Component {
 
     static propTypes = {
         orders: PropTypes.array.isRequired,
-        subtotal: PropTypes.number.isRequired,
-        total: PropTypes.number.isRequired,
+        subtotal: PropTypes.string.isRequired,
+        total: PropTypes.string.isRequired,
         toCollect: PropTypes.bool.isRequired,
-        deliveryFee: PropTypes.number.isRequired,
+        deliveryFee: PropTypes.string.isRequired,
         changeRadioButton: PropTypes.func.isRequired,
         isAuthenticated: PropTypes.func.isRequired,
         removeOrderItem: PropTypes.func.isRequired,
@@ -126,7 +126,7 @@ const mapStateToProps = (state, props) => ({
     total: state.shoppingCart.total,
     toCollect: state.shoppingCart.toCollect,
     deliveryFee: state.shoppingCart.deliveryFee,
-    restName: state.restaurant.meta.name
+    restName: state.restaurant.meta.slug
 })
 
 const mapDispatchToProps= (dispatch, props) => ({

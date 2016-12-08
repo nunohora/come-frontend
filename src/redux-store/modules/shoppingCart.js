@@ -15,9 +15,8 @@ const GET_ORDERS_FAILURE = 'GET_ORDERS_FAILURE'
 const TO_COLLECT_CHANGE_SUCCESS = 'TO_COLLECT_CHANGE_SUCCESS'
 
 export function getOrdersForRest(dispatch, restName) {
-    const allOrders = localStorage.getItem('order_items')
-
-    const orders = allOrders && allOrders[restName] ? allOrders[restName] : []
+    const allOrders = JSON.parse(localStorage.getItem('order_items')) || {}
+    const orders = allOrders[restName] ? allOrders[restName] : []
 
     dispatch({
         type: ADD_ORDER_ITEM_SUCCESS,
@@ -26,20 +25,12 @@ export function getOrdersForRest(dispatch, restName) {
 }
 
 export function addOrderItem(dispatch, restName, item) {
-    const orderItems = localStorage.getItem('order_items')
-    let allOrders = []
+    let allOrders = JSON.parse(localStorage.getItem('order_items')) || {}
+    const orders = allOrders[restName] ? allOrders[restName] : []
 
-    if (orderItems) {
-        allOrders = JSON.parse(orderItems)
-    }
+    orders.push(item)
 
-    if (allOrders && allOrders[restName]) {
-        allOrders[restName].push(item)
-    }
-    else {
-        allOrders[restName] = []
-    }
-
+    allOrders[restName] = orders
     localStorage.setItem('order_items', JSON.stringify(allOrders))
 
     dispatch({
@@ -49,6 +40,8 @@ export function addOrderItem(dispatch, restName, item) {
 }
 
 export function removeOrderItem(dispatch, restName, itemId) {
+    debugger
+
     let allOrders = JSON.parse(localStorage.getItem('order_items'))
 
     allOrders = removeFirstFromList(allOrders[restName], 'id', itemId)
@@ -78,8 +71,6 @@ function getSubtotal(orders) {
 
         subtotal = subtotal + price
     })
-
-    console.log('subtotal: ', subtotal.toFixed(2))
 
     return subtotal.toFixed(2)
 }
@@ -111,9 +102,9 @@ const ACTION_HANDLERS = {
 
 const initialState = {
     orders: [],
-    subtotal: 0,
-    deliveryFee: 0,
-    total: 0,
+    subtotal: "0.00",
+    deliveryFee: "0.00",
+    total: "0.00",
     toCollect: false,
     orderDetails: {}
 }

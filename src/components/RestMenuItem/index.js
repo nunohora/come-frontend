@@ -27,7 +27,9 @@ class RestaurantMenuItem extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div styleName="description"><p>{item.description}</p></div>
+                <div styleName="description">
+                    <p>{item.description}</p>
+                </div>
             </div>
         )
     }
